@@ -1,4 +1,4 @@
-import { CHANGE_LOGGED_IN, USER_STATUS_IS_AUTH } from '../actions/actionTypes';
+import {CHANGE_LOGGED_IN, LOGIN_SUCCESS, USER_STATUS_IS_AUTH} from '../actions/actionTypes';
 
 const initialState = {
     isUserAuthenticated: null,
@@ -17,6 +17,12 @@ const authReducer = ( state = initialState, action) => {
             return {
                 ...state,
                 isUserAuthenticated: action.payload
+            }
+            break;
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                isUserAuthenticated: true
             }
 
 

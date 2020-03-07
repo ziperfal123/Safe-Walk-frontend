@@ -1,7 +1,6 @@
 import {connect} from "react-redux";
 import Login from './Login'
-import {changeUserAuthStatus} from "../../redux/actions/actionsCreator";
-import {handleLoginFormSubmit} from './redux/actionsCreator'
+import {changeUserAuthStatus, handleLoginFormSubmit} from "../../redux/actions/actionsCreator";
 
 
 const mapStateToProps = state => {
