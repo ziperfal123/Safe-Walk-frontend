@@ -9,6 +9,7 @@ import PatientTests from "./containers/PatientTests/PatientTests";
 import Patients from "./containers/Patients/Patients";
 import RehabPlans from "./containers/RehabPlans/RehabPlans";
 import Videos from "./containers/Videos/Videos";
+import NotFound from './containers/NotFound/NotFound.js'
 
 
 const App = (props) =>  {
@@ -22,7 +23,7 @@ const App = (props) =>  {
                 <Route path={pathsNames.patients} component={Patients} />
                 <Route path={pathsNames.rehabPlans} component={RehabPlans} />
                 <Route path={pathsNames.videos} component={Videos} />
-                {/*<Route path={'/*'} component={<h1>NO NO NO </h1>} />*/}
+                <Route path={'*'} component={PatientTests} />
             </Switch>
             <button onClick={() => { props.changeLoggedIn(false) }}>Logout</button>
             {/*<Switch>*/}

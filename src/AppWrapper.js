@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, useEffect} from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -10,25 +10,23 @@ import LoginRequiredRoute from './LoginRequiredRoute';
 import { changeLoggedIn } from './redux/actionsCreator';
 
 
-class AppWrapper extends Component {
-    componentDidMount() {
-        setTimeout(() => { this.props.changeLoggedIn(false) }, 300);
+function AppWrapper(props) {
+    useEffect(() => {
+        setTimeout(() => { props.changeLoggedIn(false) }, 1300);
+    }, [])
+
+
+    console.log('AppWrapper Render')
+    if (props.loggedIn === null) {
+        return <Loading />
     }
 
-    render() {
-        console.log('AppWrapper Render'
-        )
-        if (this.props.loggedIn === null) {
-            return <Loading />
-        }
-
-        return (
-            <Switch>
-                <Route path="/login/" component={Login} />
-                <LoginRequiredRoute component={App} />
-            </Switch>
-        )
-    }
+    return (
+        <Switch>
+            <Route path="/login/" component={Login} />
+            <LoginRequiredRoute component={App} />
+        </Switch>
+    )
 }
 
 

@@ -5,6 +5,7 @@ import { Redirect, Route } from 'react-router-dom';
 
 const LoginRequiredRoute = ({ component: Component, ...rest }) => {
     console.log('LoginRequiredRoute')
+    console.log('Component: ', Component)
     return (
         <Route {...rest} render={props => {
             console.log('rest: ', rest)

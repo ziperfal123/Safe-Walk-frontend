@@ -1,0 +1,5 @@
+@import "../../main";
+
+.not-found-container {
+  @include container-size;
+}
