@@ -130,6 +130,7 @@ const PatientTests = props => {
                 if(test.patientID === patientId) {
                     obj['results']= test.abnormality ? 'abnormality' : 'normal';
                     obj['testDate']= test.date;
+                    obj['key']= Math.random()
                 }
             });
             return {
