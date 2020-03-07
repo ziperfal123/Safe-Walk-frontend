@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect, Route, Switch } from 'react-router-dom';
-import { changeLoggedIn } from './redux/actionsCreator';
+import {Link, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import { changeUserAuthStatus } from './redux/actions/actionsCreator';
 import pathsNames from './router/pathNames'
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
@@ -9,38 +9,34 @@ import PatientTests from "./containers/PatientTests/PatientTests";
 import Patients from "./containers/Patients/Patients";
 import RehabPlans from "./containers/RehabPlans/RehabPlans";
 import Videos from "./containers/Videos/Videos";
+import NotFound from './containers/NotFound/NotFound.js'
 
 
 const App = (props) =>  {
+    console.log('App')
     return (
         <div>
             <Header />
             <SideBar />
-            <button onClick={() => { props.changeLoggedIn(false) }}>Logout</button>
             <Switch>
-                {/*TODO:: redirect to login when there is no route*/}
                 <Route path={pathsNames.patientsTests} component={PatientTests} />
                 <Route path={pathsNames.patients} component={Patients} />
                 <Route path={pathsNames.rehabPlans} component={RehabPlans} />
                 <Route path={pathsNames.videos} component={Videos} />
-                <Route path={'/*'} component={<h1>NO NO NO </h1>} />
+                <Route path={'*'} component={PatientTests} />
             </Switch>
-
-            {/*<Switch>*/}
-            {/*    <Route exact path="/friends/" component={Friends} />*/}
-            {/*    <Route exact path="/books/" component={Books} />*/}
-            {/*    <Redirect exact from="/" to="/friends/" />*/}
-            {/*</Switch>*/}
         </div>
     )
 }
 
 
-export default connect(
-    state => ({
-        loggedIn: state.loggedIn,
-    }),
-    {
-        changeLoggedIn
+
+const mapStateToProps = state => {
+    return {
+        isUserAuthenticated: state.authReducer.isUserAuthenticated,
+        loading: state.authReducer.loading
     }
-)(App);
+}
+const mapDispatchToProps = { changeUserAuthStatus }
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

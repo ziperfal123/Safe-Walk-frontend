@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux'
 import 'antd/dist/antd.css';
 
-import ActuallyMainApp from './ActuallyMainApp';
-import reducers from './redux/reducers';
+import ActuallyMainApp from './AppWrapper';
+import store from "./redux/store";
 
 ReactDOM.render(
-    <Provider store={createStore(reducers)}>
+    <Provider store={store}>
         <BrowserRouter>
             <ActuallyMainApp />
         </BrowserRouter>

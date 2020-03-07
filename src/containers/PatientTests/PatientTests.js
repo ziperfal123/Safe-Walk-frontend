@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import './patientTests.scss'
 import { Table } from 'antd'
+import pathsNames from "../../router/pathNames";
 
 const mockPatients = [
     {
@@ -84,6 +85,8 @@ const mockTests = [
 const PatientTests = props => {
 
     useEffect(() => {
+        props.location.pathname !== pathsNames.patientsTests &&
+        props.history.push(pathsNames.patientsTests)
         // props.getAllPatients()
         // props.getAllTests()
     }, []);
