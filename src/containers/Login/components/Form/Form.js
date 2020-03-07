@@ -1,9 +1,8 @@
 import React, {useEffect, useState, useRef} from 'react'
 import './form.scss'
-// import {handleSuccessLogin} from "../../../../redux/actions/authActions";
 
 const Form = props => {
-    const [userName , setUserName] = useState('');
+    const [mail , setMail] = useState('');
     const [password , setPassword] = useState('');
     const firstInputRef = useRef()
 
@@ -14,12 +13,12 @@ const Form = props => {
     function handleInputChange(event) {
         const value = event.target.value;
         const name = event.target.name;
-        name === 'userName' ? setUserName(value) : setPassword(value)
+        name === 'mail' ? setMail(value) : setPassword(value)
     }
 
     function handleLoginClick(e) {
-        props.changeUserAuthStatus(true)
         e.preventDefault()
+        props.handleLoginFormSubmit()
     }
 
     return (
@@ -29,7 +28,7 @@ const Form = props => {
                 type={'text'}
                 placeholder={'user name'}
                 onChange={handleInputChange}
-                name={'userName'}
+                name={'mail'}
                 ref={firstInputRef}
             />
             <input
@@ -40,7 +39,7 @@ const Form = props => {
                 autoComplete="off"
             />
             <button
-                className={'form-container__inputs-container--submit'}
+                className={'form-container__submit'}
                 onClick={ handleLoginClick }
             >
                 {'Login'}

@@ -1,22 +1,21 @@
-import React, {Component, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import App from './App';
 import Loading from './components/Loading/Loading';
-import Login from './containers/Login/Login';
+import Login from './containers/Login';
 import LoginRequiredRoute from './LoginRequiredRoute';
-
-import { changeUserAuthStatus } from './redux/actions/actionsCreator';
+import { checkUserAuthStatusOnAppLoad } from './redux/actions/actionsCreator';
 
 
 function AppWrapper(props) {
     console.log('AppWrapper')
     useEffect(() => {
-        setTimeout(() => { props.changeUserAuthStatus(false) }, 1300);
+        props.checkUserAuthStatusOnAppLoad()
     }, [])
 
-    if (props.isUserAuthenticated === null) {
+    if (props.isUserAuthenticated === null || props.loading) {
         return <Loading />
     }
 
@@ -35,6 +34,6 @@ const mapStateToProps = state => {
         loading: state.authReducer.loading
     }
 }
-const mapDispatchToProps = { changeUserAuthStatus }
+const mapDispatchToProps = { checkUserAuthStatusOnAppLoad }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppWrapper))

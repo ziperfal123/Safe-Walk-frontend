@@ -1,5 +1,9 @@
-import { combineReducers } from 'redux';
-import { CHANGE_LOGGED_IN } from '../actions/actionTypes';
+import {
+    LOGIN_SUCCESS,
+    CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
+    SET_LOADING_TO_TRUE,
+    SET_LOADING_TO_FALSE
+} from '../actions/actionTypes';
 
 const initialState = {
     isUserAuthenticated: null,
@@ -8,12 +12,32 @@ const initialState = {
 
 const authReducer = ( state = initialState, action) => {
     switch (action.type) {
-        case CHANGE_LOGGED_IN:
+        case CHECK_USER_AUTH_STATUS_ON_APP_LOAD:
             return {
                 ...state,
                 isUserAuthenticated: action.payload
             }
-        default: return state;
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                isUserAuthenticated: true
+            }
+
+        case SET_LOADING_TO_TRUE:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case SET_LOADING_TO_FALSE:
+            console.log('false')
+            return {
+                ...state,
+                loading: false
+            }
+
+        default:
+            return state;
     };
 };
 
