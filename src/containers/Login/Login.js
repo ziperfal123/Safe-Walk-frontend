@@ -18,7 +18,6 @@ const Login = (props) => {
             <h1>Safe Walk</h1>
             <div className={'login-container-wrapper'}>
                 <Form
-                    changeUserAuthStatus={props.changeUserAuthStatus}
                     handleLoginFormSubmit={props.handleLoginFormSubmit}
                 />
             </div>

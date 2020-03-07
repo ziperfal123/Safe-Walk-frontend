@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import Login from './Login'
-import {changeUserAuthStatus, handleLoginFormSubmit} from "../../redux/actions/actionsCreator";
+import { handleLoginFormSubmit } from "../../redux/actions/actionsCreator";
 
 
 const mapStateToProps = state => {
@@ -9,6 +9,6 @@ const mapStateToProps = state => {
         loading: state.authReducer.loading
     }
 }
-const mapDispatchToProps = { changeUserAuthStatus, handleLoginFormSubmit}
+const mapDispatchToProps = { handleLoginFormSubmit}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

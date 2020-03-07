@@ -1,7 +1,6 @@
 import {
-    CHANGE_LOGGED_IN,
     LOGIN_SUCCESS,
-    USER_STATUS_IS_AUTH,
+    CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
     SET_LOADING_TO_TRUE,
     SET_LOADING_TO_FALSE
 } from '../actions/actionTypes';
@@ -13,30 +12,23 @@ const initialState = {
 
 const authReducer = ( state = initialState, action) => {
     switch (action.type) {
-        case CHANGE_LOGGED_IN:
+        case CHECK_USER_AUTH_STATUS_ON_APP_LOAD:
             return {
                 ...state,
                 isUserAuthenticated: action.payload
             }
-            break;
-        case USER_STATUS_IS_AUTH:
-            return {
-                ...state,
-                isUserAuthenticated: action.payload
-            }
-            break;
         case LOGIN_SUCCESS:
             return {
                 ...state,
                 isUserAuthenticated: true
             }
-            break;
 
         case SET_LOADING_TO_TRUE:
             return {
                 ...state,
                 loading: true
             }
+
         case SET_LOADING_TO_FALSE:
             console.log('false')
             return {
@@ -44,9 +36,8 @@ const authReducer = ( state = initialState, action) => {
                 loading: false
             }
 
-
-
-        default: return state;
+        default:
+            return state;
     };
 };
 

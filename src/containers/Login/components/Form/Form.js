@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react'
 import './form.scss'
-// import {handleSuccessLogin} from "../../../../redux/actions/authActions";
 
 const Form = props => {
     const [mail , setMail] = useState('');
@@ -20,7 +19,6 @@ const Form = props => {
     function handleLoginClick(e) {
         e.preventDefault()
         props.handleLoginFormSubmit()
-        // props.changeUserAuthStatus(true)
     }
 
     return (
@@ -41,7 +39,7 @@ const Form = props => {
                 autoComplete="off"
             />
             <button
-                className={'form-container__inputs-container--submit'}
+                className={'form-container__submit'}
                 onClick={ handleLoginClick }
             >
                 {'Login'}
