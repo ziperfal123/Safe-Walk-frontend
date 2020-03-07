@@ -7,13 +7,13 @@ import Loading from './components/Loading/Loading';
 import Login from './containers/Login/Login';
 import LoginRequiredRoute from './LoginRequiredRoute';
 
-import { changeUserAuthStatus } from './redux/actions/actionsCreator';
+import { changeUserAuthStatus, checkAuthStatus } from './redux/actions/actionsCreator';
 
 
 function AppWrapper(props) {
     console.log('AppWrapper')
     useEffect(() => {
-        setTimeout(() => { props.changeUserAuthStatus(true) }, 1300);
+        props.checkAuthStatus()
     }, [])
 
     if (props.isUserAuthenticated === null) {
@@ -35,6 +35,6 @@ const mapStateToProps = state => {
         loading: state.authReducer.loading
     }
 }
-const mapDispatchToProps = { changeUserAuthStatus }
+const mapDispatchToProps = { changeUserAuthStatus, checkAuthStatus }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppWrapper))
