@@ -13,7 +13,7 @@ import { changeUserAuthStatus } from './redux/actions/actionsCreator';
 function AppWrapper(props) {
     console.log('AppWrapper')
     useEffect(() => {
-        setTimeout(() => { props.changeUserAuthStatus(false) }, 1300);
+        setTimeout(() => { props.changeUserAuthStatus(true) }, 1300);
     }, [])
 
     if (props.isUserAuthenticated === null) {
