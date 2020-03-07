@@ -1,22 +1,20 @@
 import { combineReducers } from 'redux';
 import { CHANGE_LOGGED_IN } from '../actions/actionTypes';
 
-// const initialState = {
-//     loggedIn: null,
-//     loading: false
-// }
+const initialState = {
+    isUserAuthenticated: null,
+    loading: false
+}
 
-const loggedInReducer = ( state = null, action) => {
+const authReducer = ( state = initialState, action) => {
     switch (action.type) {
-        case CHANGE_LOGGED_IN: return action.payload;
+        case CHANGE_LOGGED_IN:
+            return {
+                ...state,
+                isUserAuthenticated: action.payload
+            }
         default: return state;
     };
 };
 
-
-const reducers = combineReducers({
-    loggedIn: loggedInReducer,
-});
-
-
-export default reducers;
+export default authReducer;

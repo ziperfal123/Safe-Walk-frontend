@@ -18,7 +18,7 @@ const Form = props => {
     }
 
     function handleLoginClick(e) {
-        props.changeLoggedIn(true)
+        props.changeUserAuthStatus(true)
         e.preventDefault()
     }
 
@@ -53,4 +53,4 @@ const Form = props => {
 export default Form
 
 
-//     <button onClick={() => { props.changeLoggedIn(true) }}>Login</button>
+//     <button onClick={() => { props.changeUserAuthStatus(true) }}>Login</button>

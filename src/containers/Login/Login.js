@@ -5,11 +5,11 @@ import './login.scss'
 
 // import pathsNames from '../../router/pathsNames'
 import Form from './components/Form/Form'
-import { changeLoggedIn } from '../../redux/actions/actionsCreator';
+import { changeUserAuthStatus } from '../../redux/actions/actionsCreator';
 
 const Login = (props) => {
     console.log('Login')
-    if (props.loggedIn) {
+    if (props.isUserAuthenticated) {
         const { from } = props.location.state || { from: { pathname: '/' } }
         return <Redirect to={from} />
     }
@@ -17,7 +17,7 @@ const Login = (props) => {
         <div className={'login-container'}>
             <h1>Safe Walk</h1>
             <div className={'login-container-wrapper'}>
-                <Form changeLoggedIn={props.changeLoggedIn}/>
+                <Form changeUserAuthStatus={props.changeUserAuthStatus}/>
             </div>
         </div>
     )
@@ -28,10 +28,10 @@ const Login = (props) => {
 const mapStateToProps = state => {
     console.log('state: ', state)
     return {
-        loggedIn: state.authReducer.loggedIn,
+        isUserAuthenticated: state.authReducer.isUserAuthenticated,
         loading: state.authReducer.loading
     }
 }
-const mapDispatchToProps = { changeLoggedIn }
+const mapDispatchToProps = { changeUserAuthStatus }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

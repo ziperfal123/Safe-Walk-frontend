@@ -6,10 +6,10 @@ import { createStore } from 'redux'
 import 'antd/dist/antd.css';
 
 import ActuallyMainApp from './AppWrapper';
-import reducers from './redux/reducer';
+import store from "./redux/store";
 
 ReactDOM.render(
-    <Provider store={createStore(reducers)}>
+    <Provider store={store}>
         <BrowserRouter>
             <ActuallyMainApp />
         </BrowserRouter>

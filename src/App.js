@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect, Route, Switch } from 'react-router-dom';
-import { changeLoggedIn } from './redux/actions/actionsCreator';
+import {Link, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import { changeUserAuthStatus } from './redux/actions/actionsCreator';
 import pathsNames from './router/pathNames'
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
@@ -25,22 +25,18 @@ const App = (props) =>  {
                 <Route path={pathsNames.videos} component={Videos} />
                 <Route path={'*'} component={PatientTests} />
             </Switch>
-            <button onClick={() => { props.changeLoggedIn(false) }}>Logout</button>
-            {/*<Switch>*/}
-            {/*    <Route exact path="/friends/" component={Friends} />*/}
-            {/*    <Route exact path="/books/" component={Books} />*/}
-            {/*    <Redirect exact from="/" to="/friends/" />*/}
-            {/*</Switch>*/}
         </div>
     )
 }
 
 
-export default connect(
-    state => ({
-        loggedIn: state.loggedIn,
-    }),
-    {
-        changeLoggedIn
+
+const mapStateToProps = state => {
+    return {
+        isUserAuthenticated: state.authReducer.isUserAuthenticated,
+        loading: state.authReducer.loading
     }
-)(App);
+}
+const mapDispatchToProps = { changeUserAuthStatus }
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

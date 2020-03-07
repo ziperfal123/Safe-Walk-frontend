@@ -7,17 +7,17 @@ import Loading from './components/Loading/Loading';
 import Login from './containers/Login/Login';
 import LoginRequiredRoute from './LoginRequiredRoute';
 
-import { changeLoggedIn } from './redux/actions/actionsCreator';
+import { changeUserAuthStatus } from './redux/actions/actionsCreator';
 
 
 function AppWrapper(props) {
+    console.log('AppWrapper')
+    console.log('AppWrapper--> props: ', props)
     useEffect(() => {
-        setTimeout(() => { props.changeLoggedIn(false) }, 1300);
+        setTimeout(() => { props.changeUserAuthStatus(false) }, 1300);
     }, [])
 
-
-    console.log('AppWrapper Render')
-    if (props.loggedIn === null) {
+    if (props.isUserAuthenticated === null) {
         return <Loading />
     }
 
@@ -33,10 +33,10 @@ function AppWrapper(props) {
 const mapStateToProps = state => {
     console.log('state: ', state)
     return {
-        loggedIn: state.authReducer.loggedIn,
+        isUserAuthenticated: state.authReducer.isUserAuthenticated,
         loading: state.authReducer.loading
     }
 }
-const mapDispatchToProps = { changeLoggedIn }
+const mapDispatchToProps = { changeUserAuthStatus }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppWrapper))

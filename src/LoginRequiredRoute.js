@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Redirect, Route, withRouter} from 'react-router-dom';
-import {changeLoggedIn} from "./redux/actions/actionsCreator";
+import {changeUserAuthStatus} from "./redux/actions/actionsCreator";
 
 
 const LoginRequiredRoute = ({ component: Component, ...rest }) => {
@@ -11,7 +11,7 @@ const LoginRequiredRoute = ({ component: Component, ...rest }) => {
         <Route {...rest} render={props => {
             console.log('rest: ', rest)
             return (
-            rest.loggedIn ? (
+            rest.isUserAuthenticated ? (
                 <Component {...props} />
             ) : (
                 <Redirect to={{
@@ -28,7 +28,7 @@ const LoginRequiredRoute = ({ component: Component, ...rest }) => {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.authReducer.loggedIn,
+        isUserAuthenticated: state.authReducer.isUserAuthenticated,
         loading: state.authReducer.loading
     }
 }
