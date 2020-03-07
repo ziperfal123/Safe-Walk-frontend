@@ -1,0 +1,4 @@
+@mixin container-size {
+  width: calc(100vw - #{$sidebar-width});
+  min-height: calc(100vh - #{$header-height});
+}

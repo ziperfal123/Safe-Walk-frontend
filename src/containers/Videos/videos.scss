@@ -1,0 +1,10 @@
+@import "../../main";
+
+.videos-container {
+  @include container-size;
+  background-color: lightblue;
+
+  h1 {
+    font-size: $headers-font-size;
+  }
+}

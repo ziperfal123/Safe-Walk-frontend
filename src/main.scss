@@ -1,0 +1,34 @@
+@import "styles/colors";
+@import "styles/fonts";
+@import 'styles/sizes';
+@import 'styles/functions/containers';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.loading-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $sidebar-background-color;
+}
+
+.app-container {
+  overflow-x: hidden;
+  height: 100vh
+}
+.switch-wrapper {
+  width: calc(100vw - 100px);
+  top: $header-height;
+  left: $sidebar-width;
+  position: relative;
+}

@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import { Link, Redirect, Route, Switch } from 'react-router-dom';
+import { changeLoggedIn } from './redux/actionsCreator';
+import pathsNames from './router/pathNames'
+import Header from './components/Header/Header'
+import SideBar from './components/SideBar/SideBar'
+import PatientTests from "./containers/PatientTests/PatientTests";
+import Patients from "./containers/Patients/Patients";
+import RehabPlans from "./containers/RehabPlans/RehabPlans";
+import Videos from "./containers/Videos/Videos";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App = (props) =>  {
+    return (
+        <div>
+            <Header />
+            <SideBar />
+            <button onClick={() => { props.changeLoggedIn(false) }}>Logout</button>
+            <Switch>
+                {/*TODO:: redirect to login when there is no route*/}
+                <Route path={pathsNames.patientsTests} component={PatientTests} />
+                <Route path={pathsNames.patients} component={Patients} />
+                <Route path={pathsNames.rehabPlans} component={RehabPlans} />
+                <Route path={pathsNames.videos} component={Videos} />
+                <Route path={'/*'} component={<h1>NO NO NO </h1>} />
+            </Switch>
+
+            {/*<Switch>*/}
+            {/*    <Route exact path="/friends/" component={Friends} />*/}
+            {/*    <Route exact path="/books/" component={Books} />*/}
+            {/*    <Redirect exact from="/" to="/friends/" />*/}
+            {/*</Switch>*/}
+        </div>
+    )
 }
 
-export default App;
+
+export default connect(
+    state => ({
+        loggedIn: state.loggedIn,
+    }),
+    {
+        changeLoggedIn
+    }
+)(App);

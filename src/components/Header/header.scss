@@ -1,0 +1,32 @@
+@import "../../main";
+
+.header-container {
+  width: calc(100vw - #{$sidebar-width});
+  height: $header-height;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $header-background-color;
+  left: $sidebar-width;
+  right: 0;
+  top: 0;
+  z-index: $z-index-top-value;
+
+  h1 {
+    font-size: $headers-font-size;
+    width: 200px;
+  }
+
+  &__route-name {
+    position: relative;
+    top: 14px;
+    left: 20px;
+  }
+
+  &__avatar {
+    position: relative;
+    top: 15px;
+    left: 90px;
+  }
+}

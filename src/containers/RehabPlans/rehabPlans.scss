@@ -1,0 +1,10 @@
+@import "../../main";
+
+.rehab-plans-container {
+  @include container-size;
+  background-color: lightseagreen;
+
+  h1 {
+    font-size: $headers-font-size;
+  }
+}

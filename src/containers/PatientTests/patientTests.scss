@@ -1,0 +1,19 @@
+@import "../../main";
+
+.patient-tests-container {
+  @include container-size;
+
+  .table-wrapper {
+    width: calc(97vw - #{$sidebar-width});
+    position: relative;
+    margin: auto;
+    padding-top: 25px;
+    top: 30px;
+    border: 1px $patients-tests-table-border-color solid;
+
+    & .table {
+      margin: auto;
+      width: 95%;
+    }
+  }
+}

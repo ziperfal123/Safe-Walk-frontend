@@ -1,0 +1,22 @@
+@import "../../../../main";
+
+.search-bar-container {
+  width: 40%;
+
+  & > input {
+    position: relative;
+    top: 1.5rem;
+    left: 14rem;
+    height: 30px;
+    width: 100%;
+    background-color: $header-serachbar-background-color;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 15px;
+    padding-left: 1.6rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

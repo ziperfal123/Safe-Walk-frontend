@@ -1,0 +1,57 @@
+@import "../../main";
+
+.sidebar-container {
+  height: 100vh;
+  width: $sidebar-width;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $sidebar-background-color;
+
+
+  .sidebar--logo {
+    width: 120px;
+    margin-top: 30px;
+  }
+
+  ul {
+    height: $ul-height;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style: none;
+
+    li {
+      height: $li-height;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        transition: .4s;
+        background-color: lightblue;
+        & a {
+          color: $sidebar-background-color;
+        }
+      }
+    }
+
+    .sidebar--nav-link {
+      @include list-font();
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      &.selected {
+        box-shadow: inset 3px 0 $list-hover-color;
+        background-color: $selected-list-background-color;
+        &:hover {
+          color: $list-hover-color;
+        }
+      }
+    }
+  }
+}
