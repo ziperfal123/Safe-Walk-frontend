@@ -6,10 +6,8 @@ import {changeUserAuthStatus} from "./redux/actions/actionsCreator";
 
 const LoginRequiredRoute = ({ component: Component, ...rest }) => {
     console.log('LoginRequiredRoute')
-    console.log('Component: ', Component)
     return (
         <Route {...rest} render={props => {
-            console.log('rest: ', rest)
             return (
             rest.isUserAuthenticated ? (
                 <Component {...props} />

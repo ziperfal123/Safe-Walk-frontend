@@ -12,7 +12,6 @@ import { changeUserAuthStatus } from './redux/actions/actionsCreator';
 
 function AppWrapper(props) {
     console.log('AppWrapper')
-    console.log('AppWrapper--> props: ', props)
     useEffect(() => {
         setTimeout(() => { props.changeUserAuthStatus(false) }, 1300);
     }, [])
@@ -31,7 +30,6 @@ function AppWrapper(props) {
 
 
 const mapStateToProps = state => {
-    console.log('state: ', state)
     return {
         isUserAuthenticated: state.authReducer.isUserAuthenticated,
         loading: state.authReducer.loading

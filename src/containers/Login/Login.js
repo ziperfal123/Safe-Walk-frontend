@@ -26,7 +26,6 @@ const Login = (props) => {
 
 
 const mapStateToProps = state => {
-    console.log('state: ', state)
     return {
         isUserAuthenticated: state.authReducer.isUserAuthenticated,
         loading: state.authReducer.loading
