@@ -10,12 +10,14 @@ import LoginRequiredRoute from './LoginRequiredRoute';
 import { changeLoggedIn } from './redux/actionsCreator';
 
 
-class ActuallyMainApp extends Component {
+class AppWrapper extends Component {
     componentDidMount() {
         setTimeout(() => { this.props.changeLoggedIn(false) }, 300);
     }
 
     render() {
+        console.log('AppWrapper Render'
+        )
         if (this.props.loggedIn === null) {
             return <Loading />
         }
@@ -36,4 +38,4 @@ export default withRouter(connect(
     }), {
         changeLoggedIn,
     }
-)(ActuallyMainApp))
+)(AppWrapper))

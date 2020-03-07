@@ -8,6 +8,7 @@ import Form from './components/Form/Form'
 import { changeLoggedIn } from '../../redux/actionsCreator';
 
 const Login = (props) => {
+    console.log('Login')
     if (props.loggedIn) {
         const { from } = props.location.state || { from: { pathname: '/' } }
         return <Redirect to={from} />

@@ -12,6 +12,7 @@ import Videos from "./containers/Videos/Videos";
 
 
 const App = (props) =>  {
+    console.log('App')
     return (
         <div>
             <Header />

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux'
 import 'antd/dist/antd.css';
 
-import ActuallyMainApp from './ActuallyMainApp';
+import ActuallyMainApp from './AppWrapper';
 import reducers from './redux/reducers';
 
 ReactDOM.render(
