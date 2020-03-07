@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect, Route, Switch } from 'react-router-dom';
-import { changeLoggedIn } from './redux/actionsCreator';
+import { changeLoggedIn } from './redux/actions/actionsCreator';
 import pathsNames from './router/pathNames'
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'

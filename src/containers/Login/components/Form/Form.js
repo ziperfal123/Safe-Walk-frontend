@@ -17,6 +17,11 @@ const Form = props => {
         name === 'userName' ? setUserName(value) : setPassword(value)
     }
 
+    function handleLoginClick(e) {
+        props.changeLoggedIn(true)
+        e.preventDefault()
+    }
+
     return (
         <form className={'form-container'}>
             {/*<i className="fas fa-user"></i>*/}
@@ -36,7 +41,8 @@ const Form = props => {
             />
             <button
                 className={'form-container__inputs-container--submit'}
-                onClick={() => { props.changeLoggedIn(true) }}>
+                onClick={ handleLoginClick }
+            >
                 {'Login'}
             </button>
 

@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
+import { CHANGE_LOGGED_IN } from '../actions/actionTypes';
 
-import { CHANGE_LOGGED_IN } from './actionTypes';
+// const initialState = {
+//     loggedIn: null,
+//     loading: false
+// }
 
 const loggedInReducer = ( state = null, action) => {
     switch (action.type) {

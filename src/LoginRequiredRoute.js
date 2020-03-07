@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
+import {Redirect, Route, withRouter} from 'react-router-dom';
+import {changeLoggedIn} from "./redux/actions/actionsCreator";
 
 
 const LoginRequiredRoute = ({ component: Component, ...rest }) => {
@@ -22,8 +23,15 @@ const LoginRequiredRoute = ({ component: Component, ...rest }) => {
     )
 }
 
-export default connect(
-    state => ({
-        loggedIn: state.loggedIn,
-    })
-)(LoginRequiredRoute);
+
+
+
+const mapStateToProps = state => {
+    return {
+        loggedIn: state.authReducer.loggedIn,
+        loading: state.authReducer.loading
+    }
+}
+const mapDispatchToProps = { }
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginRequiredRoute))

@@ -7,7 +7,7 @@ import Loading from './components/Loading/Loading';
 import Login from './containers/Login/Login';
 import LoginRequiredRoute from './LoginRequiredRoute';
 
-import { changeLoggedIn } from './redux/actionsCreator';
+import { changeLoggedIn } from './redux/actions/actionsCreator';
 
 
 function AppWrapper(props) {
@@ -30,10 +30,13 @@ function AppWrapper(props) {
 }
 
 
-export default withRouter(connect(
-    state => ({
-        loggedIn: state.loggedIn,
-    }), {
-        changeLoggedIn,
+const mapStateToProps = state => {
+    console.log('state: ', state)
+    return {
+        loggedIn: state.authReducer.loggedIn,
+        loading: state.authReducer.loading
     }
-)(AppWrapper))
+}
+const mapDispatchToProps = { changeLoggedIn }
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppWrapper))
