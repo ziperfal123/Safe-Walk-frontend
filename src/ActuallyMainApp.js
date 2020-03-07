@@ -12,8 +12,7 @@ import { changeLoggedIn } from './redux/actionsCreator';
 
 class ActuallyMainApp extends Component {
     componentDidMount() {
-        const that = this;
-        setTimeout(() => { that.props.changeLoggedIn(false) }, 300);
+        setTimeout(() => { this.props.changeLoggedIn(false) }, 300);
     }
 
     render() {

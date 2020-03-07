@@ -16,9 +16,7 @@ const Login = (props) => {
         <div className={'login-container'}>
             <h1>Safe Walk</h1>
             <div className={'login-container-wrapper'}>
-                {/*<Form handleSuccessLogin={props.handleSuccessLogin}/>*/}
-                <button onClick={() => { props.changeLoggedIn(true) }}>Login</button>
-
+                <Form changeLoggedIn={props.changeLoggedIn}/>
             </div>
         </div>
 

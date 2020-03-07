@@ -17,18 +17,8 @@ const Form = props => {
         name === 'userName' ? setUserName(value) : setPassword(value)
     }
 
-    function handleSubmit(e) {
-        const isUserAuth = true     // TODO:: dynamically check infront of BE
-        if(isUserAuth) {
-            // TODO:: add method for saving user auth status in local storage
-            props.handleSuccessLogin()
-
-        }
-        e.preventDefault();
-    }
-
     return (
-        <form className={'form-container'} onSubmit={handleSubmit}>
+        <form className={'form-container'}>
             {/*<i className="fas fa-user"></i>*/}
             <input
                 type={'text'}
@@ -46,10 +36,10 @@ const Form = props => {
             />
             <button
                 className={'form-container__inputs-container--submit'}
-                type={'submit'}
-            >
-                Log In
+                onClick={() => { props.changeLoggedIn(true) }}>
+                {'Login'}
             </button>
+
         </form>
     )
 }

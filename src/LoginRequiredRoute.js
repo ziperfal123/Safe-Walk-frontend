@@ -4,7 +4,9 @@ import { Redirect, Route } from 'react-router-dom';
 
 
 const LoginRequiredRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
+    <Route {...rest} render={props => {
+        console.log('rest: ', rest)
+        return (
         rest.loggedIn ? (
             <Component {...props} />
         ) : (
@@ -13,7 +15,7 @@ const LoginRequiredRoute = ({ component: Component, ...rest }) => (
                 state: { from: props.location }
             }} />
         )
-    )} />
+    )}} />
 )
 
 export default connect(

@@ -4,7 +4,7 @@ import { CHANGE_LOGGED_IN } from './actionTypes';
 
 const loggedInReducer = ( state = null, action) => {
     switch (action.type) {
-        case CHANGE_LOGGED_IN: return action.newValue;
+        case CHANGE_LOGGED_IN: return action.payload;
         default: return state;
     };
 };

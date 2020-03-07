@@ -16,16 +16,14 @@ const App = (props) =>  {
         <div>
             <Header />
             <SideBar />
-            <button onClick={() => { props.changeLoggedIn(false) }}>Logout</button>
             <Switch>
-                {/*TODO:: redirect to login when there is no route*/}
                 <Route path={pathsNames.patientsTests} component={PatientTests} />
                 <Route path={pathsNames.patients} component={Patients} />
                 <Route path={pathsNames.rehabPlans} component={RehabPlans} />
                 <Route path={pathsNames.videos} component={Videos} />
-                <Route path={'/*'} component={<h1>NO NO NO </h1>} />
+                {/*<Route path={'/*'} component={<h1>NO NO NO </h1>} />*/}
             </Switch>
-
+            <button onClick={() => { props.changeLoggedIn(false) }}>Logout</button>
             {/*<Switch>*/}
             {/*    <Route exact path="/friends/" component={Friends} />*/}
             {/*    <Route exact path="/books/" component={Books} />*/}
