@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import App from './App';
 import Loading from './components/Loading/Loading';
-import Login from './containers/Login/Login';
+import Login from './containers/Login';
 import LoginRequiredRoute from './LoginRequiredRoute';
 
 import { changeUserAuthStatus, checkAuthStatus } from './redux/actions/actionsCreator';

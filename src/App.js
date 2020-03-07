@@ -11,7 +11,6 @@ import RehabPlans from "./containers/RehabPlans/RehabPlans";
 import Videos from "./containers/Videos/Videos";
 import NotFound from './containers/NotFound/NotFound.js'
 
-
 const App = (props) =>  {
     console.log('App')
     return (

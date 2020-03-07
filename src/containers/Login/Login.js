@@ -17,20 +17,13 @@ const Login = (props) => {
         <div className={'login-container'}>
             <h1>Safe Walk</h1>
             <div className={'login-container-wrapper'}>
-                <Form changeUserAuthStatus={props.changeUserAuthStatus}/>
+                <Form
+                    changeUserAuthStatus={props.changeUserAuthStatus}
+                    handleLoginFormSubmit={props.handleLoginFormSubmit}
+                />
             </div>
         </div>
     )
 }
 
-
-
-const mapStateToProps = state => {
-    return {
-        isUserAuthenticated: state.authReducer.isUserAuthenticated,
-        loading: state.authReducer.loading
-    }
-}
-const mapDispatchToProps = { changeUserAuthStatus }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login

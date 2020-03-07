@@ -6,7 +6,7 @@ export const changeUserAuthStatus = (newUserAuthStatus) => ({
 });
 
 export const checkAuthStatus = () => {
-    const dynamicCheck = true
+    const dynamicCheck = false
     return {
         type: USER_STATUS_IS_AUTH,
         payload: dynamicCheck
