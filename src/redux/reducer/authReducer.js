@@ -1,4 +1,10 @@
-import {CHANGE_LOGGED_IN, LOGIN_SUCCESS, USER_STATUS_IS_AUTH} from '../actions/actionTypes';
+import {
+    CHANGE_LOGGED_IN,
+    LOGIN_SUCCESS,
+    USER_STATUS_IS_AUTH,
+    SET_LOADING_TO_TRUE,
+    SET_LOADING_TO_FALSE
+} from '../actions/actionTypes';
 
 const initialState = {
     isUserAuthenticated: null,
@@ -24,6 +30,20 @@ const authReducer = ( state = initialState, action) => {
                 ...state,
                 isUserAuthenticated: true
             }
+            break;
+
+        case SET_LOADING_TO_TRUE:
+            return {
+                ...state,
+                loading: true
+            }
+        case SET_LOADING_TO_FALSE:
+            console.log('false')
+            return {
+                ...state,
+                loading: false
+            }
+
 
 
         default: return state;

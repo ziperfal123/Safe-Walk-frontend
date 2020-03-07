@@ -16,7 +16,7 @@ function AppWrapper(props) {
         props.checkAuthStatus()
     }, [])
 
-    if (props.isUserAuthenticated === null) {
+    if (props.isUserAuthenticated === null || props.loading) {
         return <Loading />
     }
 

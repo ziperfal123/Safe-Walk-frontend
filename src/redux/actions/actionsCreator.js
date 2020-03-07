@@ -1,4 +1,4 @@
-import {CHANGE_LOGGED_IN, USER_STATUS_IS_AUTH, LOGIN_SUCCESS} from "./actionTypes";
+import {CHANGE_LOGGED_IN, USER_STATUS_IS_AUTH, LOGIN_SUCCESS, SET_LOADING_TO_TRUE, SET_LOADING_TO_FALSE} from "./actionTypes";
 import axios from 'axios'
 import config from '../../config'
 
@@ -17,6 +17,7 @@ export const checkAuthStatus = () => {
 
 
 export const handleLoginFormSubmit =  (mail, password) => async dispatch => {
+    dispatch({ type: SET_LOADING_TO_TRUE })
     const m = 'idan@sds.com12f2';
     const p = 'bfesgnslfkngd';
 
@@ -34,7 +35,9 @@ export const handleLoginFormSubmit =  (mail, password) => async dispatch => {
             dispatch({
                 type: LOGIN_SUCCESS,
             })
+            dispatch({ type: SET_LOADING_TO_FALSE })
         }
+
     } catch (err) {
         console.log('err: ', err)
     }
