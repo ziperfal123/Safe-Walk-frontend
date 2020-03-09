@@ -16,8 +16,5 @@ export const normalizeDate = dateToNormalize => {
 
 
 const addZeroPrefixIfNeeded = strToModify => {
-    if (strToModify.length === 1) {
-        return '0' + strToModify
-    }
-    return strToModify
+    return strToModify.length === 1 ? `0${strToModify}` : strToModify
 }
