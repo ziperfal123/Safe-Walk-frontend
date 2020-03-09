@@ -37,7 +37,6 @@ const columns = [
         title: 'wait for plan',
         dataIndex: 'waitForPlan',
         render: waitingStatus => <span className={'waiting-status'}>{waitingStatus}</span>
-
     },
 ];
 

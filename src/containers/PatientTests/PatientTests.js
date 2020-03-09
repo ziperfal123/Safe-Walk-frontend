@@ -10,8 +10,9 @@ import PatientsTable from './components/PatientsTable'
 const PatientTests = props => {
 
     useEffect(() => {
-        props.location.pathname !== pathsNames.patientsTests &&
-        props.history.push(pathsNames.patientsTests)
+        if (props.location.pathname !== pathsNames.patientsTests) {
+            props.history.push(pathsNames.patientsTests)
+        }
         // props.getAllPatients()
         // props.getAllTests()
     }, []);
