@@ -10,10 +10,28 @@
     padding-top: 25px;
     top: 30px;
     border: 1px $patients-tests-table-border-color solid;
+    cursor: pointer;
 
     & .table {
       margin: auto;
       width: 95%;
+    }
+
+    & .results {
+      padding: 4px 13px;
+      border-radius: 15px;
+      text-transform: uppercase;
+      color: #fff;
+      &.green {
+        background-color: $normal-result-background-color;
+      }
+      &.red {
+        background-color: $abnormality-result-background-color;
+      }
+    }
+
+    & .waiting-status {
+      text-transform: capitalize
     }
   }
 }
