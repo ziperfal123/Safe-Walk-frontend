@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Table } from 'antd'
 import columns from './tableColumns'
-
+import SortIcon from '../files/sortIcon.svg'
+import FilterIcon from '../files/filterIcon.svg'
 const mockPatients = [
     {
         testsList: [],
@@ -157,6 +158,20 @@ const mockTests = [
 
 const PatientsTable = props => {
     console.log('PatientsTable')
+
+    function renderIcon(icon, label) {
+        return (
+            <div className={'icon-wrapper'}>
+                <img
+                    className={'icon'}
+                    src={icon}
+                    width={15}
+                />
+                <p>{label}</p>
+            </div>
+        )
+    }
+
     function getNormalizedData() {
         // const normalizedPatients = props.allPatients.map(patient => {   // TODO:: according to this function- each user have only 1 test
         const normalizedPatients = mockPatients.map(patient => {
@@ -182,6 +197,10 @@ const PatientsTable = props => {
 
     return (
         <div className={'table-wrapper'}>
+            <div className={'icons-section-wrapper'}>
+                {renderIcon(SortIcon , 'Sort')}
+                {renderIcon(FilterIcon , 'Filter')}
+            </div>
             <Table
                 className={'table'}
                 columns={columns}
