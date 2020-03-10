@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Cutive&display=swap');
+
+
 $main-font: 'arial';
 
 $headers-font-size: 22px;
-$login-header-font-size: 55px;
+$login-header-font-size: 75px;
+
+$login-header-font-family: 'Cutive', serif;
 
 @mixin list-font {
   font-size: 1.4em;
   font-family: 'Courier New';
   color: $list-hover-color;
 }
+

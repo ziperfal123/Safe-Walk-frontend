@@ -2,18 +2,69 @@
 
 .patient-tests-container {
   @include container-size;
+  overflow-x: hidden;
 
   .table-wrapper {
     width: calc(97vw - #{$sidebar-width});
     position: relative;
     margin: auto;
-    padding-top: 25px;
+    padding-top: 40px;
+    padding-bottom: 30px;
     top: 30px;
     border: 1px $patients-tests-table-border-color solid;
+
 
     & .table {
       margin: auto;
       width: 95%;
+      cursor: pointer;
+    }
+
+    .icons-section-wrapper {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      float: right;
+      right: 35px;
+      bottom: 25px;
+      width: 130px;
+      justify-content: space-evenly;
+      cursor: pointer;
+      & .icon-wrapper {
+        display: flex;
+        flex-direction: row;
+        padding: 0px 15px;
+        cursor: pointer;
+
+        & > .icon {
+          position: relative;
+          bottom: 7px;
+        }
+        & > p {
+          padding-left: 5px;
+        }
+      }
+    }
+
+    .patient-image {
+      border-radius: 100px;
+    }
+
+    & .results {
+      padding: 4px 13px;
+      border-radius: 15px;
+      text-transform: uppercase;
+      color: $white-color;
+      &.green {
+        background-color: $normal-result-background-color;
+      }
+      &.red {
+        background-color: $abnormality-result-background-color;
+      }
+    }
+
+    & .waiting-status {
+      text-transform: capitalize
     }
   }
 }
