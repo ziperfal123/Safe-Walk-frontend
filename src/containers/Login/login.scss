@@ -10,11 +10,11 @@
   align-items: center;
 
   & > h1 {
-    letter-spacing: 1.8rem;
+    letter-spacing: 13px;
     position: relative;
-    bottom: 2rem;
     color: whitesmoke;
-    font-size: 7.5rem;
+    font-size: $login-header-font-size;
+    font-family: $login-header-font-family;
   }
 
   & > .login-container-wrapper {

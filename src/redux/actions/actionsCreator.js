@@ -3,7 +3,7 @@ import axios from 'axios'
 import config from '../../config'
 
 export const checkUserAuthStatusOnAppLoad = () => {
-    const dynamicCheck = true;
+    const dynamicCheck = false;
     return {
         type: CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
         payload: dynamicCheck
