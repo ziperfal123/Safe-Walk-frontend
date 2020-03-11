@@ -18,7 +18,6 @@ export const checkUserAuthStatusOnAppLoad = () => {
     }
 };
 
-
 export const handleLoginFormSubmit =  (mail, password) => async dispatch => {
     dispatch({ type: SET_LOADING_TO_TRUE });
     const m = 'idan@sds.com12f2';
@@ -31,20 +30,20 @@ export const handleLoginFormSubmit =  (mail, password) => async dispatch => {
         const response = await axios.post(`${config.SERVER_URL}/auth/login`, body);
         if(response.status === 200 && response.statusText === "OK") {
             console.log('response: ', response);
-            localStorage.setItem(config.LOCAL_STORAGE_VAR_NAME, response.data.token)  // TODO:: is it safe like this???????
+            localStorage.setItem(config.LOCAL_STORAGE_VAR_NAME, response.data.token);  // TODO:: is it safe like this???????
             dispatch({type: LOGIN_SUCCESS});
         } else
             alert('something occured... login didnt complete') // TODO:: learn the behavior of the fetch and change it accordingly
 
     } catch (err) {
         // TODO:: error handling..
-        alert('error has occured when trying to log in.. check form details')
-        console.log('err: ', err)
+        alert('error has occured when trying to log in.. check form details');
+        console.log('err: ', err);
     }
     dispatch({ type: SET_LOADING_TO_FALSE })
 };
 
 export const handleLogout = () => dispatch => {
-    localStorage.removeItem(config.LOCAL_STORAGE_VAR_NAME)
+    localStorage.removeItem(config.LOCAL_STORAGE_VAR_NAME);
     dispatch ({ type: LOGOUT })
-}
+};
