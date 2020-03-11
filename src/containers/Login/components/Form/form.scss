@@ -1,6 +1,5 @@
 @import "../../../../main";
 
-
 .form-container {
   height: 100%;
   display: flex;
@@ -9,26 +8,26 @@
   align-items: center;
 
   & input, & button {
-    height: 4rem;
-    width: 35rem;
+    height: 40px;
+    width: 350px;
     border-radius: 15px;
   }
 
   & input {
-    padding-left: 1.5rem;
-    font-size: 1.6rem;
-    //background-color: red !important; // FIXXXX
+    padding-left: 15px;
+    font-size: 16px;
     &:focus {
       outline: none;
     }
   }
 
   & button {
-    letter-spacing: 0.15rem;
-    font-size: 1.6rem;
+    letter-spacing: 1.7px;
+    font-size: 17px;
     color: white;
     background-color: hsl(345, 89%, 61%);
     border: none;
     cursor: pointer;
+    outline: none;
   }
 }
