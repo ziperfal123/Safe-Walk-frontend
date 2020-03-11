@@ -27,7 +27,7 @@ html {
   height: 100vh
 }
 .switch-wrapper {
-  width: calc(100vw - 100px);
+  width: calc(100vw - #{$sidebar-width});
   top: $header-height;
   left: $sidebar-width;
   position: relative;

@@ -9,7 +9,7 @@ import Patients from "./containers/Patients/Patients";
 import RehabPlans from "./containers/RehabPlans/RehabPlans";
 import Videos from "./containers/Videos/Videos";
 
-const App = (props) =>  {
+const App = props =>  {
     console.log('App')
     return (
         <div>
@@ -26,7 +26,6 @@ const App = (props) =>  {
         </div>
     )
 };
-
 
 
 const mapStateToProps = state => {

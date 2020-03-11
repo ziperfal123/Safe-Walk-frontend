@@ -56,7 +56,7 @@ const columns = [
         }
     },
     {
-        title: 'wait for plan',
+        title: 'Waiting for plan',
         dataIndex: 'waitForPlan',
         render: (waitingStatus, normalizedPatientObj) => {
             const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
