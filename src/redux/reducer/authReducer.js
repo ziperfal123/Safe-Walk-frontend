@@ -2,7 +2,8 @@ import {
     LOGIN_SUCCESS,
     CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
     SET_LOADING_TO_TRUE,
-    SET_LOADING_TO_FALSE
+    SET_LOADING_TO_FALSE,
+    LOGOUT
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -35,6 +36,12 @@ const authReducer = ( state = initialState, action) => {
                 ...state,
                 loading: false
             }
+        case LOGOUT: {
+            return {
+                ...state,
+                isUserAuthenticated: false
+            }
+        }
 
         default:
             return state;

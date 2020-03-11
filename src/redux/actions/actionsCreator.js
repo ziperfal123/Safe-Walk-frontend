@@ -1,12 +1,20 @@
-import { CHECK_USER_AUTH_STATUS_ON_APP_LOAD, LOGIN_SUCCESS, SET_LOADING_TO_TRUE, SET_LOADING_TO_FALSE} from "./actionTypes";
 import axios from 'axios'
+import {
+    CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
+    LOGIN_SUCCESS,
+    SET_LOADING_TO_TRUE,
+    SET_LOADING_TO_FALSE,
+    LOGOUT
+} from "./actionTypes";
 import config from '../../config'
 
 export const checkUserAuthStatusOnAppLoad = () => {
-    const dynamicCheck = false;
+    const localToken = localStorage.getItem(config.LOCAL_STORAGE_VAR_NAME)
+    console.log('localToken: ', localToken)
+    const isTokenExists = !!localToken;
     return {
         type: CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
-        payload: dynamicCheck
+        payload: isTokenExists
     }
 };
 
@@ -23,10 +31,10 @@ export const handleLoginFormSubmit =  (mail, password) => async dispatch => {
         const response = await axios.post(`${config.SERVER_URL}/auth/login`, body);
         if(response.status === 200 && response.statusText === "OK") {
             console.log('response: ', response);
-            dispatch({
-                type: LOGIN_SUCCESS,
-            });
-        }
+            localStorage.setItem(config.LOCAL_STORAGE_VAR_NAME, response.data.token)  // TODO:: is it safe like this???????
+            dispatch({type: LOGIN_SUCCESS});
+        } else
+            alert('something occured... login didnt complete') // TODO:: learn the behavior of the fetch and change it accordingly
 
     } catch (err) {
         // TODO:: error handling..
@@ -35,3 +43,8 @@ export const handleLoginFormSubmit =  (mail, password) => async dispatch => {
     }
     dispatch({ type: SET_LOADING_TO_FALSE })
 };
+
+export const handleLogout = () => dispatch => {
+    localStorage.removeItem(config.LOCAL_STORAGE_VAR_NAME)
+    dispatch ({ type: LOGOUT })
+}
