@@ -2,6 +2,7 @@ import React from "react";
 import { normalizeDate } from '../../../utils/date'
 
 const MARKED_ROW_BACKGROUND_COLOR = 'hsl(0, 98%, 84%)';
+
 const columns = [
     {
         title: 'Patient name',
@@ -45,7 +46,7 @@ const columns = [
         title: 'Results',
         dataIndex: 'results',
         render: (results, normalizedPatientObj) => {
-            const backgroundColorClass = results === 'abnormality' ? 'green' : 'red'
+            const backgroundColorClass = results === 'abnormality' ? 'red' : 'green'
             const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
             return {
                 props: {
@@ -57,7 +58,7 @@ const columns = [
     },
     {
         title: 'Waiting for plan',
-        dataIndex: 'waitForPlan',
+        dataIndex: 'waitingStatus',
         render: (waitingStatus, normalizedPatientObj) => {
             const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
             return {

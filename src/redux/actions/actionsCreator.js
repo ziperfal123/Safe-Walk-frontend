@@ -11,7 +11,6 @@ import config from '../../config'
 
 export const checkUserAuthStatusOnAppLoad = () => {
     const localToken = localStorage.getItem(config.LOCAL_STORAGE_VAR_NAME)
-    console.log('localToken: ', localToken)
     const isTokenExists = !!localToken;
     return {
         type: CHECK_USER_AUTH_STATUS_ON_APP_LOAD,

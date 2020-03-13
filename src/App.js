@@ -4,12 +4,12 @@ import { Route, Switch} from 'react-router-dom';
 import pathsNames from './router/pathNames'
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar'
-import PatientTests from "./containers/PatientTests/PatientTests";
+import PatientTests from "./containers/PatientTests";
 import Patients from "./containers/Patients/Patients";
 import RehabPlans from "./containers/RehabPlans/RehabPlans";
 import Videos from "./containers/Videos/Videos";
 
-const App = props =>  {
+const App = () =>  {
     console.log('App')
     return (
         <div>

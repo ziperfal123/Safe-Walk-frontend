@@ -10,9 +10,11 @@ export const normalizeDate = dateToNormalize => {
     let minutes = normalizedDate.getUTCMinutes().toString()
     minutes = addZeroPrefixIfNeeded(minutes)
 
-    normalizedDate = `${day}-${month}-${year}, ${hours}:${minutes}`
-    return normalizedDate
-}
+    if (!isNaN(day) && !isNaN(month) && !isNaN(year) && !isNaN(hours) && !isNaN(minutes))
+        return `${day}-${month}-${year}, ${hours}:${minutes}`;
+    else
+        return'date is not valid';
+};
 
 
 const addZeroPrefixIfNeeded = strToModify => {
