@@ -7,8 +7,7 @@ import SearchBar from './components/SearchBar/SearchBar'
 
 
 const Header = ({ location }) => {
-    console.log('props: ', location.pathname)
-    const shouldDisplaySearchBar = location.pathname === pathsNames.patientsTests || pathsNames.patients || pathsNames.rehabPlans || pathsNames.videos
+    const shouldDisplaySearchBar = location.pathname === pathsNames.patientsTests || pathsNames.patients || pathsNames.rehabPlans || pathsNames.videos;
     const displayRouteName = () => {
         let normalizedTitle;
         switch (location.pathname) {
