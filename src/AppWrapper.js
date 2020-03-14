@@ -6,7 +6,7 @@ import App from './App';
 import Loading from './components/Loading/Loading';
 import Login from './containers/Login';
 import LoginRequiredRoute from './LoginRequiredRoute';
-import { checkUserAuthStatusOnAppLoad } from './redux/actions/actionsCreator';
+import { checkUserAuthStatusOnAppLoad } from './redux/auth/actionsCreator';
 
 
 function AppWrapper(props) {

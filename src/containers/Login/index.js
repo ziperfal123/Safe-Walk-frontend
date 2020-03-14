@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import Login from './Login'
-import { handleLoginFormSubmit } from "../../redux/actions/actionsCreator";
+import { handleLoginFormSubmit } from "../../redux/auth/actionsCreator";
 
 
 const mapStateToProps = state => {

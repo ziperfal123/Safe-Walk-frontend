@@ -4,7 +4,7 @@ import {
     SET_LOADING_TO_TRUE,
     SET_LOADING_TO_FALSE,
     LOGOUT
-} from '../actions/actionTypes';
+} from './actionTypes';
 
 const initialState = {
     isUserAuthenticated: null,

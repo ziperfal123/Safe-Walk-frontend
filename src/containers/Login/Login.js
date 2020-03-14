@@ -5,7 +5,7 @@ import './login.scss'
 
 // import pathsNames from '../../router/pathsNames'
 import Form from './components/Form/Form'
-import { changeUserAuthStatus } from '../../redux/actions/actionsCreator';
+import { changeUserAuthStatus } from '../../redux/auth/actionsCreator';
 
 const Login = (props) => {
     console.log('Login')
