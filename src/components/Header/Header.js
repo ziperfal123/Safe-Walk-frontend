@@ -6,11 +6,12 @@ import pathsNames from "../../router/pathNames";
 import SearchBar from './components/SearchBar/SearchBar'
 
 
-const Header = props => {
-
+const Header = ({ location }) => {
+    console.log('props: ', location.pathname)
+    const shouldDisplaySearchBar = location.pathname === pathsNames.patientsTests || pathsNames.patients || pathsNames.rehabPlans || pathsNames.videos
     const displayRouteName = () => {
         let normalizedTitle;
-        switch (props.location.pathname) {
+        switch (location.pathname) {
             case pathsNames.patientsTests:
                 normalizedTitle = `Patient's Tests`;
                 break;
@@ -33,7 +34,7 @@ const Header = props => {
     return (
         <div className={'header-container'}>
             <h1 className={'header-container__route-name'}>{displayRouteName()}</h1>
-            <SearchBar />
+            {shouldDisplaySearchBar && <SearchBar /> }
             <h1 className={'header-container__avatar'}>Avatar</h1>
         </div>
     )

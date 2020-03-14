@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import SideBar from './SideBar'
-import { handleLogout } from "../../redux/actions/actionsCreator";
+import { handleLogout } from "../../redux/auth/actionsCreator";
 
 const mapStateToProps = state => {
     return {

@@ -1,11 +1,12 @@
 import {connect} from "react-redux";
 import PatientTests from './PatientTests'
-import { getAllPatients, getAllTests } from "./redux/actionsCreator";
+import { getAllPatients } from "../../redux/patients/actionsCreator";
+import {getAllTests} from '../../redux/tests/actionsCreator'
 
 const mapStateToProps = state => {
     return {
-        allPatients: state.patientsTestsReducer.allPatients,
-        allTests: state.patientsTestsReducer.allTests
+        allPatients: state.patientsReducer.allPatients,
+        allTests: state.testsReducer.allTests
     }
 }
 

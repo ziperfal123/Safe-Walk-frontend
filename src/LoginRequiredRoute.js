@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Redirect, Route, withRouter} from 'react-router-dom';
-import {changeUserAuthStatus} from "./redux/actions/actionsCreator";
+import {changeUserAuthStatus} from "./redux/auth/actionsCreator";
 
 
 const LoginRequiredRoute = ({ component: Component, ...rest }) => {
