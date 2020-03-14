@@ -20,32 +20,6 @@
       cursor: pointer;
     }
 
-    .icons-section-wrapper {
-      display: flex;
-      flex-direction: row;
-      position: relative;
-      float: right;
-      right: 35px;
-      bottom: 25px;
-      width: 130px;
-      justify-content: space-evenly;
-      cursor: pointer;
-      & .icon-wrapper {
-        display: flex;
-        flex-direction: row;
-        padding: 0 15px;
-        cursor: pointer;
-
-        & > .icon {
-          position: relative;
-          bottom: 7px;
-        }
-        & > p {
-          padding-left: 5px;
-        }
-      }
-    }
-
     .patient-image {
       border-radius: 100px;
     }

@@ -7,6 +7,7 @@ const columns = [
     {
         title: 'Patient name',
         dataIndex: 'name',
+        sorter: (a, b) => a.name.localeCompare(b.name),
         render( _ , normalizedPatientObj) {
             const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
             return {
@@ -15,10 +16,10 @@ const columns = [
                 },
                 children:(
                     <div>
-                        {normalizedPatientObj.image &&
+                        {normalizedPatientObj.patientImage &&
                         <img
                             className={'patient-image'}
-                            src= {normalizedPatientObj.image}
+                            src= {normalizedPatientObj.patientImage}
                             alt='patient image'
                             style={{width: '45px', height:'45px'}}
                         />}
@@ -45,6 +46,7 @@ const columns = [
     {
         title: 'Results',
         dataIndex: 'results',
+        sorter: (a,b) => a.results.localeCompare(b.results),
         render: (results, normalizedPatientObj) => {
             const backgroundColorClass = results === 'abnormality' ? 'red' : 'green'
             const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
@@ -59,6 +61,7 @@ const columns = [
     {
         title: 'Waiting for plan',
         dataIndex: 'waitingStatus',
+        sorter: (a,b) => a.waitingStatus.localeCompare(b.waitingStatus),
         render: (waitingStatus, normalizedPatientObj) => {
             const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
             return {

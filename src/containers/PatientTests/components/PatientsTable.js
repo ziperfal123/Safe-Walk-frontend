@@ -127,10 +127,6 @@ const PatientsTable = props => {
 
     return (
         <div className={'table-wrapper'}>
-            <div className={'icons-section-wrapper'}>
-                {renderIcon(SortIcon , 'Sort')}
-                {renderIcon(FilterIcon , 'Filter')}
-            </div>
             <Table
                 className={'table'}
                 columns={columns}
