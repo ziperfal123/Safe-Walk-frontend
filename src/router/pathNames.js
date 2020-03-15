@@ -1,6 +1,6 @@
 const pathsNames = {
     login: '/login/',
-    patientsTests: '/patientsTests/',
+    patientsTests: '/tests/',
     patients: '/patients/',
     rehabPlans: '/rehabPlans/',
     videos: '/videos/'
