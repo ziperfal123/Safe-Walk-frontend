@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
-import './patientTests.scss'
+import './tests.scss'
 import pathsNames from "../../router/pathNames";
-import PatientsTable from './components/PatientsTable'
+import TestsTable from './components/TestsTable/TestsTable'
 
 
-const PatientTests = props => {
+const Tests = props => {
 
     useEffect(() => {
         if (props.location.pathname !== pathsNames.patientsTests) {
@@ -15,15 +15,13 @@ const PatientTests = props => {
     }, []);
 
     return (
-        <div className={'switch-wrapper'}>
-            <div className={'patient-tests-container'}>
-                <PatientsTable
+        <div className={'switch-wrapper patient-tests-container'}>
+                <TestsTable
                     allPatients={props.allPatients}
                     allTests={props.allTests}
                 />
-            </div>
         </div>
     )
 }
 
-export default PatientTests
+export default Tests

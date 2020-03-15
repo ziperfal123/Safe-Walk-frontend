@@ -1,5 +1,5 @@
 import React from "react";
-import { normalizeDate } from '../../../utils/date'
+import { normalizeDate } from '../../../../utils/date'
 
 const MARKED_ROW_BACKGROUND_COLOR = 'hsl(0, 98%, 84%)';
 
@@ -9,7 +9,7 @@ const columns = [
         dataIndex: 'name',
         sorter: (a, b) => a.name.localeCompare(b.name),
         render( _ , normalizedPatientObj) {
-            const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
+            const rowColor = normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
             return {
                 props: {
                     style: {background: `${rowColor}`},
@@ -22,6 +22,7 @@ const columns = [
                             src= {normalizedPatientObj.patientImage}
                             alt='patient image'
                         />}
+                        &nbsp; &nbsp;
                         {` ${normalizedPatientObj.name}`}
                     </div>
                 ),
@@ -33,7 +34,7 @@ const columns = [
         dataIndex: 'testDate',
         render: (testDate, normalizedPatientObj) => {
             const normalizedDate = normalizeDate(testDate)
-            const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
+            const rowColor = normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
             return {
                 props: {
                     style: {background: `${rowColor}`},
@@ -48,7 +49,7 @@ const columns = [
         sorter: (a,b) => a.results.localeCompare(b.results),
         render: (results, normalizedPatientObj) => {
             const backgroundColorClass = results === 'abnormality' ? 'red' : 'green'
-            const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
+            const rowColor = normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
             return {
                 props: {
                     style: {background: `${rowColor}`},
@@ -61,8 +62,8 @@ const columns = [
         title: 'Waiting for plan',
         dataIndex: 'waitingStatus',
         sorter: (a,b) => a.waitingStatus.localeCompare(b.waitingStatus),
-        render: (waitingStatus, normalizedPatientObj) => {
-            const rowColor = normalizedPatientObj.waitForPlan === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
+        render: (waitingStatus) => {
+            const rowColor = waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
             return {
                 props: {
                     style: {background: `${rowColor}`},

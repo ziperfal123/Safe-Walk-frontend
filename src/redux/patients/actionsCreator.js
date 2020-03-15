@@ -183,7 +183,7 @@ const mockPatients = [
         gender: "male",
         sensorsKitID: "sj22ddd-88271-45f5-a54f-sklajdkl2222",
         id: "happ123441-b317-41ae-b92a-sad22222",
-    }
+    },
 ];
 
 

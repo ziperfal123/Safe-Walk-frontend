@@ -4,7 +4,7 @@ import { Route, Switch} from 'react-router-dom';
 import pathsNames from './router/pathNames'
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar'
-import PatientTests from "./containers/PatientTests";
+import PatientTests from "./containers/Tests";
 import Patients from "./containers/Patients";
 import RehabPlans from "./containers/RehabPlans/RehabPlans";
 import Videos from "./containers/Videos/Videos";

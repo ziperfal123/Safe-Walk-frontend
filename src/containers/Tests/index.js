@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import PatientTests from './PatientTests'
+import Tests from './Tests'
 import { getAllPatients } from "../../redux/patients/actionsCreator";
 import {getAllTests} from '../../redux/tests/actionsCreator'
 
@@ -12,4 +12,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = { getAllPatients, getAllTests }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PatientTests)
+export default connect(mapStateToProps, mapDispatchToProps)(Tests)
