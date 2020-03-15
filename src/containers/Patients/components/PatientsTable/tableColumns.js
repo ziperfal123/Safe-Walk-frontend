@@ -28,7 +28,7 @@ const columns = [
         }
     },
     {
-        title: 'Patient Age',
+        title: 'Age',
         dataIndex: 'age',
         sorter: (a, b) => a.age > b.age,
         render( _ , patientObj) {
@@ -42,7 +42,7 @@ const columns = [
         }
     },
     {
-        title: 'Patient Phone Number',
+        title: 'Phone Number',
         dataIndex: 'phoneNumber',
         render( _ , patientObj) {
             const rowColor = patientObj.waitForPlan ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';

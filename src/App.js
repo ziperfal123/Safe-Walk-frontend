@@ -20,7 +20,7 @@ const App = () =>  {
                 <Route path={pathsNames.patients} component={Patients} />
                 <Route path={pathsNames.rehabPlans} component={RehabPlans} />
                 <Route path={pathsNames.videos} component={Videos} />
-                <Route path={'*'} component={PatientTests} />
+                {/*<Route path={'*'} component={PatientTests} />*/}
                 // TODO:: should be changed to NotFound page, in the AppWrapper (so the NotFound page will be rendered outside of the App)
             </Switch>
         </div>

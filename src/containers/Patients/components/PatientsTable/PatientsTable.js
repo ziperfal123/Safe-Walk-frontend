@@ -1,25 +1,40 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Table} from "antd";
+import { Route, Switch } from 'react-router-dom'
+import PatientPage from '../PatientPage'
 import columns from "./tableColumns"
+import pathsNames from "../../../../router/pathNames";
 
 const PatientsTable = props => {
-    console.log('PatientsTable')
-
+    const [selectedPatient , setSelectedPatient] = useState('')
     function handleRowClick(record , index) {
         return {
-            onClick: () => console.log('rcord: ', record)
+            onClick: () => {
+                console.log('record: ', record)
+                setSelectedPatient(record)
+                props.history.push(`${pathsNames.patients}${record.id}`)
+            }
         }
     }
+
     return (
-        <div className={'table-wrapper'}>
-            <Table
-                className={'table'}
-                columns={columns}
-                dataSource={ props.allPatients}
-                pagination={false}
-                onRow={ handleRowClick }
+        <Switch>
+            <Route path={pathsNames.patients} exact={true} render={() => {
+                return (
+                    <div className={'table-wrapper'}>
+                        <Table
+                            className={'table'}
+                            columns={columns}
+                            dataSource={ props.allPatients}
+                            pagination={false}
+                            onRow={ handleRowClick }
+                        />
+                    </div>
+                )
+            }}
             />
-        </div>
+            <Route path={`${pathsNames.patients}:${selectedPatient.id}`} component={() => <PatientPage patient={selectedPatient}/>}/>
+        </Switch>
     )
 }
 
