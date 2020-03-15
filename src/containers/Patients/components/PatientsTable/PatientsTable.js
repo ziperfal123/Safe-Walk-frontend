@@ -33,7 +33,10 @@ const PatientsTable = props => {
                 )
             }}
             />
-            <Route path={`${pathsNames.patients}:${selectedPatient.id}`} component={() => <PatientPage patient={selectedPatient}/>}/>
+            <Route
+                path={`${pathsNames.patients}:${selectedPatient.id}`}
+                component={() => <PatientPage patient={selectedPatient} history={props.history}/>}
+            />
         </Switch>
     )
 }

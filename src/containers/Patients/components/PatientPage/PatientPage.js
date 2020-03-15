@@ -5,7 +5,10 @@ const PatientPage = props => {
     console.log('props: ', props)
     
     return (
-        <h1>{props.patient.name}</h1>
+        <div>
+            <h1>{props.patient.name}</h1>
+            <button onClick={() => {props.history.push('/patients/')}}>Back</button>
+        </div>
     )
 }
 
