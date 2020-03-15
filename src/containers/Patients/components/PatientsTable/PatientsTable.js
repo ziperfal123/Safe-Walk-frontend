@@ -4,7 +4,7 @@ import columns from "./tableColumns"
 
 const PatientsTable = props => {
     console.log('PatientsTable')
-    console.log('props: ', props)
+
     return (
         <div className={'table-wrapper'}>
             <Table

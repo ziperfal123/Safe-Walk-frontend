@@ -31,7 +31,6 @@ const authReducer = ( state = initialState, action) => {
             }
 
         case SET_LOADING_TO_FALSE:
-            console.log('false')
             return {
                 ...state,
                 loading: false

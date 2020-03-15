@@ -29,7 +29,6 @@ export const handleLoginFormSubmit =  (mail, password) => async dispatch => {
     try {
         const response = await axios.post(`${config.SERVER_URL}/auth/login`, body);
         if(response.status === 200 && response.statusText === "OK") {
-            console.log('response: ', response);
             localStorage.setItem(config.LOCAL_STORAGE_VAR_NAME, response.data.token);  // TODO:: is it safe like this???????
             dispatch({type: LOGIN_SUCCESS});
         } else
