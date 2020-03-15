@@ -21,7 +21,6 @@ const columns = [
                             className={'patient-image'}
                             src= {normalizedPatientObj.patientImage}
                             alt='patient image'
-                            style={{width: '45px', height:'45px'}}
                         />}
                         {` ${normalizedPatientObj.name}`}
                     </div>

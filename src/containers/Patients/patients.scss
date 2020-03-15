@@ -2,9 +2,4 @@
 
 .patients-page-container {
   @include container-size;
-  background-color: lightcoral;
-
-  h1 {
-    font-size: $headers-font-size;
-  }
 }

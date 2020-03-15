@@ -5,7 +5,7 @@ import pathsNames from './router/pathNames'
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar'
 import PatientTests from "./containers/PatientTests";
-import Patients from "./containers/Patients/Patients";
+import Patients from "./containers/Patients";
 import RehabPlans from "./containers/RehabPlans/RehabPlans";
 import Videos from "./containers/Videos/Videos";
 
