@@ -5,7 +5,7 @@
 
   @include container-size;
   .left-section {
-    background-color: lightsalmon;
+    //background-color: lightsalmon;
     width: 30%;
     height: 420px;
     position: sticky;
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: space-evenly;
     float: left;
-    top: 80px;
+    top: 60px;
 
     & img {
       width: 140px;
@@ -43,7 +43,7 @@
     width: 68%;
     float: left;
     position: relative;
-    top: 80px;
+    top: 60px;
     //background-color: red;
     //left: 30px;
 
@@ -52,8 +52,10 @@
     }
 
     & img {
+      width: 40px;
       position: absolute;
       right: 25px;
+      cursor: pointer;
 
       &.up-arrow{
         top: 75px;
@@ -67,11 +69,16 @@
     & > .tests {
       height: 100%;
       background-color: steelblue;
+      &.hidden {
+        display:none
+      }
     }
     & > .plans {
       height: 100%;
-      display: none;
       background-color: pink;
+      &.hidden {
+        display:none
+      }
     }
 
   }

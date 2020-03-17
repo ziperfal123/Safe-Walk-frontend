@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './patientPage.scss'
 import UpArrowIcon from './files/upArrowIcon.svg'
 import DownArrowIcon from './files/downArrowIcon.svg'
@@ -7,6 +7,29 @@ import DownArrowIcon from './files/downArrowIcon.svg'
 const PatientPage = props => {
     console.log('PatientPage')
     console.log('props: ', props)
+    
+    const [shouldDisplayTests , setShouldDisplayTests] = useState(true)
+
+    function generateInnerSectionsClasses(arrowDirection) {
+        let classesList;
+        if(arrowDirection === 'tests') {
+            classesList = [
+                shouldDisplayTests ? '' : 'hidden',
+            ]
+        } else {
+            classesList=[
+                shouldDisplayTests ? 'hidden' : '',
+            ]
+        }
+        return classesList
+    }
+
+    function handleArrowClick(arrowDirection){
+        arrowDirection === 'up' ?
+            setShouldDisplayTests(true) :
+            setShouldDisplayTests(false)
+    }
+
 
     const { patient } = props
     return (
@@ -20,14 +43,22 @@ const PatientPage = props => {
             </div>
             <hr />
             <div className={'right-section'}>
-                <img className={'up-arrow'} src={UpArrowIcon}  width={'40px'}/>
-                <div className={'tests'}>
+                <img
+                    className={'up-arrow'}
+                    src={UpArrowIcon}
+                    onClick={() => handleArrowClick('up')}
+                    />
+                <div className={`tests ${generateInnerSectionsClasses('tests')}`}>
                     <h1>Last Tests</h1>
                 </div>
-                <div className={'plans'}>
+                <div className={`plans ${generateInnerSectionsClasses('plans')}`}>
                     <h1>Rehabilitation plans</h1>
                 </div>
-                <img className={'down-arrow'} src={DownArrowIcon}  width={'40px'}/>
+                <img
+                    className={`down-arrow`}
+                    src={DownArrowIcon}
+                    onClick={() => handleArrowClick('down')}
+                    />
             </div>
         </div>
     )
