@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { Table } from 'antd'
 import columns from './tableColumns'
-import SortIcon from '../files/sortIcon.svg'
-import FilterIcon from '../files/filterIcon.svg'
-
 
 const mockPatients = [
     {
@@ -86,23 +83,45 @@ const mockTests = [
         patientID: "jkhs2811-b317-41ae-b92a-a1817be2722hd",
         id: "jkhs28ssadds11-b317ss-sdsdsd41ae-bsdsd92a-sadsde2722hd",
     },
+    {
+        date: "2020-02-19T18:00:49.110Z",
+        abnormality: false,
+        detailedDiagnostic: "Waiting for the therapist's update",
+        patientID: "466ff388-b317-41ae-b92a-a1817be1f33e",
+        id: "a1a8ba45-2f05-4d6f-a024-3b367b2edfc8",
+    },
+    {
+        date: "2020-04-19T18:10:49.110Z",
+        abnormality: true,
+        detailedDiagnostic: "Waiting for the therapist's update",
+        patientID: "jkhs2811-b317-41ae-b92a-a1817be2722hd",
+        id: "jkhs28sds11-b317-sdsdsd41ae-bsdsd92a-sadsde2722hd",
+    },
+    {
+        date: "2020-02-19T18:00:49.110Z",
+        abnormality: true,
+        detailedDiagnostic: "Waiting for the therapist's update",
+        patientID: "happ123441-b317-41ae-b92a-sad22222",
+        id: "asddsa-b317-41ae-b92a-sad22222",
+    },
+    {
+        date: "2019-02-19T18:45:49.110Z",
+        abnormality: false,
+        detailedDiagnostic: "Waiting for the therapist's update",
+        patientID: "happ123441-b317-41ae-b92a-sad22222",
+        id: "asddsa-b317-41ae-b92a-sad22222",
+    },
+    {
+        date: "2019-09-19T18:5:05.110Z",
+        abnormality: false,
+        detailedDiagnostic: "Waiting for the therapist's update",
+        patientID: "jkhs2811-b317-41ae-b92a-a1817be2722hd",
+        id: "jkhs28ssadds11-b317ss-sdsdsd41ae-bsdsd92a-sadsde2722hd",
+    },
 ]
 
-const PatientsTable = props => {
-    console.log('PatientsTable')
-
-    function renderIcon(icon, label) {
-        return (
-            <div className={'icon-wrapper'}>
-                <img
-                    className={'icon'}
-                    src={icon}
-                    width={15}
-                />
-                <p>{label}</p>
-            </div>
-        )
-    }
+const TestsTable = props => {
+    console.log('TestsTable')
 
     function getNormalizedData() {
         const normalizedPatients = mockTests.map(test => {   // TODO:: according to this function- each user have only 1 test
@@ -137,4 +156,4 @@ const PatientsTable = props => {
     )
 }
 
-export default PatientsTable
+export default TestsTable
