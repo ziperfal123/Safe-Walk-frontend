@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import './login.scss'
-
-// import pathsNames from '../../router/pathsNames'
 import Form from './components/Form/Form'
 import { changeUserAuthStatus } from '../../redux/auth/actionsCreator';
 

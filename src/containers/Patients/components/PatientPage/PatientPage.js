@@ -1,5 +1,8 @@
 import React from "react";
 import './patientPage.scss'
+import UpArrowIcon from './files/upArrowIcon.svg'
+import DownArrowIcon from './files/downArrowIcon.svg'
+
 
 const PatientPage = props => {
     console.log('PatientPage')
@@ -15,10 +18,17 @@ const PatientPage = props => {
                 <h2>{patient.age} Years old</h2>
                 <button onClick={() => {props.history.push('/patients/')}}>Back</button>
             </div>
-            <div className={'right-section'}>
-                <h1>Last Tests</h1>
-            </div>
             <hr />
+            <div className={'right-section'}>
+                <img className={'up-arrow'} src={UpArrowIcon}  width={'40px'}/>
+                <div className={'tests'}>
+                    <h1>Last Tests</h1>
+                </div>
+                <div className={'plans'}>
+                    <h1>Rehabilitation plans</h1>
+                </div>
+                <img className={'down-arrow'} src={DownArrowIcon}  width={'40px'}/>
+            </div>
         </div>
     )
 }

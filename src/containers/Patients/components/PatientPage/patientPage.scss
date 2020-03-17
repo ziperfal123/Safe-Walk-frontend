@@ -1,17 +1,20 @@
 @import "src/main";
 
 .patient-page-container {
+  overflow-x: hidden;
+
   @include container-size;
   .left-section {
-    position: relative;
+    background-color: lightsalmon;
+    width: 30%;
+    height: 420px;
+    position: sticky;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     float: left;
     top: 80px;
-    width: 370px;
-    height: 420px;
 
     & img {
       width: 140px;
@@ -26,7 +29,8 @@
   }
 
   & hr {
-    position: relative;
+    float: left;
+    position: sticky;
     top: 80px;
     width: 1px;
     height: 500px;
@@ -35,13 +39,41 @@
   }
 
   .right-section {
-    background-color: steelblue;
-    height: 100vh;
-    float: right;
-    width: 800px;
+    height: 600px;
+    width: 68%;
+    float: left;
     position: relative;
     top: 80px;
-    left: 30px;
+    //background-color: red;
+    //left: 30px;
+
+    & h1 {
+      margin-left: 35px;
+    }
+
+    & img {
+      position: absolute;
+      right: 25px;
+
+      &.up-arrow{
+        top: 75px;
+      }
+      &.down-arrow {
+        bottom: 100px;
+      }
+
+    }
+
+    & > .tests {
+      height: 100%;
+      background-color: steelblue;
+    }
+    & > .plans {
+      height: 100%;
+      display: none;
+      background-color: pink;
+    }
+
   }
 
 }
