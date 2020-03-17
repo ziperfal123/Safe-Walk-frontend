@@ -5,7 +5,6 @@
 
   @include container-size;
   .left-section {
-    //background-color: lightsalmon;
     width: 30%;
     height: 420px;
     position: sticky;
@@ -44,8 +43,6 @@
     float: left;
     position: relative;
     top: 60px;
-    //background-color: red;
-    //left: 30px;
 
     & h1 {
       margin-left: 35px;
@@ -68,14 +65,14 @@
 
     & > .tests {
       height: 100%;
-      background-color: steelblue;
+      //background-color: steelblue;
       &.hidden {
         display:none
       }
     }
     & > .plans {
       height: 100%;
-      background-color: pink;
+      //background-color: pink;
       &.hidden {
         display:none
       }
