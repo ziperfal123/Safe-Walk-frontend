@@ -15,7 +15,7 @@ const Login = (props) => {
     }
     return (
         <div className={'login-container'}>
-            <HeaderAnimation />
+            { HeaderAnimation() }
             <div className={'login-container-wrapper'}>
                 <Form
                     handleLoginFormSubmit={props.handleLoginFormSubmit}
