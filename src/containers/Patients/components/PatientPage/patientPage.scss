@@ -1,0 +1,47 @@
+@import "src/main";
+
+.patient-page-container {
+  @include container-size;
+  .left-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    float: left;
+    top: 80px;
+    width: 370px;
+    height: 420px;
+
+    & img {
+      width: 140px;
+      height: 140px;
+      border-radius: 100px;
+    }
+
+    & h2 {
+      font-size: 26px;
+      font-weight: 300;
+    }
+  }
+
+  & hr {
+    position: relative;
+    top: 80px;
+    width: 1px;
+    height: 500px;
+    background-color: black;
+    display: inline-block;
+  }
+
+  .right-section {
+    background-color: steelblue;
+    height: 100vh;
+    float: right;
+    width: 800px;
+    position: relative;
+    top: 80px;
+    left: 30px;
+  }
+
+}
