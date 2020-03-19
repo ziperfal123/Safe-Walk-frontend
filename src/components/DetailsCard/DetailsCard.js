@@ -6,7 +6,7 @@ const DetailsCard = props => {
     console.log('props: ', props)
     return (
         <div className={'card-container'}>
-            {props.content}
+            {props.children}
         </div>
     )
 }

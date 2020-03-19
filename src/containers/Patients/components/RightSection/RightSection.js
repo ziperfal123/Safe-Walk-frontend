@@ -8,7 +8,7 @@ import AbnormalityChip from "../../../../components/AbnormalityChip";
 
 const RightSection = props => {
     console.log('RightSection')
-
+    let counter = 1
     const [shouldDisplayTests , setShouldDisplayTests] = useState(true);
 
     function handleArrowClick(arrowDirection) {
@@ -22,13 +22,13 @@ const RightSection = props => {
         const normalizedDate = normalizeDate(test.date, false);
         const results = test.abnormality ? 'ABNORMALITY' : 'NORMAL'
         const content = (
-            <div>
-                <h1>#1</h1>
+            <>
+                <h1>{`#${counter++}`}</h1>
                 <h4>Date: {normalizedDate}</h4>
                 <AbnormalityChip results={results}/>
-            </div>
+            </>
         );
-        return <DetailsCard key={Math.random()} content={content}/>
+        return <DetailsCard key={Math.random()}>{content}</DetailsCard>
     }
     return (
         <>

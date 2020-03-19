@@ -58,13 +58,15 @@
     position: relative;
     top: 60px;
 
-    & h1 {
-      margin-left: 35px;
-    }
 
     & > .tests, & > .plans {
+      & > h1 {
+        margin-top: 15px;
+        margin-left: 35px;
+      }
       width: 100%;
       & > .cards-container {
+        margin-top: 20px;
         display: grid;
         grid-template-columns: auto auto;
         justify-content: space-evenly;
@@ -72,13 +74,13 @@
     }
 
     & > .tests {
-      background-color: steelblue;
+      //background-color: steelblue;
 
 
     }
 
     & > .plans {
-      background-color: pink;
+      //background-color: pink;
     }
   }
 }
