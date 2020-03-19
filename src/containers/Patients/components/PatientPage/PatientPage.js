@@ -5,13 +5,14 @@ import RightSection from '../RightSection'
 import UpArrowIcon from "../RightSection/files/upArrowIcon.svg";
 import DownArrowIcon from "../RightSection/files/downArrowIcon.svg";
 
-const PatientPage = ({ patient, getTestsById, history , allTestsById}) => {
+const PatientPage = props => {
+    const { patient, getTestsById, history , allTestsById, cleanTestsById} = props
     console.log('PatientPage')
 
-    useEffect(() => {{
+    useEffect(() => {
         getTestsById(patient.id)
-    }}, [])
-
+        return cleanTestsById
+    }, [])
 
     return (
         <div className={'patient-page-container'}>

@@ -1,6 +1,6 @@
 import PatientPage from './PatientPage'
 import {connect} from "react-redux";
-import { getTestsById } from "../../../../redux/tests/actionsCreator";
+import { getTestsById, cleanTestsById } from "../../../../redux/tests/actionsCreator";
 
 const mapStateToProps = state => {
     return {
@@ -8,6 +8,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = { getTestsById }
+const mapDispatchToProps = { getTestsById, cleanTestsById }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PatientPage)

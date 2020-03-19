@@ -1,4 +1,9 @@
-import { FETCH_ALL_TESTS_SUCCESS, FETCH_TESTS_BY_ID_SUCCESS } from "./actionTypes";
+import {
+    FETCH_ALL_TESTS_SUCCESS,
+    FETCH_TESTS_BY_ID_SUCCESS,
+    CLEAN_TESTS_BY_ID
+}
+from "./actionTypes";
 import { get } from '../../utils/fetch'
 
 
@@ -25,4 +30,10 @@ export const getTestsById = id => async dispatch => {
     }    catch(e) {
         console.log('e: ', e)
     }
+}
+
+export const cleanTestsById = () => dispatch => {
+    dispatch ({
+        type: CLEAN_TESTS_BY_ID,
+    })
 }

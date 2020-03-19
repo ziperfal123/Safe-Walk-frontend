@@ -8,7 +8,7 @@ import {normalizeDate} from '../../../../utils/date'
 const RightSection = props => {
     console.log('RightSection')
 
-    const [shouldDisplayTests , setShouldDisplayTests] = useState(true)
+    const [shouldDisplayTests , setShouldDisplayTests] = useState(true);
 
     function handleArrowClick(arrowDirection) {
         arrowDirection === 'up' ?
@@ -17,15 +17,14 @@ const RightSection = props => {
     }
 
     function renderTestsList(test) {
-        console.log('test: ', test)
-        const normalizedDate = normalizeDate(test.date, false)
+        const normalizedDate = normalizeDate(test.date, false);
         const content = (
             <div>
                 <h1>#1</h1>
                 <h4>Date: {normalizedDate}</h4>
             </div>
-        )
-        return <DetailsCard content={content}/>
+        );
+        return <DetailsCard key={Math.random()} content={content}/>
 
     }
     return (
