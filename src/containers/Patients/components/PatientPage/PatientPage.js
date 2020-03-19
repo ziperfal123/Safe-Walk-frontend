@@ -5,11 +5,11 @@ import RightSection from '../RightSection'
 import UpArrowIcon from "../RightSection/files/upArrowIcon.svg";
 import DownArrowIcon from "../RightSection/files/downArrowIcon.svg";
 
-const PatientPage = ({ patient, getTestsById, history }) => {
+const PatientPage = ({ patient, getTestsById, history , allTestsById}) => {
     console.log('PatientPage')
 
     useEffect(() => {{
-        // getTestsById(patient.id)
+        getTestsById(patient.id)
     }}, [])
 
 
@@ -23,7 +23,7 @@ const PatientPage = ({ patient, getTestsById, history }) => {
                 <button onClick={() => {history.push(pathsNames.patients)}}>Back</button>
             </div>
             <hr />
-            <RightSection/>
+            <RightSection allTestsById={allTestsById}/>
         </div>
     )
 }

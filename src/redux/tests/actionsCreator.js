@@ -16,12 +16,13 @@ export const getAllTests = () => async dispatch => {
 
 export const getTestsById = id => async dispatch => {
     try {
-        const response = await get(`test/${id}`)
+        const response = await get(`test/patient/${id}`);
+        console.log('response: ', response)
         dispatch({
             type: FETCH_TESTS_BY_ID_SUCCESS,
             payload: response.data
         })
-    }    catch {
-
+    }    catch(e) {
+        console.log('e: ', e)
     }
 }

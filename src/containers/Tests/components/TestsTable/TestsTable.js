@@ -124,10 +124,10 @@ const TestsTable = props => {
     console.log('TestsTable')
 
     function getNormalizedData() {
-        const normalizedPatients = mockTests.map(test => {   // TODO:: according to this function- each user have only 1 test
+        const normalizedPatients = props.allTests.map(test => {   // TODO:: according to this function- each user have only 1 test
             const patientId = test.patientID;
             let obj = {};
-            mockPatients.map(patient => {
+            props.allPatients.map(patient => {
                 if(patientId === patient.id) {
                     obj['key']=Math.random();
                     obj['patientImage']=patient.picture ;

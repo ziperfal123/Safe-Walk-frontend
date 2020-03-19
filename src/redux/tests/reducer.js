@@ -4,7 +4,8 @@ import {
 } from './actionTypes';
 
 const initialState = {
-    allTests: []
+    allTests: [],
+    allTestsById: []
 };
 
 const testsReducer = ( state = initialState, action) => {
@@ -17,7 +18,8 @@ const testsReducer = ( state = initialState, action) => {
 
         case FETCH_TESTS_BY_ID_SUCCESS:
             return {
-                ...state
+                ...state,
+                allTestsById: action.payload
             }
 
         default:

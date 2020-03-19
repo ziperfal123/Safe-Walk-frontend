@@ -192,7 +192,7 @@ export const getAllPatients = () => async dispatch => {
         const response = await get('patient')
         dispatch({
             type: FETCH_ALL_PATIENTS_SUCCESS,
-            payload: mockPatients
+            payload: response.data
         })
     } catch (err) {
         console.log('error: ', err)

@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import DetailsCard from "../../../../components/DetailsCard/";
 import UpArrowIcon from './files/upArrowIcon.svg'
 import DownArrowIcon from './files/downArrowIcon.svg'
+import {normalizeDate} from '../../../../utils/date'
 
 const RightSection = props => {
     console.log('RightSection')
@@ -15,18 +16,17 @@ const RightSection = props => {
             setShouldDisplayTests(false)
     }
 
-    function renderCardsList() {
+    function renderTestsList(test) {
+        console.log('test: ', test)
+        const normalizedDate = normalizeDate(test.date, false)
         const content = (
             <div>
-                <h1>hello</h1>
-                <h4>hey hey </h4>
+                <h1>#1</h1>
+                <h4>Date: {normalizedDate}</h4>
             </div>
         )
-        return (
-            <>
-                <DetailsCard content={content}/>
-            </>
-        )
+        return <DetailsCard content={content}/>
+
     }
     return (
         <>
@@ -40,7 +40,7 @@ const RightSection = props => {
                 <div className={`tests`}>
                     <h1>Last Tests</h1>
                     <div className={'cards-container'}>
-                        {renderCardsList()}
+                        {props.allTestsById.map(renderTestsList)}
                     </div>
                 </div>
                 ) :
