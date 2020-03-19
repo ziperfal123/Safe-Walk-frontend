@@ -3,9 +3,10 @@ import './detailsCard.scss'
 
 const DetailsCard = props => {
     console.log('DetailsCard')
+    console.log('props: ', props)
     return (
         <div className={'card-container'}>
-            <h4>Details Card</h4>
+            {props.content}
         </div>
     )
 }

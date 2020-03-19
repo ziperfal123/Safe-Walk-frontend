@@ -1,12 +1,16 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './patientPage.scss'
 import pathsNames from "../../../../router/pathNames";
 import RightSection from '../RightSection'
 import UpArrowIcon from "../RightSection/files/upArrowIcon.svg";
 import DownArrowIcon from "../RightSection/files/downArrowIcon.svg";
 
-const PatientPage = ({ patient, history }) => {
+const PatientPage = ({ patient, getTestsById, history }) => {
     console.log('PatientPage')
+
+    useEffect(() => {{
+        // getTestsById(patient.id)
+    }}, [])
 
 
     return (
@@ -20,7 +24,6 @@ const PatientPage = ({ patient, history }) => {
             </div>
             <hr />
             <RightSection/>
-
         </div>
     )
 }

@@ -15,16 +15,19 @@ const RightSection = props => {
             setShouldDisplayTests(false)
     }
 
-    function generateCardsList() {
+    function renderCardsList() {
+        const content = (
+            <div>
+                <h1>hello</h1>
+                <h4>hey hey </h4>
+            </div>
+        )
         return (
             <>
-                <DetailsCard/>
-                <DetailsCard/>
+                <DetailsCard content={content}/>
             </>
-
         )
     }
-
     return (
         <>
             <img
@@ -37,7 +40,7 @@ const RightSection = props => {
                 <div className={`tests`}>
                     <h1>Last Tests</h1>
                     <div className={'cards-container'}>
-                        {generateCardsList()}
+                        {renderCardsList()}
                     </div>
                 </div>
                 ) :

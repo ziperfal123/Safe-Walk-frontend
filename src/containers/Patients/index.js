@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import Patients from './Patients'
 import { getAllPatients } from "../../redux/patients/actionsCreator";
-// import {getAllTests} from '../../redux/tests/actionsCreator'
+import { getTestsById } from '../../redux/tests/actionsCreator'
 
 const mapStateToProps = state => {
     return {
@@ -9,6 +9,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = { getAllPatients }
+const mapDispatchToProps = { getAllPatients, getTestsById }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Patients)

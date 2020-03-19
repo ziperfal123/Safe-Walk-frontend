@@ -1,5 +1,6 @@
 import {
-    FETCH_ALL_TESTS_SUCCESS
+    FETCH_ALL_TESTS_SUCCESS,
+    FETCH_TESTS_BY_ID_SUCCESS
 } from './actionTypes';
 
 const initialState = {
@@ -13,6 +14,11 @@ const testsReducer = ( state = initialState, action) => {
                     ...state,
                     allTests: action.payload
                 }
+
+        case FETCH_TESTS_BY_ID_SUCCESS:
+            return {
+                ...state
+            }
 
         default:
             return state;
