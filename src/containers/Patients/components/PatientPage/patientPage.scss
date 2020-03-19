@@ -27,6 +27,20 @@
     }
   }
 
+  & > img {
+    width: 40px;
+    position: absolute;
+    right: 25px;
+    cursor: pointer;
+
+    &.up-arrow{
+      top: 75px;
+    }
+    &.down-arrow {
+      bottom: 100px;
+    }
+  }
+
   & hr {
     float: left;
     position: sticky;
@@ -39,7 +53,7 @@
 
   .right-section {
     height: 600px;
-    width: 68%;
+    width: 64%;
     float: left;
     position: relative;
     top: 60px;
@@ -48,36 +62,23 @@
       margin-left: 35px;
     }
 
-    & img {
-      width: 40px;
-      position: absolute;
-      right: 25px;
-      cursor: pointer;
-
-      &.up-arrow{
-        top: 75px;
+    & > .tests, & > .plans {
+      width: 100%;
+      & > .cards-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-evenly;
       }
-      &.down-arrow {
-        bottom: 100px;
-      }
-
     }
 
     & > .tests {
-      height: 100%;
-      //background-color: steelblue;
-      &.hidden {
-        display:none
-      }
+      background-color: steelblue;
+
+
     }
+
     & > .plans {
-      height: 100%;
-      //background-color: pink;
-      &.hidden {
-        display:none
-      }
+      background-color: pink;
     }
-
   }
-
 }
