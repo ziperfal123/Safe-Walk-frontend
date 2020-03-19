@@ -1,4 +1,6 @@
 import React from "react";
+
+import AbnormalityChip from "../../../../components/AbnormalityChip";
 import { normalizeDate } from '../../../../utils/date'
 
 const MARKED_ROW_BACKGROUND_COLOR = 'hsl(0, 98%, 84%)';
@@ -48,13 +50,14 @@ const columns = [
         dataIndex: 'results',
         sorter: (a,b) => a.results.localeCompare(b.results),
         render: (results, normalizedPatientObj) => {
-            const backgroundColorClass = results === 'abnormality' ? 'red' : 'green'
             const rowColor = normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
             return {
                 props: {
                     style: {background: `${rowColor}`},
                 },
-                children: (<span className={`results ${backgroundColorClass}`}>{results}</span>)
+                children: (
+                    <AbnormalityChip results={results}/>
+                )
             }
         }
     },
