@@ -14,5 +14,5 @@ const DetailsCard = ({ children }) => {
 export default DetailsCard;
 
 DetailsCard.propTypes = {
-  children: PropTypes.objectOf().isRequired,
+  children: PropTypes.objectOf(PropTypes.any).isRequired,
 };
