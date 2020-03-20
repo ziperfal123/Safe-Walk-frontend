@@ -1,46 +1,62 @@
-import React, {useEffect, useState} from 'react'
-import {Route, Switch} from "react-router-dom";
-import './patients.scss'
-import PatientsTable from "./components/PatientsTable";
-import pathsNames from "router/pathNames";
-import PatientPage from "./components/PatientPage";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
+import './patients.scss';
+import pathsNames from 'router/pathNames';
+import PatientsTable from './components/PatientsTable';
+import PatientPage from './components/PatientPage';
 
-const Patients = props => {
-    console.log('Patients')
-    console.log('props: ', props)
+const Patients = (props) => {
+  console.log('Patients');
+  console.log('props: ', props);
+  const {
+    history, getAllPatients, getTestsById, allPatients,
+  } = props;
 
-    const [selectedPatient , setSelectedPatient] = useState('')
+  const [selectedPatient, setSelectedPatient] = useState('');
 
-    useEffect(() => {
-        props.getAllPatients()
-    }, []);
+  useEffect(() => {
+    getAllPatients();
+  }, []);
 
-    function handleTableRowClick(patientObj) {
-        setSelectedPatient(patientObj)
-        props.history.push(`${pathsNames.patients}${patientObj.id}`)
-    }
-    
-    return (
-        <div className={'switch-wrapper patients-page-container'}>
-            <Switch>
-                <Route
-                    path={pathsNames.patients}
-                    exact={true}
-                    render={() => <PatientsTable
-                        allPatients={props.allPatients}
-                        handleTableRowClick={handleTableRowClick}
-                    />}
-                />
-                <Route
-                    path={`${pathsNames.patients}:${selectedPatient.id}`}
-                    render={() => <PatientPage
-                        patient={selectedPatient}
-                        history={props.history}/>}
-                        getTestsById={props.getTestsById}
-                />
-            </Switch>
-        </div>
-    )
+  function handleTableRowClick(patientObj) {
+    setSelectedPatient(patientObj);
+    history.push(`${pathsNames.patients}${patientObj.id}`);
+  }
+
+  return (
+    <div className="switch-wrapper patients-page-container">
+      <Switch>
+        <Route
+          path={pathsNames.patients}
+          exact
+          render={() => (
+            <PatientsTable
+              allPatients={allPatients}
+              handleTableRowClick={handleTableRowClick}
+            />
+          )}
+        />
+        <Route
+          path={`${pathsNames.patients}:${selectedPatient.id}`}
+          render={() => (
+            <PatientPage
+              patient={selectedPatient}
+              history={history}
+            />
+          )}
+          getTestsById={getTestsById}
+        />
+      </Switch>
+    </div>
+  );
 };
 
-export default Patients
+export default Patients;
+
+Patients.propTypes = {
+  history: PropTypes.objectOf().isRequired,
+  getAllPatients: PropTypes.func.isRequired,
+  getTestsById: PropTypes.func.isRequired,
+  allPatients: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

@@ -1,14 +1,12 @@
-import {connect} from "react-redux";
-import Login from './Login'
-import { handleLoginFormSubmit } from "../../redux/auth/actionsCreator";
+import { connect } from 'react-redux';
+import { handleLoginFormSubmit } from 'redux/auth/actionsCreator';
+import Login from './Login';
 
 
-const mapStateToProps = state => {
-    return {
-        isUserAuthenticated: state.authReducer.isUserAuthenticated,
-        loading: state.authReducer.loading
-    }
-}
-const mapDispatchToProps = { handleLoginFormSubmit}
+const mapStateToProps = (state) => ({
+  isUserAuthenticated: state.authReducer.isUserAuthenticated,
+  loading: state.authReducer.loading,
+});
+const mapDispatchToProps = { handleLoginFormSubmit };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
