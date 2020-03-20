@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
-
-import DetailsCard from "../../../../components/DetailsCard/";
+import ReactLoading from 'react-loading';
+import DetailsCard from "components/DetailsCard/";
+import AbnormalityChip from "components/AbnormalityChip";
+import { normalizeDate } from 'utils/date'
 import UpArrowIcon from './files/upArrowIcon.svg'
 import DownArrowIcon from './files/downArrowIcon.svg'
-import {normalizeDate} from '../../../../utils/date'
-import AbnormalityChip from "../../../../components/AbnormalityChip";
+
 
 const RightSection = props => {
     console.log('RightSection')
-    let counter = 1
+    let counter = 1;
     const [shouldDisplayTests , setShouldDisplayTests] = useState(true);
 
     function handleArrowClick(arrowDirection) {
@@ -30,6 +31,8 @@ const RightSection = props => {
         );
         return <DetailsCard key={Math.random()}>{content}</DetailsCard>
     }
+
+
     return (
         <>
             <img
@@ -42,7 +45,9 @@ const RightSection = props => {
                 <div className={`tests`}>
                     <h1>Last Tests</h1>
                     <div className={'cards-container'}>
-                        {props.allTestsById.map(renderTestsList)}
+                        {props.allTestsById.length !== 0 ?
+                            props.allTestsById.map(renderTestsList) :
+                            <h2>no tests</h2>}
                     </div>
                 </div>
                 ) :

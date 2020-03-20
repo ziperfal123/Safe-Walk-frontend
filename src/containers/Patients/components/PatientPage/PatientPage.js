@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './patientPage.scss'
-import pathsNames from "../../../../router/pathNames";
+import pathsNames from "router/pathNames";
 import RightSection from '../RightSection'
-import UpArrowIcon from "../RightSection/files/upArrowIcon.svg";
-import DownArrowIcon from "../RightSection/files/downArrowIcon.svg";
 
 const PatientPage = props => {
     const { patient, getTestsById, history , allTestsById, cleanTestsById} = props

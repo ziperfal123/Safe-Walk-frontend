@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
+import {Route, Switch} from "react-router-dom";
 import './patients.scss'
 import PatientsTable from "./components/PatientsTable";
-import pathsNames from "../../router/pathNames";
+import pathsNames from "router/pathNames";
 import PatientPage from "./components/PatientPage";
-import {Route, Switch} from "react-router-dom";
+
 const Patients = props => {
     console.log('Patients')
     console.log('props: ', props)
