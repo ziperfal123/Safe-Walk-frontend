@@ -13,7 +13,7 @@ const LeftSection = ({ patient, history }) => (
       {' '}
       Years old
     </h2>
-    <button type="submit" onClick={() => { history.push(pathsNames.patients); }}>Back</button>
+    <button type="submit" onClick={() => { history.push(pathsNames.patients); }}>temp Back</button>
   </div>
 );
 
