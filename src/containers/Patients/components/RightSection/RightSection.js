@@ -47,30 +47,23 @@ const RightSection = ({ allTestsById, loadingAllTestsById }) => {
         alt="up"
       />
       <div className="right-section">
-        {shouldDisplayTests
-          && (
-          <div className="tests">
-            <h1>Last Tests</h1>
-            {loadingAllTestsById ? (
-              <div className="right-section--loading-container">
-                <ReactLoading type="bars" color="#353640" height={70} width={70} />
-              </div>
-            ) : (
-              <div className="cards-container">
-                {allTestsById.length !== 0
-                  ? allTestsById.map(renderTestsList)
-                  : <h2>no tests</h2>}
-              </div>
-            )}
-          </div>
-          )}
-
-        {!shouldDisplayTests
-            && (
-            <div className="plans">
+            <div className={`tests ${shouldDisplayTests ? '' : 'hidden'}`}>
+              <h1>Last Tests</h1>
+              {loadingAllTestsById ? (
+                <div className="right-section--loading-container">
+                  <ReactLoading type="spin" color="#353640" height={55} width={55} />
+                </div>
+              ) : (
+                <div className="cards-container">
+                  {allTestsById.length !== 0
+                    ? allTestsById.map(renderTestsList)
+                    : <h2>no tests</h2>}
+                </div>
+              )}
+            </div>
+            <div className={`plans ${shouldDisplayTests ? 'hidden' : ''}`}>
               <h1>Rehabilitation plans</h1>
             </div>
-            )}
       </div>
       <img
         className="down-arrow"
