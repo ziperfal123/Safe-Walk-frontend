@@ -45,7 +45,7 @@ const RightSection = ({ allTestsById }) => {
         className="up-arrow"
         src={UpArrowIcon}
         onClick={() => handleArrowClick('up')}
-        alt="up"
+        // alt="up"
       />
       <div className="right-section">
         { shouldDisplayTests ? (

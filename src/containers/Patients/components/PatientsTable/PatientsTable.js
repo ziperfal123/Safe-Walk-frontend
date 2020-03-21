@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'antd';
 import columns from './tableColumns';
 
-const PatientsTable = ({ allPatients, handleTableRowClick }) => {
+const PatientsTable = ({ allPatients, handleTableRowClick, loadingAllPatients}) => {
   function handleRowClick(patientObj) {
     return {
       onClick: () => handleTableRowClick(patientObj),
@@ -18,6 +18,7 @@ const PatientsTable = ({ allPatients, handleTableRowClick }) => {
         dataSource={allPatients}
         pagination={false}
         onRow={handleRowClick}
+        loading={loadingAllPatients}
       />
     </div>
   );
@@ -29,4 +30,5 @@ export default PatientsTable;
 PatientsTable.propTypes = {
   handleTableRowClick: PropTypes.func.isRequired,
   allPatients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loadingAllPatients: PropTypes.bool.isRequired,
 };

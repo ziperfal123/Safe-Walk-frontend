@@ -10,6 +10,7 @@ const columns = [
     dataIndex: 'name',
     sorter: (a, b) => a.name.localeCompare(b.name),
     render(_, normalizedPatientObj) {
+      console.log('normalizedPatientObj: ', normalizedPatientObj);
       const rowColor = normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
       return {
         props: {
@@ -18,14 +19,14 @@ const columns = [
         children: (
           <div>
             {normalizedPatientObj.patientImage
-                        && (
-                        <img
-                          className="patient-image"
-                          src={normalizedPatientObj.patientImage}
-                          alt="patient"
-                        />
-                        )}
-                        &nbsp; &nbsp;
+            && (
+            <img
+              className="patient-image"
+              src={normalizedPatientObj.patientImage}
+              alt="patient"
+            />
+            )}
+            &nbsp; &nbsp;
             {` ${normalizedPatientObj.name}`}
           </div>
         ),

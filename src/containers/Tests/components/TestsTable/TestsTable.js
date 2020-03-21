@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
 import columns from './tableColumns';
 
 const TestsTable = ({ allTests, allPatients }) => {
   console.log('TestsTable');
+  console.log('allTests: ', allTests);
+  console.log('allPatients: ', allPatients);
 
   function getNormalizedData() {
     const normalizedPatients = allTests.map((test) => {
@@ -24,6 +26,7 @@ const TestsTable = ({ allTests, allPatients }) => {
         testDate: test.date || 'date is not valid',
       };
     });
+
     return normalizedPatients;
   }
 
