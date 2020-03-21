@@ -7,7 +7,7 @@ import Left from '../LeftSection';
 
 const PatientPage = (props) => {
   const {
-    patient, getTestsById, history, allTestsById, cleanTestsById,
+    patient, getTestsById, history, allTestsById, cleanTestsById, loadingAllTestsById
   } = props;
   console.log('PatientPage');
 
@@ -20,7 +20,7 @@ const PatientPage = (props) => {
     <div className="patient-page-container">
       <Left patient={patient} history={history} />
       <hr />
-      <RightSection allTestsById={allTestsById} />
+      <RightSection allTestsById={allTestsById} loadingAllTestsById={loadingAllTestsById} />
     </div>
   );
 };
@@ -33,6 +33,7 @@ PatientPage.propTypes = {
   history: PropTypes.objectOf().isRequired,
   allTestsById: PropTypes.arrayOf(objectOf()).isRequired,
   cleanTestsById: PropTypes.func.isRequired,
+  loadingAllTestsById: PropTypes.bool.isRequired,
   patient: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,

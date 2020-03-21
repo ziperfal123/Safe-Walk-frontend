@@ -8,7 +8,7 @@ import UpArrowIcon from './files/upArrowIcon.svg';
 import DownArrowIcon from './files/downArrowIcon.svg';
 
 
-const RightSection = ({ allTestsById }) => {
+const RightSection = ({ allTestsById, loadingAllTestsById }) => {
   console.log('RightSection');
   let counter = 1;
   const [shouldDisplayTests, setShouldDisplayTests] = useState(true);
@@ -38,9 +38,6 @@ const RightSection = ({ allTestsById }) => {
     return <DetailsCard key={Math.random()}>{content}</DetailsCard>;
   }
 
-  // const shouldRenderLoading =
-
-
   return (
     <>
       <img
@@ -53,11 +50,17 @@ const RightSection = ({ allTestsById }) => {
         { shouldDisplayTests ? (
           <div className="tests">
             <h1>Last Tests</h1>
-            <div className="cards-container">
-              {allTestsById.length !== 0
-                ? allTestsById.map(renderTestsList)
-                : <h2>no tests</h2>}
-            </div>
+            {loadingAllTestsById ? (
+              <div className="right-section--loading-container">
+                <ReactLoading type="bars" color="black" height={70} width={70} />
+              </div>
+            ) : (
+              <div className="cards-container">
+                {allTestsById.length !== 0
+                  ? allTestsById.map(renderTestsList)
+                  : <h2>no tests</h2>}
+              </div>
+            )}
           </div>
         )
           : (
@@ -80,4 +83,5 @@ export default RightSection;
 
 RightSection.propTypes = {
   allTestsById: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loadingAllTestsById: PropTypes.bool.isRequired,
 };
