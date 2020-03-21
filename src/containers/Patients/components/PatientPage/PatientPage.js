@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes, { objectOf } from 'prop-types';
 import './patientPage.scss';
-import pathsNames from 'router/pathNames';
 import RightSection from '../RightSection';
 import Left from '../LeftSection';
 

@@ -13,6 +13,7 @@ const Tests = (props) => {
     getAllTests,
     allPatients,
     allTests,
+    loadingAllTests,
   } = props;
 
 
@@ -29,6 +30,7 @@ const Tests = (props) => {
       <TestsTable
         allPatients={allPatients}
         allTests={allTests}
+        loadingAllTests={loadingAllTests}
       />
     </div>
   );
@@ -44,4 +46,5 @@ Tests.propTypes = {
   getAllTests: PropTypes.func.isRequired,
   allPatients: PropTypes.arrayOf(PropTypes.any).isRequired,
   allTests: PropTypes.arrayOf(PropTypes.any).isRequired,
+  loadingAllTests: PropTypes.bool.isRequired,
 };

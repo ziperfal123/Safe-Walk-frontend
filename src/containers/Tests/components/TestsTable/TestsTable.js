@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
 import columns from './tableColumns';
 
-const TestsTable = ({ allTests, allPatients }) => {
+const TestsTable = ({ allTests, allPatients, loadingAllTests }) => {
   console.log('TestsTable');
   console.log('allTests: ', allTests);
   console.log('allPatients: ', allPatients);
@@ -37,6 +37,7 @@ const TestsTable = ({ allTests, allPatients }) => {
         columns={columns}
         dataSource={getNormalizedData()}
         pagination={false}
+        loading={loadingAllTests}
       />
     </div>
   );
@@ -47,4 +48,5 @@ export default TestsTable;
 TestsTable.propTypes = {
   allTests: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   allPatients: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  loadingAllTests: PropTypes.bool.isRequired,
 };
