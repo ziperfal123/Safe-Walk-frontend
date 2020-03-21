@@ -1,4 +1,4 @@
-export const normalizeDate = dateToNormalize => {
+export const normalizeDate = (dateToNormalize, shouldDisplayWithTime=true) => {
     let normalizedDate = new Date(dateToNormalize)
     let day = normalizedDate.getDate().toString()
     day = addZeroPrefixIfNeeded(day)
@@ -11,7 +11,7 @@ export const normalizeDate = dateToNormalize => {
     minutes = addZeroPrefixIfNeeded(minutes)
 
     if (!isNaN(day) && !isNaN(month) && !isNaN(year) && !isNaN(hours) && !isNaN(minutes))
-        return `${day}-${month}-${year}, ${hours}:${minutes}`;
+        return shouldDisplayWithTime ? `${day}-${month}-${year}, ${hours}:${minutes}` : `${day}-${month}-${year}`;
     else
         return'date is not valid';
 };

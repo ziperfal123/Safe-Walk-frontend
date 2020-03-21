@@ -1,44 +1,34 @@
-import React, {useState} from 'react'
-import {Table} from "antd";
-import { Route, Switch } from 'react-router-dom'
-import PatientPage from '../PatientPage'
-import columns from "./tableColumns"
-import pathsNames from "../../../../router/pathNames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Table } from 'antd';
+import columns from './tableColumns';
 
-const PatientsTable = props => {
-    const [selectedPatient , setSelectedPatient] = useState('')
-    function handleRowClick(record , index) {
-        return {
-            onClick: () => {
-                console.log('record: ', record)
-                setSelectedPatient(record)
-                props.history.push(`${pathsNames.patients}${record.id}`)
-            }
-        }
-    }
+const PatientsTable = ({ allPatients, handleTableRowClick, loadingAllPatients}) => {
+  function handleRowClick(patientObj) {
+    return {
+      onClick: () => handleTableRowClick(patientObj),
+    };
+  }
 
-    return (
-        <Switch>
-            <Route path={pathsNames.patients} exact={true} render={() => {
-                return (
-                    <div className={'table-wrapper'}>
-                        <Table
-                            className={'table'}
-                            columns={columns}
-                            dataSource={ props.allPatients}
-                            pagination={false}
-                            onRow={ handleRowClick }
-                        />
-                    </div>
-                )
-            }}
-            />
-            <Route
-                path={`${pathsNames.patients}:${selectedPatient.id}`}
-                component={() => <PatientPage patient={selectedPatient} history={props.history}/>}
-            />
-        </Switch>
-    )
-}
+  return (
+    <div className="table-wrapper">
+      <Table
+        className="table"
+        columns={columns}
+        dataSource={allPatients}
+        pagination={false}
+        onRow={handleRowClick}
+        loading={loadingAllPatients}
+      />
+    </div>
+  );
+};
 
-export default PatientsTable
+export default PatientsTable;
+
+
+PatientsTable.propTypes = {
+  handleTableRowClick: PropTypes.func.isRequired,
+  allPatients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loadingAllPatients: PropTypes.bool.isRequired,
+};

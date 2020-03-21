@@ -1,0 +1,14 @@
+@import "src/main";
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px black solid;
+  width: 185px;
+  height: 280px;
+  margin: 15px;
+  cursor: pointer;
+}

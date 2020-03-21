@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import App from './App';
 import Loading from './components/Loading/Loading';
@@ -9,31 +10,35 @@ import LoginRequiredRoute from './LoginRequiredRoute';
 import { checkUserAuthStatusOnAppLoad } from './redux/auth/actionsCreator';
 
 
-function AppWrapper(props) {
-    console.log('AppWrapper')
-    useEffect(() => {
-        props.checkUserAuthStatusOnAppLoad()
-    }, [])
+// eslint-disable-next-line no-shadow,react/prop-types
+function AppWrapper({ loading, checkUserAuthStatusOnAppLoad }) {
+  console.log('AppWrapper');
+  useEffect(() => {
+    checkUserAuthStatusOnAppLoad();
+  }, []);
 
-    if (props.loading) {
-        return <Loading />
-    }
+  if (loading) {
+    return <Loading />;
+  }
 
-    return (
-        <Switch>
-            <Route path="/login/" component={Login} />
-            <LoginRequiredRoute component={App} />
-        </Switch>
-    )
+  return (
+    <Switch>
+      <Route path="/login/" component={Login} />
+      <LoginRequiredRoute component={App} />
+    </Switch>
+  );
 }
 
 
-const mapStateToProps = state => {
-    return {
-        isUserAuthenticated: state.authReducer.isUserAuthenticated,
-        loading: state.authReducer.loading
-    }
-}
-const mapDispatchToProps = { checkUserAuthStatusOnAppLoad }
+const mapStateToProps = (state) => ({
+  isUserAuthenticated: state.authReducer.isUserAuthenticated,
+  loading: state.authReducer.loading,
+});
+const mapDispatchToProps = { checkUserAuthStatusOnAppLoad };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppWrapper))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppWrapper));
+
+
+AppWrapper.propTypes = {
+  loading: PropTypes.bool.isRequired,
+};
