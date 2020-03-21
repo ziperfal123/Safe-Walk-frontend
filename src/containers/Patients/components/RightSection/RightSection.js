@@ -44,15 +44,16 @@ const RightSection = ({ allTestsById, loadingAllTestsById }) => {
         className="up-arrow"
         src={UpArrowIcon}
         onClick={() => handleArrowClick('up')}
-        // alt="up"
+        alt="up"
       />
       <div className="right-section">
-        { shouldDisplayTests ? (
+        {shouldDisplayTests
+          && (
           <div className="tests">
             <h1>Last Tests</h1>
             {loadingAllTestsById ? (
               <div className="right-section--loading-container">
-                <ReactLoading type="bars" color="black" height={70} width={70} />
+                <ReactLoading type="bars" color="#353640" height={70} width={70} />
               </div>
             ) : (
               <div className="cards-container">
@@ -62,12 +63,14 @@ const RightSection = ({ allTestsById, loadingAllTestsById }) => {
               </div>
             )}
           </div>
-        )
-          : (
+          )}
+
+        {!shouldDisplayTests
+            && (
             <div className="plans">
               <h1>Rehabilitation plans</h1>
             </div>
-          )}
+            )}
       </div>
       <img
         className="down-arrow"
