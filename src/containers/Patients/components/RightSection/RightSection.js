@@ -53,7 +53,7 @@ const RightSection = ({ allTestsById, loadingAllTestsById }) => {
             <h1>Last Tests</h1>
             {loadingAllTestsById ? (
               <div className="right-section--loading-container">
-                <ReactLoading type="bars" color="#353640" height={70} width={70} />
+                <ReactLoading type="spin" color="#353640" height={55} width={55} />
               </div>
             ) : (
               <div className="cards-container">
