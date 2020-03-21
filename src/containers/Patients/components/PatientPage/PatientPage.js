@@ -3,6 +3,7 @@ import PropTypes, { objectOf } from 'prop-types';
 import './patientPage.scss';
 import pathsNames from 'router/pathNames';
 import RightSection from '../RightSection';
+import Left from '../LeftSection';
 
 const PatientPage = (props) => {
   const {
@@ -17,17 +18,7 @@ const PatientPage = (props) => {
 
   return (
     <div className="patient-page-container">
-      <div className="left-section">
-        <img src={patient.picture} alt="patient" />
-        <h2>{patient.mail}</h2>
-        <h2>{patient.name}</h2>
-        <h2>
-          {patient.age}
-          {' '}
-          Years old
-        </h2>
-        <button type="submit" onClick={() => { history.push(pathsNames.patients); }}>Back</button>
-      </div>
+      <Left patient={patient} history={history} />
       <hr />
       <RightSection allTestsById={allTestsById} />
     </div>

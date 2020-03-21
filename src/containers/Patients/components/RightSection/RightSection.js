@@ -38,6 +38,8 @@ const RightSection = ({ allTestsById }) => {
     return <DetailsCard key={Math.random()}>{content}</DetailsCard>;
   }
 
+  // const shouldRenderLoading =
+
 
   return (
     <>
