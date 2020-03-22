@@ -21,7 +21,6 @@ const RightSection = ({ allTestsById, loadingAllTestsById }) => {
   }
 
   function renderTestsList(test) {
-    console.log('test: ', test);
     const normalizedDate = normalizeDate(test.date, false);
     const results = test.abnormality ? 'ABNORMALITY' : 'NORMAL';
     const content = (
