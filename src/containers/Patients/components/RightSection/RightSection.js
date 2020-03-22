@@ -8,10 +8,14 @@ import UpArrowIcon from './files/upArrowIcon.svg';
 import DownArrowIcon from './files/downArrowIcon.svg';
 
 
-const RightSection = ({ allTestsById, loadingAllTestsById }) => {
+const RightSection = ({
+  allTestsById, loadingAllTestsById, loadingAllPlansById, allPlansById,
+}) => {
   console.log('RightSection');
-  let counter = 1;
+  let testsCounter = 1;
+  const plansCounter = 1;
   const [shouldDisplayTests, setShouldDisplayTests] = useState(true);
+
 
   function handleArrowClick(arrowDirection) {
     // eslint-disable-next-line no-unused-expressions
@@ -26,7 +30,7 @@ const RightSection = ({ allTestsById, loadingAllTestsById }) => {
     const content = (
       <>
         {/* eslint-disable-next-line no-plusplus */}
-        <h1>{`#${counter++}`}</h1>
+        <h1>{`#${testsCounter++}`}</h1>
         <h4>
           Date:
           {normalizedDate}
@@ -35,6 +39,11 @@ const RightSection = ({ allTestsById, loadingAllTestsById }) => {
       </>
     );
     return <DetailsCard key={Math.random()}>{content}</DetailsCard>;
+  }
+
+  function renderPlansList(plan) {
+    // eslint-disable-next-line no-plusplus
+    plansCounter++;
   }
 
   return (
@@ -46,23 +55,34 @@ const RightSection = ({ allTestsById, loadingAllTestsById }) => {
         alt="up"
       />
       <div className="right-section">
-            <div className={`tests ${shouldDisplayTests ? '' : 'hidden'}`}>
-              <h1>Last Tests</h1>
-              {loadingAllTestsById ? (
-                <div className="right-section--loading-container">
-                  <ReactLoading type="spin" color="#353640" height={55} width={55} />
-                </div>
-              ) : (
-                <div className="cards-container">
-                  {allTestsById.length !== 0
-                    ? allTestsById.map(renderTestsList)
-                    : <h2>no tests</h2>}
-                </div>
-              )}
+        <div className={`tests ${shouldDisplayTests ? '' : 'hidden'}`}>
+          <h1>Last Tests</h1>
+          {loadingAllTestsById ? (
+            <div className="right-section--loading-container">
+              <ReactLoading type="spin" color="#353640" height={55} width={55} />
             </div>
-            <div className={`plans ${shouldDisplayTests ? 'hidden' : ''}`}>
-              <h1>Rehabilitation plans</h1>
+          ) : (
+            <div className="cards-container">
+              {allTestsById.length !== 0
+                ? allTestsById.map(renderTestsList)
+                : <h2>no tests</h2>}
             </div>
+          )}
+        </div>
+        <div className={`plans ${shouldDisplayTests ? 'hidden' : ''}`}>
+          <h1>Rehabilitation plans</h1>
+          {loadingAllPlansById ? (
+            <div className="right-section--loading-container">
+              <ReactLoading type="spin" color="#353640" height={55} width={55} />
+            </div>
+          ) : (
+            <div className="cards-container">
+              {allPlansById.length !== 0
+                ? allPlansById.map(renderPlansList)
+                : <h2>no plans</h2>}
+            </div>
+          )}
+        </div>
       </div>
       <img
         className="down-arrow"
@@ -79,4 +99,6 @@ export default RightSection;
 RightSection.propTypes = {
   allTestsById: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
+  allPlansById: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loadingAllPlansById: PropTypes.bool.isRequired,
 };

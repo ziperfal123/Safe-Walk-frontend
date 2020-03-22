@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
   allPatients: state.patientsReducer.allPatients,
   loadingAllPatients: state.patientsReducer.loadingAllPatients,
   allTestsById: state.testsReducer.allTestsById,
-  loadingAllTestsById: state.testsReducer.loadingAllTestsById
+  loadingAllTestsById: state.testsReducer.loadingAllTestsById,
 });
 
 const mapDispatchToProps = { getAllPatients, getTestsById, cleanTestsById };
