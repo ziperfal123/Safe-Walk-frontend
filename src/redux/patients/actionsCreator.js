@@ -4,7 +4,7 @@ import {
   FETCH_ALL_PATIENTS_SET_LOADING_TRUE,
   FETCH_ALL_PATIENTS_SET_LOADING_FALSE,
 } from './actionTypes';
-import { get } from '../../utils/fetch';
+import { get } from 'utils/fetch';
 
 // eslint-disable-next-line import/prefer-default-export
 export const getAllPatients = () => async (dispatch) => {

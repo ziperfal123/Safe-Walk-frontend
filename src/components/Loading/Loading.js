@@ -1,15 +1,15 @@
 import React from 'react';
-import ReactLoading from 'react-loading';
-import './loading.scss'
+import { Spin } from 'antd';
+import './loading.scss';
 
 const Loading = () => {
-    console.log('Loading')
-    return (
-        <div className={'loading-container'}>
-            <ReactLoading type={'bars'} color={'white'} height={110} width={110} />
-        </div>
-    )
-}
+  console.log('Loading');
+  return (
+    <div className="loading-container">
+      <Spin size="large" />
+    </div>
+  );
+};
 
 
-export default Loading
+export default Loading;

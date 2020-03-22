@@ -13,15 +13,6 @@ html {
   font-size: 62.5%;
 }
 
-.loading-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $sidebar-background-color;
-}
-
 .app-container {
   overflow-x: hidden;
   height: 100vh
