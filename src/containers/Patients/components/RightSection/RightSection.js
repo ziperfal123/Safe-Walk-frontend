@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactLoading from 'react-loading';
+import { Spin } from 'antd';
 import PropTypes from 'prop-types';
 import DetailsCard from 'components/DetailsCard/';
 import AbnormalityChip from 'components/AbnormalityChip';
@@ -13,7 +13,6 @@ const RightSection = ({
 }) => {
   console.log('RightSection');
   let testsCounter = 1;
-  const plansCounter = 1;
   const [shouldDisplayTests, setShouldDisplayTests] = useState(true);
 
 
@@ -41,11 +40,6 @@ const RightSection = ({
     return <DetailsCard key={Math.random()}>{content}</DetailsCard>;
   }
 
-  function renderPlansList(plan) {
-    // eslint-disable-next-line no-plusplus
-    plansCounter++;
-  }
-
   return (
     <>
       <img
@@ -59,7 +53,7 @@ const RightSection = ({
           <h1>Last Tests</h1>
           {loadingAllTestsById ? (
             <div className="right-section--loading-container">
-              <ReactLoading type="spin" color="#353640" height={55} width={55} />
+              <Spin size="large" />
             </div>
           ) : (
             <div className="cards-container">
@@ -73,13 +67,11 @@ const RightSection = ({
           <h1>Rehabilitation plans</h1>
           {loadingAllPlansById ? (
             <div className="right-section--loading-container">
-              <ReactLoading type="spin" color="#353640" height={55} width={55} />
+              <Spin size="large" />
             </div>
           ) : (
             <div className="cards-container">
-              {allPlansById.length !== 0
-                ? allPlansById.map(renderPlansList)
-                : <h2>no plans</h2>}
+              <h2>coming soon.. stay tuned</h2>
             </div>
           )}
         </div>

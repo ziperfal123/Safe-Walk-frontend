@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactLoading from 'react-loading';
 import pathsNames from 'router/pathNames';
 
 const LeftSection = ({ patient, history }) => (
