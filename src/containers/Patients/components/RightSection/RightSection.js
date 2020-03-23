@@ -9,7 +9,7 @@ import DownArrowIcon from './files/downArrowIcon.svg';
 
 
 const RightSection = (props) => {
-  const { allTestsById, loadingAllTestsById } = props;
+  const { allTestsById, loadingAllTestsById, handleTestClick } = props;
   console.log('RightSection');
   let testsCounter = 1;
   const [shouldDisplayTests, setShouldDisplayTests] = useState(true);
@@ -36,7 +36,11 @@ const RightSection = (props) => {
         <AbnormalityChip results={results} />
       </>
     );
-    return <DetailsCard key={Math.random()}>{content}</DetailsCard>;
+    return (
+      <DetailsCard key={Math.random()} id={test.id} handleCardClick={handleTestClick}>
+        {content}
+      </DetailsCard>
+    );
   }
 
   return (
@@ -52,7 +56,7 @@ const RightSection = (props) => {
           <h1>Last Tests</h1>
           {loadingAllTestsById ? (
             <div className="right-section--loading-container">
-              <Spin size="large" />
+              <Spin />
             </div>
           ) : (
             <div className="cards-container">
@@ -84,4 +88,5 @@ export default RightSection;
 RightSection.propTypes = {
   allTestsById: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
+  handleTestClick: PropTypes.func.isRequired,
 };

@@ -2,8 +2,8 @@
 
 .patient-page-container {
   overflow-x: hidden;
-
   @include container-size;
+
   .left-section {
     width: 30%;
     height: 420px;
@@ -28,10 +28,14 @@
   }
 
   & > img {
-    width: 40px;
+    width: 37px;
     position: absolute;
     right: 25px;
     cursor: pointer;
+    &:hover {
+      border-radius: 100px;
+      box-shadow: 0 0 3px 0 grey;
+    }
 
     &.up-arrow{
       top: 75px;
