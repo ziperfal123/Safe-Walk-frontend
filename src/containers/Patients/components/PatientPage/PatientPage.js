@@ -14,14 +14,12 @@ const PatientPage = (props) => {
     cleanTestsById,
     loadingAllTestsById,
     loadingAllPlansById,
-    getPlansById,
     cleanPlansById,
   } = props;
   console.log('PatientPage');
 
   useEffect(() => {
     getTestsById(patient.id);
-    getPlansById(patient.id);
     return () => {
       cleanTestsById();
       cleanPlansById();
@@ -52,7 +50,6 @@ PatientPage.propTypes = {
   cleanTestsById: PropTypes.func.isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
   loadingAllPlansById: PropTypes.bool.isRequired,
-  getPlansById: PropTypes.func.isRequired,
   cleanPlansById: PropTypes.func.isRequired,
   patient: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,

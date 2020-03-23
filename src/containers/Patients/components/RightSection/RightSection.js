@@ -8,9 +8,8 @@ import UpArrowIcon from './files/upArrowIcon.svg';
 import DownArrowIcon from './files/downArrowIcon.svg';
 
 
-const RightSection = ({
-  allTestsById, loadingAllTestsById, loadingAllPlansById, allPlansById,
-}) => {
+const RightSection = (props) => {
+  const {allTestsById, loadingAllTestsById, loadingAllPlansById,} = props
   console.log('RightSection');
   let testsCounter = 1;
   const [shouldDisplayTests, setShouldDisplayTests] = useState(true);
