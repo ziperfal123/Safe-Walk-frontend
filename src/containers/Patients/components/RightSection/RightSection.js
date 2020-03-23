@@ -9,7 +9,7 @@ import DownArrowIcon from './files/downArrowIcon.svg';
 
 
 const RightSection = (props) => {
-  const {allTestsById, loadingAllTestsById, loadingAllPlansById,} = props
+  const { allTestsById, loadingAllTestsById } = props;
   console.log('RightSection');
   let testsCounter = 1;
   const [shouldDisplayTests, setShouldDisplayTests] = useState(true);
@@ -64,15 +64,9 @@ const RightSection = (props) => {
         </div>
         <div className={`plans ${shouldDisplayTests ? 'hidden' : ''}`}>
           <h1>Rehabilitation plans</h1>
-          {loadingAllPlansById ? (
-            <div className="right-section--loading-container">
-              <Spin size="large" />
-            </div>
-          ) : (
-            <div className="cards-container">
-              <h2>coming soon.. stay tuned</h2>
-            </div>
-          )}
+          <div className="cards-container">
+            <h2>coming soon.. stay tuned</h2>
+          </div>
         </div>
       </div>
       <img
@@ -90,6 +84,4 @@ export default RightSection;
 RightSection.propTypes = {
   allTestsById: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
-  allPlansById: PropTypes.arrayOf(PropTypes.object).isRequired,
-  loadingAllPlansById: PropTypes.bool.isRequired,
 };

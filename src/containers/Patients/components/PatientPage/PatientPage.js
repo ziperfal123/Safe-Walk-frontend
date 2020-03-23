@@ -13,7 +13,6 @@ const PatientPage = (props) => {
     allTestsById,
     cleanTestsById,
     loadingAllTestsById,
-    loadingAllPlansById,
     cleanPlansById,
   } = props;
   console.log('PatientPage');
@@ -33,8 +32,6 @@ const PatientPage = (props) => {
       <RightSection
         allTestsById={allTestsById}
         loadingAllTestsById={loadingAllTestsById}
-        allPlansById={getAllPatients}
-        loadingAllPlansById={loadingAllPlansById}
       />
     </div>
   );
@@ -49,7 +46,6 @@ PatientPage.propTypes = {
   allTestsById: PropTypes.arrayOf(objectOf()).isRequired,
   cleanTestsById: PropTypes.func.isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
-  loadingAllPlansById: PropTypes.bool.isRequired,
   cleanPlansById: PropTypes.func.isRequired,
   patient: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
