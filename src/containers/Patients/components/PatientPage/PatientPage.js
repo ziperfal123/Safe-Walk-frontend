@@ -57,7 +57,7 @@ const PatientPage = (props) => {
         <Route
           path={`${pathsNames.patients}:${patient.id}/${clickedTestId}`}
           render={() => (
-            <TestPage />
+            <TestPage testId={clickedTestId} />
           )}
         />
       </Switch>
