@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
-import './patientPage.scss';
-import pathsNames from 'router/pathNames';
-import RightSection from '../RightSection';
-import Left from '../LeftSection';
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { Route, Switch } from 'react-router-dom'
+import './patientPage.scss'
+import pathsNames from 'router/pathNames'
+import RightSection from '../RightSection'
+import Left from '../LeftSection'
+import TestPage from '../TestPage'
 
 const PatientPage = (props) => {
   const {
@@ -14,53 +15,57 @@ const PatientPage = (props) => {
     allTestsById,
     cleanTestsById,
     loadingAllTestsById,
-  } = props;
-  console.log('PatientPage');
+  } = props
+  console.log('PatientPage')
+
+  const [clickedTestId, setClickedTestId] = useState('')
 
   useEffect(() => {
-    getTestsById(patient.id);
+    getTestsById(patient.id)
     return () => {
-      cleanTestsById();
-    };
-  }, []);
+      cleanTestsById()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (clickedTestId) history.push(`${history.location.pathname}/${clickedTestId}`)
+  }, [clickedTestId])
 
   function handleTestClick(testId) {
-    console.log('id: ', testId);
-    history.push(`${history.location.pathname}/${testId}`);
+    setClickedTestId(testId)
+    // history.push(`${history.location.pathname}${testId}`)
   }
 
-  console.log('patient.id: ', patient.id);
   return (
     <div className="patient-page-container">
-      <Route
-        path={`${pathsNames.patients}:${patient.id}`}
-        exact
-        render={() => (
-          <>
-            <Left patient={patient} history={history} />
-            <hr />
-            <RightSection
-              allTestsById={allTestsById}
-              loadingAllTestsById={loadingAllTestsById}
-              handleTestClick={handleTestClick}
-            />
-          </>
-        )}
-      />
-      {/* <Route */}
-      {/*    path={`${pathsNames.patients}:${patient.id}:${test.id}`} */}
-      {/*    exact */}
-      {/*    render={() => ( */}
-      {/*        <> */}
-      {/*          <h1>HELLO WORLD</h1> */}
-      {/*        </> */}
-      {/*    )} */}
-      {/* /> */}
+      <Switch>
+        <Route
+          path={`${pathsNames.patients}:${patient.id}`}
+          exact
+          render={() => (
+            <>
+              <Left patient={patient} history={history} />
+              <hr />
+              <RightSection
+                allTestsById={allTestsById}
+                loadingAllTestsById={loadingAllTestsById}
+                handleTestClick={handleTestClick}
+              />
+            </>
+          )}
+        />
+        <Route
+          path={`${pathsNames.patients}:${patient.id}/${clickedTestId}`}
+          render={() => (
+            <TestPage />
+          )}
+        />
+      </Switch>
     </div>
-  );
-};
+  )
+}
 
-export default PatientPage;
+export default PatientPage
 
 
 PatientPage.propTypes = {
@@ -73,4 +78,4 @@ PatientPage.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ])).isRequired,
-};
+}

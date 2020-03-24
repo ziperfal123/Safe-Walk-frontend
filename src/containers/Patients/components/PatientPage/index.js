@@ -3,7 +3,6 @@ import { getTestsById, cleanTestsById } from 'redux/tests/actionsCreator';
 import PatientPage from './PatientPage';
 
 const mapStateToProps = (state) => ({
-  allTestsById: state.testsReducer.allTestsById,
 });
 
 const mapDispatchToProps = {

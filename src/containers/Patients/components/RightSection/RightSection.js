@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import { Spin } from 'antd';
-import PropTypes from 'prop-types';
-import DetailsCard from 'components/DetailsCard/';
-import AbnormalityChip from 'components/AbnormalityChip';
-import { normalizeDate } from 'utils/date';
-import UpArrowIcon from './files/upArrowIcon.svg';
-import DownArrowIcon from './files/downArrowIcon.svg';
+import React, { useState } from 'react'
+import { Spin } from 'antd'
+import PropTypes from 'prop-types'
+import DetailsCard from 'components/DetailsCard/'
+import AbnormalityChip from 'components/AbnormalityChip'
+import { normalizeDate } from 'utils/date'
+import UpArrowIcon from './files/upArrowIcon.svg'
+import DownArrowIcon from './files/downArrowIcon.svg'
 
 
 const RightSection = (props) => {
-  const { allTestsById, loadingAllTestsById, handleTestClick } = props;
-  console.log('RightSection');
-  let testsCounter = 1;
-  const [shouldDisplayTests, setShouldDisplayTests] = useState(true);
+  const { allTestsById, loadingAllTestsById, handleTestClick } = props
+  console.log('RightSection')
+  let testsCounter = 1
+  const [shouldDisplayTests, setShouldDisplayTests] = useState(true)
 
 
   function handleArrowClick(arrowDirection) {
     // eslint-disable-next-line no-unused-expressions
     arrowDirection === 'up'
       ? setShouldDisplayTests(true)
-      : setShouldDisplayTests(false);
+      : setShouldDisplayTests(false)
   }
 
   function renderTestsList(test) {
-    const normalizedDate = normalizeDate(test.date, false);
-    const results = test.abnormality ? 'ABNORMALITY' : 'NORMAL';
+    const normalizedDate = normalizeDate(test.date, false)
+    const results = test.abnormality ? 'ABNORMALITY' : 'NORMAL'
     const content = (
       <>
         {/* eslint-disable-next-line no-plusplus */}
@@ -35,12 +35,12 @@ const RightSection = (props) => {
         </h4>
         <AbnormalityChip results={results} />
       </>
-    );
+    )
     return (
       <DetailsCard key={Math.random()} id={test.id} handleCardClick={handleTestClick}>
         {content}
       </DetailsCard>
-    );
+    )
   }
 
   return (
@@ -80,13 +80,13 @@ const RightSection = (props) => {
         alt="down"
       />
     </>
-  );
-};
+  )
+}
 
-export default RightSection;
+export default RightSection
 
 RightSection.propTypes = {
   allTestsById: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
   handleTestClick: PropTypes.func.isRequired,
-};
+}

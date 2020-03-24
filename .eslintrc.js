@@ -22,8 +22,9 @@ module.exports = {
     'react',
   ],
   rules: {
-    "multiline-ternary": [2, "always-multiline"],
+    'multiline-ternary': [2, "always-multiline"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    'react/jsx-props-no-spreading': ['off']
+    'react/jsx-props-no-spreading': ['off'],
+    "semi": ["error", "never"]
   },
 };
