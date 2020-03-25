@@ -25,6 +25,7 @@ module.exports = {
     'multiline-ternary': [2, "always-multiline"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     'react/jsx-props-no-spreading': ['off'],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }]
   },
 };
