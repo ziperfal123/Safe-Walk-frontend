@@ -17,6 +17,7 @@ const Patients = (props) => {
     allPatients,
     loadingAllPatients,
     loadingAllTestsById,
+    allTestsById,
   } = props;
 
   const [selectedPatient, setSelectedPatient] = useState('');
@@ -52,6 +53,7 @@ const Patients = (props) => {
             <PatientPage
               patient={selectedPatient}
               history={history}
+              allTestsById={allTestsById}
               loadingAllTestsById={loadingAllTestsById}
             />
           )}
@@ -71,6 +73,7 @@ Patients.propTypes = {
   getAllPatients: PropTypes.func.isRequired,
   getTestsById: PropTypes.func.isRequired,
   allPatients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  allTestsById: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingAllPatients: PropTypes.bool.isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
 };

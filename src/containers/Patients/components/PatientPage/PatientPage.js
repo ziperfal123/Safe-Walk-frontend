@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
-import PropTypes, { objectOf } from 'prop-types';
-import './patientPage.scss';
-import { getAllPatients } from 'redux/patients/actionsCreator';
-import RightSection from '../RightSection';
-import Left from '../LeftSection';
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { Route, Switch } from 'react-router-dom'
+import './patientPage.scss'
+import pathsNames from 'router/pathNames'
+import RightSection from '../RightSection'
+import Left from '../LeftSection'
+import TestPage from '../TestPage'
 
 const PatientPage = (props) => {
   const {
@@ -13,49 +15,67 @@ const PatientPage = (props) => {
     allTestsById,
     cleanTestsById,
     loadingAllTestsById,
-    loadingAllPlansById,
-    getPlansById,
-    cleanPlansById,
-  } = props;
-  console.log('PatientPage');
+  } = props
+  console.log('PatientPage')
+
+  const [clickedTestId, setClickedTestId] = useState('')
 
   useEffect(() => {
-    getTestsById(patient.id);
-    getPlansById(patient.id);
+    getTestsById(patient.id)
     return () => {
-      cleanTestsById();
-      cleanPlansById();
-    };
-  }, []);
+      cleanTestsById()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (clickedTestId) history.push(`${history.location.pathname}/${clickedTestId}`)
+  }, [clickedTestId])
+
+  function handleTestClick(testId) {
+    setClickedTestId(testId)
+    // history.push(`${history.location.pathname}${testId}`)
+  }
 
   return (
     <div className="patient-page-container">
-      <Left patient={patient} history={history} />
-      <hr />
-      <RightSection
-        allTestsById={allTestsById}
-        loadingAllTestsById={loadingAllTestsById}
-        allPlansById={getAllPatients}
-        loadingAllPlansById={loadingAllPlansById}
-      />
+      <Switch>
+        <Route
+          path={`${pathsNames.patients}:${patient.id}`}
+          exact
+          render={() => (
+            <>
+              <Left patient={patient} history={history} />
+              <hr />
+              <RightSection
+                allTestsById={allTestsById}
+                loadingAllTestsById={loadingAllTestsById}
+                handleTestClick={handleTestClick}
+              />
+            </>
+          )}
+        />
+        <Route
+          path={`${pathsNames.patients}:${patient.id}/${clickedTestId}`}
+          render={() => (
+            <TestPage testId={clickedTestId} />
+          )}
+        />
+      </Switch>
     </div>
-  );
-};
+  )
+}
 
-export default PatientPage;
+export default PatientPage
 
 
 PatientPage.propTypes = {
   getTestsById: PropTypes.func.isRequired,
-  history: PropTypes.objectOf().isRequired,
-  allTestsById: PropTypes.arrayOf(objectOf()).isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  allTestsById: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   cleanTestsById: PropTypes.func.isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
-  loadingAllPlansById: PropTypes.bool.isRequired,
-  getPlansById: PropTypes.func.isRequired,
-  cleanPlansById: PropTypes.func.isRequired,
   patient: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
   ])).isRequired,
-};
+}
