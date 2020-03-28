@@ -5,7 +5,7 @@ import './patientPage.scss'
 import pathsNames from 'router/pathNames'
 import RightSection from '../RightSection'
 import Left from '../LeftSection'
-import TestPage from '../TestPage'
+import TestPage from '../../../TestPage'
 
 const PatientPage = (props) => {
   const {

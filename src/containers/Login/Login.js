@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes, { any } from 'prop-types';
-import { Redirect } from 'react-router-dom';
-import './login.scss';
-import Form from './components/Form/Form';
+import React from 'react'
+import PropTypes, { any } from 'prop-types'
+import { Redirect } from 'react-router-dom'
+import './login.scss'
+import Form from './components/Form/Form'
 
 const HeaderAnimation = () => (
   <svg id="header" width="655" height="104" viewBox="0 0 655 104" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,16 +15,16 @@ const HeaderAnimation = () => (
     <path d="M570.929 5.28V100H559.281V5.28H570.929Z" stroke="white" strokeWidth="4.4" mask="url(#path-1-outside-1)" />
     <path d="M633.549 100L606.029 69.024V100H594.381V5.28H606.029V60.96L633.037 29.856H649.293L616.269 64.8L649.421 100H633.549Z" stroke="white" strokeWidth="4.4" mask="url(#path-1-outside-1)" />
   </svg>
-);
+)
 
 
 const Login = (props) => {
-  console.log('Login');
-  const { isUserAuthenticated, location, handleLoginFormSubmit } = props;
+  console.log('Login')
+  const { isUserAuthenticated, location, handleLoginFormSubmit } = props
 
   if (isUserAuthenticated) {
-    const { from } = location.state || { from: { pathname: '/' } };
-    return <Redirect to={from} />;
+    const { from } = location.state || { from: { pathname: '/' } }
+    return <Redirect to={from} />
   }
   return (
     <div className="login-container">
@@ -35,13 +35,13 @@ const Login = (props) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
 
 Login.propTypes = {
   handleLoginFormSubmit: PropTypes.func.isRequired,
   isUserAuthenticated: PropTypes.bool.isRequired,
   location: PropTypes.objectOf(any).isRequired,
-};
+}

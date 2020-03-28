@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
-import './patients.scss';
-import pathsNames from 'router/pathNames';
-import PatientsTable from './components/PatientsTable';
-import PatientPage from './components/PatientPage';
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { Route, Switch } from 'react-router-dom'
+import './patients.scss'
+import pathsNames from 'router/pathNames'
+import PatientsTable from './components/PatientsTable'
+import PatientPage from './components/PatientPage'
 
 const Patients = (props) => {
-  console.log('Patients');
-  console.log('props: ', props);
+  console.log('Patients')
+  console.log('props: ', props)
   const {
     location,
     history,
@@ -18,18 +18,18 @@ const Patients = (props) => {
     loadingAllPatients,
     loadingAllTestsById,
     allTestsById,
-  } = props;
+  } = props
 
-  const [selectedPatient, setSelectedPatient] = useState('');
+  const [selectedPatient, setSelectedPatient] = useState('')
 
   useEffect(() => {
-    getAllPatients();
-    if (selectedPatient === '' && location.pathname !== pathsNames.patients) history.push(pathsNames.patients);
-  }, []);
+    getAllPatients()
+    if (selectedPatient === '' && location.pathname !== pathsNames.patients) history.push(pathsNames.patients)
+  }, [])
 
   function handleTableRowClick(patientObj) {
-    setSelectedPatient(patientObj);
-    history.push(`${pathsNames.patients}${patientObj.id}`);
+    setSelectedPatient(patientObj)
+    history.push(`${pathsNames.patients}${patientObj.id}`)
   }
 
   return (
@@ -62,10 +62,10 @@ const Patients = (props) => {
         ) }
       </Switch>
     </div>
-  );
-};
+  )
+}
 
-export default Patients;
+export default Patients
 
 Patients.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -76,4 +76,4 @@ Patients.propTypes = {
   allTestsById: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingAllPatients: PropTypes.bool.isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
-};
+}
