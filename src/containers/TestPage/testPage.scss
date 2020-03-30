@@ -26,11 +26,26 @@
   width:80%;
   //height: 78vh;
 
-  .sensor-title {
-    padding-top: 10px;
-    margin-left: 40px;
-    &--second {
-      margin-top: 30px;
+  .container-header {
+    display: flex;
+    flex-direction: row;
+    .sensor-title {
+      padding-top: 10px;
+      margin-left: 40px;
+      &--second {
+        margin-top: 30px;
+      }
+    }
+
+    .checkbox-container {
+
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      position: relative;
+      left: 130px;
+      top: 1px;
+      width: 35%;
     }
   }
 
