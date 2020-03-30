@@ -1,0 +1,50 @@
+@import "../../main";
+@import "../../../node_modules/react-vis/dist/style.css";
+
+.loading-test {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & h3 {
+    margin-top: 20px;
+  }
+}
+
+.test-title {
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.graph-container {
+  background-color: #F5FCFF;
+  border-radius: 7px;
+  margin: 0 auto;
+  margin-bottom: 45px;
+  width:80%;
+  //height: 78vh;
+
+  .sensor-title {
+    padding-top: 10px;
+    margin-left: 40px;
+    &--second {
+      margin-top: 30px;
+    }
+  }
+
+  .xy-container {
+    //position: relative;
+    width: 30%;
+    top: 7px;
+    margin: auto;
+    //border: 1px grey solid;
+    //box-shadow: 0 0 1px 1px;
+    //background-color: azure;
+
+    &.xy-second {
+      margin-bottom: 50px;
+    }
+  }
+}

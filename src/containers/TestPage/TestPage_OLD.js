@@ -4,7 +4,7 @@ import { Spin } from 'antd'
 import {
   XYPlot, LineSeries, HorizontalGridLines, VerticalGridLines,
 } from 'react-vis'
-import 'containers/TestPage/test.scss'
+import 'containers/TestPage/testPage.scss'
 
 const tmpData = [
   {

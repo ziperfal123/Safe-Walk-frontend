@@ -1,50 +1,62 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
 import { Spin } from 'antd'
-import {
-  XYPlot, LineSeries, HorizontalGridLines, VerticalGridLines,
-} from 'react-vis'
-import 'containers/TestPage/test.scss'
+import 'containers/TestPage/testPage.scss'
 import PropTypes from 'prop-types'
-import TestPage_OLD from 'containers/TestPage/TestPage_OLD'
+
 
 const TestPage = (props) => {
+  console.log('TestPAge: ', props)
   const {
     gaitModel, loadingGaitModel, getGaitModelByTestId, testId,
   } = props
-
-  const [dataSet, setDataSet] = useState([])
-
 
   useEffect(() => {
     getGaitModelByTestId(testId)
   }, [])
 
-  useEffect(() => {
-    const dataHolder = []
-    gaitModel && gaitModel.sensor1.forEach((obj, index) => {
-      dataHolder[index] = { x: obj.timeStamp, y: obj.pitch_angle_x }
-    })
-    setDataSet(dataHolder)
-  }, [gaitModel])
+  function renderSensorsContainer(key) {
+    if (key === 'testID' || key === 'id') return
 
-  function renderSensorContainer() {
-    return <h1>hello</h1>
+    const dataSetX = []
+    const dataSetY = []
+    const dataSetZ = []
+
+    gaitModel[key].forEach((obj) => {
+      dataSetX.push({ x: obj.timeStamp, y: obj.pitch_angle_x })
+      dataSetY.push({ x: obj.timeStamp, y: obj.roll_angle_y })
+      dataSetZ.push({ x: obj.timeStamp, y: obj.yaw_angle_z })
+    })
+
+    return (
+      <GraphContainer
+        dataSetX={dataSetX}
+        dataSetY={dataSetY}
+        dataSetZ={dataSetZ}
+        label="Sensor #1: Left Knee"
+      />
+    )
   }
 
 
+  // for (const [key, value] of Object.entries(gaitModel)) {
+  //   if (key !== 'testID' && key !== 'id') console.log(key, value)
+  // }
+
+  console.log('gaitModel: ', gaitModel)
   return (
     <>
       {loadingGaitModel || !gaitModel ? (
         <div className="loading-test">
           <Spin />
-          <h3>this might take a minute..</h3>
+          <h3>it might take a minute..</h3>
         </div>
       ) : (
         <>
-          <h1 className="test-title">Test Data</h1>
-          {renderSensorContainer()}
-          <GraphContainer dataSet={dataSet} />
+          <h1 className="test-title">User's data</h1>
+          {
+            Object.keys(gaitModel).map((key) => renderSensorsContainer(key))
+          }
         </>
       )}
     </>
@@ -55,7 +67,7 @@ const TestPage = (props) => {
 export default TestPage
 
 
-TestPage_OLD.propTypes = {
+TestPage.propTypes = {
   gaitModel: PropTypes.objectOf(PropTypes.any),
   loadingGaitModel: PropTypes.bool.isRequired,
   getGaitModelByTestId: PropTypes.func.isRequired,
