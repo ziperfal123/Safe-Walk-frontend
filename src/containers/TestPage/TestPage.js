@@ -33,17 +33,11 @@ const TestPage = (props) => {
         dataSetX={dataSetX}
         dataSetY={dataSetY}
         dataSetZ={dataSetZ}
-        label="Sensor #1: Left Knee"
+        sensor={key}
       />
     )
   }
 
-
-  // for (const [key, value] of Object.entries(gaitModel)) {
-  //   if (key !== 'testID' && key !== 'id') console.log(key, value)
-  // }
-
-  console.log('gaitModel: ', gaitModel)
   return (
     <>
       {loadingGaitModel || !gaitModel ? (
@@ -53,7 +47,7 @@ const TestPage = (props) => {
         </div>
       ) : (
         <>
-          <h1 className="test-title">User's data</h1>
+          <h1 className="test-title">Gait model data</h1>
           {
             Object.keys(gaitModel).map((key) => renderSensorsContainer(key))
           }
