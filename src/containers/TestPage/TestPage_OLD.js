@@ -4,7 +4,7 @@ import { Spin } from 'antd'
 import {
   XYPlot, LineSeries, HorizontalGridLines, VerticalGridLines,
 } from 'react-vis'
-import './test.scss'
+import 'containers/TestPage/testPage.scss'
 
 const tmpData = [
   {
@@ -3322,10 +3322,10 @@ const tmpData = [
 ]
 
 
-const TestPage = ({
+const TestPage_OLD = ({
   gaitModel, loadingGaitModel, getGaitModelByTestId, testId,
 }) => {
-  console.log('TestPage')
+
   const [dataSet, setDataSet] = useState([])
 
   useEffect(() => {
@@ -3335,7 +3335,7 @@ const TestPage = ({
   useEffect(() => {
     const dataHolder = []
     gaitModel && gaitModel.sensor1.forEach((obj, index) => {
-      dataHolder[index] = { x: obj.timeStamp, y: obj.angle }
+      dataHolder[index] = { x: obj.timeStamp, y: obj.pitch_angle_x }
     })
     setDataSet(dataHolder)
   }, [gaitModel])
@@ -3410,10 +3410,10 @@ const TestPage = ({
   )
 }
 
-export default TestPage
+export default TestPage_OLD
 
 
-TestPage.propTypes = {
+TestPage_OLD.propTypes = {
   gaitModel: PropTypes.objectOf(PropTypes.any),
   loadingGaitModel: PropTypes.bool.isRequired,
   getGaitModelByTestId: PropTypes.func.isRequired,

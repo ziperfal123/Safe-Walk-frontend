@@ -5,8 +5,6 @@ import columns from './tableColumns';
 
 const TestsTable = ({ allTests, allPatients, loadingAllTests }) => {
   console.log('TestsTable');
-  console.log('allTests: ', allTests);
-  console.log('allPatients: ', allPatients);
 
   function getNormalizedData() {
     const normalizedPatients = allTests.map((test) => {

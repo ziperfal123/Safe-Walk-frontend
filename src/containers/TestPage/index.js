@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { getGaitModelByTestId } from 'redux/gaitModel/actionsCreator'
-import TestPage from './TestPage'
+import TestPage from 'containers/TestPage/TestPage'
 
 const mapStateToProps = (state) => ({
   gaitModel: state.gaitModelReducer.gaitModel,
