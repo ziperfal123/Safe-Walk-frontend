@@ -3325,7 +3325,6 @@ const tmpData = [
 const TestPage_OLD = ({
   gaitModel, loadingGaitModel, getGaitModelByTestId, testId,
 }) => {
-  console.log('TestPage_OLD', gaitModel)
 
   const [dataSet, setDataSet] = useState([])
 

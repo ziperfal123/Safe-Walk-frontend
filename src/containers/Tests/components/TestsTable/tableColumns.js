@@ -10,7 +10,6 @@ const columns = [
     dataIndex: 'name',
     sorter: (a, b) => a.name.localeCompare(b.name),
     render(_, normalizedPatientObj) {
-      console.log('normalizedPatientObj: ', normalizedPatientObj);
       const rowColor = normalizedPatientObj.waitingStatus && normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
       return {
         props: {

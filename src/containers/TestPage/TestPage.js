@@ -32,6 +32,7 @@ const TestPage = (props) => {
 
     return (
       <GraphContainer
+        key={key}
         dataSetX={dataSetX}
         dataSetY={dataSetY}
         dataSetZ={dataSetZ}
@@ -45,7 +46,7 @@ const TestPage = (props) => {
       {loadingGaitModel || !gaitModel ? (
         <div className="loading-test">
           <Spin />
-          <h3>it might take a minute..</h3>
+          <h3>it might take up to one minute..</h3>
         </div>
       ) : (
         <>

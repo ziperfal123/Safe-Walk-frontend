@@ -8,7 +8,6 @@ import PatientPage from './components/PatientPage'
 
 const Patients = (props) => {
   console.log('Patients')
-  console.log('props: ', props)
   const {
     location,
     history,

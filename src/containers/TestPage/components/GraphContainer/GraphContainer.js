@@ -153,8 +153,8 @@ export default GraphContainer
 
 
 GraphContainer.propTypes = {
-  dataSetX: PropTypes.objectOf(PropTypes.any).isRequired,
-  dataSetY: PropTypes.objectOf(PropTypes.any).isRequired,
-  dataSetZ: PropTypes.objectOf(PropTypes.any).isRequired,
+  dataSetX: PropTypes.arrayOf(PropTypes.any).isRequired,
+  dataSetY: PropTypes.arrayOf(PropTypes.any).isRequired,
+  dataSetZ: PropTypes.arrayOf(PropTypes.any).isRequired,
   sensor: PropTypes.string.isRequired,
 }
