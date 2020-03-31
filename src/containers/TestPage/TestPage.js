@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
-import GraphContainer from 'containers/TestPage/components/GraphContainer'
 import { Spin } from 'antd'
-import 'containers/TestPage/testPage.scss'
 import PropTypes from 'prop-types'
+
+import GraphContainer from 'containers/TestPage/components/GraphContainer'
+
+import 'containers/TestPage/testPage.scss'
 
 
 const TestPage = (props) => {
@@ -16,7 +18,7 @@ const TestPage = (props) => {
   }, [])
 
   function renderSensorsContainer(key) {
-    if (key === 'testID' || key === 'id') return
+    if (key === 'testID' || key === 'id') return null
 
     const dataSetX = []
     const dataSetY = []
@@ -62,7 +64,7 @@ export default TestPage
 
 
 TestPage.propTypes = {
-  gaitModel: PropTypes.objectOf(PropTypes.any),
+  gaitModel: PropTypes.objectOf(PropTypes.any).isRequired,
   loadingGaitModel: PropTypes.bool.isRequired,
   getGaitModelByTestId: PropTypes.func.isRequired,
   testId: PropTypes.string.isRequired,

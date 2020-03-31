@@ -19,12 +19,16 @@
 }
 
 .graph-container {
+  &:first-of-type {
+    margin-top: 45px;
+  }
+
+  box-shadow: 0 0 1px 0;
   background-color: #F5FCFF;
   border-radius: 7px;
   margin: 0 auto;
-  margin-bottom: 45px;
+  margin-bottom: 70px;
   width:80%;
-  //height: 78vh;
 
   .container-header {
     display: flex;
@@ -64,16 +68,8 @@
   }
 
   .xy-container {
-    //position: relative;
     width: 30%;
     top: 7px;
     margin: auto;
-    //border: 1px grey solid;
-    //box-shadow: 0 0 1px 1px;
-    //background-color: azure;
-
-    &.xy-second {
-      margin-bottom: 50px;
-    }
   }
 }
