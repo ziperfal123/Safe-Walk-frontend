@@ -17,6 +17,21 @@ const GraphContainer = (props) => {
   const [shouldShowY, setShouldShowY] = useState(true)
   const [shouldShowZ, setShouldShowZ] = useState(true)
 
+  function handleChange(e, line) {
+    switch (line) {
+      case 'x':
+        setShouldShowX(e.target.checked)
+        break
+      case 'y':
+        setShouldShowY(e.target.checked)
+        break
+      case 'z':
+        setShouldShowZ(e.target.checked)
+        break
+    }
+  }
+
+
   let label
   switch (sensor) {
     case 'sensor1':
@@ -43,20 +58,6 @@ const GraphContainer = (props) => {
 
     default:
       label = 'sensors data: '
-  }
-
-  function handleChange(e, line) {
-    switch (line) {
-      case 'x':
-        setShouldShowX(e.target.checked)
-        break
-      case 'y':
-        setShouldShowY(e.target.checked)
-        break
-      case 'z':
-        setShouldShowZ(e.target.checked)
-        break
-    }
   }
 
   return (
@@ -110,7 +111,7 @@ const GraphContainer = (props) => {
           style={{
             stroke: 'purple',
             strokeLinejoin: 'round',
-            strokeWidth: '3px',
+            strokeWidth: '1px',
           }}
         />
         )}
@@ -141,7 +142,7 @@ const GraphContainer = (props) => {
           style={{
             stroke: 'black',
             strokeLinejoin: 'round',
-            strokeWidth: '3px',
+            strokeWidth: '1px',
           }}
         />
       </XYPlot>

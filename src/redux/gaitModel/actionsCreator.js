@@ -11,6 +11,7 @@ export const getGaitModelByTestId = (testId) => async (dispatch) => {
   dispatch({ type: FETCH_GAIT_MODEL_BY_TEST_ID_SET_LOADING_TRUE })
   try {
     const response = await get(`patientGaitModel/${testId}`)
+    console.log('response: ', response)
     dispatch({
       type: FETCH_GAIT_MODEL_BY_TEST_ID_SUCCESS,
       payload: response.data,
