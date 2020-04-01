@@ -99,7 +99,7 @@ const GraphContainer = (props) => {
           style={{
             stroke: 'green',
             strokeLinejoin: 'round',
-            strokeWidth: '3px',
+            strokeWidth: '1px',
           }}
         />
         )}
@@ -121,7 +121,7 @@ const GraphContainer = (props) => {
           style={{
             stroke: 'orange',
             strokeLinejoin: 'round',
-            strokeWidth: '3px',
+            strokeWidth: '1px',
           }}
           s
         />

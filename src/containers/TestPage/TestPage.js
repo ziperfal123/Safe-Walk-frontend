@@ -18,16 +18,16 @@ const TestPage = (props) => {
   }, [])
 
   function renderSensorsContainer(key) {
-    if (key === 'testID' || key === 'id') return null
+    if (key === 'testID' || key === 'id' || key === '_id' || key === '__v') return null
 
     const dataSetX = []
     const dataSetY = []
     const dataSetZ = []
 
-    gaitModel[key].forEach((obj) => {
-      dataSetX.push({ x: obj.timeStamp, y: obj.pitch_angle_x })
-      dataSetY.push({ x: obj.timeStamp, y: obj.roll_angle_y })
-      dataSetZ.push({ x: obj.timeStamp, y: obj.yaw_angle_z })
+    gaitModel[key].accelerations.forEach((dataElement) => {
+      dataSetX.push({ x: dataElement.timeStamp, y: dataElement.x })
+      dataSetY.push({ x: dataElement.timeStamp, y: dataElement.y })
+      dataSetZ.push({ x: dataElement.timeStamp, y: dataElement.z })
     })
 
     return (
