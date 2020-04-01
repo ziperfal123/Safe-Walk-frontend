@@ -14,7 +14,6 @@ const initialState = {
 const gaitModelReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_GAIT_MODEL_BY_TEST_ID_SUCCESS:
-      console.log('what: ')
       return {
         ...state,
         gaitModel: action.payload,

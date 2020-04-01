@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 import {
   XYPlot, LineSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis,
 } from 'react-vis'
+import {
+  VictoryChart, VictoryScatter, VictoryLine, VictoryAxis,
+} from 'victory'
 
 import 'containers/TestPage/testPage.scss'
 
@@ -88,64 +91,98 @@ const GraphContainer = (props) => {
           </Checkbox>
         </div>
       </div>
-      <XYPlot height={320} width={850} className="xy-container">
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis on0 />
-        <YAxis on0 />
-        { shouldShowX && (
-        <LineSeries
+      <VictoryChart
+        height={250}
+        maxDomain={{ x: 900, y: 10 }}
+        style={{
+          parent: { maxWidth: '100%'},
+          labels: { fontSize: 16 },
+        }}
+      >
+        <VictoryLine
           data={dataSetX}
-          curve={null}
+          samples={2}
           style={{
-            stroke: 'green',
-            strokeLinejoin: 'round',
-            strokeWidth: '1px',
+            data: { stroke: 'orange', strokeWidth: 1 },
+            labels: { fontSize: 16 },
+            parent: { border: '1px solid #ccc' },
           }}
         />
-        )}
-        {shouldShowY && (
-        <LineSeries
-          data={dataSetY}
-          curve={null}
+        <VictoryAxis
+          dependentAxis
+          label="something else"
           style={{
-            stroke: 'purple',
-            strokeLinejoin: 'round',
-            strokeWidth: '1px',
+            axisLabel: { fontSize: 10, padding: 30 },
+            tickLabels: { fontSize: 10, padding: 5 },
           }}
         />
-        )}
-        { shouldShowZ && (
-        <LineSeries
-          data={dataSetZ}
-          curve={null}
+        <VictoryAxis
+          label="time stamp"
           style={{
-            stroke: 'orange',
-            strokeLinejoin: 'round',
-            strokeWidth: '1px',
-          }}
-          s
-        />
-        )}
-      </XYPlot>
-      <div className="container-header">
-        <h3 className="sensor-title sensor-title--second">{`${label}- perfect results`}</h3>
-      </div>
-      <XYPlot height={320} width={850} className="xy-container">
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis on0 />
-        <YAxis on0 />
-        <LineSeries
-          data={dataSetZ}
-          curve={null}
-          style={{
-            stroke: 'black',
-            strokeLinejoin: 'round',
-            strokeWidth: '1px',
+            axisLabel: { fontSize: 10, padding: 30 },
+            tickLabels: { fontSize: 10, padding: 5 },
           }}
         />
-      </XYPlot>
+      </VictoryChart>
+
+      {/* <XYPlot height={320} width={850} className="xy-container"> */}
+      {/*  <VerticalGridLines /> */}
+      {/*  <HorizontalGridLines /> */}
+      {/*  <XAxis on0 /> */}
+      {/*  <YAxis on0 /> */}
+      {/*  { shouldShowX && ( */}
+      {/*  <LineSeries */}
+      {/*    data={dataSetX} */}
+      {/*    curve={null} */}
+      {/*    style={{ */}
+      {/*      stroke: 'green', */}
+      {/*      strokeLinejoin: 'round', */}
+      {/*      strokeWidth: '1px', */}
+      {/*    }} */}
+      {/*  /> */}
+      {/*  )} */}
+      {/*  {shouldShowY && ( */}
+      {/*  <LineSeries */}
+      {/*    data={dataSetY} */}
+      {/*    curve={null} */}
+      {/*    style={{ */}
+      {/*      stroke: 'purple', */}
+      {/*      strokeLinejoin: 'round', */}
+      {/*      strokeWidth: '1px', */}
+      {/*    }} */}
+      {/*  /> */}
+      {/*  )} */}
+      {/*  { shouldShowZ && ( */}
+      {/*  <LineSeries */}
+      {/*    data={dataSetZ} */}
+      {/*    curve={null} */}
+      {/*    style={{ */}
+      {/*      stroke: 'orange', */}
+      {/*      strokeLinejoin: 'round', */}
+      {/*      strokeWidth: '1px', */}
+      {/*    }} */}
+      {/*    s */}
+      {/*  /> */}
+      {/*  )} */}
+      {/* </XYPlot> */}
+      {/* <div className="container-header"> */}
+      {/*  <h3 className="sensor-title sensor-title--second">{`${label}- perfect results`}</h3> */}
+      {/* </div> */}
+      {/* <XYPlot height={320} width={850} className="xy-container"> */}
+      {/*  <VerticalGridLines /> */}
+      {/*  <HorizontalGridLines /> */}
+      {/*  <XAxis on0 /> */}
+      {/*  <YAxis on0 /> */}
+      {/*  <LineSeries */}
+      {/*    data={dataSetZ} */}
+      {/*    curve={null} */}
+      {/*    style={{ */}
+      {/*      stroke: 'black', */}
+      {/*      strokeLinejoin: 'round', */}
+      {/*      strokeWidth: '1px', */}
+      {/*    }} */}
+      {/*  /> */}
+      {/* </XYPlot> */}
     </div>
   )
 }
