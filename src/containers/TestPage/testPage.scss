@@ -28,9 +28,10 @@
   border-radius: 7px;
   margin: 0 auto;
   margin-bottom: 70px;
-  width:80%;
+  width:90%;
 
   .container-header {
+    position: relative;
     display: flex;
     flex-direction: row;
     .sensor-title {
@@ -41,16 +42,16 @@
       }
     }
 
-    .checkbox-container {
+    .radio-container {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      position: relative;
-      left: 130px;
-      top: 2px;
+      position: absolute;
+      left: 33%;
+      top: 33%;
       width: 35%;
 
-      & > .checkbox {
+      & > .radio {
         & > span {
           font-weight: bold;
         }

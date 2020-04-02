@@ -4,6 +4,7 @@ import {
   FETCH_GAIT_MODEL_BY_TEST_ID_FAILURE,
   FETCH_GAIT_MODEL_BY_TEST_ID_SET_LOADING_TRUE,
   FETCH_GAIT_MODEL_BY_TEST_ID_SET_LOADING_FALSE,
+  CLEAN_GAIT_MODEL
 } from './actionTypes'
 
 
@@ -21,3 +22,5 @@ export const getGaitModelByTestId = (testId) => async (dispatch) => {
   }
   dispatch({ type: FETCH_GAIT_MODEL_BY_TEST_ID_SET_LOADING_FALSE })
 }
+
+export const cleanGaitModel = () => dispatch => dispatch({type: CLEAN_GAIT_MODEL})

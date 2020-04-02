@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Checkbox } from 'antd'
+import { Radio } from 'antd'
 import PropTypes from 'prop-types'
 import {
-  XYPlot, LineSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis,
-} from 'react-vis'
+  VictoryChart, VictoryZoomContainer, VictoryLine, VictoryAxis, VictoryTheme,
+} from 'victory'
 
 import 'containers/TestPage/testPage.scss'
 
@@ -13,24 +13,16 @@ const GraphContainer = (props) => {
     dataSetX, dataSetY, dataSetZ, sensor,
   } = props
 
-  const [shouldShowX, setShouldShowX] = useState(true)
-  const [shouldShowY, setShouldShowY] = useState(true)
-  const [shouldShowZ, setShouldShowZ] = useState(true)
+  const [zoomDomain, setZoomDomain] = useState(1)
+  const [radioValue, setRadioValue] = useState('x')
 
-  function handleChange(e, line) {
-    switch (line) {
-      case 'x':
-        setShouldShowX(e.target.checked)
-        break
-      case 'y':
-        setShouldShowY(e.target.checked)
-        break
-      case 'z':
-        setShouldShowZ(e.target.checked)
-        break
-    }
+  function handleZoom(domain) {
+    setZoomDomain(domain)
   }
 
+  function handleRadioClick(e) {
+    setRadioValue(e.target.value)
+  }
 
   let label
   switch (sensor) {
@@ -64,92 +56,159 @@ const GraphContainer = (props) => {
     <div className="graph-container">
       <div className="container-header">
         <h3 className="sensor-title">{label}</h3>
-        <div className="checkbox-container">
-          <Checkbox
-            className="checkbox checkbox--green"
-            defaultChecked
-            onChange={(e) => handleChange(e, 'x')}
+        <Radio.Group className="radio-container" onChange={handleRadioClick}>
+          <Radio
+            className="radio--green"
+            value="x"
+            checked={radioValue === 'x'}
           >
             <span>Show X</span>
-          </Checkbox>
-          <Checkbox
-            className="checkbox checkbox--purple"
-            defaultChecked
-            onChange={(e) => handleChange(e, 'y')}
+          </Radio>
+          <Radio
+            className="radio--purple"
+            value="y"
+            checked={radioValue === 'y'}
           >
             Show Y
-          </Checkbox>
-          <Checkbox
-            className="checkbox checkbox--orange"
-            defaultChecked
-            onChange={(e) => handleChange(e, 'z')}
+          </Radio>
+          <Radio
+            className="radio--orange"
+            value="z"
+            checked={radioValue === 'z'}
           >
             Show Z
-          </Checkbox>
-        </div>
+          </Radio>
+        </Radio.Group>
       </div>
-      <XYPlot height={320} width={850} className="xy-container">
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis on0 />
-        <YAxis on0 />
-        { shouldShowX && (
-        <LineSeries
-          data={dataSetX}
-          curve={null}
+      <div style={{ display: 'flex' }}>
+        <VictoryChart
+          containerComponent={(
+            <VictoryZoomContainer
+              zoomDimension="x"
+              zoomDomain={zoomDomain}
+              onZoomDomainChange={handleZoom}
+            />
+            )}
+          height={340}
+          maxDomain={{ y: 10 }}
           style={{
-            stroke: 'green',
-            strokeLinejoin: 'round',
-            strokeWidth: '1px',
+            parent: { maxWidth: '50%' },
+            labels: { fontSize: 16 },
           }}
-        />
-        )}
-        {shouldShowY && (
-        <LineSeries
-          data={dataSetY}
-          curve={null}
+          theme={VictoryTheme.material}
+        >
+          {radioValue === 'x' && (
+          <VictoryLine
+            data={dataSetX}
+            style={{
+              data: { stroke: 'green', strokeWidth: 1 },
+              labels: { fontSize: 16 },
+              parent: { border: '1px solid #ccc' },
+            }}
+          />
+          )}
+          { radioValue === 'y' && (
+          <VictoryLine
+            data={dataSetY}
+            style={{
+              data: { stroke: 'purple', strokeWidth: 1 },
+              labels: { fontSize: 16 },
+              parent: { border: '1px solid #ccc' },
+            }}
+          />
+          )}
+          {radioValue === 'z' && (
+          <VictoryLine
+            data={dataSetZ}
+            style={{
+              data: { stroke: 'orange', strokeWidth: 1 },
+              labels: { fontSize: 16 },
+              parent: { border: '1px solid #ccc' },
+            }}
+          />
+          )}
+          <VictoryAxis
+            dependentAxis
+            label="something else"
+            style={{
+              axisLabel: { fontSize: 12, padding: 30 },
+              tickLabels: { fontSize: 12, padding: 5 },
+            }}
+          />
+          <VictoryAxis
+            label="time stamp"
+            style={{
+              axisLabel: { fontSize: 12, padding: 50 },
+              tickLabels: { fontSize: 12, padding: 5 },
+            }}
+          />
+        </VictoryChart>
+        <VictoryChart
+          containerComponent={(
+            <VictoryZoomContainer
+              // zoomDimension="x"
+              zoomDomain={zoomDomain}
+              onZoomDomainChange={handleZoom}
+            />
+            )}
+          height={340}
+          maxDomain={{ x: 900, y: 10 }}
           style={{
-            stroke: 'purple',
-            strokeLinejoin: 'round',
-            strokeWidth: '1px',
+            parent: { maxWidth: '50%' },
+            labels: { fontSize: 16 },
           }}
-        />
-        )}
-        { shouldShowZ && (
-        <LineSeries
-          data={dataSetZ}
-          curve={null}
-          style={{
-            stroke: 'orange',
-            strokeLinejoin: 'round',
-            strokeWidth: '1px',
-          }}
-          s
-        />
-        )}
-      </XYPlot>
-      <div className="container-header">
-        <h3 className="sensor-title sensor-title--second">{`${label}- perfect results`}</h3>
+          theme={VictoryTheme.material}
+        >
+          {radioValue === 'x' && (
+          <VictoryLine
+            data={dataSetX}
+            style={{
+              data: { stroke: 'green', strokeWidth: 1 },
+              labels: { fontSize: 16 },
+              parent: { border: '1px solid #ccc' },
+            }}
+          />
+          )}
+          { radioValue === 'y' && (
+          <VictoryLine
+            data={dataSetY}
+            style={{
+              data: { stroke: 'purple', strokeWidth: 1 },
+              labels: { fontSize: 16 },
+              parent: { border: '1px solid #ccc' },
+            }}
+          />
+          )}
+          {radioValue === 'z' && (
+          <VictoryLine
+            data={dataSetZ}
+            style={{
+              data: { stroke: 'orange', strokeWidth: 1 },
+              labels: { fontSize: 16 },
+              parent: { border: '1px solid #ccc' },
+            }}
+          />
+          )}
+          <VictoryAxis
+            dependentAxis
+            label="something else"
+            style={{
+              axisLabel: { fontSize: 12, padding: 30 },
+              tickLabels: { fontSize: 12, padding: 5 },
+            }}
+          />
+          <VictoryAxis
+            label="time stamp"
+            style={{
+              axisLabel: { fontSize: 12, padding: 30 },
+              tickLabels: { fontSize: 12, padding: 5 },
+            }}
+          />
+        </VictoryChart>
       </div>
-      <XYPlot height={320} width={850} className="xy-container">
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis on0 />
-        <YAxis on0 />
-        <LineSeries
-          data={dataSetZ}
-          curve={null}
-          style={{
-            stroke: 'black',
-            strokeLinejoin: 'round',
-            strokeWidth: '1px',
-          }}
-        />
-      </XYPlot>
     </div>
   )
 }
-
 export default GraphContainer
 
 

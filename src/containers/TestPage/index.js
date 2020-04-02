@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getGaitModelByTestId } from 'redux/gaitModel/actionsCreator'
+import { getGaitModelByTestId, cleanGaitModel } from 'redux/gaitModel/actionsCreator'
 import TestPage from 'containers/TestPage/TestPage'
 
 const mapStateToProps = (state) => ({
@@ -7,6 +7,6 @@ const mapStateToProps = (state) => ({
   loadingGaitModel: state.gaitModelReducer.loadingGaitModel,
 })
 
-const mapDispatchToProps = { getGaitModelByTestId }
+const mapDispatchToProps = { getGaitModelByTestId, cleanGaitModel }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestPage)
