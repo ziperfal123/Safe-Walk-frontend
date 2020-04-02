@@ -146,7 +146,7 @@ const GraphContainer = (props) => {
         <VictoryChart
           containerComponent={(
             <VictoryZoomContainer
-              zoomDimension="x"
+              // zoomDimension="x"
               zoomDomain={zoomDomain}
               onZoomDomainChange={handleZoom}
             />

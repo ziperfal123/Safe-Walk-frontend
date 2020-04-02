@@ -4,6 +4,7 @@ import {
   FETCH_GAIT_MODEL_BY_TEST_ID_FAILURE,
   FETCH_GAIT_MODEL_BY_TEST_ID_SET_LOADING_TRUE,
   FETCH_GAIT_MODEL_BY_TEST_ID_SET_LOADING_FALSE,
+  CLEAN_GAIT_MODEL,
 } from './actionTypes'
 
 const initialState = {
@@ -29,6 +30,12 @@ const gaitModelReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingGaitModel: false,
+      }
+
+    case CLEAN_GAIT_MODEL:
+      return {
+        ...state,
+        gaitModel: null,
       }
 
     default:

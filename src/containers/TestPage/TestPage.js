@@ -10,11 +10,12 @@ import 'containers/TestPage/testPage.scss'
 const TestPage = (props) => {
   console.log('TestPAge: ', props)
   const {
-    gaitModel, loadingGaitModel, getGaitModelByTestId, testId,
+    gaitModel, loadingGaitModel, getGaitModelByTestId, testId, cleanGaitModel,
   } = props
 
   useEffect(() => {
     getGaitModelByTestId(testId)
+    return () => { cleanGaitModel() }
   }, [])
 
   function renderSensorsContainer(key) {
@@ -37,13 +38,14 @@ const TestPage = (props) => {
         dataSetY={dataSetY}
         dataSetZ={dataSetZ}
         sensor={key}
+        cleanGaitModel={cleanGaitModel}
       />
     )
   }
 
   return (
     <>
-      {loadingGaitModel || !gaitModel ? (
+      {!gaitModel || loadingGaitModel ? (
         <div className="loading-test">
           <Spin />
           <h3>it might take up to one minute..</h3>
@@ -69,4 +71,5 @@ TestPage.propTypes = {
   loadingGaitModel: PropTypes.bool.isRequired,
   getGaitModelByTestId: PropTypes.func.isRequired,
   testId: PropTypes.string.isRequired,
+  cleanGaitModel: PropTypes.func.isRequired
 }
