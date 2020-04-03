@@ -1,6 +1,6 @@
 @import "../../main";
 
-.login-container {
+.login-page {
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(180deg, $sidebar-background-color, #1e5160);
@@ -81,10 +81,8 @@
     }
   }
 
-
-  & > .login-container-wrapper {
+  &__form-wrapper {
     height: 25%;
-    //background-color: #cedcf9;  // Display it as an floating card with border shadows??
   }
 }
 
