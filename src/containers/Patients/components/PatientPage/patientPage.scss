@@ -2,7 +2,7 @@
 
 .patient-page-container {
   overflow-x: hidden;
-  @include container-size;
+  @include page-size;
 
   .left-section {
     width: 30%;

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
+
 import './patients.scss'
+
 import pathsNames from 'router/pathNames'
 import PatientsTable from './components/PatientsTable'
 import PatientPage from './components/PatientPage'
+
 
 const Patients = (props) => {
   console.log('Patients')
@@ -32,7 +35,7 @@ const Patients = (props) => {
   }
 
   return (
-    <div className="switch-wrapper patients-page-container">
+    <div className="patients-page">
       <Switch>
         <Route
           path={pathsNames.patients}

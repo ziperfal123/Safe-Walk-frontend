@@ -1,17 +1,13 @@
-import React from 'react';
-import './rehabPlans.scss';
+import React from 'react'
+import './rehabPlans.scss'
 
 const RehabPlans = () => (
-  <>
-    <div className="switch-wrapper">
-      <div className="rehab-plans-container">
-        <h1>Rehab Plans</h1>
-        <h1>Rehab Plans</h1>
-        <h1>Rehab Plans</h1>
-        <h1>Rehab Plans</h1>
-      </div>
-    </div>
-  </>
-);
+  <div className="rehab-plans-container">
+    <h1>Rehab Plans</h1>
+    <h1>Rehab Plans</h1>
+    <h1>Rehab Plans</h1>
+    <h1>Rehab Plans</h1>
+  </div>
+)
 
-export default RehabPlans;
+export default RehabPlans

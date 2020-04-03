@@ -1,7 +1,7 @@
-@import "../../main";
+@import "main";
 
 .rehab-plans-container {
-  @include container-size;
+  @include page-size;
   background-color: lightseagreen;
 
   h1 {

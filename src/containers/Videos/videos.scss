@@ -1,7 +1,7 @@
 @import "../../main";
 
 .videos-container {
-  @include container-size;
+  @include page-size;
   background-color: lightblue;
 
   h1 {
