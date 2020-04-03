@@ -1,6 +1,6 @@
 @import "../../main";
 
-.sidebar-container {
+.sidebar {
   height: 100vh;
   width: $sidebar-width;
   position: fixed;
@@ -9,14 +9,13 @@
   align-items: center;
   background-color: $sidebar-background-color;
 
-
-  .sidebar--logo {
+  .sidebar__logo {
     width: 120px;
     margin-top: 30px;
   }
 
   ul {
-    height: $ul-height;
+    height: 300px;
     width: 100%;
     margin-top: 20px;
     display: flex;
@@ -25,26 +24,28 @@
     list-style: none;
 
     li {
-      height: $li-height;
+      height: 50px;
       text-align: center;
       cursor: pointer;
       &:hover {
         transition: .5s;
-        background-color: lightblue;
+        background-color: $list-background-color-hover;
         & a {
           color: $sidebar-background-color;
         }
       }
     }
 
-    .sidebar--nav-link {
-      @include list-font();
-      width: 100%;
-      height: 100%;
+    .sidebar__nav-link {
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
+      height: 100%;
       text-decoration: none;
+      font-size: 1.4em;
+      font-family: $list-font;
+      color: $list-hover-color;
       &.selected {
         box-shadow: inset 3px 0 $list-hover-color;
         background-color: $selected-list-background-color;
@@ -55,7 +56,7 @@
     }
   }
 
-  & .logout-btn {
+  &__logout-btn {
     position: absolute;
     bottom: 8%;
     cursor: pointer;

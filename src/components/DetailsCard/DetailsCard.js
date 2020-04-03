@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import './detailsCard.scss'
 
 const DetailsCard = ({ children, handleCardClick, id }) => {

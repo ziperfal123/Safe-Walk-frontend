@@ -1,25 +1,25 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import './searchBar.scss'
 
 const SearchBar = () => {
-    const [searchValue , setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('')
 
-    useEffect(() => {
-    }, [searchValue])
+  useEffect(() => {
+  }, [searchValue])
 
-    function handleInputChange(e) {
-        setSearchValue(e.target.value)
-    }
+  function handleInputChange(e) {
+    setSearchValue(e.target.value)
+  }
 
-    return (
-        <div className={'search-bar-container'}>
-            <input
-                value={searchValue}
-                onChange={handleInputChange}    //TODO:: async search needs to be performed here
-                placeholder={'Search'}
-            />
-        </div>
-    )
+  return (
+    <div className="search-bar">
+      <input
+        value={searchValue}
+        onChange={handleInputChange} // TODO:: async search needs to be performed here
+        placeholder="Search"
+      />
+    </div>
+  )
 }
 
 export default SearchBar

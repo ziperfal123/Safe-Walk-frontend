@@ -12,20 +12,19 @@
   right: 0;
   top: 0;
   z-index: $z-index-top-value;
-  box-shadow: 0px 0.2px 4px grey;
+  box-shadow: 0 0.2px 4px grey;
 
-  h1 {
-    font-size: $headers-font-size;
-    width: 200px;
-  }
-
-  &__route-name {
+  &__route-title {
     position: relative;
     top: 14px;
     left: 20px;
+    width: 200px;
+    font-size: $headers-font-size;
   }
 
   &__avatar {
+    width: 200px;
+    font-size: $headers-font-size;
     position: relative;
     top: 15px;
     left: 90px;

@@ -1,13 +1,11 @@
-import {connect} from "react-redux";
+import { connect } from 'react-redux'
 import SideBar from './SideBar'
-import { handleLogout } from "../../redux/auth/actionsCreator";
+import { handleLogout } from '../../redux/auth/actionsCreator'
 
-const mapStateToProps = state => {
-    return {
-        isUserAuthenticated: state.authReducer.isUserAuthenticated,
-        loading: state.authReducer.loading
-    }
-}
-const mapDispatchToProps = { handleLogout}
+const mapStateToProps = (state) => ({
+  isUserAuthenticated: state.authReducer.isUserAuthenticated,
+  loading: state.authReducer.loading,
+})
+const mapDispatchToProps = { handleLogout }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
