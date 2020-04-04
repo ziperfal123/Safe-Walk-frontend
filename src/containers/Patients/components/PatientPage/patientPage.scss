@@ -1,128 +1,37 @@
-@import "src/main";
+@import "main";
 
 .patient-page {
   overflow-x: hidden;
   width: calc(100vw - #{$sidebar-width});
   min-height: calc(100vh - #{$header-height});
 
-  .left-section {
-    width: 30%;
-    height: 420px;
-    position: sticky;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    float: left;
-    top: 60px;
-
-    & img {
-      width: 140px;
-      height: 140px;
-      border-radius: 100px;
-    }
-
-    & h2 {
-      font-size: 26px;
-      font-weight: 300;
-    }
-  }
-
   & > img {
     width: 37px;
     position: absolute;
     right: 25px;
     cursor: pointer;
+
     &:hover {
       border-radius: 100px;
       box-shadow: 0 0 3px 0 grey;
     }
 
-    &.up-arrow{
+    &.up-arrow {
       top: 75px;
     }
+
     &.down-arrow {
       bottom: 100px;
     }
   }
 
   & hr {
-    float: left;
     position: sticky;
     top: 80px;
+    display: inline-block;
+    float: left;
     width: 1px;
     height: 500px;
     background-color: black;
-    display: inline-block;
-  }
-
-  .right-section {
-    height: 600px;
-    width: 64%;
-    float: left;
-    position: relative;
-    top: 60px;
-
-
-    & > .tests, & > .plans {
-      position: absolute;
-      & > h1 {
-        margin-top: 15px;
-        margin-left: 35px;
-      }
-      width: 100%;
-      & > .cards-container {
-        margin-top: 20px;
-        display: grid;
-        grid-template-columns: auto auto;
-        justify-content: space-evenly;
-      }
-    }
-
-    & > .tests {
-      &.hidden {
-        animation: slideUpTestsAnimation 0.5s ease forwards;
-        visibility: visible;
-      }
-    }
-
-    & > .plans {
-      animation: slideUpPlansAnimation 0.5s ease none;
-      &.hidden {
-        visibility: hidden;
-        display: none;
-      }
-    }
-
-    &--loading-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 50vh;
-    }
-  }
-
-  @keyframes slideUpTestsAnimation {
-    from {
-      display: block;
-      visibility: visible;
-    }
-    to {
-      transform: translateY(-110%);
-      visibility: hidden;
-      opacity: 0;
-    }
-  }
-
-  @keyframes slideUpPlansAnimation {
-    from{
-      transform: translateY(500%);
-
-    }
-    to {
-      transform: translateY(0%);
-      visibility: visible;
-    }
   }
 }

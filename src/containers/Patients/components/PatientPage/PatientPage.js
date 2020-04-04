@@ -4,8 +4,8 @@ import { Route, Switch } from 'react-router-dom'
 import './patientPage.scss'
 import pathsNames from 'router/pathNames'
 import TestPage from 'containers/TestPage'
-import Left from '../LeftSection'
-import RightSection from '../RightSection'
+import PatientDataSection from '../PatientDataSection'
+import TestsAndPlansSection from '../TestsAndPlansSection'
 
 const PatientPage = (props) => {
   const {
@@ -33,20 +33,25 @@ const PatientPage = (props) => {
 
   function handleTestClick(testId) {
     setClickedTestId(testId)
-    // history.push(`${history.location.pathname}${testId}`)
   }
 
   function renderPageSections() {
     return (
       <>
-        <Left patient={patient} history={history} />
+        <PatientDataSection patient={patient} history={history} />
         <hr />
-        <RightSection
+        <TestsAndPlansSection
           allTestsById={allTestsById}
           loadingAllTestsById={loadingAllTestsById}
           handleTestClick={handleTestClick}
         />
       </>
+    )
+  }
+
+  function renderTestPage() {
+    return (
+      <TestPage testId={clickedTestId} />
     )
   }
 
@@ -60,9 +65,7 @@ const PatientPage = (props) => {
         />
         <Route
           path={`${pathsNames.patients}:${patient.id}/${clickedTestId}`}
-          render={() => (
-            <TestPage testId={clickedTestId} />
-          )}
+          render={renderTestPage}
         />
       </Switch>
     </div>
