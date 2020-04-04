@@ -1,12 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-
 import './header.scss'
-
 import pathsNames from 'router/pathNames'
 import SearchBar from './components/SearchBar'
-
 
 const Header = ({ location }) => {
   const shouldDisplaySearchBar = location.pathname === pathsNames.patientsTests

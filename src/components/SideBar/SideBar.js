@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom'
 import Logo from './files/logo.svg'
 import pathNames from '../../router/pathNames'
 
-
 const SideBar = ({ handleLogout }) => {
   function handleLogoutClick() {
     handleLogout()

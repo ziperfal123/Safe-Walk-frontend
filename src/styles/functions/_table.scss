@@ -7,3 +7,9 @@
   margin: auto auto 60px;
   border: 1px $patients-tests-table-border-color solid;
 }
+
+@mixin table {
+  margin: auto;
+  width: 95%;
+  cursor: pointer;
+}

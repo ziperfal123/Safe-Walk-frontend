@@ -1,8 +1,9 @@
 @import "src/main";
 
-.patient-page-container {
+.patient-page {
   overflow-x: hidden;
-  @include page-size;
+  width: calc(100vw - #{$sidebar-width});
+  min-height: calc(100vh - #{$header-height});
 
   .left-section {
     width: 30%;

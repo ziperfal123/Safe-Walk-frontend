@@ -4,14 +4,12 @@
   @include table-wrapper;
 
   & .table {
-    margin: auto;
-    width: 95%;
-    cursor: pointer;
+    @include table;
   }
 
   .patient-image {
-    border-radius: 100px;
     width: 50px;
     height: 50px;
+    border-radius: 100px;
   }
 }

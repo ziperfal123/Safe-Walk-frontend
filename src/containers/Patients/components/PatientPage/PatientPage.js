@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import './patientPage.scss'
 import pathsNames from 'router/pathNames'
-import RightSection from '../RightSection'
+import TestPage from 'containers/TestPage'
 import Left from '../LeftSection'
-import TestPage from '../../../TestPage'
+import RightSection from '../RightSection'
 
 const PatientPage = (props) => {
   const {
@@ -36,23 +36,27 @@ const PatientPage = (props) => {
     // history.push(`${history.location.pathname}${testId}`)
   }
 
+  function renderPageSections() {
+    return (
+      <>
+        <Left patient={patient} history={history} />
+        <hr />
+        <RightSection
+          allTestsById={allTestsById}
+          loadingAllTestsById={loadingAllTestsById}
+          handleTestClick={handleTestClick}
+        />
+      </>
+    )
+  }
+
   return (
-    <div className="patient-page-container">
+    <div className="patient-page">
       <Switch>
         <Route
           path={`${pathsNames.patients}:${patient.id}`}
           exact
-          render={() => (
-            <>
-              <Left patient={patient} history={history} />
-              <hr />
-              <RightSection
-                allTestsById={allTestsById}
-                loadingAllTestsById={loadingAllTestsById}
-                handleTestClick={handleTestClick}
-              />
-            </>
-          )}
+          render={renderPageSections}
         />
         <Route
           path={`${pathsNames.patients}:${patient.id}/${clickedTestId}`}

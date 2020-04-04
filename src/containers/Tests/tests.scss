@@ -8,9 +8,7 @@
     @include table-wrapper;
 
     & .table {
-      margin: auto;
-      width: 95%;
-      cursor: pointer;
+      @include table;
     }
 
     .patient-image {
