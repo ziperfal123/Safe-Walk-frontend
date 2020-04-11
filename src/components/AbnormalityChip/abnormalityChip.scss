@@ -5,10 +5,10 @@
   border-radius: 15px;
   text-transform: uppercase;
   color: $white-color;
-  &.green {
+  &--green {
     background-color: $normal-result-background-color;
   }
-  &.red {
+  &--red {
     background-color: $abnormality-result-background-color;
   }
 }

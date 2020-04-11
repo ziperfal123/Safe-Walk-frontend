@@ -1,11 +1,11 @@
-@import "../../../../main";
+@import "main";
 
-.form-container {
-  height: 100%;
+.login-form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  height: 100%;
 
   & input, & button {
     height: 40px;
@@ -24,8 +24,8 @@
   & button {
     letter-spacing: 1.7px;
     font-size: 17px;
-    color: white;
-    background-color: hsl(345, 89%, 61%);
+    color: $login-btn-font-color;
+    background-color: $login-btn-background-color;
     border: none;
     cursor: pointer;
     outline: none;

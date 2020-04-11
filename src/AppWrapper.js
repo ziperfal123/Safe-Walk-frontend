@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import App from './App'
-import Loading from './components/Loading/Loading'
+import Loading from './components/Loading'
 import Login from './containers/Login'
 import LoginRequiredRoute from './LoginRequiredRoute'
 import { checkUserAuthStatusOnAppLoad } from './redux/auth/actionsCreator'

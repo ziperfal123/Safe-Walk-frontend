@@ -26,7 +26,7 @@ const Tests = (props) => {
   }, []);
 
   return (
-    <div className="switch-wrapper patient-tests-container">
+    <div className="patient-tests-container">
       <TestsTable
         allPatients={allPatients}
         allTests={allTests}

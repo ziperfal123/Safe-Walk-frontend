@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes, { any } from 'prop-types'
 import { Redirect } from 'react-router-dom'
+
 import './login.scss'
-import Form from './components/Form/Form'
+
+import Form from './components/Form'
+
 
 const HeaderAnimation = () => (
   <svg id="header" width="655" height="104" viewBox="0 0 655 104" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +20,6 @@ const HeaderAnimation = () => (
   </svg>
 )
 
-
 const Login = (props) => {
   console.log('Login')
   const { isUserAuthenticated, location, handleLoginFormSubmit } = props
@@ -27,9 +29,9 @@ const Login = (props) => {
     return <Redirect to={from} />
   }
   return (
-    <div className="login-container">
+    <div className="login-page">
       { HeaderAnimation() }
-      <div className="login-container-wrapper">
+      <div className="login-page__form-wrapper">
         <Form
           handleLoginFormSubmit={handleLoginFormSubmit}
         />

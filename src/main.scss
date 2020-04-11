@@ -1,7 +1,8 @@
 @import "styles/colors";
 @import "styles/fonts";
 @import 'styles/sizes';
-@import 'styles/functions/containers';
+@import 'styles/functions/pages';
+@import 'styles/functions/table';
 
 
 * {
@@ -17,10 +18,4 @@ html {
 .app-container {
   overflow-x: hidden;
   height: 100vh
-}
-.switch-wrapper {
-  width: calc(100vw - #{$sidebar-width});
-  top: $header-height;
-  left: $sidebar-width;
-  position: relative;
 }

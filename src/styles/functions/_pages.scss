@@ -1,4 +1,7 @@
-@mixin container-size {
+@mixin page-size {
   width: calc(100vw - #{$sidebar-width});
   min-height: calc(100vh - #{$header-height});
+  top: $header-height;
+  left: $sidebar-width;
+  position: relative;
 }

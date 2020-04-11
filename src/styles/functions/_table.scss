@@ -1,0 +1,15 @@
+@mixin table-wrapper {
+  width: calc(97vw - #{$sidebar-width});
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  top: 30px;
+  margin: auto auto 60px;
+  border: 1px $patients-tests-table-border-color solid;
+}
+
+@mixin table {
+  margin: auto;
+  width: 95%;
+  cursor: pointer;
+}

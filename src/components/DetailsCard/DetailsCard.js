@@ -4,8 +4,13 @@ import './detailsCard.scss'
 
 const DetailsCard = ({ children, handleCardClick, id }) => {
   console.log('DetailsCard')
+
+  function handleClick() {
+    handleCardClick(id)
+  }
+
   return (
-    <div className="card-container" onClick={() => handleCardClick(id)}>
+    <div className="card-container" onClick={handleClick}>
       { children }
     </div>
   )

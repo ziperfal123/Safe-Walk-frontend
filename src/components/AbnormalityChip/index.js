@@ -1,3 +1,3 @@
-import AbnormalityChip from './AbnormalityChip';
+import AbnormalityChip from './AbnormalityChip'
 
-export default AbnormalityChip;
+export default AbnormalityChip

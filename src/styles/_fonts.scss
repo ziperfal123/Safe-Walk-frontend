@@ -1,16 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Cutive&display=swap');
 
-
-$main-font: 'arial';
-
-$headers-font-size: 22px;
+/*------------------PAGES------------------*/
+/* LOGIN */
 $login-header-font-size: 75px;
-
 $login-header-font-family: 'Cutive', serif;
 
-@mixin list-font {
-  font-size: 1.4em;
-  font-family: 'Courier New';
-  color: $list-hover-color;
-}
 
+
+
+
+/*------------------COMPONENTS------------------*/
+/* HEADER */
+$headers-font-size: 22px;
+
+/* SIDEBAR */
+$list-font: 'Courier New';
+
+/* ABNORMALITY_CHIP */
+
+
+
+/*------------------GENERAL------------------*/
+$main-font: 'arial';

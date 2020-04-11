@@ -1,16 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import pathsNames from './router/pathNames';
-import Header from './components/Header/Header';
-import SideBar from './components/SideBar';
-import PatientTests from './containers/Tests';
-import Patients from './containers/Patients';
-import RehabPlans from './containers/RehabPlans/RehabPlans';
-import Videos from './containers/Videos/Videos';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
+import pathsNames from './router/pathNames'
+import Header from './components/Header'
+import SideBar from './components/SideBar'
+import PatientTests from './containers/Tests'
+import Patients from './containers/Patients'
+import RehabPlans from './containers/RehabPlans/RehabPlans'
+import Videos from './containers/Videos/Videos'
 
 const App = () => {
-  console.log('App');
+  console.log('App')
   return (
     <div>
       <Header />
@@ -25,14 +25,14 @@ const App = () => {
         // (so the NotFound page will be rendered outside of the App)
       </Switch>
     </div>
-  );
-};
+  )
+}
 
 
 const mapStateToProps = (state) => ({
   isUserAuthenticated: state.authReducer.isUserAuthenticated,
   loading: state.authReducer.loading,
-});
-const mapDispatchToProps = { };
+})
+const mapDispatchToProps = { }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

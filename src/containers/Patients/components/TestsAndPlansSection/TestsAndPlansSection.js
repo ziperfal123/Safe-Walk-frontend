@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import { Spin } from 'antd'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import DetailsCard from 'components/DetailsCard/'
+import './testsAndPlansSection.scss'
 import AbnormalityChip from 'components/AbnormalityChip'
+import DetailsCard from 'components/DetailsCard/'
 import { normalizeDate } from 'utils/date'
-import UpArrowIcon from './files/upArrowIcon.svg'
 import DownArrowIcon from './files/downArrowIcon.svg'
+import UpArrowIcon from './files/upArrowIcon.svg'
 
 
-const RightSection = (props) => {
+const TestsAndPlansSection = (props) => {
   const { allTestsById, loadingAllTestsById, handleTestClick } = props
-  console.log('RightSection')
-  let testsCounter = 1
+  console.log('TestsAndPlansSection')
+
   const [shouldDisplayTests, setShouldDisplayTests] = useState(true)
 
+  let testsCounter = 1
 
   function handleArrowClick(arrowDirection) {
     // eslint-disable-next-line no-unused-expressions
@@ -37,11 +40,24 @@ const RightSection = (props) => {
       </>
     )
     return (
-      <DetailsCard key={Math.random()} id={test.id} handleCardClick={handleTestClick}>
+      <DetailsCard
+        key={Math.random()}
+        id={test.id}
+        handleCardClick={handleTestClick}
+      >
         {content}
       </DetailsCard>
     )
   }
+
+  const testsSectionClassName = classNames({
+    'tests-section': true,
+    'tests-section--hidden': !shouldDisplayTests,
+  })
+  const plansSectionClassName = classNames({
+    'plans-section': true,
+    'plans-section--hidden': shouldDisplayTests,
+  })
 
   return (
     <>
@@ -51,11 +67,11 @@ const RightSection = (props) => {
         onClick={() => handleArrowClick('up')}
         alt="up"
       />
-      <div className="right-section">
-        <div className={`tests ${shouldDisplayTests ? '' : 'hidden'}`}>
+      <div className="tests-and-plans-section">
+        <div className={testsSectionClassName}>
           <h1>Last Tests</h1>
           {loadingAllTestsById ? (
-            <div className="right-section--loading-container">
+            <div className="loading-container">
               <Spin />
             </div>
           ) : (
@@ -66,7 +82,7 @@ const RightSection = (props) => {
             </div>
           )}
         </div>
-        <div className={`plans ${shouldDisplayTests ? 'hidden' : ''}`}>
+        <div className={plansSectionClassName}>
           <h1>Rehabilitation plans</h1>
           <div className="cards-container">
             <h2>coming soon.. stay tuned</h2>
@@ -83,9 +99,9 @@ const RightSection = (props) => {
   )
 }
 
-export default RightSection
+export default TestsAndPlansSection
 
-RightSection.propTypes = {
+TestsAndPlansSection.propTypes = {
   allTestsById: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
   handleTestClick: PropTypes.func.isRequired,

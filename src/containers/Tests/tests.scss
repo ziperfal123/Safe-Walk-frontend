@@ -1,23 +1,14 @@
 @import "../../main";
 
 .patient-tests-container {
-  @include container-size;
+  @include page-size;
   overflow-x: hidden;
 
   .table-wrapper {
-    width: calc(97vw - #{$sidebar-width});
-    position: relative;
-    margin: auto;
-    padding-top: 40px;
-    padding-bottom: 30px;
-    top: 30px;
-    border: 1px $patients-tests-table-border-color solid;
-
+    @include table-wrapper;
 
     & .table {
-      margin: auto;
-      width: 95%;
-      cursor: pointer;
+      @include table;
     }
 
     .patient-image {

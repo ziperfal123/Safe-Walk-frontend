@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import './patientPage.scss'
 import pathsNames from 'router/pathNames'
-import RightSection from '../RightSection'
-import Left from '../LeftSection'
-import TestPage from '../../../TestPage'
+import TestPage from 'containers/TestPage'
+import PatientDataSection from '../PatientDataSection'
+import TestsAndPlansSection from '../TestsAndPlansSection'
 
 const PatientPage = (props) => {
   const {
@@ -33,32 +33,39 @@ const PatientPage = (props) => {
 
   function handleTestClick(testId) {
     setClickedTestId(testId)
-    // history.push(`${history.location.pathname}${testId}`)
+  }
+
+  function renderPageSections() {
+    return (
+      <>
+        <PatientDataSection patient={patient} history={history} />
+        <hr />
+        <TestsAndPlansSection
+          allTestsById={allTestsById}
+          loadingAllTestsById={loadingAllTestsById}
+          handleTestClick={handleTestClick}
+        />
+      </>
+    )
+  }
+
+  function renderTestPage() {
+    return (
+      <TestPage testId={clickedTestId} />
+    )
   }
 
   return (
-    <div className="patient-page-container">
+    <div className="patient-page">
       <Switch>
         <Route
           path={`${pathsNames.patients}:${patient.id}`}
           exact
-          render={() => (
-            <>
-              <Left patient={patient} history={history} />
-              <hr />
-              <RightSection
-                allTestsById={allTestsById}
-                loadingAllTestsById={loadingAllTestsById}
-                handleTestClick={handleTestClick}
-              />
-            </>
-          )}
+          render={renderPageSections}
         />
         <Route
           path={`${pathsNames.patients}:${patient.id}/${clickedTestId}`}
-          render={() => (
-            <TestPage testId={clickedTestId} />
-          )}
+          render={renderTestPage}
         />
       </Switch>
     </div>

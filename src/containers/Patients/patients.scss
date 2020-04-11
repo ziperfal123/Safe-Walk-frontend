@@ -1,28 +1,5 @@
-@import "../../main";
+@import "main";
 
-.patients-page-container {
-  @include container-size;
-
-  & .table-wrapper {
-    width: calc(97vw - #{$sidebar-width});
-    position: relative;
-    margin: auto;
-    padding-top: 40px;
-    padding-bottom: 30px;
-    top: 30px;
-    border: 1px $patients-tests-table-border-color solid;
-
-
-    & .table {
-      margin: auto;
-      width: 95%;
-      cursor: pointer;
-    }
-
-    .patient-image {
-      border-radius: 100px;
-      width: 50px;
-      height: 50px;
-    }
-  }
+.patients-page {
+  @include page-size;
 }
