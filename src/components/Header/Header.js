@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import './header.scss'
+import Avatar from './components/Avatar'
 import pathsNames from 'router/pathNames'
 import SearchBar from './components/SearchBar'
 
-const Header = ({ location }) => {
+const Header = ({ location, userName, userImage }) => {
   const shouldDisplaySearchBar = location.pathname === pathsNames.patientsTests
       || pathsNames.patients
       || pathsNames.rehabPlans
@@ -35,7 +36,7 @@ const Header = ({ location }) => {
     <div className="header-container">
       <h1 className="header-container__route-title">{displayRouteName()}</h1>
       {shouldDisplaySearchBar && <SearchBar /> }
-      <h1 className="header-container__avatar">Avatar</h1>
+      <Avatar userName={userName} userImage={userImage} />
     </div>
   )
 }

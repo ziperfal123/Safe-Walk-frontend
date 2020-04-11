@@ -76,7 +76,6 @@ const TestsAndPlansSection = (props) => {
           </Tabs.TabPane>
           <Tabs.TabPane tab="Rehabilitation plan" key={2}>
             <div className={plansSectionClassName}>
-              <h1>Rehabilitation plans</h1>
               <div className="cards-container">
                 <h2>coming soon.. stay tuned</h2>
               </div>

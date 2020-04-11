@@ -28,12 +28,16 @@ export const handleLoginFormSubmit = (mail, password) => async (dispatch) => {
   }
   try { // TODO:: use the fetch util file!!!! mot directly with axios!
     const response = await axios.post(`${config.SERVER_URL}/auth/login`, body)
+    console.log(response)
     if (response.status === 200 && response.statusText === 'OK') {
       localStorage.setItem(
         config.LOCAL_STORAGE_VAR_NAME,
         response.data.token,
       ) // TODO:: is it safe like this???????
-      dispatch({ type: LOGIN_SUCCESS })
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: {name: response.data.name, img: response.data.picture}
+      })
     } else alert('something occured... login didnt complete') // TODO:: learn the behavior of the fetch and change it accordingly
   } catch (err) {
     // TODO:: error handling..
