@@ -10,7 +10,7 @@ import {
 
 
 export const checkUserAuthStatusOnAppLoad = () => {
-  const localToken = localStorage.getItem(config.LOCAL_STORAGE_VAR_NAME)
+  const localToken = localStorage.getItem(config.LOCAL_STORAGE_TOKEN)
   const isTokenExists = !!localToken
   return {
     type: CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
@@ -31,9 +31,11 @@ export const handleLoginFormSubmit = (mail, password) => async (dispatch) => {
     console.log(response)
     if (response.status === 200 && response.statusText === 'OK') {
       localStorage.setItem(
-        config.LOCAL_STORAGE_VAR_NAME,
+        config.LOCAL_STORAGE_TOKEN,
         response.data.token,
       ) // TODO:: is it safe like this???????
+      localStorage.setItem('userName', response.data.name)
+      localStorage.setItem('userImage', response.data.picture)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: {name: response.data.name, img: response.data.picture}
@@ -48,6 +50,8 @@ export const handleLoginFormSubmit = (mail, password) => async (dispatch) => {
 }
 
 export const handleLogout = () => (dispatch) => {
-  localStorage.removeItem(config.LOCAL_STORAGE_VAR_NAME)
+  localStorage.removeItem(config.LOCAL_STORAGE_TOKEN)
+  localStorage.removeItem('userName')
+  localStorage.removeItem('userImage')
   dispatch({ type: LOGOUT })
 }

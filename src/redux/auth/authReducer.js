@@ -7,8 +7,8 @@ import {
 } from './actionTypes'
 
 const initialState = {
-  userName: '',
-  userImage: '',
+  userName: localStorage.getItem('userName') || '',
+  userImage: localStorage.getItem('userImage') || '',
   isUserAuthenticated: null,
   loading: false,
 }

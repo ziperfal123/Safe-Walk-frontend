@@ -1,17 +1,29 @@
 import React from 'react'
+import { Avatar as AntdAvatar } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
+import PropTypes from 'prop-types'
 import './avatar.scss'
 
 const Avatar = ({ userName, userImage }) => {
-  console.log('userName: ', userName)
-  console.log('userImage: ', userImage)
   return (
 
-    <div className={'avatar-container'}>
+    <div className="avatar-container">
       <hr />
       <h4>{userName}</h4>
-      <img src={userImage}/>
+      {userImage ? (
+        <img src={userImage} alt="profile image" />
+      ) : (
+        <AntdAvatar className="antd-avatar" size={44} icon={<UserOutlined />} />
+      )}
+      {' '}
     </div>
   )
 }
 
 export default Avatar
+
+
+Avatar.propTypes = {
+  userName: PropTypes.string.isRequired,
+  userImage: PropTypes.string.isRequired,
+}
