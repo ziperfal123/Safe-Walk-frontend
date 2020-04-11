@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Spin } from 'antd'
+import { Spin, Tabs } from 'antd'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import './testsAndPlansSection.scss'
@@ -18,7 +18,7 @@ const TestsAndPlansSection = (props) => {
 
   let testsCounter = 1
 
-  function handleArrowClick(arrowDirection) {
+  function handleTabsClick(arrowDirection) {
     // eslint-disable-next-line no-unused-expressions
     arrowDirection === 'up'
       ? setShouldDisplayTests(true)
@@ -50,10 +50,6 @@ const TestsAndPlansSection = (props) => {
     )
   }
 
-  const testsSectionClassName = classNames({
-    'tests-section': true,
-    'tests-section--hidden': !shouldDisplayTests,
-  })
   const plansSectionClassName = classNames({
     'plans-section': true,
     'plans-section--hidden': shouldDisplayTests,
@@ -61,40 +57,56 @@ const TestsAndPlansSection = (props) => {
 
   return (
     <>
-      <img
-        className="up-arrow"
-        src={UpArrowIcon}
-        onClick={() => handleArrowClick('up')}
-        alt="up"
-      />
       <div className="tests-and-plans-section">
-        <div className={testsSectionClassName}>
-          <h1>Last Tests</h1>
-          {loadingAllTestsById ? (
-            <div className="loading-container">
-              <Spin />
+        <Tabs className="tabs-container">
+          <Tabs.TabPane tab="Last tests" key={1}>
+            <div className="tests-section">
+              {loadingAllTestsById ? (
+                <div className="loading-container">
+                  <Spin />
+                </div>
+              ) : (
+                <div className="cards-container">
+                  {allTestsById.length !== 0
+                    ? allTestsById.map(renderTestsList)
+                    : <h2>no tests</h2>}
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="cards-container">
-              {allTestsById.length !== 0
-                ? allTestsById.map(renderTestsList)
-                : <h2>no tests</h2>}
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Rehabilitation plan" key={2}>
+            <div className={plansSectionClassName}>
+              <h1>Rehabilitation plans</h1>
+              <div className="cards-container">
+                <h2>coming soon.. stay tuned</h2>
+              </div>
             </div>
-          )}
-        </div>
-        <div className={plansSectionClassName}>
-          <h1>Rehabilitation plans</h1>
-          <div className="cards-container">
-            <h2>coming soon.. stay tuned</h2>
-          </div>
-        </div>
+          </Tabs.TabPane>
+        </Tabs>
       </div>
-      <img
-        className="down-arrow"
-        src={DownArrowIcon}
-        onClick={() => handleArrowClick('down')}
-        alt="down"
-      />
+
+      {/* <div className="tests-and-plans-section"> */}
+      {/*  <div className={testsSectionClassName}> */}
+      {/*    <h1>Last Tests</h1> */}
+      {/*    {loadingAllTestsById ? ( */}
+      {/*      <div className="loading-container"> */}
+      {/*        <Spin /> */}
+      {/*      </div> */}
+      {/*    ) : ( */}
+      {/*      <div className="cards-container"> */}
+      {/*        {allTestsById.length !== 0 */}
+      {/*          ? allTestsById.map(renderTestsList) */}
+      {/*          : <h2>no tests</h2>} */}
+      {/*      </div> */}
+      {/*    )} */}
+      {/*  </div> */}
+      {/*  <div className={plansSectionClassName}> */}
+      {/*    <h1>Rehabilitation plans</h1> */}
+      {/*    <div className="cards-container"> */}
+      {/*      <h2>coming soon.. stay tuned</h2> */}
+      {/*    </div> */}
+      {/*  </div> */}
+      {/* </div> */}
     </>
   )
 }
