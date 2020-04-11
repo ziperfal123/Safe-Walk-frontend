@@ -40,7 +40,11 @@ const TestsAndPlansSection = (props) => {
       </>
     )
     return (
-      <DetailsCard key={Math.random()} id={test.id} handleCardClick={handleTestClick}>
+      <DetailsCard
+        key={Math.random()}
+        id={test.id}
+        handleCardClick={handleTestClick}
+      >
         {content}
       </DetailsCard>
     )
