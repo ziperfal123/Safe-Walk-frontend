@@ -25,7 +25,12 @@ const PatientDataSection = ({ patient, history, planById }) => {
               <h3>{patient.name}</h3>
               <h3>{`${patient.age} Years old`}</h3>
             </>
-        ) : (<h2>NOPE</h2>)}
+        ) : (
+            <>
+              <h3>No plan at the moment</h3>
+              <button>Create a plan</button>
+            </>
+        )}
       </div>
       <button type="submit" onClick={handleBackClick}>temp Back</button>
     </div>

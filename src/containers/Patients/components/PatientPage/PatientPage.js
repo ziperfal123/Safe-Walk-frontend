@@ -41,8 +41,9 @@ const PatientPage = (props) => {
   }
 
   function renderPageSections() {
+    console.log('loadingAllTestsById: ', loadingAllTestsById)
     return (
-      loadingAllTestsById ? (
+      !allTestsById || loadingAllTestsById ? (
         <div className="loading-patient">
           <Spin />
         </div>
