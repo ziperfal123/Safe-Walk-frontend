@@ -9,7 +9,7 @@ import SearchBar from './components/SearchBar'
 const Header = ({ location, userName, userImage }) => {
   const shouldDisplaySearchBar = location.pathname === pathsNames.patientsTests
       || pathsNames.patients
-      || pathsNames.rehabPlans
+      || pathsNames.defaultPlans
       || pathsNames.videos
   const displayRouteName = () => {
     let normalizedTitle
@@ -20,8 +20,8 @@ const Header = ({ location, userName, userImage }) => {
       case pathsNames.patients:
         normalizedTitle = 'All Patients'
         break
-      case pathsNames.rehabPlans:
-        normalizedTitle = 'Rehabilitation Plans'
+      case pathsNames.defaultPlans:
+        normalizedTitle = 'Default Plans'
         break
       case pathsNames.videos:
         normalizedTitle = 'Exercise Videos'

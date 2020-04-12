@@ -34,11 +34,11 @@ const SideBar = ({ handleLogout }) => {
         </li>
         <li>
           <NavLink
-            to={pathNames.rehabPlans}
+            to={pathNames.defaultPlans}
             className="sidebar__nav-link"
             activeClassName="selected"
           >
-            Rehabilitation plans
+            Default plans
           </NavLink>
         </li>
         <li>
