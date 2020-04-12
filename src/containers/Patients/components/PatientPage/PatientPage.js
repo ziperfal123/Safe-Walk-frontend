@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Spin } from 'antd'
 import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import './patientPage.scss'
@@ -10,7 +11,9 @@ import TestsSection from '../TestsSection'
 const PatientPage = (props) => {
   const {
     patient,
+    planById,
     getTestsById,
+    getRehabPlanById,
     history,
     allTestsById,
     cleanTestsById,
@@ -21,7 +24,9 @@ const PatientPage = (props) => {
   const [clickedTestId, setClickedTestId] = useState('')
 
   useEffect(() => {
+    console.log('patient: ', patient)
     getTestsById(patient.id)
+    getRehabPlanById(patient.rehabPlanID)
     return () => {
       cleanTestsById()
     }
@@ -37,15 +42,25 @@ const PatientPage = (props) => {
 
   function renderPageSections() {
     return (
-      <>
-        <PatientDataSection patient={patient} history={history} />
-        <hr />
-        <TestsSection
-          allTestsById={allTestsById}
-          loadingAllTestsById={loadingAllTestsById}
-          handleTestClick={handleTestClick}
-        />
-      </>
+      loadingAllTestsById ? (
+        <div className="loading-patient">
+          <Spin />
+        </div>
+      ) : (
+        <>
+          <PatientDataSection
+            patient={patient}
+            history={history}
+            planById={planById}
+          />
+          <hr />
+          <TestsSection
+            allTestsById={allTestsById}
+            loadingAllTestsById={loadingAllTestsById}
+            handleTestClick={handleTestClick}
+          />
+        </>
+      )
     )
   }
 
@@ -77,12 +92,11 @@ export default PatientPage
 
 PatientPage.propTypes = {
   getTestsById: PropTypes.func.isRequired,
+  getRehabPlanById: PropTypes.func.isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   allTestsById: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   cleanTestsById: PropTypes.func.isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
-  patient: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-  ])).isRequired,
+  planById: PropTypes.objectOf(PropTypes.any).isRequired,
+  patient: PropTypes.objectOf(PropTypes.any).isRequired,
 }

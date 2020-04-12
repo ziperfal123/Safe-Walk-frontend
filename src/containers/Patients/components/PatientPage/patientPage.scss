@@ -5,24 +5,12 @@
   width: calc(100vw - #{$sidebar-width});
   min-height: calc(100vh - #{$header-height});
 
-  & > img {
-    width: 37px;
-    position: absolute;
-    right: 25px;
-    cursor: pointer;
-
-    &:hover {
-      border-radius: 100px;
-      box-shadow: 0 0 3px 0 grey;
-    }
-
-    &.up-arrow {
-      top: 75px;
-    }
-
-    &.down-arrow {
-      bottom: 100px;
-    }
+  & .loading-patient {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   & hr {
