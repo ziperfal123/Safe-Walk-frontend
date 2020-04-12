@@ -1,4 +1,4 @@
 {
   "SERVER_URL": "http://ec2-3-89-190-108.compute-1.amazonaws.com:3000/api",
-  "LOCAL_STORAGE_VAR_NAME": "authToken"
+  "LOCAL_STORAGE_TOKEN": "authToken"
 }

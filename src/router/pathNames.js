@@ -2,7 +2,7 @@ const pathsNames = {
   login: '/login/',
   patientsTests: '/tests/',
   patients: '/patients/',
-  rehabPlans: '/rehabPlans/',
+  defaultPlans: '/defaultPlans/',
   videos: '/videos/',
 };
 

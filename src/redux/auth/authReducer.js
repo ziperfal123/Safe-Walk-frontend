@@ -4,12 +4,14 @@ import {
   SET_LOADING_TO_TRUE,
   SET_LOADING_TO_FALSE,
   LOGOUT,
-} from './actionTypes';
+} from './actionTypes'
 
 const initialState = {
+  userName: localStorage.getItem('userName') || '',
+  userImage: localStorage.getItem('userImage') || '',
   isUserAuthenticated: null,
   loading: false,
-};
+}
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -17,34 +19,36 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isUserAuthenticated: action.payload,
-      };
+      }
     case LOGIN_SUCCESS:
       return {
         ...state,
         isUserAuthenticated: true,
-      };
+        userName: action.payload.name,
+        userImage: action.payload.img,
+      }
 
     case SET_LOADING_TO_TRUE:
       return {
         ...state,
         loading: true,
-      };
+      }
 
     case SET_LOADING_TO_FALSE:
       return {
         ...state,
         loading: false,
-      };
+      }
     case LOGOUT: {
       return {
         ...state,
         isUserAuthenticated: false,
-      };
+      }
     }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default authReducer;
+export default authReducer

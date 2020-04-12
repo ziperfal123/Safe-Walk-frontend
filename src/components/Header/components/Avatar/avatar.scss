@@ -1,0 +1,32 @@
+@import 'main';
+
+.avatar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & > hr {
+    margin-right: 20px;
+    width: 0.1px;
+    opacity: .7;
+    height: 35px;
+    background-color: grey;
+  }
+
+  & > img {
+    margin-right: 30px;
+    height: 50px;
+    width: 50px;
+    border-radius: 110001px;
+  }
+
+  & > .antd-avatar {
+    margin-right: 30px;
+  }
+
+  & > h4 {
+    margin-right: 20px;
+  }
+
+
+}
