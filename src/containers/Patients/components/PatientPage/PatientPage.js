@@ -5,7 +5,7 @@ import './patientPage.scss'
 import pathsNames from 'router/pathNames'
 import TestPage from 'containers/TestPage'
 import PatientDataSection from '../PatientDataSection'
-import TestsAndPlansSection from '../TestsAndPlansSection'
+import TestsSection from '../TestsSection'
 
 const PatientPage = (props) => {
   const {
@@ -40,7 +40,7 @@ const PatientPage = (props) => {
       <>
         <PatientDataSection patient={patient} history={history} />
         <hr />
-        <TestsAndPlansSection
+        <TestsSection
           allTestsById={allTestsById}
           loadingAllTestsById={loadingAllTestsById}
           handleTestClick={handleTestClick}
