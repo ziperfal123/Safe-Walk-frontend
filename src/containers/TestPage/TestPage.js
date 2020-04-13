@@ -8,7 +8,7 @@ import 'containers/TestPage/testPage.scss'
 
 
 const TestPage = (props) => {
-  console.log('TestPAge: ', props)
+  console.log('TestPage')
   const {
     gaitModel, loadingGaitModel, getGaitModelByTestId, testId, cleanGaitModel,
   } = props

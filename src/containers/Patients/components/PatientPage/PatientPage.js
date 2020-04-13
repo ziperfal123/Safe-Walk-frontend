@@ -18,6 +18,7 @@ const PatientPage = (props) => {
     allTestsById,
     cleanTestsById,
     loadingAllTestsById,
+    loadingPlanById,
   } = props
   console.log('PatientPage')
 
@@ -45,7 +46,7 @@ const PatientPage = (props) => {
 
   function renderPageSections() {
     return (
-      !allTestsById || loadingAllTestsById ? (
+      !allTestsById || loadingAllTestsById || loadingPlanById ? (
         <div className="loading-patient">
           <Spin />
         </div>
@@ -107,6 +108,7 @@ PatientPage.propTypes = {
   allTestsById: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   cleanTestsById: PropTypes.func.isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
+  loadingPlanById: PropTypes.bool.isRequired,
   planById: PropTypes.objectOf(PropTypes.any).isRequired,
   patient: PropTypes.objectOf(PropTypes.any).isRequired,
 }

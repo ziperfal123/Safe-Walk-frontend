@@ -5,6 +5,7 @@ import PatientPage from './PatientPage'
 
 const mapStateToProps = (state) => ({
   planById: state.plansReducer.planById,
+  loadingPlanById: state.plansReducer.loadingPlanById,
 })
 
 const mapDispatchToProps = {

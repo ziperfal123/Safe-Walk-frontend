@@ -1,5 +1,5 @@
 import React from 'react'
-import { Spin } from 'antd'
+import { Empty } from 'antd'
 import PropTypes from 'prop-types'
 import './testsSection.scss'
 import AbnormalityChip from 'components/AbnormalityChip'
@@ -41,11 +41,15 @@ const TestsSection = (props) => {
     <>
       <div className="tests-section">
         <h1 className="tests-title">Last Tests</h1>
-        <div className="cards-container">
-          {allTestsById.length !== 0
-            ? allTestsById.map(renderTestsList)
-            : <h2>no tests</h2>}
-        </div>
+        { allTestsById.length !== 0 ? (
+          <div className="cards-container">
+            {allTestsById.map(renderTestsList)}
+          </div>
+        ) : (
+          <div className="empty-container">
+            <Empty className="empty-data" description={<h3>No tests at the moment</h3>} />
+          </div>
+        )}
       </div>
     </>
   )
