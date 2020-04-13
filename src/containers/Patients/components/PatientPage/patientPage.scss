@@ -5,23 +5,30 @@
   width: calc(100vw - #{$sidebar-width});
   min-height: calc(100vh - #{$header-height});
 
-  & > img {
-    width: 37px;
+  & .loading-patient {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .back-btn {
     position: absolute;
-    right: 25px;
+    top: 50px;
+    right: 0;
+    margin-right: 50px;
+    height: 65px;
+    width: 65px;
+    border-radius: 100px;
+    outline: none;
     cursor: pointer;
+    font-size: 18px;
 
-    &:hover {
-      border-radius: 100px;
-      box-shadow: 0 0 3px 0 grey;
-    }
-
-    &.up-arrow {
-      top: 75px;
-    }
-
-    &.down-arrow {
-      bottom: 100px;
+    &:hover{
+      background-color: $sidebar-background-color;
+      color: $list-hover-color;
+      transition: .25s;
     }
   }
 
@@ -31,7 +38,7 @@
     display: inline-block;
     float: left;
     width: 1px;
-    height: 500px;
+    height: 75vh;
     background-color: black;
   }
 }

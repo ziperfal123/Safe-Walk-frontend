@@ -1,0 +1,30 @@
+@import 'main.scss';
+
+.tests-section {
+  position: relative;
+  top: 60px;
+  float: left;
+  height: 600px;
+  width: 64%;
+
+  & .tests-title {
+    margin-left: 50px;
+  }
+
+  & > .cards-container {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-evenly;
+  }
+
+  & .empty-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90%;
+    & .empty-data {
+    }
+  }
+}
+
