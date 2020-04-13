@@ -1,0 +1,21 @@
+@import 'main';
+
+.back-btn {
+  position: fixed;
+  z-index: $z-index-top-value;
+  top: 125px;
+  right: 0;
+  margin-right: 50px;
+  height: 65px;
+  width: 65px;
+  border-radius: 100px;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+
+  &:hover{
+    background-color: $sidebar-background-color;
+    color: $list-hover-color;
+    transition: .25s;
+  }
+}

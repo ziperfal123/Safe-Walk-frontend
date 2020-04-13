@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import './patientPage.scss'
 import pathsNames from 'router/pathNames'
+import BackButton from 'components/BackButton'
 import TestPage from 'containers/TestPage'
 import PatientDataSection from '../PatientDataSection'
 import TestsSection from '../TestsSection'
@@ -41,7 +42,7 @@ const PatientPage = (props) => {
   }
 
   function handleBackClick() {
-    history.push(pathsNames.patients)
+    history.goBack()
   }
 
   function renderPageSections() {
@@ -63,13 +64,7 @@ const PatientPage = (props) => {
             loadingAllTestsById={loadingAllTestsById}
             handleTestClick={handleTestClick}
           />
-          <button
-            type="button"
-            className="back-btn"
-            onClick={handleBackClick}
-          >
-            Back
-          </button>
+          <BackButton handleBackClick={handleBackClick} />
         </>
       )
     )
@@ -77,7 +72,7 @@ const PatientPage = (props) => {
 
   function renderTestPage() {
     return (
-      <TestPage testId={clickedTestId} />
+      <TestPage history={history} testId={clickedTestId} />
     )
   }
 
