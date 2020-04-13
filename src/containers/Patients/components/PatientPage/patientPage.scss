@@ -13,6 +13,18 @@
     align-items: center;
   }
 
+  .back-btn {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    margin-right: 50px;
+    height: 65px;
+    width: 65px;
+    border-radius: 100px;
+    outline: none;
+    cursor: pointer;
+  }
+
   & hr {
     position: sticky;
     top: 80px;

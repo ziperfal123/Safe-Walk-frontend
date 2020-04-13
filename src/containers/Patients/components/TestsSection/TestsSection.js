@@ -7,7 +7,7 @@ import DetailsCard from 'components/DetailsCard/'
 import { normalizeDate } from 'utils/date'
 
 const TestsSection = (props) => {
-  const { allTestsById, loadingAllTestsById, handleTestClick } = props
+  const { allTestsById, handleTestClick } = props
   console.log('testsSection')
 
   let testsCounter = 1
@@ -55,6 +55,5 @@ export default TestsSection
 
 TestsSection.propTypes = {
   allTestsById: PropTypes.arrayOf(PropTypes.object).isRequired,
-  loadingAllTestsById: PropTypes.bool.isRequired,
   handleTestClick: PropTypes.func.isRequired,
 }

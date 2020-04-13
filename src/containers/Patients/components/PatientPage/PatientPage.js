@@ -24,7 +24,6 @@ const PatientPage = (props) => {
   const [clickedTestId, setClickedTestId] = useState('')
 
   useEffect(() => {
-    console.log('patient: ', patient)
     getTestsById(patient.id)
     getRehabPlanById(patient.rehabPlanID)
     return () => {
@@ -40,8 +39,11 @@ const PatientPage = (props) => {
     setClickedTestId(testId)
   }
 
+  function handleBackClick() {
+    history.push(pathsNames.patients)
+  }
+
   function renderPageSections() {
-    console.log('loadingAllTestsById: ', loadingAllTestsById)
     return (
       !allTestsById || loadingAllTestsById ? (
         <div className="loading-patient">
@@ -60,6 +62,13 @@ const PatientPage = (props) => {
             loadingAllTestsById={loadingAllTestsById}
             handleTestClick={handleTestClick}
           />
+          <button
+            type="button"
+            className="back-btn"
+            onClick={handleBackClick}
+          >
+            Back
+          </button>
         </>
       )
     )

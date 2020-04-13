@@ -5,9 +5,6 @@ import pathsNames from 'router/pathNames'
 import './patientDataSection.scss'
 
 const PatientDataSection = ({ patient, history, planById }) => {
-  function handleBackClick() {
-    history.push(pathsNames.patients)
-  }
 
   return (
     <div className="patient-data-section">
@@ -33,7 +30,6 @@ const PatientDataSection = ({ patient, history, planById }) => {
           </>
         )}
       </div>
-      <button type="submit" onClick={handleBackClick}>temp Back</button>
     </div>
   )
 }
