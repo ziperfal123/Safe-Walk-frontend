@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  getTestsById, cleanTestsById, getRehabPlanById
+  getTestsById, cleanTestsById, getRehabPlanById,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PatientPage)

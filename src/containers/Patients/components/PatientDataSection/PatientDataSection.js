@@ -1,4 +1,5 @@
 import React from 'react'
+import { Progress } from 'antd'
 import PropTypes from 'prop-types'
 import pathsNames from 'router/pathNames'
 import './patientDataSection.scss'
@@ -20,16 +21,16 @@ const PatientDataSection = ({ patient, history, planById }) => {
       <div className="plan-details">
         <h2>Rehabilitation details:</h2>
         {planById ? (
-            <>
-              <h3>Starting date: 10-03-19</h3>
-              <h3>{patient.name}</h3>
-              <h3>{`${patient.age} Years old`}</h3>
-            </>
+          <>
+            <h3>Starting date: 10-03-19</h3>
+            <Progress type="circle" percent={80} width={80} />
+            <button>Edit Plan</button>
+          </>
         ) : (
-            <>
-              <h3>No plan at the moment</h3>
-              <button>Create a plan</button>
-            </>
+          <>
+            <h3>No plan at the moment</h3>
+            <button>Create a plan</button>
+          </>
         )}
       </div>
       <button type="submit" onClick={handleBackClick}>temp Back</button>

@@ -30,14 +30,28 @@
   }
 
   & .plan-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    bottom: 20px;
+
     & h2 {
       text-decoration: underline;
       font-size: 22px;
       font-weight: 300;
     }
-    position: relative;
-    bottom: 30px;
-    text-align: center;
+
+    & button {
+      height: 40px;
+      width: 100px;
+      margin-top: 20px;
+      border-radius: 5px;
+      background-color: $sidebar-background-color;
+      color: $list-hover-color;
+
+      outline: none;
+    }
   }
 
 }
