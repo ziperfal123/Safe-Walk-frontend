@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Progress } from 'antd'
 import PropTypes from 'prop-types'
 import './patientDataSection.scss'

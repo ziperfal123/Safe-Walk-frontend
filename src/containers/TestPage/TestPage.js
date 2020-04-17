@@ -5,12 +5,13 @@ import PropTypes from 'prop-types'
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
 
 import 'containers/TestPage/testPage.scss'
+import BackButton from 'components/BackButton'
 
 
 const TestPage = (props) => {
   console.log('TestPage')
   const {
-    gaitModel, loadingGaitModel, getGaitModelByTestId, testId, cleanGaitModel,
+    gaitModel, loadingGaitModel, getGaitModelByTestId, testId, cleanGaitModel, history,
   } = props
 
   useEffect(() => {
@@ -43,6 +44,10 @@ const TestPage = (props) => {
     )
   }
 
+  function handleBackButton() {
+    history.goBack()
+  }
+
   return (
     <>
       {!gaitModel || loadingGaitModel ? (
@@ -52,6 +57,7 @@ const TestPage = (props) => {
         </div>
       ) : (
         <>
+          <BackButton handleBackClick={handleBackButton} />
           <h1 className="test-title">Gait model data</h1>
           {
             Object.keys(gaitModel).map((key) => renderSensorsContainer(key))
@@ -67,9 +73,10 @@ export default TestPage
 
 
 TestPage.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
   gaitModel: PropTypes.objectOf(PropTypes.any).isRequired,
   loadingGaitModel: PropTypes.bool.isRequired,
   getGaitModelByTestId: PropTypes.func.isRequired,
   testId: PropTypes.string.isRequired,
-  cleanGaitModel: PropTypes.func.isRequired
+  cleanGaitModel: PropTypes.func.isRequired,
 }
