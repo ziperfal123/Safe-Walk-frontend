@@ -7,7 +7,7 @@ import SideBar from './components/SideBar'
 import PatientTests from './containers/Tests'
 import Patients from './containers/Patients'
 import RehabPlans from './containers/RehabPlans/RehabPlans'
-import Videos from './containers/Videos/Videos'
+import Videos from './containers/Videos'
 
 const App = () => {
   console.log('App')

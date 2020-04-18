@@ -2,7 +2,9 @@
 
 .videos-container {
   @include page-size;
-  background-color: lightblue;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
 
   h1 {
     font-size: $headers-font-size;
