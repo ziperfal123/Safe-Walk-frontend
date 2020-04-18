@@ -1,12 +1,14 @@
 @import "../../main";
 
-.videos-container {
+.videos-page {
   @include page-size;
-  display: grid;
-  grid-template-columns: auto auto;
-  justify-content: space-evenly;
+   & .videos-container {
+     position: relative;
+     top: 60px;
+     margin: auto;
+     display: grid;
+     grid-template-columns: auto auto;
+     width: 70%;
+   }
 
-  h1 {
-    font-size: $headers-font-size;
-  }
 }

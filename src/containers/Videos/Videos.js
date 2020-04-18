@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import AddCard from 'components/AddCard'
+import VideoCard from 'components/VideoCard'
 import './videos.scss'
 
 const Videos = (props) => {
   console.log('Videos Page')
-  const { getAllVideos } = props
+  const { getAllVideos, allVideos, loadingAllVideos } = props
 
   useEffect(() => {
     getAllVideos()
@@ -15,16 +16,28 @@ const Videos = (props) => {
     alert('ADD!')
   }
 
+  function handleRemoveVideo() {
+    alert('REMOVE!')
+  }
+
+  function renderVideo(video) {
+    return (
+      <VideoCard key={video.id} link={video.link} handleRemoveClick={handleRemoveVideo} />
+    )
+  }
+
   return (
-    <div className="videos-container">
-      <AddCard type="video" handleClick={handleAddVideoClick} />
-      <
-      <iframe
-        title="video"
-        height="280"
-        width="385"
-        src="https://www.youtube.com/embed/tgbNymZ7vqY"
-      />
+    <div className="videos-page">
+      <div className="videos-container">
+        {!loadingAllVideos && allVideos ? (
+          <>
+            <AddCard type="video" handleClick={handleAddVideoClick} />
+            {allVideos.map(renderVideo)}
+          </>
+        ) : (
+          <h1>loading..</h1>
+        )}
+      </div>
     </div>
   )
 }
@@ -34,5 +47,6 @@ export default Videos
 
 Videos.propTypes = ({
   getAllVideos: PropTypes.func.isRequired,
-
+  allVideos: PropTypes.arrayOf(PropTypes.any).isRequired,
+  loadingAllVideos: PropTypes.bool.isRequired,
 })
