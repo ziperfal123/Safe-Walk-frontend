@@ -2,7 +2,16 @@
 
 .videos-page {
   @include page-size;
-   & .videos-container {
+
+  & .loading-videos {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .videos-container {
      position: relative;
      top: 60px;
      margin: auto;

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { Spin } from 'antd'
 import AddCard from 'components/AddCard'
 import VideoCard from 'components/VideoCard'
 import './videos.scss'
@@ -28,16 +29,16 @@ const Videos = (props) => {
 
   return (
     <div className="videos-page">
-      <div className="videos-container">
-        {!loadingAllVideos && allVideos ? (
-          <>
-            <AddCard type="video" handleClick={handleAddVideoClick} />
-            {allVideos.map(renderVideo)}
-          </>
-        ) : (
-          <h1>loading..</h1>
-        )}
-      </div>
+      {loadingAllVideos || !allVideos ? (
+        <div className="loading-videos">
+          <Spin />
+        </div>
+      ) : (
+        <div className="videos-container">
+          <AddCard type="video" handleClick={handleAddVideoClick} />
+          {allVideos.map(renderVideo)}
+        </div>
+      )}
     </div>
   )
 }
