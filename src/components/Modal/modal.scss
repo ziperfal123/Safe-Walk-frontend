@@ -1,0 +1,32 @@
+@import 'main.scss';
+
+.modal-container {
+  position: absolute;
+  left: calc(100% - 50% - 300px);
+    & aside {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 25%;
+      background-color: $sidebar-background-color;
+      & .logo {
+        width: 120px;
+      }
+    }
+
+    & main {
+      position: relative;
+      width: calc(100% - 25%);
+      left: 26%;
+
+      & .content-wrapper {
+        position: relative;
+        top: 10px;
+        overflow-y: auto;
+      }
+    }
+}
