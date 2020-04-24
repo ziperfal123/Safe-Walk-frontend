@@ -1,10 +1,22 @@
 @import "../../main";
 
-.videos-container {
+.videos-page {
   @include page-size;
-  background-color: lightblue;
 
-  h1 {
-    font-size: $headers-font-size;
+  & .loading-videos {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+
+  & .videos-container {
+     position: relative;
+     top: 60px;
+     margin: auto;
+     display: grid;
+     grid-template-columns: auto auto;
+     width: 70%;
+   }
 }
