@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Tabs, Modal as AntModal } from 'antd'
 import Logo from 'components/SideBar/files/logo.svg'
 import './modal.scss'
@@ -6,6 +7,11 @@ import './modal.scss'
 const { TabPane } = Tabs
 
 const Modal = (props) => {
+  const {
+    modalInnerTitle,
+    description,
+    hasTabs,
+  } = props
   console.log('Modal')
   return (
     <AntModal
@@ -17,12 +23,12 @@ const Modal = (props) => {
         <img className="logo" src={Logo} alt="logo" />
       </aside>
       <main style={{ height: window.innerHeight / 2 }}>
-        {true ? (
+        {hasTabs ? (
           <Tabs defaultActiveKey="1">
             <TabPane tab="Tab 1" key="1">
-              <div className="content-wrapper tab-content" style={{ height: window.innerHeight / 2 - 30 }}>
-                <h2>{props.modalInnerTitle}</h2>
-                <p>{props.description}</p>
+              <div className="content-wrapper" style={{ height: window.innerHeight / 2 - 30 }}>
+                <h2>{modalInnerTitle}</h2>
+                <p>{description}</p>
               </div>
             </TabPane>
             <TabPane tab="Tab 2" key="2">
@@ -30,9 +36,9 @@ const Modal = (props) => {
             </TabPane>
           </Tabs>
         ) : (
-          <div className="content-wrapper content-container" style={{ height: window.innerHeight / 2 - 10 }}>
-            <h2>{props.modalInnerTitle}</h2>
-            <p>{props.description}</p>
+          <div className="content-wrapper" style={{ height: window.innerHeight / 2 - 10 }}>
+            <h2>{modalInnerTitle}</h2>
+            <p>{description}</p>
           </div>
         )}
 
@@ -42,3 +48,14 @@ const Modal = (props) => {
 }
 
 export default Modal
+
+
+Modal.defaultProps = {
+  hasTabs: false,
+}
+
+Modal.propTypes = ({
+  modalInnerTitle: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  hasTabs: PropTypes.bool,
+})

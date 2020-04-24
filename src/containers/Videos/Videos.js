@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Spin } from 'antd'
 import AddCard from 'components/AddCard'
@@ -11,12 +11,17 @@ const Videos = (props) => {
   console.log('Videos Page')
   const { getAllVideos, allVideos, loadingAllVideos } = props
 
+  const [isModalVisible, toggleModal] = useState(false)
+
   useEffect(() => {
     getAllVideos()
   }, [])
 
   function handleAddVideoClick() {
-    alert('ADD!')
+    toggleModal(true)
+  }
+  function handleCancelClick() {
+    toggleModal(false)
   }
 
   function handleRemoveVideo() {
@@ -36,17 +41,19 @@ const Videos = (props) => {
           <Spin />
         </div>
       ) : (
-          <>
-            <Modal
-                visible
-                modalInnerTitle={"this is the title"}
-                description={"this is some description. it will be displayed under the title!"}
-            />
-            <div className="videos-container">
-              <AddCard type="video" handleClick={handleAddVideoClick} />
-              {allVideos.map(renderVideo)}
-            </div>
-          </>
+        <>
+          <div className="videos-container">
+            <AddCard type="video" handleClick={handleAddVideoClick} />
+            {allVideos.map(renderVideo)}
+          </div>
+          <Modal
+            onCancel={handleCancelClick}
+            visible={isModalVisible}
+            hasTabs={false}
+            modalInnerTitle="this is the title"
+            description="this is some description. it will be displayed under the title! this is some description. it will be displayed under the title"
+          />
+        </>
       )}
     </div>
   )

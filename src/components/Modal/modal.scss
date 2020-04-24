@@ -18,9 +18,10 @@
       }
     }
 
+    // TODO:: use calc() for modal width and psotioning
     & main {
       position: relative;
-      width: calc(100% - 25%);
+      width: 75%;
       left: 26%;
 
       & .content-wrapper {
