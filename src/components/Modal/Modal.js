@@ -11,8 +11,19 @@ const Modal = (props) => {
     modalInnerTitle,
     description,
     hasTabs,
+    formLabels,
   } = props
   console.log('Modal')
+
+  function renderInputFields() {
+    return (
+        <div>
+        <label>WHAT!!</label>
+          <input placeholder={"some placeholder"}></input>
+        </div>
+    )
+  }
+
   return (
     <AntModal
       className="modal-container"
@@ -39,6 +50,7 @@ const Modal = (props) => {
           <div className="content-wrapper" style={{ height: window.innerHeight / 2 - 10 }}>
             <h2>{modalInnerTitle}</h2>
             <p>{description}</p>
+            {formLabels.map(renderInputFields)}
           </div>
         )}
 

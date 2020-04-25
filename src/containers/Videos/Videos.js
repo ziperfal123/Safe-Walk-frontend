@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Spin } from 'antd'
+import {videosPageModalSchema} from 'consts/modalSchemas'
 import AddCard from 'components/AddCard'
 import VideoCard from 'components/VideoCard'
 import Modal from 'components/Modal'
@@ -47,11 +48,9 @@ const Videos = (props) => {
             {allVideos.map(renderVideo)}
           </div>
           <Modal
-            onCancel={handleCancelClick}
             visible={isModalVisible}
-            hasTabs={false}
-            modalInnerTitle="this is the title"
-            description="this is some description. it will be displayed under the title! this is some description. it will be displayed under the title"
+            onCancel={handleCancelClick}
+            {...videosPageModalSchema}
           />
         </>
       )}

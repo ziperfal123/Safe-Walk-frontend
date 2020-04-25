@@ -11,11 +11,17 @@
   box-sizing:border-box;
 }
 
-html {
-  font-size: 62.5%;
-}
-
 .app-container {
   overflow-x: hidden;
   height: 100vh
 }
+
+// TODO:: Template for setting our own overlay. this div should be connected to redux in order to know that the modal is open
+//.app-overlay.modal-is-open {
+//  position: absolute;
+//  width: 100vw;
+//  height: 100vh;
+//  z-index: 9999999999999999999;
+//  background-color: black;
+//  opacity: 0.7;
+//}
