@@ -48,6 +48,7 @@ const Videos = (props) => {
             {allVideos.map(renderVideo)}
           </div>
           <Modal
+              onOk={(eee) => console.log('eee: ', eee.target)}
             visible={isModalVisible}
             onCancel={handleCancelClick}
             {...videosPageModalSchema}

@@ -1,0 +1,10 @@
+@import 'main';
+
+.input-with-label {
+  margin-top: 25px;
+  font-size: 13px;
+
+  & .input {
+    font-size: 15px;
+  }
+}
