@@ -11,7 +11,12 @@ import BackButton from 'components/BackButton'
 const TestPage = (props) => {
   console.log('TestPage')
   const {
-    gaitModel, loadingGaitModel, getGaitModelByTestId, testId, cleanGaitModel, history, handleBackClick,
+    gaitModel,
+    loadingGaitModel,
+    getGaitModelByTestId,
+    testId,
+    cleanGaitModel,
+    handleBackClick,
   } = props
 
   useEffect(() => {
@@ -44,10 +49,6 @@ const TestPage = (props) => {
     )
   }
 
-  function handleBackButton() {
-    history.goBack()
-  }
-
   return (
     <>
       {!gaitModel || loadingGaitModel ? (
@@ -59,9 +60,7 @@ const TestPage = (props) => {
         <>
           <BackButton handleBackClick={handleBackClick} />
           <h1 className="test-title">Gait model data</h1>
-          {
-            Object.keys(gaitModel).map((key) => renderSensorsContainer(key))
-          }
+          { Object.keys(gaitModel).map((key) => renderSensorsContainer(key)) }
         </>
       )}
     </>
@@ -73,7 +72,7 @@ export default TestPage
 
 
 TestPage.propTypes = {
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleBackClick: PropTypes.func.isRequired,
   gaitModel: PropTypes.objectOf(PropTypes.any).isRequired,
   loadingGaitModel: PropTypes.bool.isRequired,
   getGaitModelByTestId: PropTypes.func.isRequired,
