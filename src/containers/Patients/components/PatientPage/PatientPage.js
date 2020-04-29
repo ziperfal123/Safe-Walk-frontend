@@ -43,6 +43,7 @@ const PatientPage = (props) => {
 
   function handleBackClick() {
     history.goBack()
+    setClickedTestId('')
   }
 
   function renderPageSections() {
@@ -72,7 +73,7 @@ const PatientPage = (props) => {
 
   function renderTestPage() {
     return (
-      <TestPage history={history} testId={clickedTestId} />
+      <TestPage history={history} testId={clickedTestId} handleBackClick={handleBackClick} />
     )
   }
 
