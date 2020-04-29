@@ -11,7 +11,7 @@ import BackButton from 'components/BackButton'
 const TestPage = (props) => {
   console.log('TestPage')
   const {
-    gaitModel, loadingGaitModel, getGaitModelByTestId, testId, cleanGaitModel, history,
+    gaitModel, loadingGaitModel, getGaitModelByTestId, testId, cleanGaitModel, history, handleBackClick,
   } = props
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const TestPage = (props) => {
         </div>
       ) : (
         <>
-          <BackButton handleBackClick={handleBackButton} />
+          <BackButton handleBackClick={handleBackClick} />
           <h1 className="test-title">Gait model data</h1>
           {
             Object.keys(gaitModel).map((key) => renderSensorsContainer(key))
