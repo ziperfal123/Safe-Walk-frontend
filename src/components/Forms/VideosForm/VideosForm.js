@@ -22,7 +22,7 @@ const VideosForm = (props) => {
       >
         <Input />
       </Form.Item>
-      <Form.Item>
+      <Form.Item className={'save-btn-container'}>
         <Button type={"primary"} htmlType={"submit"}>
           Submit
         </Button>

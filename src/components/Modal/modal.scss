@@ -4,10 +4,10 @@
   position: absolute;
   left: calc(50% - 300px);
   & aside {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     top: 0;
     left: 0;
     height: 100%;
@@ -20,8 +20,22 @@
 
   & .form-wrapper {
     position: relative;
-    top: 15px;
-    left: 26%;
-    width: 72%;
+    overflow-y: scroll;
+    height: 480px;
+    top: 20px;
+    left: 27%;
+    width: 73%;
+
+    & h1,
+    & p,
+    & .form{
+      width: 92%;
+    }
+
+    & .save-btn-container {
+      position: absolute;
+      bottom: 5%;
+      right: 8%;
+    }
   }
 }
