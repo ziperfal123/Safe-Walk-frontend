@@ -2,33 +2,39 @@
 
 .modal-container {
   position: absolute;
-  left: calc(100% - 50% - 300px);
-    & aside {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 25%;
-      background-color: $sidebar-background-color;
-      & .logo {
-        width: 120px;
-      }
+  left: calc(50% - 300px);
+  & aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background-color: $sidebar-background-color;
+    & .logo {
+      width: 120px;
     }
+  }
 
-    // TODO:: use calc() for modal width and psotioning
+    // TODO:: use calc() for modal width and positioning
     & main {
       position: relative;
       width: 75%;
       left: 26%;
 
       & .content-wrapper {
+        height: 85%;
         position: relative;
         top: 10px;
         overflow-y: auto;
+      }
 
+      & .save-btn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
       }
     }
 }

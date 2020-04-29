@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Spin } from 'antd'
-import {videosPageModalSchema} from 'consts/modalSchemas'
+import { Form, Spin, Button } from 'antd'
+import InputWithLabel from 'components/InputWithLabel'
 import AddCard from 'components/AddCard'
 import VideoCard from 'components/VideoCard'
 import Modal from 'components/Modal'
-
 import './videos.scss'
 
 const Videos = (props) => {
@@ -35,6 +34,11 @@ const Videos = (props) => {
     )
   }
 
+  function handleSave(a) {
+    console.log('a' , a)
+  }
+
+
   return (
     <div className="videos-page">
       {loadingAllVideos || !allVideos ? (
@@ -48,10 +52,10 @@ const Videos = (props) => {
             {allVideos.map(renderVideo)}
           </div>
           <Modal
-              onOk={(eee) => console.log('eee: ', eee.target)}
-            visible={isModalVisible}
+            // visible={isModalVisible}
+            visible
             onCancel={handleCancelClick}
-            {...videosPageModalSchema}
+            form={<VideosForm handleSave={handleSave} />}
           />
         </>
       )}
@@ -60,6 +64,25 @@ const Videos = (props) => {
 }
 
 export default Videos
+
+
+const VideosForm = ({ handleSave }) => {
+  const [inputA, setInputA] = useState('')
+  function handleChange(e) {
+    console.log('e: ', e.target.value)
+  }
+  return (
+    <>
+      <Form className="content-wrapper">
+        <h2>Add a new Video</h2>
+        <p>add another video to the videos inventory. copy the link from youtube and paste it in the relevant input field. Once you will add the video, it will automatically attached to this default plan</p>
+        <InputWithLabel label="Video Name" placeholder="Please enter video name" onChange={handleChange} />
+        <InputWithLabel label="Video Link" placeholder="Please enter video link" />
+      </Form>
+      <Button className="save-btn" onClick={handleSave}>SAVE</Button>
+    </>
+  )
+}
 
 
 Videos.propTypes = ({

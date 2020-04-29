@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Tabs, Modal as AntModal, Button } from 'antd'
+import {
+  Tabs, Modal as AntModal, Button, Form,
+} from 'antd'
 import Logo from 'components/SideBar/files/logo.svg'
 import InputWithLabel from 'components/InputWithLabel'
 import './modal.scss'
@@ -12,14 +14,9 @@ const Modal = (props) => {
     modalInnerTitle,
     description,
     modalTabs,
+    form,
   } = props
   console.log('Modal')
-
-  function renderInputFields(labelText) {
-    return (
-      <InputWithLabel label={labelText} placeholder="some placeholder" />
-    )
-  }
 
   function renderTab(tab, index) {
     console.log('tab: ', tab)
@@ -45,18 +42,16 @@ const Modal = (props) => {
         <img className="logo" src={Logo} alt="logo" />
       </aside>
       <main style={{ height: window.innerHeight / 2 }}>
-        {modalTabs.length > 1 ? (
+        {false ? (
           <Tabs defaultActiveKey="1">
             {modalTabs.map(renderTab)}
           </Tabs>
         ) : (
-          <form className="content-wrapper" style={{ height: window.innerHeight / 2 - 10 }}>
-            <h2>{modalInnerTitle}</h2>
-            <p>{description}</p>
-            {modalTabs[0].formInputLabels && modalTabs[0].formInputLabels.map(renderInputFields)}
-          </form>
+          <div style={{ height: window.innerHeight / 2 - 10 }}>
+            {form}
+            {/*<Button className="save-btn">SAVE</Button>*/}
+          </div>
         )}
-
       </main>
     </AntModal>
   )
