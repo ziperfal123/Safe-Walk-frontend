@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Spin } from 'antd'
 import AddCard from 'components/AddCard'
 import VideoCard from 'components/VideoCard'
+import Modal from 'components/Modal'
+import VideosForm from 'components/Forms/VideosForm'
 import './videos.scss'
 
 const Videos = (props) => {
@@ -34,10 +36,18 @@ const Videos = (props) => {
           <Spin />
         </div>
       ) : (
-        <div className="videos-container">
-          <AddCard type="video" handleClick={handleAddVideoClick} />
-          {allVideos.map(renderVideo)}
-        </div>
+        <>
+          <Modal
+            visible
+            formTitle={"Create a new Video"}
+            formDescription={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."}
+            formToRender={VideosForm}
+          />
+          <div className="videos-container">
+            <AddCard type="video" handleClick={handleAddVideoClick} />
+            {allVideos.map(renderVideo)}
+          </div>
+        </>
       )}
     </div>
   )

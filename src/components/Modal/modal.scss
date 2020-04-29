@@ -1,0 +1,27 @@
+@import 'main.scss';
+
+.modal-container {
+  position: absolute;
+  left: calc(50% - 300px);
+  & aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background-color: $sidebar-background-color;
+    & img {
+      width: 120px;
+    }
+  }
+
+  & .form-wrapper {
+    position: relative;
+    top: 15px;
+    left: 26%;
+    width: 72%;
+  }
+}
