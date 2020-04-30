@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Spin } from 'antd'
 import AddCard from 'components/AddCard'
 import VideoCard from 'components/VideoCard'
 import Modal from 'components/Modal'
 import VideosForm from 'components/Forms/VideosForm'
+import { OverlayContext } from '../../App'
+
 import './videos.scss'
 
 const Videos = (props) => {
@@ -16,11 +18,13 @@ const Videos = (props) => {
     getAllVideos()
   }, [])
 
-  function handleAddVideoClick() {
+  function handleAddVideoClick(toggleOverlay) {
+    toggleOverlay(true)
     toggleModal(true)
   }
 
-  function handleCloseModal() {
+  function handleCloseModal(toggle) {
+    toggle(false)
     toggleModal(false)
   }
 
@@ -35,27 +39,31 @@ const Videos = (props) => {
   }
 
   return (
-    <div className="videos-page">
-      {loadingAllVideos || !allVideos ? (
-        <div className="loading-videos">
-          <Spin />
+    <OverlayContext.Consumer>
+      {({ toggle }) => (
+        <div className="videos-page">
+          {loadingAllVideos || !allVideos ? (
+            <div className="loading-videos">
+              <Spin />
+            </div>
+          ) : (
+            <>
+              <Modal
+                onCancel={() => handleCloseModal(toggle)}
+                visible={isModalOpen}
+                formTitle="Create a new Video"
+                formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
+                FormToRender={VideosForm}
+              />
+              <div className="videos-container">
+                <AddCard type="video" handleClick={() => handleAddVideoClick(toggle)} />
+                {allVideos.map(renderVideo)}
+              </div>
+            </>
+          )}
         </div>
-      ) : (
-        <>
-          <Modal
-            onCancel={handleCloseModal}
-            visible={isModalOpen}
-            formTitle={"Create a new Video"}
-            formDescription={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."}
-            FormToRender={VideosForm}
-          />
-          <div className="videos-container">
-            <AddCard type="video" handleClick={handleAddVideoClick} />
-            {allVideos.map(renderVideo)}
-          </div>
-        </>
       )}
-    </div>
+    </OverlayContext.Consumer>
   )
 }
 

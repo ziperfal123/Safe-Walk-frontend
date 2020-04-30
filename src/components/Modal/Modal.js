@@ -22,7 +22,7 @@ const Modal = (props) => {
         <p>
           {props.formDescription}
         </p>
-        <FormToRender hell={"yan"} />
+        <FormToRender />
       </div>
     </AntModal>
   )
