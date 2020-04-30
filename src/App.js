@@ -13,7 +13,7 @@ const App = () => {
   console.log('App')
   return (
     <div>
-      <div className={'app-overlay modal-is-open'}></div>
+      {/*<div className={'app-overlay modal-is-open'}></div>*/}
       <>
       <Header />
       <SideBar />

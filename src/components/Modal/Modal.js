@@ -5,6 +5,7 @@ import './modal.scss'
 
 const Modal = (props) => {
   console.log('Modal', props)
+  const { FormToRender } = props
   return (
     <AntModal
       className="modal-container"
@@ -21,7 +22,7 @@ const Modal = (props) => {
         <p>
           {props.formDescription}
         </p>
-        {props.formToRender()}
+        <FormToRender hell={"yan"} />
       </div>
     </AntModal>
   )
