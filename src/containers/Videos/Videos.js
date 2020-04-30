@@ -13,19 +13,16 @@ const Videos = (props) => {
   console.log('Videos Page')
   const { getAllVideos, allVideos, loadingAllVideos } = props
 
-  const [isModalOpen, toggleModal] = useState(false)
   useEffect(() => {
     getAllVideos()
   }, [])
 
   function handleAddVideoClick(toggleOverlay) {
     toggleOverlay(true)
-    toggleModal(true)
   }
 
   function handleCloseModal(toggle) {
     toggle(false)
-    toggleModal(false)
   }
 
   function handleRemoveVideo() {
@@ -40,7 +37,7 @@ const Videos = (props) => {
 
   return (
     <OverlayContext.Consumer>
-      {({ toggle }) => (
+      {({ shouldOpenModal, toggleModal }) => (
         <div className="videos-page">
           {loadingAllVideos || !allVideos ? (
             <div className="loading-videos">
@@ -49,14 +46,14 @@ const Videos = (props) => {
           ) : (
             <>
               <Modal
-                onCancel={() => handleCloseModal(toggle)}
-                visible={isModalOpen}
+                onCancel={() => handleCloseModal(toggleModal)}
+                visible={shouldOpenModal}
                 formTitle="Create a new Video"
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={VideosForm}
               />
               <div className="videos-container">
-                <AddCard type="video" handleClick={() => handleAddVideoClick(toggle)} />
+                <AddCard type="video" handleClick={() => handleAddVideoClick(toggleModal)} />
                 {allVideos.map(renderVideo)}
               </div>
             </>

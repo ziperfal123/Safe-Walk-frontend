@@ -22,9 +22,9 @@ const App = () => {
     'modal-is-open': isOverlayActive,
   })
   return (
-    <OverlayContext.Provider value={{ isActive: isOverlayActive, toggle: toggleOverlay }}>
+    <OverlayContext.Provider value={{ shouldOpenModal: isOverlayActive, toggleModal: toggleOverlay }}>
       <>
-         <div className={overlayClasses} />
+        <div className={overlayClasses} />
         <>
           <Header />
           <SideBar />
