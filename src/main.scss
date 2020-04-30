@@ -11,10 +11,6 @@
   box-sizing:border-box;
 }
 
-html {
-  font-size: 62.5%;
-}
-
 .app-container {
   overflow-x: hidden;
   height: 100vh
@@ -26,6 +22,6 @@ html {
   height: 100vh;
   z-index: $z-index-medium-top-value;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.65;
   transition: .3s;
 }
