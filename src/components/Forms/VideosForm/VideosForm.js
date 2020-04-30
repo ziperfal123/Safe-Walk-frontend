@@ -5,8 +5,8 @@ import '../form.scss'
 const VideosForm = (props) => {
   console.log('VideosForm')
 
-  function handleFinish(e) {
-    console.log('e: ', e)
+  function handleFinish(formData) {
+    console.log('formData: ', formData)
   }
   return (
     <Form className="form" layout="vertical" onFinish={handleFinish}>

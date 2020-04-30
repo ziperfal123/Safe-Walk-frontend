@@ -10,6 +10,7 @@ const Modal = (props) => {
       className="modal-container"
       width={640}
       footer={null}
+      mask={false}
       {...props}
     >
       <aside>

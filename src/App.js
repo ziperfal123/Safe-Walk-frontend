@@ -13,17 +13,20 @@ const App = () => {
   console.log('App')
   return (
     <div>
+      <div className={'app-overlay modal-is-open'}></div>
+      <>
       <Header />
       <SideBar />
-      <Switch>
-        <Route path={pathsNames.patientsTests} component={PatientTests} />
-        <Route path={pathsNames.patients} component={Patients} />
-        <Route path={pathsNames.defaultPlans} component={RehabPlans} />
-        <Route path={pathsNames.videos} component={Videos} />
-        {/* <Route path={'*'} component={PatientTests} /> */}
-        // TODO:: should be changed to NotFound page, in the AppWrapper
-        // (so the NotFound page will be rendered outside of the App)
-      </Switch>
+        <Switch>
+          <Route path={pathsNames.patientsTests} component={PatientTests} />
+          <Route path={pathsNames.patients} component={Patients} />
+          <Route path={pathsNames.defaultPlans} component={RehabPlans} />
+          <Route path={pathsNames.videos} component={Videos} />
+          {/* <Route path={'*'} component={PatientTests} /> */}
+          // TODO:: should be changed to NotFound page, in the AppWrapper
+          // (so the NotFound page will be rendered outside of the App)
+        </Switch>
+      </>
     </div>
   )
 }
