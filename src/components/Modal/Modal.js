@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal as AntModal, Spin } from 'antd'
+import { Modal as AntModal, Spin, Result } from 'antd'
 import Logo from 'components/SideBar/files/logo.svg'
 import './modal.scss'
 
@@ -11,7 +11,7 @@ const Modal = (props) => {
     formTitle,
     formDescription,
     isLoading,
-    displaySuccessMessage,
+    displaySuccessMessageInModal,
   } = props
 
   function renderLoading() {
@@ -23,7 +23,12 @@ const Modal = (props) => {
         </div>
       )
     }
-    return <h2>Success!</h2>
+    return (
+      <Result
+        status="success"
+        subTitle="video was created successfully"
+      />
+    )
   }
 
 
@@ -43,7 +48,7 @@ const Modal = (props) => {
         <p>
           {formDescription}
         </p>
-        {isLoading || displaySuccessMessage ? (
+        {isLoading || displaySuccessMessageInModal ? (
           renderLoading()
         ) : (
           <FormToRender handleSubmit={handleSubmit} />

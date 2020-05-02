@@ -14,7 +14,7 @@ const Videos = (props) => {
     getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo,
   } = props
 
-  const [displaySuccessMessage , setDisplaySuccessMessage] = useState(false)
+  const [displaySuccessMessageInModal , setdisplaySuccessMessageInModalInModal] = useState(false)
 
 
 
@@ -44,11 +44,11 @@ const Videos = (props) => {
   async function handleFormSubmit(formData, toggleModal) {
     const creationStatus = await createVideo(formData)
     if (creationStatus === 'created') {
-      setDisplaySuccessMessage(true)
+      setdisplaySuccessMessageInModalInModal(true)
       setTimeout(() => {
         toggleModal(false)
-        setDisplaySuccessMessage(false)
-      }, 2000)
+        setdisplaySuccessMessageInModalInModal(false)
+      }, 1300)
     }
   }
 
@@ -70,7 +70,7 @@ const Videos = (props) => {
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={VideosForm}
                 isLoading={loadingCreateVideo}
-                displaySuccessMessage={displaySuccessMessage}
+                displaySuccessMessageInModal={displaySuccessMessageInModal}
               />
               <div className="videos-container">
                 <AddCard type="video" handleClick={() => handleAddVideoClick(toggleModal)} />
