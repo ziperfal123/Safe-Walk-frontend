@@ -14,7 +14,7 @@ const Videos = (props) => {
     getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo,
   } = props
 
-  const [displaySuccessMessageInModal , setdisplaySuccessMessageInModalInModal] = useState(false)
+  const [displaySuccessMessageInModal , setDisplaySuccessMessageInModal] = useState(false)
 
 
 
@@ -44,10 +44,10 @@ const Videos = (props) => {
   async function handleFormSubmit(formData, toggleModal) {
     const creationStatus = await createVideo(formData)
     if (creationStatus === 'created') {
-      setdisplaySuccessMessageInModalInModal(true)
+      setDisplaySuccessMessageInModal(true)
       setTimeout(() => {
         toggleModal(false)
-        setdisplaySuccessMessageInModalInModal(false)
+        setDisplaySuccessMessageInModal(false)
       }, 1300)
     }
   }
