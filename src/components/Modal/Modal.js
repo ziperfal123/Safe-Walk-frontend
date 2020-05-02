@@ -4,7 +4,7 @@ import Logo from 'components/SideBar/files/logo.svg'
 import './modal.scss'
 
 const Modal = (props) => {
-  console.log('Modal', props)
+  console.log('Modal')
   const {
     FormToRender,
     handleSubmit,
