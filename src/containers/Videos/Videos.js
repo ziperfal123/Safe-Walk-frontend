@@ -11,8 +11,12 @@ import './videos.scss'
 const Videos = (props) => {
   console.log('Videos Page')
   const {
-    getAllVideos, createVideo, allVideos, loadingAllVideos,
+    getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo,
   } = props
+
+  const [displaySuccessMessage , setDisplaySuccessMessage] = useState(false)
+
+
 
 
   useEffect(() => {
@@ -37,9 +41,15 @@ const Videos = (props) => {
     )
   }
 
-  function handleFormSubmit(formData, toggleModal) {
-    createVideo(formData)
-    toggleModal(false)
+  async function handleFormSubmit(formData, toggleModal) {
+    const creationStatus = await createVideo(formData)
+    if (creationStatus === 'created') {
+      setDisplaySuccessMessage(true)
+      setTimeout(() => {
+        toggleModal(false)
+        setDisplaySuccessMessage(false)
+      }, 2000)
+    }
   }
 
   return (
@@ -59,6 +69,8 @@ const Videos = (props) => {
                 formTitle="Create a new Video"
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={VideosForm}
+                isLoading={loadingCreateVideo}
+                displaySuccessMessage={displaySuccessMessage}
               />
               <div className="videos-container">
                 <AddCard type="video" handleClick={() => handleAddVideoClick(toggleModal)} />

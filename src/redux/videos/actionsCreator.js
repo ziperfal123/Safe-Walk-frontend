@@ -27,12 +27,14 @@ export const createVideo = (formData) => async (dispatch) => {
   dispatch({ type: CREATE_VIDEO_SET_LOADING_TRUE })
   try {
     const response = await post('video', formData)
-    dispatch({
-      type: CREATE_VIDEO,
-      payload: response.data,
-    })
+    console.log('response: ', response)
+
+    if (response.status >= 200 && response.status < 300) {
+      dispatch({ type: CREATE_VIDEO_SET_LOADING_FALSE })
+      return 'created'
+    }
   } catch (err) {
-    console.log('error: ', err)
+    console.log('error:')
+    console.log(err)
   }
-  dispatch({ type: CREATE_VIDEO_SET_LOADING_FALSE })
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal as AntModal } from 'antd'
+import { Modal as AntModal, Spin } from 'antd'
 import Logo from 'components/SideBar/files/logo.svg'
 import './modal.scss'
 
@@ -10,7 +10,22 @@ const Modal = (props) => {
     handleSubmit,
     formTitle,
     formDescription,
+    isLoading,
+    displaySuccessMessage,
   } = props
+
+  function renderLoading() {
+    if (isLoading) {
+      return (
+        <div className="loading-modal">
+          <Spin />
+          <h4>creating video...</h4>
+        </div>
+      )
+    }
+    return <h2>Success!</h2>
+  }
+
 
   return (
     <AntModal
@@ -28,7 +43,11 @@ const Modal = (props) => {
         <p>
           {formDescription}
         </p>
-        <FormToRender handleSubmit={handleSubmit} />
+        {isLoading || displaySuccessMessage ? (
+          renderLoading()
+        ) : (
+          <FormToRender handleSubmit={handleSubmit} />
+        )}
       </div>
     </AntModal>
   )

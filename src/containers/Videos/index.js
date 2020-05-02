@@ -6,6 +6,7 @@ import Videos from './Videos'
 const mapStateToProps = (state) => ({
   allVideos: state.videosReducer.allVideos,
   loadingAllVideos: state.videosReducer.loadingAllVideos,
+  loadingCreateVideo: state.videosReducer.loadingCreateVideo,
 })
 
 const mapDispatchToProps = { getAllVideos, createVideo }
