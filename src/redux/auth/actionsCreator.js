@@ -26,7 +26,7 @@ export const handleLoginFormSubmit = (mail, password) => async (dispatch) => {
     mail: m,
     password: p,
   }
-  try { // TODO:: use the fetch util file!!!! mot directly with axios!
+  try { // TODO:: use the fetch util file!!!! not directly with axios!
     const response = await axios.post(`${config.SERVER_URL}/auth/login`, body)
     console.log(response)
     if (response.status === 200 && response.statusText === 'OK') {

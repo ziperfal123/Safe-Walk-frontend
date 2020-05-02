@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getAllVideos } from 'redux/videos/actionsCreator'
+import { getAllVideos, createVideo } from 'redux/videos/actionsCreator'
 import Videos from './Videos'
 
 
@@ -8,6 +8,6 @@ const mapStateToProps = (state) => ({
   loadingAllVideos: state.videosReducer.loadingAllVideos,
 })
 
-const mapDispatchToProps = { getAllVideos }
+const mapDispatchToProps = { getAllVideos, createVideo }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Videos)

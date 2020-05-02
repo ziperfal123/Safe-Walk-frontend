@@ -5,7 +5,13 @@ import './modal.scss'
 
 const Modal = (props) => {
   console.log('Modal', props)
-  const { FormToRender } = props
+  const {
+    FormToRender,
+    handleSubmit,
+    formTitle,
+    formDescription,
+  } = props
+
   return (
     <AntModal
       className="modal-container"
@@ -15,14 +21,14 @@ const Modal = (props) => {
       {...props}
     >
       <aside>
-        <img src={Logo} />
+        <img src={Logo} alt="logo" />
       </aside>
-      <div className={'form-wrapper'}>
-        <h1>{props.formTitle}</h1>
+      <div className="form-wrapper">
+        <h1>{formTitle}</h1>
         <p>
-          {props.formDescription}
+          {formDescription}
         </p>
-        <FormToRender />
+        <FormToRender handleSubmit={handleSubmit} />
       </div>
     </AntModal>
   )

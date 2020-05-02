@@ -6,12 +6,14 @@ import VideoCard from 'components/VideoCard'
 import Modal from 'components/Modal'
 import VideosForm from 'components/Forms/VideosForm'
 import { OverlayContext } from '../../App'
-
 import './videos.scss'
 
 const Videos = (props) => {
   console.log('Videos Page')
-  const { getAllVideos, allVideos, loadingAllVideos } = props
+  const {
+    getAllVideos, createVideo, allVideos, loadingAllVideos,
+  } = props
+
 
   useEffect(() => {
     getAllVideos()
@@ -21,8 +23,8 @@ const Videos = (props) => {
     toggleOverlay(true)
   }
 
-  function handleCloseModal(toggle) {
-    toggle(false)
+  function handleCloseModal(toggleOverlay) {
+    toggleOverlay(false)
   }
 
   function handleRemoveVideo() {
@@ -33,6 +35,11 @@ const Videos = (props) => {
     return (
       <VideoCard key={video.id} link={video.link} handleRemoveClick={handleRemoveVideo} />
     )
+  }
+
+  function handleFormSubmit(formData, toggleModal) {
+    createVideo(formData)
+    toggleModal(false)
   }
 
   return (
@@ -47,6 +54,7 @@ const Videos = (props) => {
             <>
               <Modal
                 onCancel={() => handleCloseModal(toggleModal)}
+                handleSubmit={(formData) => handleFormSubmit(formData, toggleModal)}
                 visible={shouldOpenModal}
                 formTitle="Create a new Video"
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
@@ -69,6 +77,7 @@ export default Videos
 
 Videos.propTypes = ({
   getAllVideos: PropTypes.func.isRequired,
+  createVideo: PropTypes.func.isRequired,
   allVideos: PropTypes.arrayOf(PropTypes.any).isRequired,
   loadingAllVideos: PropTypes.bool.isRequired,
 })

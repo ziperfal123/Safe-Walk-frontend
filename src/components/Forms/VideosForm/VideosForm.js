@@ -2,23 +2,23 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 import '../form.scss'
 
-const VideosForm = (props) => {
+const VideosForm = ({ handleSubmit }) => {
   console.log('VideosForm')
 
   function handleFinish(formData) {
-    console.log('formData: ', formData)
+    handleSubmit(formData)
   }
   return (
     <Form className="form" layout="vertical" onFinish={handleFinish}>
       <Form.Item
         label="video name:"
-        name="videoName"
+        name="name"
       >
         <Input />
       </Form.Item>
       <Form.Item
         label="video link:"
-        name="videoLink"
+        name="link"
       >
         <Input />
       </Form.Item>
