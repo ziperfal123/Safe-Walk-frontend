@@ -14,7 +14,7 @@ const VideosForm = ({ handleSubmit }) => {
         rules={
           [
             { required: true, message: 'Video name is required' },
-            { required: true, min: 2, message: 'Name should contain at least 2 characters' },
+            { required: true, min: 3, message: 'Name should contain at least 3 characters' },
           ]
         }
         label="video name:"
