@@ -8,14 +8,20 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing:border-box;
-}
-
-html {
-  font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 .app-container {
   overflow-x: hidden;
   height: 100vh
+}
+
+.app-overlay.modal-is-open {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: $z-index-medium-top-value;
+  background-color: black;
+  opacity: 0.65;
+  transition: .3s;
 }

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
+import classNames from 'classnames'
 import pathsNames from './router/pathNames'
 import Header from './components/Header'
 import SideBar from './components/SideBar'
@@ -9,22 +10,39 @@ import Patients from './containers/Patients'
 import RehabPlans from './containers/RehabPlans/RehabPlans'
 import Videos from './containers/Videos'
 
+
+export const OverlayContext = React.createContext(false)
+
 const App = () => {
   console.log('App')
+  const [isOverlayActive, toggleOverlay] = useState(false)
+
+  const overlayClasses = classNames({
+    'app-overlay': true,
+    'modal-is-open': isOverlayActive,
+  })
+
   return (
-    <div>
-      <Header />
-      <SideBar />
-      <Switch>
-        <Route path={pathsNames.patientsTests} component={PatientTests} />
-        <Route path={pathsNames.patients} component={Patients} />
-        <Route path={pathsNames.defaultPlans} component={RehabPlans} />
-        <Route path={pathsNames.videos} component={Videos} />
-        {/* <Route path={'*'} component={PatientTests} /> */}
-        // TODO:: should be changed to NotFound page, in the AppWrapper
-        // (so the NotFound page will be rendered outside of the App)
-      </Switch>
-    </div>
+    <OverlayContext.Provider
+      value={{ shouldOpenModal: isOverlayActive, toggleModal: toggleOverlay }}
+    >
+      <>
+        <div className={overlayClasses} />
+        <>
+          <Header />
+          <SideBar />
+          <Switch>
+            <Route path={pathsNames.patientsTests} component={PatientTests} />
+            <Route path={pathsNames.patients} component={Patients} />
+            <Route path={pathsNames.defaultPlans} component={RehabPlans} />
+            <Route path={pathsNames.videos} component={Videos} />
+            {/* <Route path={'*'} component={PatientTests} /> */}
+            // TODO:: should be changed to NotFound page, in the AppWrapper
+            // (so the NotFound page will be rendered outside of the App)
+          </Switch>
+        </>
+      </>
+    </OverlayContext.Provider>
   )
 }
 

@@ -10,9 +10,9 @@ function buildHeader() {
 }
 
 export async function get(endPointUrl) {
-  const options = buildHeader()
+  const configOptions = buildHeader()
   try {
-    const res = await axios.get(`${SERVER_URL}/${endPointUrl}`, options)
+    const res = await axios.get(`${SERVER_URL}/${endPointUrl}`, configOptions)
     return res
   } catch (err) {
     if (err.response) throw new Error(err.response.data)
@@ -20,7 +20,15 @@ export async function get(endPointUrl) {
   }
 }
 
-export function post() {}
+export async function post(endPointUrl, data) {
+  const configOptions = buildHeader()
+  try {
+    const res = await axios.post(`${SERVER_URL}/${endPointUrl}`, data, configOptions)
+    return res
+  } catch (err) {
+    throw new Error(err)
+  }
+}
 
 export function put() {}
 

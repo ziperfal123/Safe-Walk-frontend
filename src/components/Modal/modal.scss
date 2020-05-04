@@ -1,0 +1,53 @@
+@import 'main.scss';
+
+.modal-container {
+  position: absolute;
+  left: calc(50% - 300px);
+  & aside {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background-color: $sidebar-background-color;
+    & img {
+      width: 120px;
+    }
+  }
+
+  & .form-wrapper {
+    position: relative;
+    overflow-y: scroll;
+    height: 480px;
+    top: 20px;
+    left: 27%;
+    width: 73%;
+
+    & h1,
+    & p,
+    & .form {
+      width: 92%;
+    }
+
+    & .save-btn-container {
+      position: absolute;
+      bottom: 5%;
+      right: 8%;
+    }
+
+    & .loading-modal {
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & h4 {
+        margin-top: 10px;
+      }
+    }
+  }
+}

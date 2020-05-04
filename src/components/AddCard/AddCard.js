@@ -9,7 +9,7 @@ const AddCard = ({ type, handleClick }) => {
     <div className="add-card-container" onClick={handleClick}>
       <h2>{`Add a new ${type}`}</h2>
       <img
-        className="plus-btn"
+        className="plus-btn"z
         src={PlusBtn}
         alt="plus"
       />
