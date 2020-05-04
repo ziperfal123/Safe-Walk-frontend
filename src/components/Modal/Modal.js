@@ -15,14 +15,15 @@ const Modal = (props) => {
   } = props
 
   function renderLoading() {
-    if (isLoading) {
-      return (
-        <div className="loading-modal">
-          <Spin />
-          <h4>creating video...</h4>
-        </div>
-      )
-    }
+    return (
+      <div className="loading-modal">
+        <Spin />
+        <h4>creating video...</h4>
+      </div>
+    )
+  }
+
+  function renderSuccessMessage() {
     return (
       <Result
         status="success"
@@ -49,7 +50,10 @@ const Modal = (props) => {
           {formDescription}
         </p>
         {isLoading || displaySuccessMessageInModal ? (
-          renderLoading()
+          <>
+            {isLoading && renderLoading()}
+            {displaySuccessMessageInModal && renderSuccessMessage()}
+          </>
         ) : (
           <FormToRender handleSubmit={handleSubmit} />
         )}

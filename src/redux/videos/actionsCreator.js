@@ -8,7 +8,7 @@ import {
   CREATE_VIDEO_SET_LOADING_TRUE,
   CREATE_VIDEO_SET_LOADING_FALSE,
 } from './actionTypes'
-
+import { API } from 'utils/consts'
 export const getAllVideos = () => async (dispatch) => {
   dispatch({ type: FETCH_ALL_VIDEOS_SET_LOADING_TRUE })
   try {
@@ -31,7 +31,7 @@ export const createVideo = (formData) => async (dispatch) => {
 
     if (response.status >= 200 && response.status < 300) {
       dispatch({ type: CREATE_VIDEO_SET_LOADING_FALSE })
-      return 'created'
+      return API.postRequestSuccess
     }
   } catch (err) {
     console.log('error:')

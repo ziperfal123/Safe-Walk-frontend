@@ -5,6 +5,7 @@ import AddCard from 'components/AddCard'
 import VideoCard from 'components/VideoCard'
 import Modal from 'components/Modal'
 import VideosForm from 'components/Forms/VideosForm'
+import { API } from 'utils/consts'
 import { OverlayContext } from '../../App'
 import './videos.scss'
 
@@ -14,10 +15,7 @@ const Videos = (props) => {
     getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo,
   } = props
 
-  const [displaySuccessMessageInModal , setDisplaySuccessMessageInModal] = useState(false)
-
-
-
+  const [displaySuccessMessageInModal, setDisplaySuccessMessageInModal] = useState(false)
 
   useEffect(() => {
     getAllVideos()
@@ -43,7 +41,7 @@ const Videos = (props) => {
 
   async function handleFormSubmit(formData, toggleModal) {
     const creationStatus = await createVideo(formData)
-    if (creationStatus === 'created') {
+    if (creationStatus === API.postRequestSuccess) {
       setDisplaySuccessMessageInModal(true)
       setTimeout(() => {
         toggleModal(false)
