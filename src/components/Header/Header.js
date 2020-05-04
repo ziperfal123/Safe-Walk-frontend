@@ -2,15 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import './header.scss'
-import Avatar from './components/Avatar'
 import pathsNames from 'router/pathNames'
+import Avatar from './components/Avatar'
 import SearchBar from './components/SearchBar'
 
 const Header = ({ location, userName, userImage }) => {
   const shouldDisplaySearchBar = location.pathname === pathsNames.patientsTests
-      || pathsNames.patients
-      || pathsNames.defaultPlans
-      || pathsNames.videos
+      || location.pathname === pathsNames.patients
+      || location.pathname === pathsNames.defaultPlans
+      || location.pathname === pathsNames.videos
+  
   const displayRouteName = () => {
     let normalizedTitle
     switch (location.pathname) {
