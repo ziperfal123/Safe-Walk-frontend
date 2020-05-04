@@ -47,8 +47,8 @@ const Videos = (props) => {
   function fetchAllVideosAfterPost(toggleOverlay) {
     setDisplaySuccessMessageInModal(true)
     setTimeout(async () => {
-      await getAllVideos()
       toggleOverlay(false)
+      await getAllVideos()
       setShouldOpenModal(false)
       setDisplaySuccessMessageInModal(false)
     }, 1200)
@@ -85,14 +85,15 @@ const Videos = (props) => {
             </div>
           ) : (
             <>
-              {errorObj.errorOccurred ? (
+              {errorObj.errorOccurred && (
                 <ErrorModal
                   handleOK={() => handleOKErrorModal(toggleOverlay)}
                   visible={errorObj.errorOccurred}
                   errorMessage={errorObj.errorMessage}
                   destroyOnClose
                 />
-              ) : (
+              )}
+              {shouldOpenModal && (
                 <Modal
                   onCancel={() => handleCloseModal(toggleOverlay)}
                   handleSubmit={(formData) => handleFormSubmit(formData, toggleOverlay)}
@@ -102,7 +103,6 @@ const Videos = (props) => {
                   FormToRender={VideosForm}
                   isLoading={loadingCreateVideo}
                   displaySuccessMessageInModal={displaySuccessMessageInModal}
-                  destroyOnClose
                 />
               )}
 
