@@ -29,6 +29,7 @@ const videosReducer = (state = initialState, action) => {
       }
 
     case FETCH_ALL_VIDEOS_SET_LOADING_FALSE:
+      console.log('state.allVideos: ', state.allVideos)
       return {
         ...state,
         loadingAllVideos: false,

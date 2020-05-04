@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <OverlayContext.Provider
-      value={{ shouldOpenModal: isOverlayActive, toggleModal: toggleOverlay }}
+      value={{ toggleOverlay }}
     >
       <>
         <div className={overlayClasses} />

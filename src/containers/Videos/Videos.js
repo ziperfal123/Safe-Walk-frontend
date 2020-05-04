@@ -17,7 +17,8 @@ const Videos = (props) => {
   } = props
 
   const [displaySuccessMessageInModal, setDisplaySuccessMessageInModal] = useState(false)
-  const [errorObj, setErrorObj] = useState({ errorOccured: false, errorMessage: '' })
+  const [shouldOpenModal, setShouldOpenModal] = useState(false)
+  const [errorObj, setErrorObj] = useState({ errorOccurred: false, errorMessage: '' })
 
   useEffect(() => {
     getAllVideos()
@@ -25,10 +26,12 @@ const Videos = (props) => {
 
   function handleAddVideoClick(toggleOverlay) {
     toggleOverlay(true)
+    setShouldOpenModal(true)
   }
 
-  function handleCloseModal(toggleModal) {
-    toggleModal(false)
+  function handleCloseModal(toggleOverlay) {
+    toggleOverlay(false)
+    setShouldOpenModal(false)
   }
 
   function handleRemoveVideo() {
@@ -41,34 +44,40 @@ const Videos = (props) => {
     )
   }
 
-  async function handleFormSubmit(formData, toggleModal) {
+  function fetchAllVideosAfterPost(toggleOverlay) {
+    setDisplaySuccessMessageInModal(true)
+    setTimeout(async () => {
+      await getAllVideos()
+      toggleOverlay(false)
+      setShouldOpenModal(false)
+      setDisplaySuccessMessageInModal(false)
+    }, 1200)
+  }
+
+  async function handleFormSubmit(formData, toggleOverlay) {
     const creationResponse = await createVideo(formData)
     if (creationResponse === API.postRequestSuccess) {
-      setDisplaySuccessMessageInModal(true)
-      setTimeout(() => {
-        toggleModal(false)
-        setDisplaySuccessMessageInModal(false)
-      }, 1300)
+      fetchAllVideosAfterPost(toggleOverlay)
     } else {
-      console.log('creationResponse: ', creationResponse)
       setErrorObj({
-        errorOccured: true,
+        errorOccurred: true,
         errorMessage: (creationResponse && creationResponse.message) || 'some generic message..',
       })
     }
   }
 
-  function handleOKErrorModal(toggleModal) {
-    toggleModal(false)
+  function handleOKErrorModal(toggleOverlay) {
+    toggleOverlay(false)
+    setShouldOpenModal(false)
     setErrorObj({
-      errorOccured: false,
+      errorOccurred: false,
       errorMessage: '',
     })
   }
 
   return (
     <OverlayContext.Consumer>
-      {({ shouldOpenModal, toggleModal }) => (
+      {({ toggleOverlay }) => (
         <div className="videos-page">
           {loadingAllVideos || !allVideos ? (
             <div className="loading-videos">
@@ -76,27 +85,29 @@ const Videos = (props) => {
             </div>
           ) : (
             <>
-              {errorObj.errorOccured ? (
+              {errorObj.errorOccurred ? (
                 <ErrorModal
-                  handleOK={() => handleOKErrorModal(toggleModal)}
-                  visible={errorObj.errorOccured}
+                  handleOK={() => handleOKErrorModal(toggleOverlay)}
+                  visible={errorObj.errorOccurred}
                   errorMessage={errorObj.errorMessage}
+                  destroyOnClose
                 />
               ) : (
                 <Modal
-                  onCancel={() => handleCloseModal(toggleModal)}
-                  handleSubmit={(formData) => handleFormSubmit(formData, toggleModal)}
+                  onCancel={() => handleCloseModal(toggleOverlay)}
+                  handleSubmit={(formData) => handleFormSubmit(formData, toggleOverlay)}
                   visible={shouldOpenModal}
                   formTitle="Create a new Video"
                   formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                   FormToRender={VideosForm}
                   isLoading={loadingCreateVideo}
                   displaySuccessMessageInModal={displaySuccessMessageInModal}
+                  destroyOnClose
                 />
               )}
 
               <div className="videos-container">
-                <AddCard type="video" handleClick={() => handleAddVideoClick(toggleModal)} />
+                <AddCard type="video" handleClick={() => handleAddVideoClick(toggleOverlay)} />
                 {allVideos.map(renderVideo)}
               </div>
             </>
