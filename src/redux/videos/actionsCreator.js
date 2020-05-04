@@ -34,7 +34,8 @@ export const createVideo = (formData) => async (dispatch) => {
       return API.postRequestSuccess
     }
   } catch (err) {
-    console.log('error:')
-    console.log(err)
+    dispatch({ type: CREATE_VIDEO_SET_LOADING_FALSE })
+    console.log('err: ', err)
+    return err
   }
 }

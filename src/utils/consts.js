@@ -1,3 +1,4 @@
 export const API = {
-  postRequestSuccess: 'created',
+  postRequestSuccess: 'postSuccess',
+  postRequestError: 'postError',
 }
