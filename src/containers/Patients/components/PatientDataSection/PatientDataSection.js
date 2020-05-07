@@ -5,7 +5,7 @@ import './patientDataSection.scss'
 
 const PatientDataSection = ({ patient, planById }) => {
   function calculatePercentage() {
-    if (planById && {}) {
+    if (planById && {}) { // TODO:: wtf?? fix..
       const totalVideos = planById.videos.length
       let totalDoneVideos = 0
       planById.videos.forEach((video) => {

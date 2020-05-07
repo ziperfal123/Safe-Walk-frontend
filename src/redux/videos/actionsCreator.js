@@ -1,40 +1,43 @@
 import { get, post } from 'utils/fetch'
-import {
-  FETCH_ALL_VIDEOS_SUCCESS,
-  FETCH_ALL_VIDEOS_FAILURE,
-  FETCH_ALL_VIDEOS_SET_LOADING_TRUE,
-  FETCH_ALL_VIDEOS_SET_LOADING_FALSE,
-  CREATE_VIDEO,
-  CREATE_VIDEO_SET_LOADING_TRUE,
-  CREATE_VIDEO_SET_LOADING_FALSE,
-} from './actionTypes'
 import { API } from 'utils/consts'
+import * as ActionsType from './actionTypes'
+
+
 export const getAllVideos = () => async (dispatch) => {
-  dispatch({ type: FETCH_ALL_VIDEOS_SET_LOADING_TRUE })
+  dispatch({ type: ActionsType.FETCH_ALL_VIDEOS_SET_LOADING_TRUE })
   try {
     const response = await get('video')
     dispatch({
-      type: FETCH_ALL_VIDEOS_SUCCESS,
-      payload: response.data,
+      type: ActionsType.FETCH_ALL_VIDEOS_SUCCESS,
+      payload: response.data.reverse(),
     })
   } catch (err) {
     console.log('error: ', err)
   }
-  dispatch({ type: FETCH_ALL_VIDEOS_SET_LOADING_FALSE })
+  dispatch({ type: ActionsType.FETCH_ALL_VIDEOS_SET_LOADING_FALSE })
 }
 
-export const createVideo = (formData) => async (dispatch) => {
-  dispatch({ type: CREATE_VIDEO_SET_LOADING_TRUE })
-  try {
-    const response = await post('video', formData)
-    console.log('response: ', response)
 
-    if (response.status >= 200 && response.status < 300) {
-      dispatch({ type: CREATE_VIDEO_SET_LOADING_FALSE })
+export const createVideo = (formData) => async (dispatch) => {
+  dispatch({ type: ActionsType.CREATE_VIDEO_SET_LOADING_TRUE })
+  try {
+    const { data: videoData, status: statusCode } = await post('video', formData)
+    const addedVideoObj = {
+      id: videoData.id,
+      link: videoData.link,
+      name: videoData.name,
+    }
+
+    if (statusCode >= 200 && statusCode < 300) {
+      dispatch({ type: ActionsType.CREATE_VIDEO_SET_LOADING_FALSE })
+      dispatch({
+        type: ActionsType.CREATE_VIDEO_SUCCESS,
+        payload: addedVideoObj,
+      })
       return API.postRequestSuccess
     }
   } catch (err) {
-    dispatch({ type: CREATE_VIDEO_SET_LOADING_FALSE })
+    dispatch({ type: ActionsType.CREATE_VIDEO_SET_LOADING_FALSE })
     console.log('err: ', err)
     return err
   }

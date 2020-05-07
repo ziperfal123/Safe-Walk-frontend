@@ -4,13 +4,17 @@ import './errorModal.scss'
 
 const ErrorModal = (props) => {
   console.log('ErrorModal')
-  const { handleOK, errorMessage } = props
+  const {errorMessage, cleanError } = props
 
+  function handleOK() {
+    cleanError()
+  }
   return (
     <AntModal
       className="error-modal-container"
       width={540}
       mask={false}
+      closable={false}
       footer={[
         <Button onClick={handleOK}>
           OK

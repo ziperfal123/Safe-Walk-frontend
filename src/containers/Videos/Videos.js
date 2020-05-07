@@ -7,17 +7,18 @@ import Modal from 'components/Modal'
 import ErrorModal from 'components/ErrorModal'
 import VideosForm from 'components/Forms/VideosForm'
 import { API } from 'utils/consts'
+import { createError } from 'redux/error/actionCreators'
 import { OverlayContext } from '../../App'
 import './videos.scss'
 
 const Videos = (props) => {
   console.log('Videos Page')
   const {
-    getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo,
+    getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo, createError,
   } = props
 
-  const [displaySuccessMessageInModal, setDisplaySuccessMessageInModal] = useState(false)
-  const [errorObj, setErrorObj] = useState({ errorOccured: false, errorMessage: '' })
+  const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
+  const [shouldOpenModal, setShouldOpenModal] = useState(false)
 
   useEffect(() => {
     getAllVideos()
@@ -25,10 +26,7 @@ const Videos = (props) => {
 
   function handleAddVideoClick(toggleOverlay) {
     toggleOverlay(true)
-  }
-
-  function handleCloseModal(toggleModal) {
-    toggleModal(false)
+    setShouldOpenModal(true)
   }
 
   function handleRemoveVideo() {
@@ -41,34 +39,23 @@ const Videos = (props) => {
     )
   }
 
-  async function handleFormSubmit(formData, toggleModal) {
+  async function handleFormSubmit(formData) {
     const creationResponse = await createVideo(formData)
     if (creationResponse === API.postRequestSuccess) {
-      setDisplaySuccessMessageInModal(true)
-      setTimeout(() => {
-        toggleModal(false)
-        setDisplaySuccessMessageInModal(false)
-      }, 1300)
+      setDidPostRequestSucceed(true)
+      setShouldOpenModal(false)
     } else {
-      console.log('creationResponse: ', creationResponse)
-      setErrorObj({
-        errorOccured: true,
-        errorMessage: (creationResponse && creationResponse.message) || 'some generic message..',
-      })
+      createError(creationResponse && creationResponse.message)
     }
   }
 
-  function handleOKErrorModal(toggleModal) {
-    toggleModal(false)
-    setErrorObj({
-      errorOccured: false,
-      errorMessage: '',
-    })
+  function handleOnCancelModal() {
+    setShouldOpenModal(false)
   }
 
   return (
     <OverlayContext.Consumer>
-      {({ shouldOpenModal, toggleModal }) => (
+      {({ toggleOverlay }) => (
         <div className="videos-page">
           {loadingAllVideos || !allVideos ? (
             <div className="loading-videos">
@@ -76,27 +63,19 @@ const Videos = (props) => {
             </div>
           ) : (
             <>
-              {errorObj.errorOccured ? (
-                <ErrorModal
-                  handleOK={() => handleOKErrorModal(toggleModal)}
-                  visible={errorObj.errorOccured}
-                  errorMessage={errorObj.errorMessage}
-                />
-              ) : (
-                <Modal
-                  onCancel={() => handleCloseModal(toggleModal)}
-                  handleSubmit={(formData) => handleFormSubmit(formData, toggleModal)}
-                  visible={shouldOpenModal}
-                  formTitle="Create a new Video"
-                  formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
-                  FormToRender={VideosForm}
-                  isLoading={loadingCreateVideo}
-                  displaySuccessMessageInModal={displaySuccessMessageInModal}
-                />
-              )}
-
+              <Modal
+                handleFormSubmit={(formData) => handleFormSubmit(formData)}
+                handleOnCancel={handleOnCancelModal}
+                visible={shouldOpenModal || didPostRequestSucceed}
+                formTitle="Create a new Video"
+                formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
+                FormToRender={VideosForm}
+                isLoading={loadingCreateVideo}
+                didPostRequestSucceed={didPostRequestSucceed}
+                setDidPostRequestSucceed={setDidPostRequestSucceed}
+              />
               <div className="videos-container">
-                <AddCard type="video" handleClick={() => handleAddVideoClick(toggleModal)} />
+                <AddCard type="video" handleClick={() => handleAddVideoClick(toggleOverlay)} />
                 {allVideos.map(renderVideo)}
               </div>
             </>

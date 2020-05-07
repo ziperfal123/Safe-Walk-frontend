@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import classNames from 'classnames'
+import ErrorModal from 'components/ErrorModal'
+import { cleanError } from 'redux/error/actionCreators'
 import pathsNames from './router/pathNames'
 import Header from './components/Header'
 import SideBar from './components/SideBar'
@@ -10,11 +12,12 @@ import Patients from './containers/Patients'
 import RehabPlans from './containers/RehabPlans/RehabPlans'
 import Videos from './containers/Videos'
 
-
 export const OverlayContext = React.createContext(false)
 
-const App = () => {
+// eslint-disable-next-line no-shadow
+const App = ({ errorObj, cleanError }) => {
   console.log('App')
+
   const [isOverlayActive, toggleOverlay] = useState(false)
 
   const overlayClasses = classNames({
@@ -24,7 +27,7 @@ const App = () => {
 
   return (
     <OverlayContext.Provider
-      value={{ shouldOpenModal: isOverlayActive, toggleModal: toggleOverlay }}
+      value={{ toggleOverlay }}
     >
       <>
         <div className={overlayClasses} />
@@ -40,6 +43,15 @@ const App = () => {
             // TODO:: should be changed to NotFound page, in the AppWrapper
             // (so the NotFound page will be rendered outside of the App)
           </Switch>
+          {errorObj.errorOccurred
+              && (
+              <ErrorModal
+                visible={errorObj.errorOccurred}
+                errorMessage={errorObj.errorMessage}
+                cleanError={cleanError}
+                destroyOnClose
+              />
+              )}
         </>
       </>
     </OverlayContext.Provider>
@@ -50,7 +62,8 @@ const App = () => {
 const mapStateToProps = (state) => ({
   isUserAuthenticated: state.authReducer.isUserAuthenticated,
   loading: state.authReducer.loading,
+  errorObj: state.errorReducer.errorObj,
 })
-const mapDispatchToProps = { }
+const mapDispatchToProps = { cleanError }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

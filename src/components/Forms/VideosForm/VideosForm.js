@@ -2,11 +2,11 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 import '../form.scss'
 
-const VideosForm = ({ handleSubmit }) => {
+const VideosForm = ({ handleFormSubmit }) => {
   console.log('VideosForm')
 
   function handleFinish(formData) {
-    handleSubmit(formData)
+    handleFormSubmit(formData)
   }
   return (
     <Form className="form" layout="vertical" onFinish={handleFinish}>

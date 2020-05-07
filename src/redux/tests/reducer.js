@@ -29,14 +29,14 @@ const testsReducer = (state = initialState, action) => {
     case FETCH_All_TESTS_SET_LOADING_TRUE:
       return {
         ...state,
-        loadingAllTests: true
+        loadingAllTests: true,
       };
 
       // eslint-disable-next-line camelcase
     case FETCH_All_TESTS_SET_LOADING_FALSE:
       return {
         ...state,
-        loadingAllTests: false
+        loadingAllTests: false,
       };
 
     case FETCH_TESTS_BY_ID_SUCCESS:
