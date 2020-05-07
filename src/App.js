@@ -12,12 +12,12 @@ import Patients from './containers/Patients'
 import RehabPlans from './containers/RehabPlans/RehabPlans'
 import Videos from './containers/Videos'
 
-
 export const OverlayContext = React.createContext(false)
 
 // eslint-disable-next-line no-shadow
 const App = ({ errorObj, cleanError }) => {
   console.log('App')
+
   const [isOverlayActive, toggleOverlay] = useState(false)
 
   const overlayClasses = classNames({

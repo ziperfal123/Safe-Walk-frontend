@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { Modal as AntModal, Spin, Result } from 'antd'
 import Logo from 'components/SideBar/files/logo.svg'
 import './modal.scss'
@@ -18,10 +18,10 @@ const Modal = (props) => {
   } = props
 
   useEffect(() => {
-    console.log('first')
-    didPostRequestSucceed && setTimeout(async () => {
-      setDidPostRequestSucceed(false)
-    }, 1000)
+    didPostRequestSucceed
+      && setTimeout(async () => {
+        setDidPostRequestSucceed(false)
+      }, 1000)
   }, [didPostRequestSucceed])
 
   function renderLoading() {
@@ -68,7 +68,7 @@ const Modal = (props) => {
             <p>
               {formDescription}
             </p>
-            {isLoading || didPostRequestSucceed ? (
+            { isLoading || didPostRequestSucceed ? (
               <>
                 {isLoading && renderLoading()}
                 {didPostRequestSucceed && renderSuccessMessage()}

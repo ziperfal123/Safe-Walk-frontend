@@ -18,7 +18,6 @@ const errorReducer = (state = initialState, action) => {
       }
 
     case ActionTypes.CLEAN_ERROR_OBJ:
-      console.log('cleaning up')
       return {
         ...state,
         errorObj: {

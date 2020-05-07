@@ -25,6 +25,12 @@ const videosReducer = (state = initialState, action) => {
         loadingAllVideos: false,
       }
 
+    case ActionTypes.CREATE_VIDEO_SUCCESS:
+      return {
+        ...state,
+        allVideos: [action.payload, ...state.allVideos],
+      }
+
     case ActionTypes.CREATE_VIDEO_SET_LOADING_TRUE:
       return {
         ...state,
