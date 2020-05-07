@@ -11,6 +11,7 @@ import PatientTests from './containers/Tests'
 import Patients from './containers/Patients'
 import RehabPlans from './containers/RehabPlans/RehabPlans'
 import Videos from './containers/Videos'
+import NotFound from "containers/NotFound/NotFound";
 
 export const OverlayContext = React.createContext(false)
 
@@ -35,13 +36,14 @@ const App = ({ errorObj, cleanError }) => {
           <Header />
           <SideBar />
           <Switch>
+            <Route path="/" exact component={PatientTests} />
             <Route path={pathsNames.patientsTests} component={PatientTests} />
             <Route path={pathsNames.patients} component={Patients} />
             <Route path={pathsNames.defaultPlans} component={RehabPlans} />
             <Route path={pathsNames.videos} component={Videos} />
-            {/* <Route path={'*'} component={PatientTests} /> */}
-            // TODO:: should be changed to NotFound page, in the AppWrapper
-            // (so the NotFound page will be rendered outside of the App)
+            <Route path='*' component={NotFound} />
+            {/*// TODO:: should be changed to NotFound page, in the AppWrapper*/}
+            {/*// (so the NotFound page will be rendered outside of the App)*/}
           </Switch>
           {errorObj.errorOccurred
               && (
