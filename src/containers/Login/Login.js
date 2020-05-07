@@ -45,6 +45,6 @@ export default Login
 
 Login.propTypes = {
   handleLoginFormSubmit: PropTypes.func.isRequired,
-  isUserAuthenticated: PropTypes.bool.isRequired,
+  isUserAuthenticated: PropTypes.string.isRequired,
   location: PropTypes.objectOf(any).isRequired,
 }

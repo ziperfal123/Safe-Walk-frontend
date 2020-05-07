@@ -7,7 +7,7 @@ import { AUTH } from 'utils/consts'
 
 const LoginRequiredRoute = ({ location, component: Component, ...rest }) => {
   function renderRedirect() {
-    if (AUTH.isNotAuthenticated) {
+    if (rest.isUserAuthenticated === AUTH.isNotAuthenticated) {
       return location.pathname === pathsNames.login ? (
         <Redirect to={{
           pathname: pathsNames.login,
@@ -24,7 +24,6 @@ const LoginRequiredRoute = ({ location, component: Component, ...rest }) => {
     }
   }
 
-  console.log('LoginRequiredRoute')
   return (
     <Route
       {...rest}

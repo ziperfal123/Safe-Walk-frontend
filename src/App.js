@@ -36,11 +36,11 @@ const App = ({ errorObj, cleanError, history }) => {
           <Header />
           <SideBar history={history}/>
           <Switch >
-            <Route path="/" exact component={PatientTests} />
+            <Route exact path="/" component={PatientTests} />
             <Route path={pathsNames.patientsTests} component={PatientTests} />
             <Route path={pathsNames.patients} component={Patients} />
             <Route path={pathsNames.defaultPlans} component={RehabPlans} />
-            <Route path={pathsNames.videos} component={Videos} />
+            <Route exact path={pathsNames.videos} component={Videos} />
             <Route path='*' render={() => <NotFound isInApp/>} />
             {/*// TODO:: should be changed to NotFound page, in the AppWrapper*/}
             {/*// (so the NotFound page will be rendered outside of the App)*/}

@@ -5,24 +5,38 @@
   display: flex;
   justify-content: center;
   position: relative;
-  width: 500px;
-  height: 450px;
 
   &.in-app {
     @include page-size;
-
+    & .not-found-message {
+      margin-top: 40px;
+    }
   }
 
   &.outside-app {
     width: 100vw;
     height: 100vh;
+    & .not-found-message {
+      margin-top: 100px;
+    }
+
   }
 
   & .not-found-message {
-    margin-top: 100px;
-    & div.ant-result-subtitle {
-      font-size: 20px;
-      color: #333;
+    text-align: center;
+    color: #333;
+    & .text-section {
+      position: relative;
+      bottom: 25px;
+      & p {
+        font-size: 17px;
+        opacity: .9;
+      }
+      & h2 {
+        color: $sidebar-background-color;
+        margin-top: 35px;
+        font-size: 36px;
+      }
     }
   }
 }
