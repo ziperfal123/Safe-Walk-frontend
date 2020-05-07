@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import './abnormalityChip.scss'
 
 const AbnormalityChip = ({ results }) => {
-  console.log('AbnormalityChip')
   const colorClass = results.toLowerCase() === 'abnormality' ? 'red' : 'green'
   return <span className={`chip chip--${colorClass}`}>{results.toUpperCase()}</span>
 }

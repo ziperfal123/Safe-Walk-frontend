@@ -17,9 +17,8 @@ const Videos = (props) => {
     getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo, createError,
   } = props
 
-  const [displaySuccessMessageInModal, setDisplaySuccessMessageInModal] = useState(false)
+  const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
   const [shouldOpenModal, setShouldOpenModal] = useState(false)
-  const [errorObj, setErrorObj] = useState({ errorOccurred: false, errorMessage: '' })
 
   useEffect(() => {
     getAllVideos()
@@ -28,11 +27,6 @@ const Videos = (props) => {
   function handleAddVideoClick(toggleOverlay) {
     toggleOverlay(true)
     setShouldOpenModal(true)
-  }
-
-  function handleCloseModal(toggleOverlay) {
-    toggleOverlay(false)
-    setShouldOpenModal(false)
   }
 
   function handleRemoveVideo() {
@@ -45,32 +39,18 @@ const Videos = (props) => {
     )
   }
 
-  function fetchAllVideosAfterPost(toggleOverlay) {
-    setDisplaySuccessMessageInModal(true)
-    setTimeout(async () => {
-      toggleOverlay(false)
-      await getAllVideos()
-      setShouldOpenModal(false)
-      setDisplaySuccessMessageInModal(false)
-    }, 1200)
-  }
-
-  async function handleFormSubmit(formData, toggleOverlay) {
+  async function handleFormSubmit(formData) {
     const creationResponse = await createVideo(formData)
     if (creationResponse === API.postRequestSuccess) {
-      fetchAllVideosAfterPost(toggleOverlay)
+      setDidPostRequestSucceed(true)
+      setShouldOpenModal(false)
     } else {
       createError(creationResponse && creationResponse.message)
     }
   }
 
-  function handleOKErrorModal(toggleOverlay) {
-    toggleOverlay(false)
+  function handleOnCancelModal() {
     setShouldOpenModal(false)
-    setErrorObj({
-      errorOccurred: false,
-      errorMessage: '',
-    })
   }
 
   return (
@@ -84,14 +64,15 @@ const Videos = (props) => {
           ) : (
             <>
               <Modal
-                onCancel={() => handleCloseModal(toggleOverlay)}
-                handleSubmit={(formData) => handleFormSubmit(formData, toggleOverlay)}
-                visible={shouldOpenModal}
+                handleFormSubmit={(formData) => handleFormSubmit(formData)}
+                handleOnCancel={handleOnCancelModal}
+                visible={shouldOpenModal || didPostRequestSucceed}
                 formTitle="Create a new Video"
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={VideosForm}
                 isLoading={loadingCreateVideo}
-                displaySuccessMessageInModal={displaySuccessMessageInModal}
+                didPostRequestSucceed={didPostRequestSucceed}
+                setDidPostRequestSucceed={setDidPostRequestSucceed}
               />
               <div className="videos-container">
                 <AddCard type="video" handleClick={() => handleAddVideoClick(toggleOverlay)} />

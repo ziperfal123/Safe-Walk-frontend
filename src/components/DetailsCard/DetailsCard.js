@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import './detailsCard.scss'
 
 const DetailsCard = ({ children, handleCardClick, id }) => {
-  console.log('DetailsCard')
 
   function handleClick() {
     handleCardClick(id)

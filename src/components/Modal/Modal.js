@@ -1,18 +1,28 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Modal as AntModal, Spin, Result } from 'antd'
 import Logo from 'components/SideBar/files/logo.svg'
 import './modal.scss'
+import { OverlayContext } from 'App'
 
 const Modal = (props) => {
   console.log('Modal')
   const {
     FormToRender,
-    handleSubmit,
+    handleFormSubmit,
+    handleOnCancel,
     formTitle,
     formDescription,
     isLoading,
-    displaySuccessMessageInModal,
+    didPostRequestSucceed,
+    setDidPostRequestSucceed,
   } = props
+
+  useEffect(() => {
+    console.log('first')
+    didPostRequestSucceed && setTimeout(async () => {
+      setDidPostRequestSucceed(false)
+    }, 1000)
+  }, [didPostRequestSucceed])
 
   function renderLoading() {
     return (
@@ -32,33 +42,44 @@ const Modal = (props) => {
     )
   }
 
+  function handleModalClose(toggleOverlay, didUserForceCancel = false) {
+    didUserForceCancel && handleOnCancel()
+    toggleOverlay(false)
+  }
+
 
   return (
-    <AntModal
-      className="modal-container"
-      width={640}
-      footer={null}
-      mask={false}
-      {...props}
-    >
-      <aside>
-        <img src={Logo} alt="logo" />
-      </aside>
-      <div className="form-wrapper">
-        <h1>{formTitle}</h1>
-        <p>
-          {formDescription}
-        </p>
-        {isLoading || displaySuccessMessageInModal ? (
-          <>
-            {isLoading && renderLoading()}
-            {displaySuccessMessageInModal && renderSuccessMessage()}
-          </>
-        ) : (
-          <FormToRender handleSubmit={handleSubmit} />
-        )}
-      </div>
-    </AntModal>
+    <OverlayContext.Consumer>
+      {({ toggleOverlay }) => (
+        <AntModal
+          className="modal-container"
+          width={640}
+          footer={null}
+          mask={false}
+          afterClose={() => handleModalClose(toggleOverlay)}
+          onCancel={() => handleModalClose(toggleOverlay, true)}
+          {...props}
+        >
+          <aside>
+            <img src={Logo} alt="logo" />
+          </aside>
+          <div className="form-wrapper">
+            <h1>{formTitle}</h1>
+            <p>
+              {formDescription}
+            </p>
+            {isLoading || didPostRequestSucceed ? (
+              <>
+                {isLoading && renderLoading()}
+                {didPostRequestSucceed && renderSuccessMessage()}
+              </>
+            ) : (
+              <FormToRender handleFormSubmit={handleFormSubmit} />
+            )}
+          </div>
+        </AntModal>
+      )}
+    </OverlayContext.Consumer>
   )
 }
 

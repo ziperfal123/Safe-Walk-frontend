@@ -43,7 +43,6 @@ const App = ({ errorObj, cleanError }) => {
             // (so the NotFound page will be rendered outside of the App)
           </Switch>
           <ErrorModal
-            handleOK={() => console.log('OK')}
             visible={errorObj.errorOccurred}
             errorMessage={errorObj.errorMessage}
             cleanError={cleanError}
