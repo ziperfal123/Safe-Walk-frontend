@@ -27,5 +27,6 @@ module.exports = {
     'react/jsx-props-no-spreading': ['off'],
     "semi": ["error", "never"],
     "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+    "react/prop-types": 0   //TODO:: REMOVE!
   },
 };

@@ -15,6 +15,7 @@ import Videos from './containers/Videos'
 
 export const OverlayContext = React.createContext(false)
 
+// eslint-disable-next-line no-shadow
 const App = ({ errorObj, cleanError }) => {
   console.log('App')
   const [isOverlayActive, toggleOverlay] = useState(false)
@@ -42,12 +43,15 @@ const App = ({ errorObj, cleanError }) => {
             // TODO:: should be changed to NotFound page, in the AppWrapper
             // (so the NotFound page will be rendered outside of the App)
           </Switch>
-          <ErrorModal
-            visible={errorObj.errorOccurred}
-            errorMessage={errorObj.errorMessage}
-            cleanError={cleanError}
-            destroyOnClose
-          />
+          {errorObj.errorOccurred
+              && (
+              <ErrorModal
+                visible={errorObj.errorOccurred}
+                errorMessage={errorObj.errorMessage}
+                cleanError={cleanError}
+                destroyOnClose
+              />
+              )}
         </>
       </>
     </OverlayContext.Provider>
