@@ -25,8 +25,7 @@ function AppWrapper({ loading, checkUserAuthStatusOnAppLoad, isUserAuthenticated
 
   return (
     <Switch>
-      <Route path={pathsNames.login} component={Login} />
-      {/* <Route path={'/'} component={Login} /> */}
+      <Route exact path={pathsNames.login} component={Login} />
       {isUserAuthenticated !== AUTH.isAuthenticated
         && <Route exact path="/" component={Login} />}
       {isUserAuthenticated !== AUTH.isAuthenticated
