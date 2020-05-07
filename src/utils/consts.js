@@ -1,3 +1,9 @@
+export const AUTH = {
+  isAuthenticated: 'isAuthenticated',
+  isNotAuthenticated: 'notAuthenticated',
+  isPending: 'isPending',
+}
+
 export const API = {
   postRequestSuccess: 'postSuccess',
   postRequestError: 'postError',

@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import './login.scss'
 
 import Form from './components/Form'
+import {AUTH} from "utils/consts";
 
 
 const HeaderAnimation = () => (
@@ -24,7 +25,7 @@ const Login = (props) => {
   console.log('Login')
   const { isUserAuthenticated, location, handleLoginFormSubmit } = props
 
-  if (isUserAuthenticated) {
+  if (isUserAuthenticated === AUTH.isAuthenticated) {
     const { from } = location.state || { from: { pathname: '/' } }
     return <Redirect to={from} />
   }

@@ -1,5 +1,8 @@
+import React from 'react'
 import axios from 'axios'
 import config from 'config'
+import { AUTH } from 'utils/consts'
+import {Redirect} from 'react-router-dom'
 import {
   CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
   LOGIN_SUCCESS,
@@ -7,6 +10,7 @@ import {
   SET_LOADING_TO_FALSE,
   LOGOUT,
 } from './actionTypes'
+import pathsNames from "router/pathNames";
 
 
 export const checkUserAuthStatusOnAppLoad = () => {
@@ -14,7 +18,7 @@ export const checkUserAuthStatusOnAppLoad = () => {
   const isTokenExists = !!localToken
   return {
     type: CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
-    payload: isTokenExists,
+    payload: isTokenExists ? AUTH.isAuthenticated : AUTH.isNotAuthenticated,
   }
 }
 
@@ -49,9 +53,10 @@ export const handleLoginFormSubmit = (mail, password) => async (dispatch) => {
   dispatch({ type: SET_LOADING_TO_FALSE })
 }
 
-export const handleLogout = () => (dispatch) => {
+export const handleLogout = (history) => (dispatch) => {
   localStorage.removeItem(config.LOCAL_STORAGE_TOKEN)
   localStorage.removeItem('userName')
   localStorage.removeItem('userImage')
   dispatch({ type: LOGOUT })
+  history.push(pathsNames.login)
 }

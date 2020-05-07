@@ -4,6 +4,7 @@ const pathsNames = {
   patients: '/patients/',
   defaultPlans: '/defaultPlans/',
   videos: '/videos/',
-};
+  notFound: '/notFound/',
+}
 
-export default pathsNames;
+export default pathsNames

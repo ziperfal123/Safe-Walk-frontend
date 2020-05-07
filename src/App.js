@@ -16,7 +16,7 @@ import NotFound from "containers/NotFound/NotFound";
 export const OverlayContext = React.createContext(false)
 
 // eslint-disable-next-line no-shadow
-const App = ({ errorObj, cleanError }) => {
+const App = ({ errorObj, cleanError, history }) => {
   console.log('App')
 
   const [isOverlayActive, toggleOverlay] = useState(false)
@@ -34,14 +34,14 @@ const App = ({ errorObj, cleanError }) => {
         <div className={overlayClasses} />
         <>
           <Header />
-          <SideBar />
-          <Switch>
+          <SideBar history={history}/>
+          <Switch >
             <Route path="/" exact component={PatientTests} />
             <Route path={pathsNames.patientsTests} component={PatientTests} />
             <Route path={pathsNames.patients} component={Patients} />
             <Route path={pathsNames.defaultPlans} component={RehabPlans} />
             <Route path={pathsNames.videos} component={Videos} />
-            <Route path='*' component={NotFound} />
+            <Route path='*' render={() => <NotFound isInApp/>} />
             {/*// TODO:: should be changed to NotFound page, in the AppWrapper*/}
             {/*// (so the NotFound page will be rendered outside of the App)*/}
           </Switch>
