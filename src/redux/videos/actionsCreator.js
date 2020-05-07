@@ -9,7 +9,7 @@ export const getAllVideos = () => async (dispatch) => {
     const response = await get('video')
     dispatch({
       type: ActionsType.FETCH_ALL_VIDEOS_SUCCESS,
-      payload: response.data,
+      payload: response.data.reverse(),
     })
   } catch (err) {
     console.log('error: ', err)

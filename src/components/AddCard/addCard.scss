@@ -13,12 +13,11 @@
   cursor: pointer;
   transition: .15s;
   &:hover {
-    & h2 {
+    background-color: $sidebar-background-color;
+    & h2, & i {
       color: $list-hover-color;
     }
-    background-color: $sidebar-background-color;
   }
-
 
   & .plus-btn {
     width: 100px;
