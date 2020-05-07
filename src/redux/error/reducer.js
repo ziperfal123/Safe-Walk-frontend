@@ -2,7 +2,7 @@ import * as ActionTypes from './actionTypes'
 const initialState = {
   errorObj: {
     errorOccurred: false,
-    errorMessage: '',
+    errorMessage: 'unfortunately, something went wrong.. try again ',
   },
 }
 
@@ -22,7 +22,7 @@ const errorReducer = (state = initialState, action) => {
         ...state,
         errorObj: {
           errorOccurred: false,
-          errorMessage: '',
+          errorMessage: 'unfortunately, something went wrong.. try again',
         },
       }
 

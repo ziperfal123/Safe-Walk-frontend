@@ -1,7 +1,7 @@
 import * as ActionTypes from './actionTypes'
 
 
-export const createError = (errorMessage) => (dispatch) => {
+export const activateErrorModal = (errorMessage) => (dispatch) => {
   dispatch({
     type: ActionTypes.CREATE_ERROR_OBJ,
     payload: {

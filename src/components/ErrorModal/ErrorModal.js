@@ -4,25 +4,25 @@ import './errorModal.scss'
 
 const ErrorModal = (props) => {
   console.log('ErrorModal')
-  const {errorMessage, cleanError } = props
+  const { errorMessage, cleanError } = props
 
-  function handleOK() {
+  function handleCloseErrorModal() {
     cleanError()
   }
   return (
     <AntModal
       className="error-modal-container"
-      width={540}
-      mask={false}
-      closable={false}
+      mask
+      onCancel={handleCloseErrorModal}
       footer={[
-        <Button onClick={handleOK}>
+        <Button onClick={handleCloseErrorModal}>
           OK
         </Button>,
       ]}
       {...props}
     >
       <h2>Oops... Error has occured</h2>
+      <i className="fas fa-exclamation-circle fa-5x" />
       <p>{errorMessage}</p>
     </AntModal>
   )
