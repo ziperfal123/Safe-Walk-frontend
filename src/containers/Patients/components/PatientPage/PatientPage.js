@@ -6,6 +6,8 @@ import './patientPage.scss'
 import pathsNames from 'router/pathNames'
 import BackButton from 'components/BackButton'
 import TestPage from 'containers/TestPage'
+import Modal from 'components/Modal'
+import { OverlayContext } from 'App'
 import PatientDataSection from '../PatientDataSection'
 import TestsSection from '../TestsSection'
 
@@ -24,13 +26,14 @@ const PatientPage = (props) => {
   console.log('PatientPage')
 
   const [clickedTestId, setClickedTestId] = useState('')
+  const [shouldOpenModal, setShouldOpenModal] = useState(false)
+  const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
+
 
   useEffect(() => {
     getTestsById(patient.id)
     getRehabPlanById(patient.rehabPlanID)
-    return () => {
-      cleanTestsById()
-    }
+    return cleanTestsById
   }, [])
 
   useEffect(() => {
@@ -46,28 +49,58 @@ const PatientPage = (props) => {
     setClickedTestId('')
   }
 
+  function handleFormSubmit(formData) {
+    console.log('HANDLE SUBMIT')
+  }
+
+  function handleOnCancelModal() {
+    setShouldOpenModal(false)
+  }
+
+  function handleEditPlan(toggleOverlay) {
+    setShouldOpenModal(true)
+    toggleOverlay(true)
+  }
+
   function renderPageSections() {
     return (
-      loadingAllTestsById || !allTestsById || loadingPlanById ? (
-        <div className="loading-patient">
-          <Spin />
-        </div>
-      ) : (
-        <>
-          <PatientDataSection
-            patient={patient}
-            history={history}
-            planById={planById}
-          />
-          <hr />
-          <TestsSection
-            allTestsById={allTestsById}
-            loadingAllTestsById={loadingAllTestsById}
-            handleTestClick={handleTestClick}
-          />
-          <BackButton handleBackClick={handleBackClick} />
-        </>
-      )
+      <OverlayContext.Consumer>
+        {({ toggleOverlay }) => (
+          loadingAllTestsById || !allTestsById || loadingPlanById ? (
+            <div className="loading-patient">
+              <Spin />
+            </div>
+          ) : (
+            <>
+              <Modal
+                handleFormSubmit={(formData) => handleFormSubmit(formData)}
+                handleOnCancel={handleOnCancelModal}
+                visible={shouldOpenModal || didPostRequestSucceed}
+                formTitle="Edit patient's plan"
+                formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
+                FormToRender={() => <div>This is going to be the form..</div>}
+                // isLoading={loadingCreateVideo}
+                // didPostRequestSucceed={didPostRequestSucceed}
+                // setDidPostRequestSucceed={setDidPostRequestSucceed}
+              />
+              <PatientDataSection
+                patient={patient}
+                history={history}
+                planById={planById}
+                handleEditPlan={() => handleEditPlan(toggleOverlay)}
+              />
+              <hr />
+              <TestsSection
+                allTestsById={allTestsById}
+                loadingAllTestsById={loadingAllTestsById}
+                handleTestClick={handleTestClick}
+              />
+              <BackButton handleBackClick={handleBackClick} />
+            </>
+          )
+        )}
+      </OverlayContext.Consumer>
+
     )
   }
 
