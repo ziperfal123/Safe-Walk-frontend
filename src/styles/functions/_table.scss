@@ -1,5 +1,5 @@
 @mixin table-wrapper {
-  width: calc(97vw - #{$sidebar-width});
+  width: calc(95vw - #{$sidebar-width});
   position: relative;
   padding-top: 40px;
   padding-bottom: 30px;

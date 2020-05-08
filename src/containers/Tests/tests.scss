@@ -2,7 +2,6 @@
 
 .patient-tests-container {
   @include page-size;
-  overflow-x: hidden;
 
   .table-wrapper {
     @include table-wrapper;
