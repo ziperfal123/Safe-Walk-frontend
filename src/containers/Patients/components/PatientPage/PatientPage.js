@@ -10,6 +10,7 @@ import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
 import PatientDataSection from '../PatientDataSection'
 import TestsSection from '../TestsSection'
+import PlanForm from "components/Forms/PlanForm";
 
 const PatientPage = (props) => {
   const {
@@ -78,7 +79,7 @@ const PatientPage = (props) => {
                 visible={shouldOpenModal || didPostRequestSucceed}
                 formTitle="Edit patient's plan"
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
-                FormToRender={() => <div>This is going to be the form..</div>}
+                FormToRender={PlanForm}
                 // isLoading={loadingCreateVideo}
                 // didPostRequestSucceed={didPostRequestSucceed}
                 // setDidPostRequestSucceed={setDidPostRequestSucceed}
