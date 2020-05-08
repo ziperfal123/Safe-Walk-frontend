@@ -1,7 +1,7 @@
 import React from 'react'
 import { Result } from 'antd'
 import classNames from 'classnames'
-import { NOT_FOUND } from "utils/consts";
+import { NOT_FOUND } from 'utils/consts'
 import './notFound.scss'
 
 export default function NotFound({ isInApp }) {
@@ -16,7 +16,7 @@ export default function NotFound({ isInApp }) {
         <Result
           status="404"
         />
-        <div className={'text-section'}>
+        <div className="text-section">
           <p>{NOT_FOUND.firstLine}</p>
           <p>{NOT_FOUND.secondLine}</p>
           <h2>SafeWalk Team.</h2>

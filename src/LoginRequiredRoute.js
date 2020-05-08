@@ -22,6 +22,7 @@ const LoginRequiredRoute = ({ location, component: Component, ...rest }) => {
         />
       )
     }
+    return <div />
   }
 
   return (
