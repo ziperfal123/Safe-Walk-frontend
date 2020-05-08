@@ -1,5 +1,5 @@
 @mixin page-size {
-  width: calc(98vw - #{$sidebar-width});
+  width: calc(100vw - #{$sidebar-width});
   min-height: calc(100vh - #{$header-height});
   top: $header-height;
   left: $sidebar-width;
