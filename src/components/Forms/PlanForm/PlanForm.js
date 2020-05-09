@@ -19,35 +19,59 @@ const PlanForm = (props) => {
     formTitle, formDescription, dataToEdit, handleFormSubmit, allDefaultPlans,
   } = props
 
-  const [selectedDefaultPlans, setSelectedDefaultPlans] = useState([])
+  const [name, setNameField] = useState(dataToEdit.name)
+  const [instructions, setInstructionsField] = useState(dataToEdit.instructions)
+  const [videos, setVideosField] = useState(dataToEdit.videos || [])
+  const [defaultPlans, setDefaultPlansField] = useState(dataToEdit.defaultPlans)
 
-
-  function normalizeFormData(formData) {
-    const normalizedFormData = cloneDeep(formData)
-    Object.keys(normalizedFormData).forEach((key) => {
-      if (normalizedFormData[key] === undefined) {
-        normalizedFormData[key] = dataToEdit[key]
-      }
-    })
-    return normalizedFormData
+  function handleFinish() {
+    const videosIds = videos.map((video) => video.videoID)
+    const finalFormData = {
+      name,
+      instructions,
+      videos: videosIds,
+      defaultPlanIDs: defaultPlans || [],
+    }
+    console.log('finalFormData: ', finalFormData)
+    handleFormSubmit(finalFormData)
   }
 
-  function handleFinish(formData) {
-    const normalizedFormData = normalizeFormData(formData)
-    normalizedFormData.defaultPlanIDs = selectedDefaultPlans
-    handleFormSubmit(normalizedFormData)
+  function renderOption(defaultPlan, index) {
+    return (
+      <Option value={defaultPlan.id}>
+        {defaultPlan.name}
+        {' '}
+        key=
+        {index}
+      </Option>
+    )
   }
 
-  function renderOption(defaultPlan) {
-    return <Option value={defaultPlan.id}>{defaultPlan.name}</Option>
+  // function handleSelectChange(arrOfSelectedOptions) {
+  //   setSelectedDefaultPlans(arrOfSelectedOptions)
+  // }
+
+  // function handleFieldChange(changedField) {
+  //   console.log('changedField: ', changedField)
+  //   setFormData({
+  //     name: dataToEdit.name,
+  //     instructions: dataToEdit.instructions,
+  //     videos: dataToEdit.videos,
+  //     defaultPlans: dataToEdit.defaultPlans,
+  //   })
+  // }
+
+  function handleNameChange(field) {
+    console.log('name: ', field.target.value)
+    setNameField(field.target.value)
   }
 
-  function handleSelectChange(arrOfSelectedOptions) {
-    setSelectedDefaultPlans(arrOfSelectedOptions)
+  function handleInstructionsChange(field) {
+    setInstructionsField(field.target.value)
   }
 
   return (
-    <Form className="form has-tabs" layout="vertical" onFinish={handleFinish} onFieldsChange={(a) => console.log(a)}>
+    <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
       <Tabs defaultActiveKey="2">
         <TabPane tab="plan information" key="1">
           <div className="tab-content-container">
@@ -63,13 +87,13 @@ const PlanForm = (props) => {
               label="plan name:"
               name="name"
             >
-              <Input className="form-input" defaultValue={dataToEdit.name} />
+              <Input className="form-input" defaultValue={dataToEdit.name} onChange={handleNameChange} />
             </Form.Item>
             <Form.Item
               label="instructions:"
               name="instructions"
             >
-              <Input className="form-input" defaultValue={dataToEdit.instructions} />
+              <Input className="form-input" defaultValue={dataToEdit.instructions} onChange={handleInstructionsChange} />
             </Form.Item>
           </div>
         </TabPane>
@@ -77,11 +101,11 @@ const PlanForm = (props) => {
           <div className="tab-content-container">
             <Form.Item label="choose default plan:">
               <Select
-                defaultValue={dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]}    //TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
+                defaultValue={dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]} // TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
                 mode="multiple"
                 style={{ width: '60%' }}
                 placeholder="select default plans..."
-                onChange={handleSelectChange}
+                // onChange={handleSelectChange}
               >
                 {allDefaultPlans.map(renderOption)}
               </Select>
