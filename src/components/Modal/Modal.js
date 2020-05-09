@@ -17,7 +17,8 @@ const Modal = (props) => {
     setDidPostRequestSucceed,
     dataToEdit,
     allDefaultPlans,
-    allVideos
+    allVideos,
+    modalWidth = 660,
   } = props
 
   useEffect(() => {
@@ -56,11 +57,12 @@ const Modal = (props) => {
       {({ toggleOverlay }) => (
         <AntModal
           className="modal-container"
-          width={660}
+          width={modalWidth}
           footer={null}
           mask={false}
           afterClose={() => handleModalClose(toggleOverlay)}
           onCancel={() => handleModalClose(toggleOverlay, true)}
+          destroyOnClose
           {...props}
         >
           <aside>

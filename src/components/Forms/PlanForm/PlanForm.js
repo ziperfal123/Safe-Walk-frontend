@@ -6,6 +6,7 @@ import {
   Tabs,
   Select,
 } from 'antd'
+import classNames from 'classnames'
 import '../form.scss'
 
 const { TabPane } = Tabs
@@ -49,23 +50,16 @@ const PlanForm = (props) => {
     )
   }
 
-  function handleVideoClick(videoId) {
-    const isVideoAlreadyInList = videos.includes(videoId)
-    let updatedVideosArr = [...videos]
-    if (isVideoAlreadyInList) {
-      updatedVideosArr = updatedVideosArr.filter((id) => id !== videoId)
-    } else {
-      updatedVideosArr.push(videoId)
-    }
-    setVideosField(updatedVideosArr)
-    console.log('videos: ', videos)
-  }
-
   function renderVideo(video, index) {
+    const isSelected = videos.includes(video.id)
+    const videoClasses = classNames({
+      'video-box': true,
+      'selected': isSelected,
+    })
     return (
-      <div className="video-box" key={index} onClick={() => handleVideoClick(video.id)}>
+      <div className={videoClasses} key={index} onClick={() => handleVideoClick(video.id)}>
         <label>{video.name}</label>
-        <iframe height={150} width={400} src={video.link} title="hello" />
+        <iframe height={150} width={400} src={video.link} />
       </div>
     )
   }
@@ -83,6 +77,18 @@ const PlanForm = (props) => {
     setDefaultPlansField(arrOfSelectedOptions)
   }
 
+  function handleVideoClick(videoId) {
+    const isVideoAlreadyInList = videos.includes(videoId)
+    let updatedVideosArr = [...videos]
+    if (isVideoAlreadyInList) {
+      updatedVideosArr = updatedVideosArr.filter((id) => id !== videoId)
+    } else {
+      updatedVideosArr.push(videoId)
+    }
+    setVideosField(updatedVideosArr)
+    console.log('videos: ', videos)
+  }
+
 
   return (
     <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
@@ -92,12 +98,10 @@ const PlanForm = (props) => {
             <h1>{formTitle}</h1>
             <p>{formDescription}</p>
             <Form.Item
-              rules={
-                    [
-                      { required: true, message: 'Plan name is required' },
-                      { required: true, min: 3, message: 'Name should contain at least 3 characters' },
-                    ]
-                  }
+              rules={[
+                { required: true, message: 'Plan name is required' },
+                { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+              ]}
               label="plan name:"
               name="name"
             >

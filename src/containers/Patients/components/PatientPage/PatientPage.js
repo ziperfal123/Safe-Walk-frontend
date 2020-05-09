@@ -81,6 +81,7 @@ const PatientPage = (props) => {
           ) : (
             <>
               <Modal
+                modalWidth={700}
                 handleFormSubmit={(formData) => handleFormSubmit(formData)}
                 handleOnCancel={handleOnCancelModal}
                 visible={shouldOpenModal || didPostRequestSucceed}
