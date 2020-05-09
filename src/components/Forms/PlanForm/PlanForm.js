@@ -5,9 +5,7 @@ import {
   Button,
   Tabs,
   Select,
-  Tag,
 } from 'antd'
-import { cloneDeep } from 'lodash'
 import '../form.scss'
 
 const { TabPane } = Tabs
@@ -16,7 +14,7 @@ const { Option } = Select
 const PlanForm = (props) => {
   console.log('PlanForm')
   const {
-    formTitle, formDescription, dataToEdit, handleFormSubmit, allDefaultPlans,
+    formTitle, formDescription, dataToEdit, handleFormSubmit, allDefaultPlans, allVideos,
   } = props
 
   const [name, setNameField] = useState(dataToEdit.name)
@@ -41,6 +39,15 @@ const PlanForm = (props) => {
       <Option value={defaultPlan.id} key={index}>
         {defaultPlan.name}
       </Option>
+    )
+  }
+
+  function renderVideo(video, index) {
+    return (
+      <div className="video-box" key={index}>
+        <label>{video.name}</label>
+        <iframe height={150} width={400} src={video.link} title="hello" />
+      </div>
     )
   }
 
@@ -97,6 +104,9 @@ const PlanForm = (props) => {
               >
                 {allDefaultPlans.map(renderOption)}
               </Select>
+            </Form.Item>
+            <Form.Item label="choose videos:">
+              {allVideos.map(renderVideo)}
             </Form.Item>
           </div>
         </TabPane>

@@ -56,7 +56,7 @@ const Modal = (props) => {
       {({ toggleOverlay }) => (
         <AntModal
           className="modal-container"
-          width={640}
+          width={660}
           footer={null}
           mask={false}
           afterClose={() => handleModalClose(toggleOverlay)}
