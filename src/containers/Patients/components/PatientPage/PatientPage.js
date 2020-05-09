@@ -80,6 +80,7 @@ const PatientPage = (props) => {
                 formTitle="Edit patient's plan"
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={PlanForm}
+                tabs={[]}   // ???? 
                 // isLoading={loadingCreateVideo}
                 // didPostRequestSucceed={didPostRequestSucceed}
                 // setDidPostRequestSucceed={setDidPostRequestSucceed}

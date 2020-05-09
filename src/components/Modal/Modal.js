@@ -64,17 +64,17 @@ const Modal = (props) => {
             <img src={Logo} alt="logo" />
           </aside>
           <div className="form-wrapper">
-            <h1>{formTitle}</h1>
-            <p>
-              {formDescription}
-            </p>
             { isLoading || didPostRequestSucceed ? (
               <>
                 {isLoading && renderLoading()}
                 {didPostRequestSucceed && renderSuccessMessage()}
               </>
             ) : (
-              <FormToRender handleFormSubmit={handleFormSubmit} />
+              <FormToRender
+                formTitle={formTitle}
+                formDescription={formDescription}
+                handleFormSubmit={handleFormSubmit}
+              />
             )}
           </div>
         </AntModal>

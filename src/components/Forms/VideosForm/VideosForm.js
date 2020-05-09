@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 import '../form.scss'
 
-const VideosForm = ({ handleFormSubmit }) => {
+const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
   console.log('VideosForm')
 
   function handleFinish(formData) {
@@ -10,6 +10,8 @@ const VideosForm = ({ handleFormSubmit }) => {
   }
   return (
     <Form className="form" layout="vertical" onFinish={handleFinish}>
+      <h1>{formTitle}</h1>
+      <p>{formDescription}</p>
       <Form.Item
         rules={
           [

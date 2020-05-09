@@ -1,12 +1,79 @@
 import React from 'react'
+import {
+  Form,
+  Input,
+  Button,
+  Tabs,
+} from 'antd'
+import '../form.scss'
 
-const PlanForm = () => {
-  console.log('PlanForm')
+const { TabPane } = Tabs
+const { TextArea } = Input
 
-  return (
-    <h1>Plan For,</h1>
+const PlanForm = ({ formTitle, formDescription }) =>
+
+// function handleFinish(formData) {
+//   handleFormSubmit(formData)
+// }
+
+  (
+    <Form className="form has-tabs" layout="vertical">
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="plan information" key="1">
+          <div className='box'>
+          <h1>{formTitle}</h1>
+          <p>{formDescription}</p>
+          <Form.Item
+            rules={
+                [
+                  { required: true, message: 'Video name is required' },
+                  { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+                ]
+              }
+            label="plan name:"
+            name="name"
+          >
+            <Input className={'form-input'} />
+          </Form.Item>
+          <Form.Item
+            rules={
+                [
+                  { required: true, message: 'Video name is required' },
+                  { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+                ]
+              }
+            label="plan name:"
+            name="name"
+          >
+            <Input className={'form-input'} />
+          </Form.Item>
+          <Form.Item
+            rules={
+                [
+                  { required: true, message: 'Video name is required' },
+                  { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+                ]
+              }
+            label="plan name:"
+            name="name"
+          >
+            <TextArea className={'form-input'} />
+          </Form.Item>
+          </div>
+        </TabPane>
+        <TabPane tab="videos & default plans" key="2">
+          <div className='box'>
+            <h2>World</h2>
+          </div>
+        </TabPane>
+      </Tabs>
+      <Form.Item className="save-btn-container">
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
   )
-}
 
 
 export default PlanForm

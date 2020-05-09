@@ -20,26 +20,35 @@
 
   & .form-wrapper {
     position: relative;
-    overflow-y: scroll;
+    //overflow-y: scroll;
     height: 480px;
-    top: 20px;
+    top: 10px;
     left: 27%;
     width: 73%;
 
-    & h1,
-    & p,
     & .form {
-      width: 92%;
+      width: 98%;
     }
 
     & .save-btn-container {
       position: absolute;
-      bottom: 5%;
-      right: 8%;
+      bottom: 0;
+      right: 0;
+      //top: 10px;
+      float: right;
+      & button {
+      }
+    }
+
+    & .ant-result.ant-result-success {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     & .loading-modal {
-      height: 50%;
+      height: 90%;
       display: flex;
       flex-direction: column;
       justify-content: center;
