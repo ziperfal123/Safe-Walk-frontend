@@ -16,6 +16,7 @@ const Modal = (props) => {
     didPostRequestSucceed,
     setDidPostRequestSucceed,
     dataToEdit,
+    allDefaultPlans,
   } = props
 
   useEffect(() => {
@@ -76,6 +77,7 @@ const Modal = (props) => {
                 formDescription={formDescription}
                 handleFormSubmit={handleFormSubmit}
                 dataToEdit={dataToEdit || null}
+                allDefaultPlans={allDefaultPlans || null}
               />
             )}
           </div>

@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Form,
   Input,
   Button,
   Tabs,
   Select,
+  Tag,
 } from 'antd'
 import { cloneDeep } from 'lodash'
 import '../form.scss'
@@ -15,8 +16,11 @@ const { Option } = Select
 const PlanForm = (props) => {
   console.log('PlanForm')
   const {
-    formTitle, formDescription, dataToEdit, handleFormSubmit,
+    formTitle, formDescription, dataToEdit, handleFormSubmit, allDefaultPlans,
   } = props
+
+  const [selectedDefaultPlans, setSelectedDefaultPlans] = useState([])
+
 
   function normalizeFormData(formData) {
     const normalizedFormData = cloneDeep(formData)
@@ -30,7 +34,16 @@ const PlanForm = (props) => {
 
   function handleFinish(formData) {
     const normalizedFormData = normalizeFormData(formData)
+    normalizedFormData.defaultPlanIDs = selectedDefaultPlans
     handleFormSubmit(normalizedFormData)
+  }
+
+  function renderOption(defaultPlan) {
+    return <Option value={defaultPlan.id}>{defaultPlan.name}</Option>
+  }
+
+  function handleSelectChange(arrOfSelectedOptions) {
+    setSelectedDefaultPlans(arrOfSelectedOptions)
   }
 
   return (
@@ -63,11 +76,13 @@ const PlanForm = (props) => {
         <TabPane tab="videos & default plans" key="2">
           <div className="tab-content-container">
             <Form.Item label="choose default plan:">
-
-              <Select mode="tags" style={{ width: '60%' }} placeholder="Tags Mode" onChange={() => console.log('change')}>
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="tom">Tom</Option>
+              <Select
+                mode="multiple"
+                style={{ width: '60%' }}
+                placeholder="select default plans..."
+                onChange={handleSelectChange}
+              >
+                {allDefaultPlans.map(renderOption)}
               </Select>
             </Form.Item>
           </div>

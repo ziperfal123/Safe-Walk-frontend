@@ -11,6 +11,7 @@ import { OverlayContext } from 'App'
 import PatientDataSection from '../PatientDataSection'
 import TestsSection from '../TestsSection'
 import PlanForm from "components/Forms/PlanForm";
+import {getAllDefaultPlans} from "redux/defaultPlans/actionsCreator";
 
 const PatientPage = (props) => {
   const {
@@ -23,6 +24,8 @@ const PatientPage = (props) => {
     cleanTestsById,
     loadingAllTestsById,
     loadingPlanById,
+    allDefaultPlans,
+    getAllDefaultPlans,
   } = props
   console.log('PatientPage')
 
@@ -34,6 +37,7 @@ const PatientPage = (props) => {
   useEffect(() => {
     getTestsById(patient.id)
     getRehabPlanById(patient.rehabPlanID)
+    getAllDefaultPlans()
     return cleanTestsById
   }, [])
 
@@ -80,8 +84,8 @@ const PatientPage = (props) => {
                 formTitle="Edit patient's plan"
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={PlanForm}
-                tabs={[]}   // ????
                 dataToEdit={planById}
+                allDefaultPlans={allDefaultPlans}
                 // isLoading={loadingCreateVideo}
                 // didPostRequestSucceed={didPostRequestSucceed}
                 // setDidPostRequestSucceed={setDidPostRequestSucceed}

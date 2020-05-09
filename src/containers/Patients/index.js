@@ -10,6 +10,8 @@ const mapStateToProps = (state) => ({
   loadingAllTestsById: state.testsReducer.loadingAllTestsById,
 })
 
-const mapDispatchToProps = { getAllPatients, getTestsById, cleanTestsById }
+const mapDispatchToProps = {
+  getAllPatients, getTestsById, cleanTestsById,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Patients)
