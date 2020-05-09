@@ -20,49 +20,49 @@ const PlanForm = ({ formTitle, formDescription }) =>
     <Form className="form has-tabs" layout="vertical">
       <Tabs defaultActiveKey="1">
         <TabPane tab="plan information" key="1">
-          <div className='box'>
-          <h1>{formTitle}</h1>
-          <p>{formDescription}</p>
-          <Form.Item
-            rules={
+          <div className="tab-content-container">
+            <h1>{formTitle}</h1>
+            <p>{formDescription}</p>
+            <Form.Item
+              rules={
                 [
                   { required: true, message: 'Plan name is required' },
                   { required: true, min: 3, message: 'Name should contain at least 3 characters' },
                 ]
               }
-            label="plan name:"
-            name="name"
-          >
-            <Input className={'form-input'} />
-          </Form.Item>
-          <Form.Item
-            rules={
+              label="plan name:"
+              name="name"
+            >
+              <Input className="form-input" />
+            </Form.Item>
+            <Form.Item
+              rules={
                 [
                   { required: true, message: 'Instructions are required' },
                   { required: true, min: 10, message: 'Name should contain at least 10 characters' },
                 ]
               }
-            label="instructions:"
-            name="instructions"
-          >
-            <Input className={'form-input'} />
-          </Form.Item>
-          <Form.Item
-            rules={
+              label="instructions:"
+              name="instructions"
+            >
+              <Input className="form-input" />
+            </Form.Item>
+            <Form.Item
+              rules={
                 [
                   { required: true, message: 'Video name is required' },
                   { required: true, min: 3, message: 'Name should contain at least 3 characters' },
                 ]
               }
-            label="plan name:"
-            name="name"
-          >
-            <TextArea className={'form-input'} />
-          </Form.Item>
+              label="plan name:"
+              name="name"
+            >
+              <TextArea className="form-input" />
+            </Form.Item>
           </div>
         </TabPane>
         <TabPane tab="videos & default plans" key="2">
-          <div className='box'>
+          <div className="tab-content-container">
             <h2>World</h2>
           </div>
         </TabPane>

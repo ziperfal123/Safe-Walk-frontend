@@ -10,7 +10,7 @@ const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
   }
   return (
     <Form className="form" layout="vertical" onFinish={handleFinish}>
-      <div className='box'>
+      <div className='tab-content-container'>
       <h1>{formTitle}</h1>
       <p>{formDescription}</p>
       <Form.Item
