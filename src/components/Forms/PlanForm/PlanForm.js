@@ -47,7 +47,7 @@ const PlanForm = (props) => {
   }
 
   return (
-    <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
+    <Form className="form has-tabs" layout="vertical" onFinish={handleFinish} onFieldsChange={(a) => console.log(a)}>
       <Tabs defaultActiveKey="2">
         <TabPane tab="plan information" key="1">
           <div className="tab-content-container">
@@ -77,6 +77,7 @@ const PlanForm = (props) => {
           <div className="tab-content-container">
             <Form.Item label="choose default plan:">
               <Select
+                defaultValue={dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]}    //TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
                 mode="multiple"
                 style={{ width: '60%' }}
                 placeholder="select default plans..."
