@@ -4,16 +4,19 @@ import {
   Input,
   Button,
   Tabs,
+  Select,
 } from 'antd'
 import { cloneDeep } from 'lodash'
 import '../form.scss'
 
 const { TabPane } = Tabs
+const { Option } = Select
 
-const PlanForm = ({
-  formTitle, formDescription, dataToEdit, handleFormSubmit,
-}) => {
+const PlanForm = (props) => {
   console.log('PlanForm')
+  const {
+    formTitle, formDescription, dataToEdit, handleFormSubmit,
+  } = props
 
   function normalizeFormData(formData) {
     const normalizedFormData = cloneDeep(formData)
@@ -32,7 +35,7 @@ const PlanForm = ({
 
   return (
     <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
-      <Tabs defaultActiveKey="1">
+      <Tabs defaultActiveKey="2">
         <TabPane tab="plan information" key="1">
           <div className="tab-content-container">
             <h1>{formTitle}</h1>
@@ -59,7 +62,14 @@ const PlanForm = ({
         </TabPane>
         <TabPane tab="videos & default plans" key="2">
           <div className="tab-content-container">
-            <h2>World</h2>
+            <Form.Item label="choose default plan:">
+
+              <Select mode="tags" style={{ width: '60%' }} placeholder="Tags Mode" onChange={() => console.log('change')}>
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="tom">Tom</Option>
+              </Select>
+            </Form.Item>
           </div>
         </TabPane>
       </Tabs>
