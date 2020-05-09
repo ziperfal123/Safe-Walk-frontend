@@ -10,6 +10,7 @@ const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
   }
   return (
     <Form className="form" layout="vertical" onFinish={handleFinish}>
+      <div className='box'>
       <h1>{formTitle}</h1>
       <p>{formDescription}</p>
       <Form.Item
@@ -22,7 +23,7 @@ const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
         label="video name:"
         name="name"
       >
-        <Input />
+        <Input className={'form-input'} />
       </Form.Item>
       <Form.Item
         rules={
@@ -34,8 +35,9 @@ const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
         label="video link:"
         name="link"
       >
-        <Input />
+        <Input className={'form-input'} />
       </Form.Item>
+      </div>
       <Form.Item className="save-btn-container">
         <Button type="primary" htmlType="submit">
           Submit

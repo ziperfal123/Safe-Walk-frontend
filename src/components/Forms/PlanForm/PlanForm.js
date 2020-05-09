@@ -26,7 +26,7 @@ const PlanForm = ({ formTitle, formDescription }) =>
           <Form.Item
             rules={
                 [
-                  { required: true, message: 'Video name is required' },
+                  { required: true, message: 'Plan name is required' },
                   { required: true, min: 3, message: 'Name should contain at least 3 characters' },
                 ]
               }
@@ -38,12 +38,12 @@ const PlanForm = ({ formTitle, formDescription }) =>
           <Form.Item
             rules={
                 [
-                  { required: true, message: 'Video name is required' },
-                  { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+                  { required: true, message: 'Instructions are required' },
+                  { required: true, min: 10, message: 'Name should contain at least 10 characters' },
                 ]
               }
-            label="plan name:"
-            name="name"
+            label="instructions:"
+            name="instructions"
           >
             <Input className={'form-input'} />
           </Form.Item>

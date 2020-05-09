@@ -1,26 +1,24 @@
 @import 'main';
 
 .form {
-  //height: 100%;
-  & h1,
-  & p {
-    width: 96%;
+  & .box {
+    width: 100%;
+    height: 360px;
+    overflow-y: auto;
+    & h1,
+    & p {
+      width: 95%;
+    }
+    & .form-input {
+      max-width: 95%;
+    }
   }
-
   &:not(.has-tabs) {
     margin-top: 10px;
   }
 
   &.has-tabs {
     margin-bottom: 5px;
-    & .box {
-      width: 100%;
-      height: 360px;
-      overflow-y: auto;
-      & .form-input {
-        max-width: 95%;
-      }
-    }
   }
 }
 
