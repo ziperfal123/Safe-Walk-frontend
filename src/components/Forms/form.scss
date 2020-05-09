@@ -24,13 +24,20 @@
       &:first-of-type {
       margin-top: 5px;
       }
+      & * {
+        cursor: pointer;
+      }
       display: flex;
       flex-direction: column;
-      max-width: 70%;
+      max-width: calc(90% + 6px);
       margin-top: 25px;
       margin-left: 20px;
       & label {
-        margin-bottom: 5px;
+        background-color: #ffbc49;
+        padding-bottom: 6px;
+      }
+      & iframe {
+        border: 5px solid #ffbc49
       }
     }
   }

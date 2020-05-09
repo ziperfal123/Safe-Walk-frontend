@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import classNames from 'classnames'
 import ErrorModal from 'components/ErrorModal'
 import { cleanError } from 'redux/error/actionCreators'
+import NotFound from 'containers/NotFound/NotFound'
 import pathsNames from './router/pathNames'
 import Header from './components/Header'
 import SideBar from './components/SideBar'
@@ -11,7 +12,6 @@ import PatientTests from './containers/Tests'
 import Patients from './containers/Patients'
 import RehabPlans from './containers/RehabPlans/RehabPlans'
 import Videos from './containers/Videos'
-import NotFound from "containers/NotFound/NotFound";
 
 export const OverlayContext = React.createContext(false)
 
@@ -34,16 +34,14 @@ const App = ({ errorObj, cleanError, history }) => {
         <div className={overlayClasses} />
         <>
           <Header />
-          <SideBar history={history}/>
-          <Switch >
+          <SideBar history={history} />
+          <Switch>
             <Route exact path="/" component={PatientTests} />
             <Route path={pathsNames.patientsTests} component={PatientTests} />
             <Route path={pathsNames.patients} component={Patients} />
             <Route path={pathsNames.defaultPlans} component={RehabPlans} />
             <Route exact path={pathsNames.videos} component={Videos} />
-            <Route path='*' render={() => <NotFound isInApp/>} />
-            {/*// TODO:: should be changed to NotFound page, in the AppWrapper*/}
-            {/*// (so the NotFound page will be rendered outside of the App)*/}
+            <Route path="*" render={() => <NotFound isInApp />} />
           </Switch>
           {errorObj.errorOccurred
               && (

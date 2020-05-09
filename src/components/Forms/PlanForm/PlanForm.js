@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Form,
   Input,
@@ -22,6 +22,13 @@ const PlanForm = (props) => {
   const [videos, setVideosField] = useState(dataToEdit.videos || [])
   const [defaultPlans, setDefaultPlansField] = useState(dataToEdit.defaultPlans)
 
+  useEffect(() => {
+    let normalizedVideosArr = [...videos]
+    normalizedVideosArr = normalizedVideosArr.map((video) => video.videoID)
+    setVideosField(normalizedVideosArr)
+  }, [])
+
+
   function handleFinish() {
     const videosIds = videos.map((video) => video.videoID)
     const finalFormData = {
@@ -42,9 +49,21 @@ const PlanForm = (props) => {
     )
   }
 
+  function handleVideoClick(videoId) {
+    const isVideoAlreadyInList = videos.includes(videoId)
+    let updatedVideosArr = [...videos]
+    if (isVideoAlreadyInList) {
+      updatedVideosArr = updatedVideosArr.filter((id) => id !== videoId)
+    } else {
+      updatedVideosArr.push(videoId)
+    }
+    setVideosField(updatedVideosArr)
+    console.log('videos: ', videos)
+  }
+
   function renderVideo(video, index) {
     return (
-      <div className="video-box" key={index}>
+      <div className="video-box" key={index} onClick={() => handleVideoClick(video.id)}>
         <label>{video.name}</label>
         <iframe height={150} width={400} src={video.link} title="hello" />
       </div>
@@ -105,7 +124,7 @@ const PlanForm = (props) => {
                 {allDefaultPlans.map(renderOption)}
               </Select>
             </Form.Item>
-            <Form.Item label="choose videos:">
+            <Form.Item label="choose videos: (click on the video's name)">
               {allVideos.map(renderVideo)}
             </Form.Item>
           </div>
