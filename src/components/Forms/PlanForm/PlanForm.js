@@ -31,14 +31,12 @@ const PlanForm = (props) => {
 
 
   function handleFinish() {
-    const videosIds = videos.map((video) => video.videoID)
     const finalFormData = {
       name,
       instructions,
-      videos: videosIds,
+      videos,
       defaultPlanIDs: defaultPlans || [],
     }
-    console.log('finalFormData: ', finalFormData)
     handleFormSubmit(finalFormData)
   }
 
@@ -57,7 +55,7 @@ const PlanForm = (props) => {
       'selected': isSelected,
     })
     return (
-      <div className={videoClasses} key={index} onClick={() => handleVideoClick(video.id)}>
+      <div className={videoClasses} key={index} onClick={() => handleVideosChange(video.id)}>
         <label>{video.name}</label>
         <iframe height={150} width={400} src={video.link} />
       </div>
@@ -77,7 +75,7 @@ const PlanForm = (props) => {
     setDefaultPlansField(arrOfSelectedOptions)
   }
 
-  function handleVideoClick(videoId) {
+  function handleVideosChange(videoId) {
     const isVideoAlreadyInList = videos.includes(videoId)
     let updatedVideosArr = [...videos]
     if (isVideoAlreadyInList) {
@@ -92,7 +90,7 @@ const PlanForm = (props) => {
 
   return (
     <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
-      <Tabs defaultActiveKey="2">
+      <Tabs defaultActiveKey="1">
         <TabPane tab="plan information" key="1">
           <div className="tab-content-container">
             <h1>{formTitle}</h1>
