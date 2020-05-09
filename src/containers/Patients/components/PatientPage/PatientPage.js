@@ -26,6 +26,8 @@ const PatientPage = (props) => {
     loadingPlanById,
     allDefaultPlans,
     getAllDefaultPlans,
+    allVideos,
+      getAllVideos
   } = props
   console.log('PatientPage')
 
@@ -38,6 +40,7 @@ const PatientPage = (props) => {
     getTestsById(patient.id)
     getRehabPlanById(patient.rehabPlanID)
     getAllDefaultPlans()
+    getAllVideos()
     return cleanTestsById
   }, [])
 
@@ -86,6 +89,7 @@ const PatientPage = (props) => {
                 FormToRender={PlanForm}
                 dataToEdit={planById}
                 allDefaultPlans={allDefaultPlans}
+                allVideos={allVideos}
                 // isLoading={loadingCreateVideo}
                 // didPostRequestSucceed={didPostRequestSucceed}
                 // setDidPostRequestSucceed={setDidPostRequestSucceed}
