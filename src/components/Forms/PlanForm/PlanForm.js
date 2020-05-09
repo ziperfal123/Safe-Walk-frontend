@@ -38,37 +38,25 @@ const PlanForm = (props) => {
 
   function renderOption(defaultPlan, index) {
     return (
-      <Option value={defaultPlan.id}>
+      <Option value={defaultPlan.id} key={index}>
         {defaultPlan.name}
-        {' '}
-        key=
-        {index}
       </Option>
     )
   }
 
-  // function handleSelectChange(arrOfSelectedOptions) {
-  //   setSelectedDefaultPlans(arrOfSelectedOptions)
-  // }
-
-  // function handleFieldChange(changedField) {
-  //   console.log('changedField: ', changedField)
-  //   setFormData({
-  //     name: dataToEdit.name,
-  //     instructions: dataToEdit.instructions,
-  //     videos: dataToEdit.videos,
-  //     defaultPlans: dataToEdit.defaultPlans,
-  //   })
-  // }
 
   function handleNameChange(field) {
-    console.log('name: ', field.target.value)
     setNameField(field.target.value)
   }
 
   function handleInstructionsChange(field) {
     setInstructionsField(field.target.value)
   }
+
+  function handleSelectChange(arrOfSelectedOptions) {
+    setDefaultPlansField(arrOfSelectedOptions)
+  }
+
 
   return (
     <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
@@ -105,7 +93,7 @@ const PlanForm = (props) => {
                 mode="multiple"
                 style={{ width: '60%' }}
                 placeholder="select default plans..."
-                // onChange={handleSelectChange}
+                onChange={handleSelectChange}
               >
                 {allDefaultPlans.map(renderOption)}
               </Select>
