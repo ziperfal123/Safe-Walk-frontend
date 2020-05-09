@@ -45,18 +45,6 @@ const PlanForm = ({ formTitle, formDescription }) =>
               label="instructions:"
               name="instructions"
             >
-              <Input className="form-input" />
-            </Form.Item>
-            <Form.Item
-              rules={
-                [
-                  { required: true, message: 'Video name is required' },
-                  { required: true, min: 3, message: 'Name should contain at least 3 characters' },
-                ]
-              }
-              label="plan name:"
-              name="name"
-            >
               <TextArea className="form-input" />
             </Form.Item>
           </div>

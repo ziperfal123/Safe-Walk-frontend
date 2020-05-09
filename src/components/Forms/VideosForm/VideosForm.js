@@ -10,33 +10,33 @@ const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
   }
   return (
     <Form className="form" layout="vertical" onFinish={handleFinish}>
-      <div className='tab-content-container'>
-      <h1>{formTitle}</h1>
-      <p>{formDescription}</p>
-      <Form.Item
-        rules={
+      <div className="tab-content-container">
+        <h1>{formTitle}</h1>
+        <p>{formDescription}</p>
+        <Form.Item
+          rules={
           [
             { required: true, message: 'Video name is required' },
             { required: true, min: 3, message: 'Name should contain at least 3 characters' },
           ]
         }
-        label="video name:"
-        name="name"
-      >
-        <Input className={'form-input'} />
-      </Form.Item>
-      <Form.Item
-        rules={
+          label="video name:"
+          name="name"
+        >
+          <Input className="form-input" />
+        </Form.Item>
+        <Form.Item
+          rules={
           [
             { required: true, message: 'Video link is required' },
             { required: true, type: 'url', message: 'Please enter a valid url' },
           ]
         }
-        label="video link:"
-        name="link"
-      >
-        <Input className={'form-input'} />
-      </Form.Item>
+          label="video link:"
+          name="link"
+        >
+          <Input className="form-input" />
+        </Form.Item>
       </div>
       <Form.Item className="save-btn-container">
         <Button type="primary" htmlType="submit">
