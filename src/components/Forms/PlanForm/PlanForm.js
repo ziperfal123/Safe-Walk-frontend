@@ -5,19 +5,33 @@ import {
   Button,
   Tabs,
 } from 'antd'
+import { cloneDeep } from 'lodash'
 import '../form.scss'
 
 const { TabPane } = Tabs
-const { TextArea } = Input
 
-const PlanForm = ({ formTitle, formDescription }) =>
+const PlanForm = ({
+  formTitle, formDescription, dataToEdit, handleFormSubmit,
+}) => {
+  console.log('PlanForm')
 
-// function handleFinish(formData) {
-//   handleFormSubmit(formData)
-// }
+  function normalizeFormData(formData) {
+    const normalizedFormData = cloneDeep(formData)
+    Object.keys(normalizedFormData).forEach((key) => {
+      if (normalizedFormData[key] === undefined) {
+        normalizedFormData[key] = dataToEdit[key]
+      }
+    })
+    return normalizedFormData
+  }
 
-  (
-    <Form className="form has-tabs" layout="vertical">
+  function handleFinish(formData) {
+    const normalizedFormData = normalizeFormData(formData)
+    handleFormSubmit(normalizedFormData)
+  }
+
+  return (
+    <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
       <Tabs defaultActiveKey="1">
         <TabPane tab="plan information" key="1">
           <div className="tab-content-container">
@@ -25,27 +39,21 @@ const PlanForm = ({ formTitle, formDescription }) =>
             <p>{formDescription}</p>
             <Form.Item
               rules={
-                [
-                  { required: true, message: 'Plan name is required' },
-                  { required: true, min: 3, message: 'Name should contain at least 3 characters' },
-                ]
-              }
+                    [
+                      { required: true, message: 'Plan name is required' },
+                      { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+                    ]
+                  }
               label="plan name:"
               name="name"
             >
-              <Input className="form-input" />
+              <Input className="form-input" defaultValue={dataToEdit.name} />
             </Form.Item>
             <Form.Item
-              rules={
-                [
-                  { required: true, message: 'Instructions are required' },
-                  { required: true, min: 10, message: 'Name should contain at least 10 characters' },
-                ]
-              }
               label="instructions:"
               name="instructions"
             >
-              <TextArea className="form-input" />
+              <Input className="form-input" defaultValue={dataToEdit.instructions} />
             </Form.Item>
           </div>
         </TabPane>
@@ -62,6 +70,7 @@ const PlanForm = ({ formTitle, formDescription }) =>
       </Form.Item>
     </Form>
   )
+}
 
 
 export default PlanForm

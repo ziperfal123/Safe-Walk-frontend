@@ -15,6 +15,7 @@ const Modal = (props) => {
     isLoading,
     didPostRequestSucceed,
     setDidPostRequestSucceed,
+    dataToEdit,
   } = props
 
   useEffect(() => {
@@ -74,6 +75,7 @@ const Modal = (props) => {
                 formTitle={formTitle}
                 formDescription={formDescription}
                 handleFormSubmit={handleFormSubmit}
+                dataToEdit={dataToEdit || null}
               />
             )}
           </div>
