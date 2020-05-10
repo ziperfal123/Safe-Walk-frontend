@@ -6,10 +6,12 @@ import {
   LOGOUT,
 } from './actionTypes'
 
+import { AUTH } from 'utils/consts'
+
 const initialState = {
   userName: localStorage.getItem('userName') || '',
   userImage: localStorage.getItem('userImage') || '',
-  isUserAuthenticated: null,
+  isUserAuthenticated: AUTH.isPending,
   loading: false,
 }
 
@@ -23,7 +25,7 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isUserAuthenticated: true,
+        isUserAuthenticated: AUTH.isAuthenticated,
         userName: action.payload.name,
         userImage: action.payload.img,
       }
@@ -42,7 +44,7 @@ const authReducer = (state = initialState, action) => {
     case LOGOUT: {
       return {
         ...state,
-        isUserAuthenticated: false,
+        isUserAuthenticated: AUTH.isNotAuthenticated,
       }
     }
 

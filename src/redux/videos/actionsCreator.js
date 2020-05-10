@@ -21,7 +21,7 @@ export const getAllVideos = () => async (dispatch) => {
 export const createVideo = (formData) => async (dispatch) => {
   dispatch({ type: ActionsType.CREATE_VIDEO_SET_LOADING_TRUE })
   try {
-    const { data: videoData, status: statusCode } = await post('video', formData)
+    const { data: videoData, status: statusCode } = await post(API.videoEndpoint, formData)
     const addedVideoObj = {
       id: videoData.id,
       link: videoData.link,

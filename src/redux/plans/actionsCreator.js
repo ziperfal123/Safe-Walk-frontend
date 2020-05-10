@@ -1,18 +1,12 @@
-import { get } from 'utils/fetch'
-import {
-  FETCH_ALL_DEFAULT_PLANS_SUCCESS,
-  FETCH_ALL_DEFAULT_PLANS_FAILURE,
-  FETCH_ALL_DEFAULT_PLANS_SET_LOADING_TRUE,
-  FETCH_PLAN_BY_ID_SET_LOADING_TRUE,
-  FETCH_PLAN_BY_ID_SET_LOADING_FALSE,
-  FETCH_PLAN_BY_ID_SUCCESS,
-} from './actionTypes'
+import { get, put } from 'utils/fetch'
+import { API } from 'utils/consts'
+import * as ActionTypes from './actionTypes'
 
 export const getRehabPlanById = (planId) => async (dispatch) => {
-  dispatch({ type: FETCH_PLAN_BY_ID_SET_LOADING_TRUE })
+  dispatch({ type: ActionTypes.FETCH_PLAN_BY_ID_SET_LOADING_TRUE })
   if (!planId) {
     dispatch({
-      type: FETCH_PLAN_BY_ID_SUCCESS,
+      type: ActionTypes.FETCH_PLAN_BY_ID_SUCCESS,
       payload: null,
     })
   } else {
@@ -20,7 +14,7 @@ export const getRehabPlanById = (planId) => async (dispatch) => {
       const response = await get(`rehabPlan/${planId}`)
       if (response.status === 200) {
         dispatch({
-          type: FETCH_PLAN_BY_ID_SUCCESS,
+          type: ActionTypes.FETCH_PLAN_BY_ID_SUCCESS,
           payload: response.data,
         })
       }
@@ -28,5 +22,27 @@ export const getRehabPlanById = (planId) => async (dispatch) => {
       console.log('err: ', err)
     }
   }
-  dispatch({ type: FETCH_PLAN_BY_ID_SET_LOADING_FALSE })
+  dispatch({ type: ActionTypes.FETCH_PLAN_BY_ID_SET_LOADING_FALSE })
+}
+
+export const editPlan = (formData, planId) => async (dispatch) => {
+  dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_TRUE })
+  console.log('formData + ID: ', formData, planId)
+  const planData = {
+    name: formData.name,
+    instructions: formData.instructions,
+  }
+  try {
+    const { data, status } = await put(`${API.rehabPlansEndpoint}/${planId}`, planData)
+    console.log('data', data)
+    console.log('status', status)
+    dispatch({
+      type: ActionTypes.EDIT_PLAN_BY_ID_SUCCESS,
+      payload: data,
+    })
+  } catch (err) {
+    console.log('err: ', err)
+  }
+
+  dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
 }

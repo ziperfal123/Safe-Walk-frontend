@@ -4,7 +4,7 @@ import "./videoCard.scss"
 
 const VideoCard = ({ link, handleRemoveClick }) => (
   <div className="video-card-container">
-    <iframe height={260} width={380} src={link} title="hello" />
+    <iframe height={260} width={380} src={link}/>
   </div>
 )
 

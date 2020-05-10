@@ -15,6 +15,10 @@ const Modal = (props) => {
     isLoading,
     didPostRequestSucceed,
     setDidPostRequestSucceed,
+    dataToEdit,
+    allDefaultPlans,
+    allVideos,
+    modalWidth = 660,
   } = props
 
   useEffect(() => {
@@ -53,28 +57,32 @@ const Modal = (props) => {
       {({ toggleOverlay }) => (
         <AntModal
           className="modal-container"
-          width={640}
+          width={modalWidth}
           footer={null}
           mask={false}
           afterClose={() => handleModalClose(toggleOverlay)}
           onCancel={() => handleModalClose(toggleOverlay, true)}
+          destroyOnClose
           {...props}
         >
           <aside>
             <img src={Logo} alt="logo" />
           </aside>
           <div className="form-wrapper">
-            <h1>{formTitle}</h1>
-            <p>
-              {formDescription}
-            </p>
             { isLoading || didPostRequestSucceed ? (
               <>
                 {isLoading && renderLoading()}
                 {didPostRequestSucceed && renderSuccessMessage()}
               </>
             ) : (
-              <FormToRender handleFormSubmit={handleFormSubmit} />
+              <FormToRender
+                formTitle={formTitle}
+                formDescription={formDescription}
+                handleFormSubmit={handleFormSubmit}
+                dataToEdit={dataToEdit || null}
+                allDefaultPlans={allDefaultPlans || null}
+                allVideos={allVideos || null}
+              />
             )}
           </div>
         </AntModal>

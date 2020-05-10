@@ -7,14 +7,14 @@ import Modal from 'components/Modal'
 import ErrorModal from 'components/ErrorModal'
 import VideosForm from 'components/Forms/VideosForm'
 import { API } from 'utils/consts'
-import { createError } from 'redux/error/actionCreators'
+import { activateErrorModal } from 'redux/error/actionCreators'
 import { OverlayContext } from '../../App'
 import './videos.scss'
 
 const Videos = (props) => {
   console.log('Videos Page')
   const {
-    getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo, createError,
+    getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo, activateErrorModal,
   } = props
 
   const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
@@ -30,7 +30,7 @@ const Videos = (props) => {
   }
 
   function handleRemoveVideo() {
-    alert('REMOVE!')
+    alert('TBD!')
   }
 
   function renderVideo(video) {
@@ -45,7 +45,7 @@ const Videos = (props) => {
       setDidPostRequestSucceed(true)
       setShouldOpenModal(false)
     } else {
-      createError(creationResponse && creationResponse.message)
+      activateErrorModal(creationResponse && creationResponse.message)
     }
   }
 

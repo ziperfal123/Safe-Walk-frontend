@@ -16,6 +16,8 @@ const Patients = (props) => {
     loadingAllPatients,
     loadingAllTestsById,
     allTestsById,
+    allDefaultPlans,
+    getAllDefaultPlans,
   } = props
 
   const [selectedPatient, setSelectedPatient] = useState('')

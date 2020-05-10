@@ -4,6 +4,7 @@ import authReducer from './auth/authReducer'
 import patientsReducer from './patients/reducer'
 import testsReducer from './tests/reducer'
 import plansReducer from './plans/reducer'
+import defaultPlansReducer from "./defaultPlans/reducer"
 import videosReducer from './videos/reducer'
 import errorReducer from './error/reducer'
 
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   testsReducer,
   gaitModelReducer,
   plansReducer,
+  defaultPlansReducer,
   videosReducer,
 })
 

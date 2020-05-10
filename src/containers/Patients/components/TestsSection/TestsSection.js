@@ -7,18 +7,14 @@ import DetailsCard from 'components/DetailsCard/'
 import { normalizeDate } from 'utils/date'
 
 const TestsSection = (props) => {
-  const { allTestsById, handleTestClick } = props
+  const { allTestsById, handleTestClick, patientName } = props
   console.log('testsSection')
-
-  let testsCounter = 1
 
   function renderTestsList(test) {
     const normalizedDate = normalizeDate(test.date, false)
     const results = test.abnormality ? 'ABNORMALITY' : 'NORMAL'
     const content = (
       <>
-        {/* eslint-disable-next-line no-plusplus */}
-        <h1>{`#${testsCounter++}`}</h1>
         <h4>
           Date:
           {normalizedDate}
@@ -40,7 +36,10 @@ const TestsSection = (props) => {
   return (
     <>
       <div className="tests-section">
-        <h1 className="tests-title">Last Tests</h1>
+        <h1 className="tests-title">
+          {patientName}'s Tests:
+          <span>{` (total of ${allTestsById.length})`}</span>
+        </h1>
         { allTestsById.length !== 0 ? (
           <div className="cards-container">
             {allTestsById.map(renderTestsList)}

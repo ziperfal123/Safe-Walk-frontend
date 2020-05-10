@@ -1,8 +1,10 @@
+import { MODAL } from 'utils/consts'
 import * as ActionTypes from './actionTypes'
+
 const initialState = {
   errorObj: {
     errorOccurred: false,
-    errorMessage: '',
+    errorMessage: MODAL.defaultErrorDescription,
   },
 }
 
@@ -22,7 +24,7 @@ const errorReducer = (state = initialState, action) => {
         ...state,
         errorObj: {
           errorOccurred: false,
-          errorMessage: '',
+          errorMessage: MODAL.defaultErrorDescription,
         },
       }
 
