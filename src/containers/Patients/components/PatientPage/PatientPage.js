@@ -128,6 +128,7 @@ const PatientPage = (props) => {
                 allTestsById={allTestsById}
                 loadingAllTestsById={loadingAllTestsById}
                 handleTestClick={handleTestClick}
+                patientName={patient.name}
               />
               <BackButton handleBackClick={handleBackClick} />
             </>
