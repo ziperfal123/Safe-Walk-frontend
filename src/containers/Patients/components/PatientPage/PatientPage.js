@@ -8,10 +8,12 @@ import BackButton from 'components/BackButton'
 import TestPage from 'containers/TestPage'
 import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
+import PlanForm from 'components/Forms/PlanForm'
+import { post } from 'utils/fetch'
+import { API } from 'utils/consts'
 import PatientDataSection from '../PatientDataSection'
 import TestsSection from '../TestsSection'
-import PlanForm from "components/Forms/PlanForm";
-import {getAllDefaultPlans} from "redux/defaultPlans/actionsCreator";
+
 
 const PatientPage = (props) => {
   const {
@@ -27,7 +29,8 @@ const PatientPage = (props) => {
     allDefaultPlans,
     getAllDefaultPlans,
     allVideos,
-      getAllVideos
+    getAllVideos,
+    editPlan
   } = props
   console.log('PatientPage')
 
@@ -57,8 +60,27 @@ const PatientPage = (props) => {
     setClickedTestId('')
   }
 
-  function handleFormSubmit(formData) {
+  async function handleFormSubmit(formData) {
     console.log('HANDLE SUBMIT', formData)
+    const EditPlanResponse = await editPlan(formData, planById.id)
+    // const rehabPlansData = {
+    //   name: formData.name,
+    //   instructions: formData.instructions,
+    // }
+    //
+    // post(API.rehabPlansEndpoint, rehabPlansData)
+
+
+    /*
+    *    const creationResponse = await createVideo(formData)
+    if (creationResponse === API.postRequestSuccess) {
+      setDidPostRequestSucceed(true)
+      setShouldOpenModal(false)
+    } else {
+      activateErrorModal(creationResponse && creationResponse.message)
+    }
+
+    * */
   }
 
   function handleOnCancelModal() {

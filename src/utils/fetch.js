@@ -30,6 +30,15 @@ export async function post(endPointUrl, data) {
   }
 }
 
-export function put() {}
+export async function put(endPointUrl, data) {
+  const configOptions = buildHeader()
+  try {
+    const res = await axios.put(`${SERVER_URL}/${endPointUrl}`, data, configOptions)
+    return res
+  } catch (err) {
+    console.log('err: ', err)
+    throw new Error(err)
+  }
+}
 
 export function del() {}

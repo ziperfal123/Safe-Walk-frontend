@@ -103,13 +103,13 @@ const PlanForm = (props) => {
               label="plan name:"
               name="name"
             >
-              <Input className="form-input" defaultValue={dataToEdit.name} onChange={handleNameChange} />
+              <Input className="form-input" defaultValue={dataToEdit && dataToEdit.name} onChange={handleNameChange} />
             </Form.Item>
             <Form.Item
               label="instructions:"
               name="instructions"
             >
-              <Input className="form-input" defaultValue={dataToEdit.instructions} onChange={handleInstructionsChange} />
+              <Input className="form-input" defaultValue={dataToEdit && dataToEdit.instructions} onChange={handleInstructionsChange} />
             </Form.Item>
           </div>
         </TabPane>
@@ -117,7 +117,7 @@ const PlanForm = (props) => {
           <div className="tab-content-container">
             <Form.Item label="choose default plan:">
               <Select
-                defaultValue={dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]} // TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
+                defaultValue={dataToEdit && dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]} // TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
                 mode="multiple"
                 style={{ width: '60%' }}
                 placeholder="select default plans..."

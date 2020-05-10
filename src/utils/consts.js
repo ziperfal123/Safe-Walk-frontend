@@ -12,6 +12,9 @@ export const NOT_FOUND = {
 export const API = {
   postRequestSuccess: 'postSuccess',
   postRequestError: 'postError',
+
+  rehabPlansEndpoint: 'rehabPlan',
+  videoEndpoint: 'video',
 }
 
 export const MODAL = {
