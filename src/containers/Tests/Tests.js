@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import pathsNames from '../../router/pathNames'
 import TestsTable from './components/TestsTable/TestsTable'
@@ -19,6 +19,7 @@ const Tests = (props) => {
     loadingAllTests,
   } = props
 
+  const [selectedTest, setSelectedTest] = useState('')
 
   useEffect(() => {
     if (location.pathname !== pathsNames.patientsTests) {
@@ -28,20 +29,27 @@ const Tests = (props) => {
     getAllTests()
   }, [])
 
+  function handleTableRowClick(testObj) {
+    setSelectedTest(testObj)
+    history.push(`${pathsNames.patientsTests}${testObj.testId}`)
+  }
+
   function renderTestsTable() {
     return (
-        <div className="patient-tests-container">
-          <TestsTable
-              allPatients={allPatients}
-              allTests={allTests}
-              loadingAllTests={loadingAllTests}
-          />
-        </div>
+      <div className="patient-tests-container">
+        <TestsTable
+          allPatients={allPatients}
+          allTests={allTests}
+          loadingAllTests={loadingAllTests}
+          handleTableRowClick={handleTableRowClick}
+        />
+      </div>
     )
   }
 
   function renderTestPage() {
-    return ( <div />
+    return (
+        <h1>Hellosadjlkasdjlkasjdklajlksdjaskldjlksajdlksajdlksahfjkdhfjkhadldasjk World</h1>
     )
   }
 
@@ -54,25 +62,15 @@ const Tests = (props) => {
           exact
           render={renderTestsTable}
         />
-        { false && (
+        { selectedTest && (
         <Route
-          // path={`${pathsNames.patients}:${selectedPatient.id}`}
+          path={`${pathsNames.patientsTests}:${selectedTest.testId}`}
           render={renderTestPage}
         />
         ) }
       </Switch>
     </>
   )
-
-  // return (
-  //   <div className="patient-tests-container">
-  //     <TestsTable
-  //       allPatients={allPatients}
-  //       allTests={allTests}
-  //       loadingAllTests={loadingAllTests}
-  //     />
-  //   </div>
-  // )
 }
 
 export default Tests
