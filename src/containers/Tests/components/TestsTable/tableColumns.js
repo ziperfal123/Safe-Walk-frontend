@@ -35,6 +35,7 @@ const columns = [
   {
     title: 'Test date',
     dataIndex: 'testDate',
+    // sorter: (a, b) => a.getTime() > b.getTime(),
     render: (testDate, normalizedPatientObj) => {
       const normalizedDate = normalizeDate(testDate);
       const rowColor = normalizedPatientObj.waitingStatus && normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
