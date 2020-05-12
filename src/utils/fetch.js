@@ -41,4 +41,13 @@ export async function put(endPointUrl, data) {
   }
 }
 
-export function del() {}
+export async function del(endPointUrl) {
+  const configOptions = buildHeader()
+  try {
+    const res = await axios.delete(`${SERVER_URL}/${endPointUrl}`, configOptions)
+    return res
+  } catch (err) {
+    console.log('e: ', err)
+    throw new Error(err)
+  }
+}

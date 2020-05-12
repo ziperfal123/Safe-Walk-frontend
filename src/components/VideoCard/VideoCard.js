@@ -3,8 +3,18 @@ import PropTypes from 'prop-types'
 import { Card, Popconfirm, message } from 'antd'
 import './videoCard.scss'
 
-const VideoCard = ({ link, videoName, handleRemoveClick }) => {
+const VideoCard = (props) => {
+  const {
+    video,
+    handleRemoveClick,
+  } = props
+
+  function handleRemove() {
+    handleRemoveClick(video.id)
+  }
+
   function displayConfirmMessage() {
+    handleRemove()
     message.success('Deleting video...')
   }
 
@@ -26,10 +36,10 @@ const VideoCard = ({ link, videoName, handleRemoveClick }) => {
 
     <Card
       className="video-card-container"
-      title={videoName}
+      title={video.name}
       actions={renderDeleteAction()}
     >
-      <iframe height={260} src={link} />
+      <iframe height={260} src={video.link} />
     </Card>
   )
 }

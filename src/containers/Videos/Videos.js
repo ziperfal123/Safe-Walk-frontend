@@ -12,7 +12,13 @@ import './videos.scss'
 const Videos = (props) => {
   console.log('Videos Page')
   const {
-    getAllVideos, createVideo, allVideos, loadingAllVideos, loadingCreateVideo, activateErrorModal,
+    getAllVideos,
+    createVideo,
+    allVideos,
+    loadingAllVideos,
+    loadingCreateVideo,
+    activateErrorModal,
+    deleteVideo,
   } = props
 
   const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
@@ -27,13 +33,20 @@ const Videos = (props) => {
     setShouldOpenModal(true)
   }
 
-  function handleRemoveVideo() {
-    alert('TBD!')
+  function handleRemoveVideo(idToDelete) {
+    deleteVideo(idToDelete)
   }
 
   function renderVideo(video) {
     return (
-      <VideoCard key={video.id} link={video.link} videoName={video.name} handleRemoveClick={handleRemoveVideo} />
+      <VideoCard
+        key={video.id}
+        video={video}
+        // videoId={video.id}
+        // link={video.link}
+        // videoName={video.name}
+        handleRemoveClick={handleRemoveVideo}
+      />
     )
   }
 
