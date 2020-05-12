@@ -30,7 +30,6 @@ const TestsTable = ({ allTests, allPatients, loadingAllTests, handleTableRowClic
   }
 
   function handleRowClick(testRow) {
-    // console.log('testRow: ', testRow)
     return {
       onClick: () => handleTableRowClick(testRow),
     }

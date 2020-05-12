@@ -6,6 +6,7 @@ import './tests.scss'
 import { Route, Switch } from 'react-router-dom'
 import PatientsTable from 'containers/Patients/components/PatientsTable'
 import PatientPage from 'containers/Patients/components/PatientPage'
+import TestPage from 'containers/TestPage'
 
 
 const Tests = (props) => {
@@ -19,7 +20,7 @@ const Tests = (props) => {
     loadingAllTests,
   } = props
 
-  const [selectedTest, setSelectedTest] = useState('')
+  const [selectedTestId, setSelectedTestId] = useState('')
 
   useEffect(() => {
     if (location.pathname !== pathsNames.patientsTests) {
@@ -30,9 +31,15 @@ const Tests = (props) => {
   }, [])
 
   function handleTableRowClick(testObj) {
-    setSelectedTest(testObj)
+    setSelectedTestId(testObj.testId)
     history.push(`${pathsNames.patientsTests}${testObj.testId}`)
   }
+
+  function handleBackClick() {
+    history.goBack()
+    setSelectedTestId('')
+  }
+
 
   function renderTestsTable() {
     return (
@@ -49,7 +56,11 @@ const Tests = (props) => {
 
   function renderTestPage() {
     return (
-        <h1>Hellosadjlkasdjlkasjdklajlksdjaskldjlksajdlksajdlksahfjkdhfjkhadldasjk World</h1>
+      <div className="patients-page">
+        <div className="patient-page">
+          <TestPage history={history} testId={selectedTestId} handleBackClick={handleBackClick} />
+        </div>
+      </div>
     )
   }
 
@@ -62,9 +73,9 @@ const Tests = (props) => {
           exact
           render={renderTestsTable}
         />
-        { selectedTest && (
+        { selectedTestId && (
         <Route
-          path={`${pathsNames.patientsTests}:${selectedTest.testId}`}
+          path={`${pathsNames.patientsTests}:${selectedTestId}`}
           render={renderTestPage}
         />
         ) }
