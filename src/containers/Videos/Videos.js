@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Spin } from 'antd'
+import { Spin, Card } from 'antd'
 import AddCard from 'components/AddCard'
 import VideoCard from 'components/VideoCard'
 import Modal from 'components/Modal'
-import ErrorModal from 'components/ErrorModal'
 import VideosForm from 'components/Forms/VideosForm'
 import { API } from 'utils/consts'
-import { activateErrorModal } from 'redux/error/actionCreators'
 import { OverlayContext } from '../../App'
 import './videos.scss'
 
@@ -35,7 +33,7 @@ const Videos = (props) => {
 
   function renderVideo(video) {
     return (
-      <VideoCard key={video.id} link={video.link} handleRemoveClick={handleRemoveVideo} />
+      <VideoCard key={video.id} link={video.link} videoName={video.name} handleRemoveClick={handleRemoveVideo} />
     )
   }
 
