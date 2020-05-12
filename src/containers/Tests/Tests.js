@@ -6,7 +6,6 @@ import './tests.scss'
 import { Route, Switch } from 'react-router-dom'
 import TestPage from 'containers/TestPage'
 
-
 const Tests = (props) => {
   const {
     location,
