@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import './tests.scss';
-import pathsNames from '../../router/pathNames';
-import TestsTable from './components/TestsTable/TestsTable';
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import pathsNames from '../../router/pathNames'
+import TestsTable from './components/TestsTable/TestsTable'
+import './tests.scss'
+import { Route, Switch } from 'react-router-dom'
+import PatientsTable from 'containers/Patients/components/PatientsTable'
+import PatientPage from 'containers/Patients/components/PatientPage'
+import TestPage from 'containers/TestPage'
 
 
 const Tests = (props) => {
@@ -14,29 +18,73 @@ const Tests = (props) => {
     allPatients,
     allTests,
     loadingAllTests,
-  } = props;
+  } = props
 
+  const [selectedTestId, setSelectedTestId] = useState('')
 
   useEffect(() => {
     if (location.pathname !== pathsNames.patientsTests) {
-      history.push(pathsNames.patientsTests);
+      history.push(pathsNames.patientsTests)
     }
-    getAllPatients();
-    getAllTests();
-  }, []);
+    getAllPatients()
+    getAllTests()
+  }, [])
+
+  function handleTableRowClick(testObj) {
+    setSelectedTestId(testObj.testId)
+    history.push(`${pathsNames.patientsTests}${testObj.testId}`)
+  }
+
+  function handleBackClick() {
+    history.goBack()
+    setSelectedTestId('')
+  }
+
+
+  function renderTestsTable() {
+    return (
+      <div className="patient-tests-container">
+        <TestsTable
+          allPatients={allPatients}
+          allTests={allTests}
+          loadingAllTests={loadingAllTests}
+          handleTableRowClick={handleTableRowClick}
+        />
+      </div>
+    )
+  }
+
+  function renderTestPage() {
+    return (
+      <div className="patients-page">
+        <div className="patient-page">
+          <TestPage history={history} testId={selectedTestId} handleBackClick={handleBackClick} />
+        </div>
+      </div>
+    )
+  }
+
 
   return (
-    <div className="patient-tests-container">
-      <TestsTable
-        allPatients={allPatients}
-        allTests={allTests}
-        loadingAllTests={loadingAllTests}
-      />
-    </div>
-  );
-};
+    <>
+      <Switch>
+        <Route
+          path={pathsNames.patientsTests}
+          exact
+          render={renderTestsTable}
+        />
+        { selectedTestId && (
+        <Route
+          path={`${pathsNames.patientsTests}:${selectedTestId}`}
+          render={renderTestPage}
+        />
+        ) }
+      </Switch>
+    </>
+  )
+}
 
-export default Tests;
+export default Tests
 
 
 Tests.propTypes = {
@@ -47,4 +95,4 @@ Tests.propTypes = {
   allPatients: PropTypes.arrayOf(PropTypes.any).isRequired,
   allTests: PropTypes.arrayOf(PropTypes.any).isRequired,
   loadingAllTests: PropTypes.bool.isRequired,
-};
+}

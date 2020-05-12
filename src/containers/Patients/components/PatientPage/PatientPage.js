@@ -30,7 +30,7 @@ const PatientPage = (props) => {
     getAllDefaultPlans,
     allVideos,
     getAllVideos,
-    editPlan
+    editPlan,
   } = props
   console.log('PatientPage')
 

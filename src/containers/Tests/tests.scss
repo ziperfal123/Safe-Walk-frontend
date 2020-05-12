@@ -17,3 +17,7 @@
     }
   }
 }
+
+.test-page-container {
+  @include page-size;
+}

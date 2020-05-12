@@ -26,7 +26,6 @@ const TestPage = (props) => {
 
   function renderSensorsContainer(key) {
     if (key === 'testID' || key === 'id' || key === '_id' || key === '__v') return null
-
     const dataSetX = []
     const dataSetY = []
     const dataSetZ = []

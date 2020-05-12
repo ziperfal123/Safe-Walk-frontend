@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Table } from 'antd'
 import columns from './tableColumns'
 
-const TestsTable = ({ allTests, allPatients, loadingAllTests }) => {
+const TestsTable = ({ allTests, allPatients, loadingAllTests, handleTableRowClick }) => {
   console.log('TestsTable')
 
   function getNormalizedData() {
@@ -16,6 +16,7 @@ const TestsTable = ({ allTests, allPatients, loadingAllTests }) => {
           obj.patientImage = patient.picture
           obj.name = patient.name || 'name is not valid'
           obj.waitingStatus = patient.waitForPlan ? 'Yes' : 'No'
+          obj.testId = test.id
         }
       })
       return {
@@ -28,6 +29,13 @@ const TestsTable = ({ allTests, allPatients, loadingAllTests }) => {
     return normalizedPatients
   }
 
+  function handleRowClick(testRow) {
+    return {
+      onClick: () => handleTableRowClick(testRow),
+    }
+  }
+
+
   return (
     <div className="table-wrapper">
       <Table
@@ -36,6 +44,7 @@ const TestsTable = ({ allTests, allPatients, loadingAllTests }) => {
         dataSource={getNormalizedData()}
         pagination={false}
         loading={loadingAllTests}
+        onRow={handleRowClick}
       />
     </div>
   )
