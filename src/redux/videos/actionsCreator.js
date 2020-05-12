@@ -1,5 +1,7 @@
+import { deepClone } from 'lodash'
 import { get, post, del } from 'utils/fetch'
 import { API } from 'utils/consts'
+import store from '../store'
 import * as ActionsType from './actionTypes'
 
 
@@ -29,11 +31,11 @@ export const createVideo = (formData) => async (dispatch) => {
     }
 
     if (statusCode >= 200 && statusCode < 300) {
+      dispatch({ type: ActionsType.CREATE_VIDEO_SET_LOADING_FALSE })
       dispatch({
         type: ActionsType.CREATE_VIDEO_SUCCESS,
         payload: addedVideoObj,
       })
-      dispatch({ type: ActionsType.CREATE_VIDEO_SET_LOADING_FALSE })
       return API.postRequestSuccess
     }
   } catch (err) {
@@ -44,16 +46,20 @@ export const createVideo = (formData) => async (dispatch) => {
 }
 
 export const deleteVideo = (idToDelte) => async (dispatch) => {
-  try {
-    const { data: resData, status: statusCode } = await del(`${API.videoEndpoint}/${idToDelte}`)
-    if (statusCode >= 200 && statusCode < 300) {
-      dispatch({
-        type: ActionsType.DELETE_VIDEO_SUCCESS,
-        payload: idToDelte,
-      })
-      return API.postRequestSuccess
-    }
-  } catch (e) {
-    console.log('e')
-  }
+  // const arrOfVideo = deepClone(store.getState().videoReducer.allVideos)
+  // console.log('arrOfVideo: ', arrOfVideo)
+  // try {
+  //   const { data: resData, status: statusCode } = await del(`${API.videoEndpoint}/${idToDelte}`)
+  //   if (statusCode >= 200 && statusCode < 300) {
+  //     const newArrOfVideos = arrOfVideo.filter(video => video.id !== idToDelte)
+  //     console.log('newArrOfVideos: ', newArrOfVideos)
+  //     dispatch({
+  //       type: ActionsType.DELETE_VIDEO_SUCCESS,
+  //       payload: newArrOfVideos,
+  //     })
+  //     return API.postRequestSuccess
+  //   }
+  // } catch (e) {
+  //   console.log('e')
+  // }
 }

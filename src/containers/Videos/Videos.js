@@ -42,9 +42,6 @@ const Videos = (props) => {
       <VideoCard
         key={video.id}
         video={video}
-        // videoId={video.id}
-        // link={video.link}
-        // videoName={video.name}
         handleRemoveClick={handleRemoveVideo}
       />
     )
@@ -61,6 +58,7 @@ const Videos = (props) => {
   }
 
   function handleOnCancelModal() {
+    console.log('here')
     setShouldOpenModal(false)
   }
 

@@ -40,13 +40,13 @@ const videosReducer = (state = initialState, action) => {
     case ActionTypes.CREATE_VIDEO_SET_LOADING_FALSE:
       return {
         ...state,
-        allVideos: state.allVideos.filter(video => video.id !== action.payload),
+        loadingCreateVideo: false,
       }
 
     case ActionTypes.DELETE_VIDEO_SUCCESS:
       return {
         ...state,
-        loadingCreateVideo: false,
+        allVideos: action.payload,
       }
 
 
