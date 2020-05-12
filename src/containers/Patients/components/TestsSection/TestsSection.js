@@ -38,7 +38,7 @@ const TestsSection = (props) => {
       <div className="tests-section">
         <h1 className="tests-title">
           {patientName}'s Tests:
-          <span>{` (total of ${allTestsById.length})`}</span>
+          {allTestsById.length > 0 && <span>{` (total of ${allTestsById.length})`}</span>}
         </h1>
         { allTestsById.length !== 0 ? (
           <div className="cards-container">

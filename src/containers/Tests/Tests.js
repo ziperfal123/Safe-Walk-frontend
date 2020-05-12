@@ -4,10 +4,7 @@ import pathsNames from '../../router/pathNames'
 import TestsTable from './components/TestsTable/TestsTable'
 import './tests.scss'
 import { Route, Switch } from 'react-router-dom'
-import PatientsTable from 'containers/Patients/components/PatientsTable'
-import PatientPage from 'containers/Patients/components/PatientPage'
 import TestPage from 'containers/TestPage'
-
 
 const Tests = (props) => {
   const {

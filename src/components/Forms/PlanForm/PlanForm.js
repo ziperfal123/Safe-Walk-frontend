@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {
   Form,
   Input,
@@ -22,12 +22,18 @@ const PlanForm = (props) => {
   const [instructions, setInstructionsField] = useState(dataToEdit.instructions)
   const [videos, setVideosField] = useState(dataToEdit.videos || [])
   const [defaultPlans, setDefaultPlansField] = useState(dataToEdit.defaultPlans)
+  const nameInputRef = useRef(null)
 
   useEffect(() => {
     let normalizedVideosArr = [...videos]
     normalizedVideosArr = normalizedVideosArr.map((video) => video.videoID)
     setVideosField(normalizedVideosArr)
   }, [])
+
+  useEffect(() => {
+    nameInputRef.current.focus()
+  }, [])
+
 
 
   function handleFinish() {
@@ -84,7 +90,6 @@ const PlanForm = (props) => {
       updatedVideosArr.push(videoId)
     }
     setVideosField(updatedVideosArr)
-    console.log('videos: ', videos)
   }
 
 
@@ -103,7 +108,12 @@ const PlanForm = (props) => {
               label="plan name:"
               name="name"
             >
-              <Input className="form-input" defaultValue={dataToEdit && dataToEdit.name} onChange={handleNameChange} />
+              <Input
+                  className="form-input"
+                  defaultValue={dataToEdit && dataToEdit.name}
+                  onChange={handleNameChange}
+                  ref={nameInputRef}
+              />
             </Form.Item>
             <Form.Item
               label="instructions:"
