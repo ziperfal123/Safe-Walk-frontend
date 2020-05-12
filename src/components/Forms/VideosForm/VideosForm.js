@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
 import { Form, Input, Button } from 'antd'
 import '../form.scss'
 
 const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
   console.log('VideosForm')
+
+  const nameInputRef = useRef(null)
+
+  useEffect(() => {
+    nameInputRef.current.focus();
+  }, [])
 
   function handleFinish(formData) {
     handleFormSubmit(formData)
@@ -23,7 +29,7 @@ const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
           label="video name:"
           name="name"
         >
-          <Input className="form-input" />
+          <Input className="form-input" ref={nameInputRef} />
         </Form.Item>
         <Form.Item
           rules={
