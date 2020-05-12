@@ -33,8 +33,13 @@ const Videos = (props) => {
     setShouldOpenModal(true)
   }
 
-  function handleRemoveVideo(idToDelete) {
-    deleteVideo(idToDelete)
+  async function handleRemoveVideo(idToDelete) {
+    const deletionRespone = await deleteVideo(idToDelete)
+    if (deletionRespone === API.deleteRequestSuccess) {
+    } else {
+      activateErrorModal(deletionRespone && deletionRespone.message)
+    }
+
   }
 
   function renderVideo(video) {
@@ -58,7 +63,6 @@ const Videos = (props) => {
   }
 
   function handleOnCancelModal() {
-    console.log('here')
     setShouldOpenModal(false)
   }
 
