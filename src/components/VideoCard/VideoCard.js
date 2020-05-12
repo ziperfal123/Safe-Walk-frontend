@@ -1,13 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import "./videoCard.scss"
+import { Card, Popconfirm, message } from 'antd'
+import './videoCard.scss'
 
-const VideoCard = ({ link, handleRemoveClick }) => (
-  <div className="video-card-container">
-    <iframe height={260} width={380} src={link}/>
-  </div>
-)
+const VideoCard = ({ link, videoName, handleRemoveClick }) => {
+  function displayConfirmMessage() {
+    message.success('Deleting video...')
+  }
 
+  function renderDeleteAction() {
+    return [
+      <Popconfirm
+        title="Are you sure delete this video?"
+        onConfirm={displayConfirmMessage}
+        okText="Delete"
+        cancelText="Cancel"
+      >
+        <div>
+          <i className="far fa-trash-alt fa-lg" />
+        </div>
+      </Popconfirm>,
+    ]
+  }
+  return (
+
+    <Card
+      className="video-card-container"
+      title={videoName}
+      actions={renderDeleteAction()}
+    >
+      <iframe height={260} src={link} />
+    </Card>
+  )
+}
 export default VideoCard
 
 VideoCard.propTypes = ({

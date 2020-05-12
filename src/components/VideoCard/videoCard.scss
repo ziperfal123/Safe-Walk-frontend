@@ -1,5 +1,18 @@
 @import 'main';
 
 .video-card-container {
-  margin: 15px;
+  margin: 0 10px 35px 5px;
+  border: 2px solid #7a7a7a;
+  & iframe {
+    min-width: 400px;
+    width: 100%;
+  }
+
+  & .ant-card-actions {
+    background-color: #e1e1e1;
+    &:hover i {
+      color: red;
+    }
+  }
+
 }
