@@ -43,6 +43,13 @@ const videosReducer = (state = initialState, action) => {
         loadingCreateVideo: false,
       }
 
+    case ActionTypes.DELETE_VIDEO_SUCCESS:
+      return {
+        ...state,
+        allVideos: action.payload,
+      }
+
+
     default:
       return state
   }

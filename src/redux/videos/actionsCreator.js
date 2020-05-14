@@ -1,5 +1,6 @@
-import { get, post } from 'utils/fetch'
+import { get, post, del } from 'utils/fetch'
 import { API } from 'utils/consts'
+import store from '../store'
 import * as ActionsType from './actionTypes'
 
 
@@ -40,5 +41,22 @@ export const createVideo = (formData) => async (dispatch) => {
     dispatch({ type: ActionsType.CREATE_VIDEO_SET_LOADING_FALSE })
     console.log('err: ', err)
     return err
+  }
+}
+
+export const deleteVideo = (idToDelte) => async (dispatch) => {
+  const arrOfVideo = [...store.getState().videosReducer.allVideos]
+  try {
+    const { data: resData, status: statusCode } = await del(`${API.videoEndpoint}/${idToDelte}`)
+    if (statusCode >= 200 && statusCode < 300 && statusCode !== 202) {  // TODO:: CHANGE! should get 400+ when error, not 202
+      const newArrOfVideos = arrOfVideo.filter(video => video.id !== idToDelte)
+      dispatch({
+        type: ActionsType.DELETE_VIDEO_SUCCESS,
+        payload: newArrOfVideos,
+      })
+      return API.deleteRequestSuccess
+    }
+  } catch (e) {
+    console.log('e')
   }
 }

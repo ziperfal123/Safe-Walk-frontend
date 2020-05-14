@@ -12,6 +12,8 @@ export const NOT_FOUND = {
 export const API = {
   postRequestSuccess: 'postSuccess',
   postRequestError: 'postError',
+  deleteRequestSuccess: 'deleteSuccess',
+  deleteRequestError: 'deleteSuccess',
 
   rehabPlansEndpoint: 'rehabPlan',
   videoEndpoint: 'video',

@@ -47,6 +47,7 @@ const Modal = (props) => {
   }
 
   function handleModalClose(toggleOverlay, didUserForceCancel = false) {
+    console.log('here')
     didUserForceCancel && handleOnCancel()
     toggleOverlay(false)
   }
