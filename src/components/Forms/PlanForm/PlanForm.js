@@ -7,6 +7,7 @@ import {
   Select,
   InputNumber,
 } from 'antd'
+import { cloneDeep } from 'lodash'
 import classNames from 'classnames'
 import '../form.scss'
 import { MODAL, PLAN_FORM } from 'utils/consts'
@@ -86,7 +87,7 @@ const PlanForm = (props) => {
     } else {
       const tmpVideoObj = {
         videoID: videoId,
-        times: 0,
+        times: 1,
       }
       updatedVideosArr.push(tmpVideoObj)
     }
@@ -94,9 +95,7 @@ const PlanForm = (props) => {
   }
 
   function handleNumberChange(videoId, inputValue) {
-    console.log('videoId: ', videoId)
-    console.log('e: ', e)
-    const updatedVideosArr = [...videos]
+    const updatedVideosArr = cloneDeep(videos)
     for (let i = 0; i < updatedVideosArr.length; i++) {
       if (updatedVideosArr[i].videoID === videoId) {
         updatedVideosArr[i].times = inputValue
@@ -109,9 +108,11 @@ const PlanForm = (props) => {
 
   function renderVideo(video, index) {
     let isSelected = false
+    let timesToSet = 1
     for (let i = 0; i < videos.length; i++) {
       if (videos[i].videoID === video.id) {
         isSelected = true
+        timesToSet = videos[i].times
       }
     }
     const videoClasses = classNames({
@@ -121,8 +122,19 @@ const PlanForm = (props) => {
     return (
       <div className={videoClasses} key={index} onClick={(e) => handleVideosChange(video.id, e)}>
         <div className="label-container">
-          <label>{video.name}</label>
-          {isSelected && <InputNumber onChange={(e) => handleNumberChange(video.id, e)} placeholder="Enter number of times" />}
+          <label className={'name-label'}>{video.name}</label>
+          { isSelected
+          && (
+              <>
+                <label>times:</label>
+                <InputNumber
+                  defaultValue={timesToSet}
+                  min={1}
+                  onChange={(e) => handleNumberChange(video.id, e)}
+                  placeholder="Enter number of times"
+                />
+              </>
+          )}
         </div>
         <iframe height={150} width={400} src={video.link} />
       </div>

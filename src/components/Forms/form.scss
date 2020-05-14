@@ -33,23 +33,23 @@
       margin-top: 30px;
       margin-left: 20px;
       & .label-container {
-
-        & label {
+        & label.name-label {
           margin-right: 20px;
         }
-        & .ant-input-number {
-          min-width: 180px;
-          //width: 60px;
+        & label:not(.name-label) {
+          color: #b22a2f;
+          margin-right: 5px;
         }
-        //display: flex;
+        & .ant-input-number {
+          width: 60px !important;
+        }
       }
 
       &.selected {
         box-shadow: 0 0 5px #ffbc49;
         & .label-container {
             background-color: #ffbc49;
-          & label {
-            padding-top: 3px;
+          & label.name-label {
             padding-left: 6px;
           }
           & iframe {
