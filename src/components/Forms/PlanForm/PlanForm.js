@@ -42,13 +42,15 @@ const PlanForm = (props) => {
 
 
   function handleFinish() {
+    console.log('videos: ', videos)
+
     const finalFormData = {
       name,
       instructions,
       videos,
       defaultPlanIDs: defaultPlans || [],
     }
-    handleFormSubmit(finalFormData)
+    // handleFormSubmit(finalFormData)
   }
 
   function renderOption(defaultPlan, index) {
