@@ -32,19 +32,29 @@
       max-width: calc(86% - 1px);
       margin-top: 30px;
       margin-left: 20px;
-      & label {
-        padding-bottom: 6px;
+      & .label-container {
+
+        & label {
+          margin-right: 20px;
+        }
+        & .ant-input-number {
+          min-width: 180px;
+          //width: 60px;
+        }
+        //display: flex;
       }
 
       &.selected {
         box-shadow: 0 0 5px #ffbc49;
-        & label {
-          padding-top: 3px;
-          padding-left: 6px;
-          background-color: #ffbc49;
-        }
-        & iframe {
-          border: 5px solid #ffbc49
+        & .label-container {
+            background-color: #ffbc49;
+          & label {
+            padding-top: 3px;
+            padding-left: 6px;
+          }
+          & iframe {
+            border: 5px solid #ffbc49
+          }
         }
       }
 

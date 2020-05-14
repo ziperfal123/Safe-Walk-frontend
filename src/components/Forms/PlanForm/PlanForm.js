@@ -5,10 +5,11 @@ import {
   Button,
   Tabs,
   Select,
+  InputNumber,
 } from 'antd'
 import classNames from 'classnames'
 import '../form.scss'
-import {MODAL, PLAN_FORM} from "utils/consts";
+import { MODAL, PLAN_FORM } from 'utils/consts'
 
 const { TabPane } = Tabs
 const { Option } = Select
@@ -21,8 +22,8 @@ const PlanForm = (props) => {
 
   const [name, setNameField] = useState(dataToEdit.name)
   const [instructions, setInstructionsField] = useState(dataToEdit.instructions)
-  const [videos, setVideosField] = useState(dataToEdit.videos || [])
   const [defaultPlans, setDefaultPlansField] = useState(dataToEdit.defaultPlans)
+  const [videos, setVideosField] = useState(dataToEdit.videos || [])
   const nameInputRef = useRef(null)
 
   useEffect(() => {
@@ -54,21 +55,6 @@ const PlanForm = (props) => {
     )
   }
 
-  function renderVideo(video, index) {
-    const isSelected = videos.includes(video.id)
-    const videoClasses = classNames({
-      'video-box': true,
-      selected: isSelected,
-    })
-    return (
-      <div className={videoClasses} key={index} onClick={() => handleVideosChange(video.id)}>
-        <label>{video.name}</label>
-        <iframe height={150} width={400} src={video.link} />
-      </div>
-    )
-  }
-
-
   function handleNameChange(field) {
     setNameField(field.target.value)
   }
@@ -81,7 +67,9 @@ const PlanForm = (props) => {
     setDefaultPlansField(arrOfSelectedOptions)
   }
 
-  function handleVideosChange(videoId) {
+  function handleVideosChange(videoId, e) {
+    if (e.target.className !== '' && e.target.className !== 'label-container') return
+
     const isVideoAlreadyInList = videos.includes(videoId)
     let updatedVideosArr = [...videos]
     if (isVideoAlreadyInList) {
@@ -92,6 +80,28 @@ const PlanForm = (props) => {
     setVideosField(updatedVideosArr)
   }
 
+  function handleNumberChange(e) {
+    console.log('e: ', e)
+  }
+  
+  
+  function renderVideo(video, index) {
+    const isSelected = videos.includes(video.id)
+    const videoClasses = classNames({
+      'video-box': true,
+      selected: isSelected,
+    })
+    
+    return (
+      <div className={videoClasses} key={index} onClick={(e) => handleVideosChange(video.id, e)}>
+        <div className="label-container">
+          <label>{video.name}</label>
+          {isSelected && <InputNumber onChange={handleNumberChange} placeholder={'Enter number of times'}/>}
+        </div>
+        <iframe height={150} width={400} src={video.link} />
+      </div>
+    )
+  }
 
   return (
     <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
