@@ -62,7 +62,7 @@ const PatientPage = (props) => {
 
   async function handleFormSubmit(formData) {
     console.log('HANDLE SUBMIT', formData)
-    const EditPlanResponse = await editPlan(formData, planById.id)
+    // const EditPlanResponse = await editPlan(formData, planById.id)
     // const rehabPlansData = {
     //   name: formData.name,
     //   instructions: formData.instructions,
