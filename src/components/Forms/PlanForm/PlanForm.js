@@ -28,7 +28,10 @@ const PlanForm = (props) => {
 
   useEffect(() => {
     let normalizedVideosArr = [...videos]
-    normalizedVideosArr = normalizedVideosArr.map((video) => video.videoID)
+    normalizedVideosArr = normalizedVideosArr.map((video) => ({
+      videoID: video.videoID,
+      times: video.times,
+    }))
     setVideosField(normalizedVideosArr)
   }, [])
 
@@ -70,33 +73,56 @@ const PlanForm = (props) => {
   function handleVideosChange(videoId, e) {
     if (e.target.className !== '' && e.target.className !== 'label-container') return
 
-    const isVideoAlreadyInList = videos.includes(videoId)
+    let isVideoAlreadyInList = false
+    for (let i = 0; i < videos.length; i++) {
+      if (videos[i].videoID === videoId) {
+        isVideoAlreadyInList = true
+        break
+      }
+    }
     let updatedVideosArr = [...videos]
     if (isVideoAlreadyInList) {
-      updatedVideosArr = updatedVideosArr.filter((id) => id !== videoId)
+      updatedVideosArr = updatedVideosArr.filter(({ videoID }) => videoID !== videoId)
     } else {
-      updatedVideosArr.push(videoId)
+      const tmpVideoObj = {
+        videoID: videoId,
+        times: 0,
+      }
+      updatedVideosArr.push(tmpVideoObj)
     }
     setVideosField(updatedVideosArr)
   }
 
-  function handleNumberChange(e) {
+  function handleNumberChange(videoId, inputValue) {
+    console.log('videoId: ', videoId)
     console.log('e: ', e)
+    const updatedVideosArr = [...videos]
+    for (let i = 0; i < updatedVideosArr.length; i++) {
+      if (updatedVideosArr[i].videoID === videoId) {
+        updatedVideosArr[i].times = inputValue
+        break
+      }
+    }
+    setVideosField(updatedVideosArr)
   }
-  
-  
+
+
   function renderVideo(video, index) {
-    const isSelected = videos.includes(video.id)
+    let isSelected = false
+    for (let i = 0; i < videos.length; i++) {
+      if (videos[i].videoID === video.id) {
+        isSelected = true
+      }
+    }
     const videoClasses = classNames({
       'video-box': true,
       selected: isSelected,
     })
-    
     return (
       <div className={videoClasses} key={index} onClick={(e) => handleVideosChange(video.id, e)}>
         <div className="label-container">
           <label>{video.name}</label>
-          {isSelected && <InputNumber onChange={handleNumberChange} placeholder={'Enter number of times'}/>}
+          {isSelected && <InputNumber onChange={(e) => handleNumberChange(video.id, e)} placeholder="Enter number of times" />}
         </div>
         <iframe height={150} width={400} src={video.link} />
       </div>
