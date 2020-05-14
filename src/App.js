@@ -10,7 +10,7 @@ import Header from './components/Header'
 import SideBar from './components/SideBar'
 import PatientTests from './containers/Tests'
 import Patients from './containers/Patients'
-import RehabPlans from './containers/RehabPlans/RehabPlans'
+import DefaultPlans from 'containers/DefaultPlans/'
 import Videos from './containers/Videos'
 
 export const OverlayContext = React.createContext(false)
@@ -39,7 +39,7 @@ const App = ({ errorObj, cleanError, history }) => {
             <Route exact path="/" component={PatientTests} />
             <Route path={pathsNames.patientsTests} component={PatientTests} />
             <Route path={pathsNames.patients} component={Patients} />
-            <Route path={pathsNames.defaultPlans} component={RehabPlans} />
+            <Route path={pathsNames.defaultPlans} component={DefaultPlans} />
             <Route exact path={pathsNames.videos} component={Videos} />
             <Route path="*" render={() => <NotFound isInApp />} />
           </Switch>

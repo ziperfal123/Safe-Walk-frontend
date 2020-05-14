@@ -17,7 +17,7 @@ const PlanForm = (props) => {
   const {
     formTitle, formDescription, dataToEdit, handleFormSubmit, allDefaultPlans, allVideos,
   } = props
-
+  console.log('dataToEdit: ', dataToEdit)
   const [name, setNameField] = useState(dataToEdit.name)
   const [instructions, setInstructionsField] = useState(dataToEdit.instructions)
   const [videos, setVideosField] = useState(dataToEdit.videos || [])

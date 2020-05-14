@@ -1,0 +1,19 @@
+@import "main";
+
+.default-plans-page {
+  @include page-size;
+
+  & .loading-default-plans {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & default-plans-container
+
+  h1 {
+    font-size: $headers-font-size;
+  }
+}
