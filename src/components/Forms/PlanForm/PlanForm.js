@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   Form,
   Input,
@@ -8,6 +8,7 @@ import {
 } from 'antd'
 import classNames from 'classnames'
 import '../form.scss'
+import {MODAL, PLAN_FORM} from "utils/consts";
 
 const { TabPane } = Tabs
 const { Option } = Select
@@ -35,7 +36,6 @@ const PlanForm = (props) => {
   }, [])
 
 
-
   function handleFinish() {
     const finalFormData = {
       name,
@@ -58,7 +58,7 @@ const PlanForm = (props) => {
     const isSelected = videos.includes(video.id)
     const videoClasses = classNames({
       'video-box': true,
-      'selected': isSelected,
+      selected: isSelected,
     })
     return (
       <div className={videoClasses} key={index} onClick={() => handleVideosChange(video.id)}>
@@ -96,7 +96,7 @@ const PlanForm = (props) => {
   return (
     <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
       <Tabs defaultActiveKey="1">
-        <TabPane tab="plan information" key="1">
+        <TabPane tab={PLAN_FORM.planInfoTab} key="1">
           <div className="tab-content-container">
             <h1>{formTitle}</h1>
             <p>{formDescription}</p>
@@ -105,38 +105,42 @@ const PlanForm = (props) => {
                 { required: true, message: 'Plan name is required' },
                 { required: true, min: 3, message: 'Name should contain at least 3 characters' },
               ]}
-              label="plan name:"
+              label={PLAN_FORM.nameLabel}
               name="name"
             >
               <Input
-                  className="form-input"
-                  defaultValue={dataToEdit && dataToEdit.name}
-                  onChange={handleNameChange}
-                  ref={nameInputRef}
+                className="form-input"
+                defaultValue={(dataToEdit && dataToEdit.name) || ''}
+                onChange={handleNameChange}
+                ref={nameInputRef}
               />
             </Form.Item>
             <Form.Item
-              label="instructions:"
+              label={PLAN_FORM.instructionsLabal}
               name="instructions"
             >
-              <Input className="form-input" defaultValue={dataToEdit && dataToEdit.instructions} onChange={handleInstructionsChange} />
+              <Input
+                className="form-input"
+                defaultValue={(dataToEdit && dataToEdit.instructions !== MODAL.optionalPlaceholderToIgnore && dataToEdit.instructions) || ''}
+                onChange={handleInstructionsChange}
+              />
             </Form.Item>
           </div>
         </TabPane>
-        <TabPane tab="videos & default plans" key="2">
+        <TabPane tab={PLAN_FORM.videosAndPlansTab} key="2">
           <div className="tab-content-container">
-            <Form.Item label="choose default plan:">
+            <Form.Item label={PLAN_FORM.defaultPlansLabel}>
               <Select
                 defaultValue={dataToEdit && dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]} // TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
                 mode="multiple"
                 style={{ width: '60%' }}
-                placeholder="select default plans..."
+                placeholder={PLAN_FORM.selectPlansPlaceholder}
                 onChange={handleSelectChange}
               >
                 {allDefaultPlans.map(renderOption)}
               </Select>
             </Form.Item>
-            <Form.Item label="choose videos: (click on the video's name)">
+            <Form.Item label={PLAN_FORM.chooseVideosLabel}>
               {allVideos.map(renderVideo)}
             </Form.Item>
           </div>
