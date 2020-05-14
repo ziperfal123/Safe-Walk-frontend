@@ -35,11 +35,9 @@ const Videos = (props) => {
 
   async function handleRemoveVideo(idToDelete) {
     const deletionRespone = await deleteVideo(idToDelete)
-    if (deletionRespone === API.deleteRequestSuccess) {
-    } else {
+    if (deletionRespone !== API.deleteRequestSuccess) {
       activateErrorModal(deletionRespone && deletionRespone.message)
     }
-
   }
 
   function renderVideo(video) {
