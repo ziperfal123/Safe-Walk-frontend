@@ -20,46 +20,6 @@
     grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
     grid-gap: 30px;
     width: 70%;
-
-    & .default-plan-card-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: $sidebar-background-color;
-      & .ant-card-head {
-        text-align: center;
-        font-size: 25px;
-        color: white;
-      }
-      & .ant-card-body {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        & p {
-          text-align: center;
-          font-weight: 100;
-          font-size: 20px;
-          color: white;
-        }
-        & p.num-of-videos {
-          font-size: 24px;
-          text-align: center;
-          margin-bottom: 0;
-        }
-      }
-      & .ant-card-actions {
-        background-color: #e2e2e2;
-        &:hover i {
-          color: red;
-        }
-      }
-    }
-
-
   }
 
   h1 {

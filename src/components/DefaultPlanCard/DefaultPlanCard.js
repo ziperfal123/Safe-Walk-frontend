@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, message, Popconfirm } from 'antd'
+import './defaultPlanCard.scss'
 
 const DefaultPlanCard = (props) => {
   console.log('DefaultPlanCard', props)
