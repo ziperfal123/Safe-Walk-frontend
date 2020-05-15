@@ -17,11 +17,24 @@ export const API = {
 
   rehabPlansEndpoint: 'rehabPlan',
   videoEndpoint: 'video',
+  defaultPlansEndpoint: 'defaultPlan',
 }
 
 export const MODAL = {
   defaultErrorDescription: 'unfortunately, something went wrong.. try again',
   optionalPlaceholderToIgnore: '<Optional>',
+}
+
+
+export const DEFAULT_PLAN_FORM = {
+  videosTab: 'videos',
+  planInfoTab: 'plan information',
+
+  nameLabel: 'plan name:',
+  instructionsLabal: 'instructions:',
+  chooseVideosLabel: "choose videos: (click on the video's name):",
+
+  selectPlansPlaceholder: 'select default plans...',
 }
 
 

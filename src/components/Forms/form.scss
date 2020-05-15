@@ -22,7 +22,7 @@
 
     & .video-box {
       &:first-of-type {
-      margin-top: 5px;
+        margin-top: 5px;
       }
       & * {
         cursor: pointer;
@@ -34,21 +34,24 @@
       margin-left: 20px;
       & .label-container {
         & label.name-label {
-          margin-right: 20px;
+          margin-right: 25px;
         }
-        & label:not(.name-label) {
-          color: #b22a2f;
-          margin-right: 5px;
-        }
-        & .ant-input-number {
-          width: 60px !important;
+        & .input-number-container {
+          display: inline-block;
+          & label:not(.name-label) {
+            color: #b22a2f;
+            margin-right: 5px;
+          }
+          & .ant-input-number {
+            width: 60px !important;
+          }
         }
       }
 
       &.selected {
         box-shadow: 0 0 5px #ffbc49;
         & .label-container {
-            background-color: #ffbc49;
+          background-color: #ffbc49;
           & label.name-label {
             padding-left: 6px;
           }

@@ -20,11 +20,11 @@ const PlanForm = (props) => {
   const {
     formTitle, formDescription, dataToEdit, handleFormSubmit, allDefaultPlans, allVideos,
   } = props
-
+  console.log('dataToEdit: ', dataToEdit)
   const [name, setNameField] = useState(dataToEdit.name)
   const [instructions, setInstructionsField] = useState(dataToEdit.instructions)
-  const [defaultPlans, setDefaultPlansField] = useState(dataToEdit.defaultPlans)
   const [videos, setVideosField] = useState(dataToEdit.videos || [])
+  const [defaultPlans, setDefaultPlansField] = useState(dataToEdit.defaultPlans)
   const nameInputRef = useRef(null)
 
   useEffect(() => {
@@ -42,15 +42,13 @@ const PlanForm = (props) => {
 
 
   function handleFinish() {
-    console.log('videos: ', videos)
-
     const finalFormData = {
       name,
       instructions,
       videos,
       defaultPlanIDs: defaultPlans || [],
     }
-    // handleFormSubmit(finalFormData)
+    handleFormSubmit(finalFormData)
   }
 
   function renderOption(defaultPlan, index) {
@@ -60,6 +58,21 @@ const PlanForm = (props) => {
       </Option>
     )
   }
+
+  function renderVideo(video, index) {
+    const isSelected = videos.includes(video.id)
+    const videoClasses = classNames({
+      'video-box': true,
+      'selected': isSelected,
+    })
+    return (
+      <div className={videoClasses} key={index} onClick={() => handleVideosClick(video.id)}>
+        <label>{video.name}</label>
+        <iframe height={150} width={400} src={video.link} />
+      </div>
+    )
+  }
+
 
   function handleNameChange(field) {
     setNameField(field.target.value)
@@ -73,7 +86,7 @@ const PlanForm = (props) => {
     setDefaultPlansField(arrOfSelectedOptions)
   }
 
-  function handleVideosChange(videoId, e) {
+  function handleVideosClick(videoId, e) {
     if (e.target.className !== '' && e.target.className !== 'label-container') return
 
     let isVideoAlreadyInList = false
@@ -122,20 +135,20 @@ const PlanForm = (props) => {
       selected: isSelected,
     })
     return (
-      <div className={videoClasses} key={index} onClick={(e) => handleVideosChange(video.id, e)}>
+      <div className={videoClasses} key={index} onClick={(e) => handleVideosClick(video.id, e)}>
         <div className="label-container">
           <label className={'name-label'}>{video.name}</label>
           { isSelected
           && (
-              <>
+              <div className="input-number-container">
                 <label>times:</label>
                 <InputNumber
-                  defaultValue={timesToSet}
-                  min={1}
-                  onChange={(e) => handleNumberChange(video.id, e)}
-                  placeholder="Enter number of times"
+                    defaultValue={timesToSet}
+                    min={1}
+                    onChange={(e) => handleNumberChange(video.id, e)}
+                    placeholder="Enter number of times"
                 />
-              </>
+              </div>
           )}
         </div>
         <iframe height={150} width={400} src={video.link} />
