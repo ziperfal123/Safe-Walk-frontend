@@ -17,7 +17,7 @@ const PlanForm = (props) => {
   const {
     formTitle, formDescription, dataToEdit, handleFormSubmit, allDefaultPlans, allVideos,
   } = props
-
+  console.log('dataToEdit: ', dataToEdit)
   const [name, setNameField] = useState(dataToEdit.name)
   const [instructions, setInstructionsField] = useState(dataToEdit.instructions)
   const [videos, setVideosField] = useState(dataToEdit.videos || [])
@@ -61,7 +61,7 @@ const PlanForm = (props) => {
       'selected': isSelected,
     })
     return (
-      <div className={videoClasses} key={index} onClick={() => handleVideosChange(video.id)}>
+      <div className={videoClasses} key={index} onClick={() => handleVideosClick(video.id)}>
         <label>{video.name}</label>
         <iframe height={150} width={400} src={video.link} />
       </div>
@@ -81,7 +81,7 @@ const PlanForm = (props) => {
     setDefaultPlansField(arrOfSelectedOptions)
   }
 
-  function handleVideosChange(videoId) {
+  function handleVideosClick(videoId) {
     const isVideoAlreadyInList = videos.includes(videoId)
     let updatedVideosArr = [...videos]
     if (isVideoAlreadyInList) {

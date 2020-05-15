@@ -2,7 +2,8 @@ import * as ActionTypes from './actionTypes'
 
 const initialState = {
   allDefaultPlans: [],
-  loadingAllPlans: true,
+  loadingAllDefaultPlans: true,
+  loadingCreateDefaultPlan: false,
 }
 
 const defaultPlansReducer = (state = initialState, action) => {
@@ -11,6 +12,37 @@ const defaultPlansReducer = (state = initialState, action) => {
       return {
         ...state,
         allDefaultPlans: action.payload,
+      }
+
+    case ActionTypes.FETCH_ALL_DEFAULT_PLANS_SET_LOADING_TRUE:
+      return {
+        ...state,
+        loadingAllDefaultPlans: true,
+      }
+
+    case ActionTypes.FETCH_ALL_DEFAULT_PLANS_SET_LOADING_FALSE:
+      return {
+        ...state,
+        loadingAllDefaultPlans: false,
+      }
+
+    case ActionTypes.CREATE_DEFAULT_SUCCESS:
+      console.log('action.payload: ', action.payload)
+      return {
+        ...state,
+        allDefaultPlans: [action.payload, ...state.allDefaultPlans],
+      }
+
+    case ActionTypes.CREATE_DEFAULT_PLAN_SET_LOADING_TRUE:
+      return {
+        ...state,
+        loadingCreateDefaultPlan: true,
+      }
+
+    case ActionTypes.CREATE_DEFAULT_PLAN_SET_LOADING_FALSE:
+      return {
+        ...state,
+        loadingCreateDefaultPlan: false,
       }
 
     default:

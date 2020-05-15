@@ -24,6 +24,7 @@ export async function post(endPointUrl, data) {
   const configOptions = buildHeader()
   try {
     const res = await axios.post(`${SERVER_URL}/${endPointUrl}`, data, configOptions)
+    console.log('returning', res)
     return res
   } catch (err) {
     throw new Error(err)
