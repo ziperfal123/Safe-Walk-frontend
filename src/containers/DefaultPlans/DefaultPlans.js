@@ -13,6 +13,8 @@ const DefaultPlans = (props) => {
     allDefaultPlans,
     loadingAllDefaultPlans,
     getAllDefaultPlans,
+    allVideos,
+    getAllVideos,
   } = props
   console.log('default plans')
 
@@ -21,6 +23,7 @@ const DefaultPlans = (props) => {
 
   useEffect(() => {
     getAllDefaultPlans()
+    getAllVideos()
   }, [])
 
   function handleAddDefaultPlanClick(toggleOverlay) {
@@ -28,14 +31,26 @@ const DefaultPlans = (props) => {
     setShouldOpenModal(true)
   }
 
+  function handleRemoveDefaultPlan() {
+    console.log('hey')
+  }
+
+  function handleOnCancelModal() {
+    setShouldOpenModal(false)
+  }
+
+  function handleFormSubmit(formData) {
+    console.log('formData', formData)
+  }
+
   function renderDefaultPlan(plan) {
     console.log('plan: ', plan)
     return (
-        <DefaultPlanCard
-            // key={plan.id}
-            plan={plan}
-            // handleRemoveClick={handleRemoveVideo}
-        />
+      <DefaultPlanCard
+        key={plan.id}
+        plan={plan}
+        handleRemoveClick={handleRemoveDefaultPlan}
+      />
     )
   }
 
@@ -51,13 +66,14 @@ const DefaultPlans = (props) => {
           ) : (
             <>
               <Modal
-                handleFormSubmit={(formData) => console.log(formData)}
-                handleOnCancel={console.log('cancel')}
-                // visible={shouldOpenModal || didPostRequestSucceed}
+                handleFormSubmit={(formData) => handleFormSubmit(formData)}
+                handleOnCancel={handleOnCancelModal}
+                visible={shouldOpenModal || didPostRequestSucceed}
                 formTitle="Create a new Default Plan"
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={DefaultPlansForm}
-                // isLoading={loadingCreateVideo}
+                allVideos={allVideos}
+                  // isLoading={loadingCreateVideo}
                 // didPostRequestSucceed={didPostRequestSucceed}
                 // setDidPostRequestSucceed={setDidPostRequestSucceed}
               />
@@ -73,13 +89,6 @@ const DefaultPlans = (props) => {
   )
 }
 export default DefaultPlans
-
-
-
-
-
-
-
 
 
 /*

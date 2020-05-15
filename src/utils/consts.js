@@ -22,3 +22,15 @@ export const API = {
 export const MODAL = {
   defaultErrorDescription: 'unfortunately, something went wrong.. try again',
 }
+
+
+export const DEFAULT_PLAN_FORM = {
+  videosTab: 'videos',
+  planInfoTab: 'plan information',
+
+  nameLabel: 'plan name:',
+  instructionsLabal: 'instructions:',
+  chooseVideosLabel: "choose videos: (click on the video's name):",
+
+  selectPlansPlaceholder: 'select default plans...',
+}
