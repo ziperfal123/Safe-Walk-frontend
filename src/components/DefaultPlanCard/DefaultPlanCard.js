@@ -1,10 +1,10 @@
-import React from "react";
-import {Card, message, Popconfirm} from "antd";
+import React from 'react'
+import { Card, message, Popconfirm } from 'antd'
 
 const DefaultPlanCard = (props) => {
-  console.log('DefaultPlanCard')
+  console.log('DefaultPlanCard', props)
 
-  const {} = props
+  const {plan} = props
   function handleRemove() {
     // handleRemoveClick(video.id)
   }
@@ -14,29 +14,32 @@ const DefaultPlanCard = (props) => {
     message.success('Deleting video...')
   }
 
-  // function renderDeleteAction() {
-  //   return [
-  //     <Popconfirm
-  //         title="Are you sure delete this video?"
-  //         onConfirm={displayConfirmMessage}
-  //         okText="Delete"
-  //         cancelText="Cancel"
-  //     >
-  //       <div>
-  //         <i className="far fa-trash-alt fa-lg" />
-  //       </div>
-  //     </Popconfirm>,
-  //   ]
-  // }
-  return (
-
-      <Card
-          // className="video-card-container"
-          // title={video.name}
-          // actions={renderDeleteAction()}
+  function renderDeleteAction() {
+    return [
+      <Popconfirm
+        title="Are you sure delete this video?"
+        onConfirm={displayConfirmMessage}
+        okText="Delete"
+        cancelText="Cancel"
       >
-        {/*<iframe height={260} src={video.link} />*/}
-      </Card>
+        <div>
+          <i className="far fa-trash-alt fa-lg" />
+        </div>
+      </Popconfirm>,
+    ]
+  }
+
+  return (
+    <Card
+      className="default-plan-card-container"
+      title={plan.name}
+      actions={renderDeleteAction()}
+    >
+      <div className={'inner-container'}>
+        <p>{plan.instructions}</p>
+        <p className={'num-of-videos'}>{`# of videos: ${plan.videos.length}`}</p>
+      </div>
+    </Card>
   )
 }
 

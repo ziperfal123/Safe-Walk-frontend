@@ -33,7 +33,7 @@ const DefaultPlans = (props) => {
     return (
         <DefaultPlanCard
             // key={plan.id}
-            // plan={plan}
+            plan={plan}
             // handleRemoveClick={handleRemoveVideo}
         />
     )

@@ -16,7 +16,7 @@
      top: 60px;
      margin: auto;
      display: grid;
-     grid-template-columns: auto auto;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
      grid-gap: 30px;
      width: 80%;
    }
