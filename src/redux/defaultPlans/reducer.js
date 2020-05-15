@@ -45,7 +45,6 @@ const defaultPlansReducer = (state = initialState, action) => {
       }
 
     case ActionTypes.DELETE_DEFAULT_PLAN_SUCCESS:
-      console.log('action.payload: ', action.payload)
       return {
         ...state,
         allDefaultPlans: action.payload,

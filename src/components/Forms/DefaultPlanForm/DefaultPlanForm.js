@@ -142,7 +142,7 @@ const DefaultPlanForm = (props) => {
         </TabPane>
         <TabPane tab="videos" key="2">
           <div className="tab-content-container">
-            <Form.Item label="choose videos: (click on the video's name)">
+            <Form.Item label={DEFAULT_PLAN_FORM.chooseVideosLabel}>
               {allVideos.map(renderVideo)}
             </Form.Item>
           </div>
