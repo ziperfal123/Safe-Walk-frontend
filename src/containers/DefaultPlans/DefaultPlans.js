@@ -5,6 +5,7 @@ import AddCard from 'components/AddCard'
 import Modal from 'components/Modal'
 import DefaultPlansForm from 'components/Forms/DefaultPlanForm'
 import DefaultPlanCard from 'components/DefaultPlanCard'
+import {API} from 'utils/consts'
 // import AddCard from "components/AddCard";
 import 'containers/DefaultPlans/defaultPlans.scss'
 
@@ -16,7 +17,8 @@ const DefaultPlans = (props) => {
     allVideos,
     getAllVideos,
     createDefaultPlan,
-    loadingCreateDefaultPlan
+    loadingCreateDefaultPlan,
+    activateErrorModal,
   } = props
   console.log('default plans')
 
@@ -41,9 +43,15 @@ const DefaultPlans = (props) => {
     setShouldOpenModal(false)
   }
 
-  function handleFormSubmit(formData) {
-    console.log('formData', formData)
-    createDefaultPlan(formData)
+  async function handleFormSubmit(formData) {
+    const creationResponse = await createDefaultPlan(formData)
+    console.log('creationResponse: ', creationResponse)
+    if (creationResponse === API.postRequestSuccess) {
+      setDidPostRequestSucceed(true)
+      setShouldOpenModal(false)
+    } else {
+      activateErrorModal(creationResponse && creationResponse.message)
+    }
   }
 
   function renderDefaultPlan(plan) {
@@ -76,8 +84,8 @@ const DefaultPlans = (props) => {
                 FormToRender={DefaultPlansForm}
                 allVideos={allVideos}
                 isLoading={loadingCreateDefaultPlan}
-                // didPostRequestSucceed={didPostRequestSucceed}
-                // setDidPostRequestSucceed={setDidPostRequestSucceed}
+                didPostRequestSucceed={didPostRequestSucceed}
+                setDidPostRequestSucceed={setDidPostRequestSucceed}
               />
               <div className="default-plans-container">
                 <AddCard type="default plan" handleClick={() => handleAddDefaultPlanClick(toggleOverlay)} />
