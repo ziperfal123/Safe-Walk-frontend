@@ -1,6 +1,8 @@
-import { get, post } from 'utils/fetch'
+import { del, get, post } from 'utils/fetch'
 import { deepClone } from 'lodash'
 import { API } from 'utils/consts'
+import store from 'redux/store'
+import * as ActionsType from 'redux/videos/actionTypes'
 import * as ActionTypes from './actionTypes'
 
 export const getAllDefaultPlans = () => async (dispatch) => {
@@ -47,5 +49,25 @@ export const createDefaultPlan = (formData) => async (dispatch) => {
     dispatch({ type: ActionTypes.CREATE_DEFAULT_PLAN_SET_LOADING_FALSE })
     console.log('err: ', err)
     return err
+  }
+}
+
+
+export const deleteDefaultPlan = (idToDelte) => async (dispatch) => {
+  const arrOfDefaultPlans = [...store.getState().defaultPlansReducer.allDefaultPlans]
+
+  try {
+    const { status: statusCode } = await del(`${API.defaultPlansEndpoint}/${idToDelte}`)
+    // TODO:: CHANGE! should get 400+ when error, not 202
+    if (statusCode >= 200 && statusCode < 300 && statusCode !== 202) {
+      const newArrOfDefaultPlans = arrOfDefaultPlans.filter((plan) => plan.id !== idToDelte)
+      dispatch({
+        type: ActionTypes.DELETE_DEFAULT_PLAN_SUCCESS,
+        payload: newArrOfDefaultPlans,
+      })
+      return API.deleteRequestSuccess
+    }
+  } catch (e) {
+    console.log('e')
   }
 }

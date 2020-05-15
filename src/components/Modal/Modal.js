@@ -15,9 +15,9 @@ const Modal = (props) => {
     isLoading,
     didPostRequestSucceed,
     setDidPostRequestSucceed,
-    dataToEdit,
-    allDefaultPlans,
-    allVideos,
+    dataToEdit = null,
+    allDefaultPlans = null,
+    allVideos = null,
     modalWidth = 660,
   } = props
 
