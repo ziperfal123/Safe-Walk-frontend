@@ -1,6 +1,7 @@
 @import 'main';
 
 .default-plan-card-container {
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

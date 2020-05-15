@@ -25,6 +25,12 @@ const defaultPlansReducer = (state = initialState, action) => {
         loadingAllDefaultPlans: false,
       }
 
+    case ActionTypes.CREATE_DEFAULT_SUCCESS:
+      return {
+        ...state,
+        allDefaultPlans: [action.payload, ...state.allDefaultPlans],
+      }
+
     default:
       return state
   }

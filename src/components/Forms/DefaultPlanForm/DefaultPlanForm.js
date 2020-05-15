@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import {
-  Button, Form, Input, Select, Tabs, InputNumber
+  Button, Form, Input, Tabs, InputNumber,
 } from 'antd'
 import { cloneDeep } from 'lodash'
 import { DEFAULT_PLAN_FORM } from 'utils/consts'
 import classNames from 'classnames'
 
 const { TabPane } = Tabs
-const { Option } = Select
 
 const DefaultPlanForm = (props) => {
   console.log('DefaultPlanForm')
@@ -30,18 +29,19 @@ const DefaultPlanForm = (props) => {
   })
 
   function handleFinish(formData) {
-    console.log('formData: ', formData)
     const finalFormData = {
       name: formData.name,
       instructions: formData.instructions,
       videos,
     }
-    handleFormSubmit(formData)
+    console.log('finalFormData: ', finalFormData)
+    handleFormSubmit(finalFormData)
   }
 
   function handleVideosClick(videoId, e) {
-    console.log('e.target.className: ', e.target.className)
-    if (e.target.className !== '' && e.target.className !== 'label-container' && e.target.className !== 'name-label') return
+    if (e.target.className !== ''
+        && e.target.className !== 'label-container'
+        && e.target.className !== 'name-label') return
 
     let isVideoAlreadyInList = false
     for (let i = 0; i < videos.length; i++) {
@@ -63,6 +63,17 @@ const DefaultPlanForm = (props) => {
     setVideos(updatedVideosArr)
   }
 
+  function handleNumberChange(videoId, inputValue) {
+    const updatedVideosArr = cloneDeep(videos)
+    for (let i = 0; i < updatedVideosArr.length; i++) {
+      if (updatedVideosArr[i].videoID === videoId) {
+        updatedVideosArr[i].times = inputValue
+        break
+      }
+    }
+    setVideos(updatedVideosArr)
+  }
+
   function renderVideo(video, index) {
     let isSelected = false
     let timesToSet = 1
@@ -77,24 +88,24 @@ const DefaultPlanForm = (props) => {
       selected: isSelected,
     })
     return (
-        <div className={videoClasses} key={index} onClick={(e) => handleVideosClick(video.id, e)}>
-          <div className="label-container">
-            <label className={'name-label'}>{video.name}</label>
-            { isSelected
+      <div className={videoClasses} key={index} onClick={(e) => handleVideosClick(video.id, e)}>
+        <div className="label-container">
+          <label className="name-label">{video.name}</label>
+          { isSelected
             && (
-                <div className={'input-number-container'}>
-                  <label>times:</label>
-                  <InputNumber
-                      defaultValue={timesToSet}
-                      min={1}
-                      // onChange={(e) => handleNumberChange(video.id, e)}
-                      placeholder="Enter number of times"
-                  />
-                </div>
+            <div className="input-number-container">
+              <label>times:</label>
+              <InputNumber
+                defaultValue={timesToSet}
+                min={1}
+                onChange={(e) => handleNumberChange(video.id, e)}
+                placeholder="Enter number of times"
+              />
+            </div>
             )}
-          </div>
-          <iframe height={150} width={376} src={video.link} />
         </div>
+        <iframe height={150} width={376} src={video.link} />
+      </div>
     )
   }
 

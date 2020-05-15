@@ -15,6 +15,7 @@ const DefaultPlans = (props) => {
     getAllDefaultPlans,
     allVideos,
     getAllVideos,
+    createDefaultPlan,
   } = props
   console.log('default plans')
 
@@ -41,10 +42,10 @@ const DefaultPlans = (props) => {
 
   function handleFormSubmit(formData) {
     console.log('formData', formData)
+    createDefaultPlan(formData)
   }
 
   function renderDefaultPlan(plan) {
-    console.log('plan: ', plan)
     return (
       <DefaultPlanCard
         key={plan.id}
