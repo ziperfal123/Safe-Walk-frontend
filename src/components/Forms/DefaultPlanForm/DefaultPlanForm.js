@@ -39,7 +39,10 @@ const DefaultPlanForm = (props) => {
     handleFormSubmit(formData)
   }
 
-  function handleVideosClick(videoId) {
+  function handleVideosClick(videoId, e) {
+    console.log('e.target.className: ', e.target.className)
+    if (e.target.className !== '' && e.target.className !== 'label-container' && e.target.className !== 'name-label') return
+
     let isVideoAlreadyInList = false
     for (let i = 0; i < videos.length; i++) {
       if (videos[i].videoID === videoId) {
