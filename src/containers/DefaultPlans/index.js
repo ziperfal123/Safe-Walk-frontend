@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   allDefaultPlans: state.defaultPlansReducer.allDefaultPlans,
   allVideos: state.videosReducer.allVideos,
   loadingAllDefaultPlans: state.defaultPlansReducer.loadingAllDefaultPlans,
+  loadingCreateDefaultPlan: state.defaultPlansReducer.loadingCreateDefaultPlan,
 })
 
 const mapDispatchToProps = { getAllDefaultPlans, getAllVideos, createDefaultPlan }

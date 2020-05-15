@@ -16,6 +16,7 @@ const DefaultPlans = (props) => {
     allVideos,
     getAllVideos,
     createDefaultPlan,
+    loadingCreateDefaultPlan
   } = props
   console.log('default plans')
 
@@ -74,7 +75,7 @@ const DefaultPlans = (props) => {
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={DefaultPlansForm}
                 allVideos={allVideos}
-                  // isLoading={loadingCreateVideo}
+                isLoading={loadingCreateDefaultPlan}
                 // didPostRequestSucceed={didPostRequestSucceed}
                 // setDidPostRequestSucceed={setDidPostRequestSucceed}
               />

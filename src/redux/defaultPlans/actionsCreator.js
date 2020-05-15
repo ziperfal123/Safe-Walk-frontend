@@ -22,11 +22,20 @@ export const getAllDefaultPlans = () => async (dispatch) => {
 export const createDefaultPlan = (formData) => async (dispatch) => {
   dispatch({ type: ActionTypes.CREATE_DEFAULT_PLAN_SET_LOADING_TRUE })
   try {
-    const response = await post(API.defaultPlansEndpoint, formData)
-    const addedDefaultPlanObj = deepClone(response.data)
-    console.log('addedDefaultPlanObj: ', addedDefaultPlanObj)
-    //
-    if (response.status >= 200 && response.status < 300) {
+    const {
+      data: defaultPlanData,
+      status: statusCode,
+    } = await post(API.defaultPlansEndpoint, formData)
+
+    const addedDefaultPlanObj = {
+      id: defaultPlanData.id,
+      instructions: defaultPlanData.instructions,
+      name: defaultPlanData.name,
+      type: defaultPlanData.type,
+      videos: [...defaultPlanData.videos],
+    }
+
+    if (statusCode >= 200 && statusCode < 300) {
       dispatch({ type: ActionTypes.CREATE_DEFAULT_PLAN_SET_LOADING_FALSE })
       dispatch({
         type: ActionTypes.CREATE_DEFAULT_SUCCESS,
