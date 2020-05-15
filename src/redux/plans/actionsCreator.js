@@ -28,12 +28,8 @@ export const getRehabPlanById = (planId) => async (dispatch) => {
 export const editPlan = (formData, planId) => async (dispatch) => {
   dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_TRUE })
   console.log('formData + ID: ', formData, planId)
-  const planData = {
-    name: formData.name,
-    instructions: formData.instructions,
-  }
   try {
-    const { data, status } = await put(`${API.rehabPlansEndpoint}/${planId}`, planData)
+    const { data, status } = await put(`${API.rehabPlansEndpoint}/${planId}`, formData)
     console.log('data', data)
     console.log('status', status)
     dispatch({
