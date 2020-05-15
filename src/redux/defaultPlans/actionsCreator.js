@@ -47,7 +47,8 @@ export const createDefaultPlan = (formData) => async (dispatch) => {
     }
   } catch (err) {
     dispatch({ type: ActionTypes.CREATE_DEFAULT_PLAN_SET_LOADING_FALSE })
-    console.log('err: ', err)
+    console.log('catched error: ', err)
+    console.log('catched error: ', err.message)
     return err
   }
 }
@@ -67,7 +68,7 @@ export const deleteDefaultPlan = (idToDelte) => async (dispatch) => {
       })
       return API.deleteRequestSuccess
     }
-  } catch (e) {
-    console.log('e')
+  } catch (err) {
+    console.log('catched error: ', err)
   }
 }

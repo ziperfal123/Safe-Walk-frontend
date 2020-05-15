@@ -5,7 +5,7 @@ export const activateErrorModal = (errorMessage) => (dispatch) => {
   dispatch({
     type: ActionTypes.CREATE_ERROR_OBJ,
     payload: {
-      errorMessage: errorMessage || 'some message..',
+      errorMessage: errorMessage || 'error has occured.. please try again.',
     },
   })
 }

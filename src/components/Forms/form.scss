@@ -19,6 +19,28 @@
 
   &.has-tabs {
     margin-bottom: 5px;
+    & .videos-item {
+      & .ant-form-item-label {
+        label {
+          //padding: 5px;
+        }
+      }
+      &.display-required {
+        & .ant-form-item-control-input {
+          border: 1px solid red;
+          padding: 5px;
+        }
+        & label.ant-form-item-required{
+        }
+
+        & .required-input-details {
+          color: #ff4d4f;
+          position: relative;
+          //bottom: 5px;
+          left: 5px;
+        }
+      }
+    }
 
     & .video-box {
       &:first-of-type {
