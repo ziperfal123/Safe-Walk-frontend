@@ -100,7 +100,7 @@ const PlanForm = (props) => {
   }
 
   function handleVideosClick(videoId, e) {
-    if (e.target.className !== '' && e.target.className !== 'label-container') return
+    if (e.target.className !== '' && e.target.className !== 'label-container' && e.target.className !== 'name-label') return
 
     let isVideoAlreadyInList = false
     for (let i = 0; i < videos.length; i++) {
@@ -206,6 +206,8 @@ const PlanForm = (props) => {
         </TabPane>
         <TabPane tab={PLAN_FORM.videosAndPlansTab} key="2">
           <div className="tab-content-container">
+            { !dataToEdit
+            && (
             <Form.Item label={PLAN_FORM.defaultPlansLabel}>
               <Select
                 defaultValue={(dataToEdit && dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]) || []} // TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
@@ -217,6 +219,7 @@ const PlanForm = (props) => {
                 {allDefaultPlans.map(renderOption)}
               </Select>
             </Form.Item>
+            )}
             <Form.Item label={PLAN_FORM.chooseVideosLabel}>
               {allVideos.map(renderVideo)}
             </Form.Item>

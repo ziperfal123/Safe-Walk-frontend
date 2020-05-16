@@ -28,14 +28,15 @@ export const getRehabPlanById = (planId) => async (dispatch) => {
 export const createPlan = (formData) => async (dispatch) => {
   dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_TRUE })
   try {
-    const { data, status } = await post(API.rehabPlansEndpoint, formData)
-    console.log('data', data)
-    console.log('status', status)
+    const { data } = await post(API.rehabPlansEndpoint, formData)
     dispatch({
       type: ActionTypes.CREATE_PLAN_SUCCESS,
       payload: data,
     })
+    dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
+    return API.postRequestSuccess
   } catch (err) {
+    dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
     console.log('err: ', err)
   }
 
@@ -46,16 +47,13 @@ export const editPlan = (formData, planId) => async (dispatch) => {
   dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_TRUE })
   console.log('formData + ID: ', formData, planId)
   try {
-    const { data, status } = await put(`${API.rehabPlansEndpoint}/${planId}`, formData)
-    console.log('data', data)
-    console.log('status', status)
+    const { data } = await put(`${API.rehabPlansEndpoint}/${planId}`, formData)
     dispatch({
       type: ActionTypes.EDIT_PLAN_BY_ID_SUCCESS,
       payload: data,
     })
   } catch (err) {
+    dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
     console.log('err: ', err)
   }
-
-  dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
 }
