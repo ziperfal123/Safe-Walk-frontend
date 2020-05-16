@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useForm } from 'react'
 import {
   Form,
   Input,
@@ -20,12 +20,12 @@ const PlanForm = (props) => {
   const {
     formTitle, formDescription, dataToEdit, handleFormSubmit, allDefaultPlans, allVideos,
   } = props
-  console.log('dataToEdit: ', dataToEdit)
   const [name, setNameField] = useState(dataToEdit.name)
   const [instructions, setInstructionsField] = useState(dataToEdit.instructions)
   const [videos, setVideosField] = useState(dataToEdit.videos || [])
   const [defaultPlans, setDefaultPlansField] = useState(dataToEdit.defaultPlans)
   const nameInputRef = useRef(null)
+  const [form] = Form.useForm()
 
   useEffect(() => {
     let normalizedVideosArr = [...videos]
@@ -38,6 +38,11 @@ const PlanForm = (props) => {
 
   useEffect(() => {
     nameInputRef.current.focus()
+    dataToEdit && dataToEdit.name && form.setFieldsValue({name: dataToEdit.name })
+  }, [])
+
+  useEffect(() => {
+    setNameField(dataToEdit && dataToEdit.name)
   }, [])
 
 
@@ -157,7 +162,7 @@ const PlanForm = (props) => {
   }
 
   return (
-    <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
+    <Form className="form has-tabs" layout="vertical" onFinish={handleFinish} form={form}>
       <Tabs defaultActiveKey="1">
         <TabPane tab={PLAN_FORM.planInfoTab} key="1">
           <div className="tab-content-container">
@@ -170,6 +175,7 @@ const PlanForm = (props) => {
               ]}
               label={PLAN_FORM.nameLabel}
               name="name"
+              initialValue={(dataToEdit && dataToEdit.name) || ''}
             >
               <Input
                 className="form-input"
