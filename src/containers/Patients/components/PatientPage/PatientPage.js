@@ -31,6 +31,8 @@ const PatientPage = (props) => {
     allVideos,
     getAllVideos,
     editPlan,
+    activateErrorModal,
+    loadingEditPlan,
   } = props
   console.log('PatientPage')
 
@@ -63,24 +65,12 @@ const PatientPage = (props) => {
   async function handleFormSubmit(formData) {
     console.log('HANDLE SUBMIT', formData)
     const EditPlanResponse = await editPlan(formData, planById.id)
-    // const rehabPlansData = {
-    //   name: formData.name,
-    //   instructions: formData.instructions,
-    // }
-    //
-    // post(API.rehabPlansEndpoint, rehabPlansData)
-
-
-    /*
-    *    const creationResponse = await createVideo(formData)
-    if (creationResponse === API.postRequestSuccess) {
+    if (EditPlanResponse === API.postRequestSuccess) {
       setDidPostRequestSucceed(true)
       setShouldOpenModal(false)
     } else {
-      activateErrorModal(creationResponse && creationResponse.message)
+      activateErrorModal(EditPlanResponse && EditPlanResponse.message)
     }
-
-    * */
   }
 
   function handleOnCancelModal() {
@@ -113,9 +103,9 @@ const PatientPage = (props) => {
                 dataToEdit={planById}
                 allDefaultPlans={allDefaultPlans}
                 allVideos={allVideos}
-                // isLoading={loadingCreateVideo}
-                // didPostRequestSucceed={didPostRequestSucceed}
-                // setDidPostRequestSucceed={setDidPostRequestSucceed}
+                isLoading={loadingEditPlan}
+                didPostRequestSucceed={didPostRequestSucceed}
+                setDidPostRequestSucceed={setDidPostRequestSucceed}
               />
               <PatientDataSection
                 patient={patient}

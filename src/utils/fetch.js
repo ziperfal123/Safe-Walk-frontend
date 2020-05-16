@@ -36,6 +36,7 @@ export async function put(endPointUrl, data) {
   const configOptions = buildHeader()
   try {
     const res = await axios.put(`${SERVER_URL}/${endPointUrl}`, data, configOptions)
+    console.log('res: ', res)
     return res
   } catch (err) {
     console.log('err from put: ', err)

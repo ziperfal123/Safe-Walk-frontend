@@ -3,17 +3,25 @@ import { getTestsById, cleanTestsById } from 'redux/tests/actionsCreator'
 import { getRehabPlanById, editPlan } from  'redux/plans/actionsCreator'
 import { getAllDefaultPlans } from 'redux/defaultPlans/actionsCreator'
 import { getAllVideos } from "redux/videos/actionsCreator";
+import {activateErrorModal} from "redux/error/actionCreators"
 import PatientPage from './PatientPage'
 
 const mapStateToProps = (state) => ({
   planById: state.plansReducer.planById,
   loadingPlanById: state.plansReducer.loadingPlanById,
+  loadingEditPlan: state.plansReducer.loadingEditPlan,
   allDefaultPlans: state.defaultPlansReducer.allDefaultPlans,
   allVideos: state.videosReducer.allVideos,
 })
 
 const mapDispatchToProps = {
-  getTestsById, cleanTestsById, getRehabPlanById, getAllDefaultPlans, getAllVideos, editPlan,
+  getTestsById,
+  cleanTestsById,
+  getRehabPlanById,
+  getAllDefaultPlans,
+  getAllVideos,
+  editPlan,
+  activateErrorModal
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PatientPage)

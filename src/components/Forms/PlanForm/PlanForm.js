@@ -42,7 +42,7 @@ const PlanForm = (props) => {
   }, [])
 
   useEffect(() => {
-    setNameField(dataToEdit && dataToEdit.name)
+    dataToEdit && setNameField(dataToEdit.name)
   }, [])
 
 
