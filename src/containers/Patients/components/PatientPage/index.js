@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
   loadingEditPlan: state.plansReducer.loadingEditPlan,
   allDefaultPlans: state.defaultPlansReducer.allDefaultPlans,
   allVideos: state.videosReducer.allVideos,
+  therapistId: state.authReducer.therapistId
 })
 
 const mapDispatchToProps = {

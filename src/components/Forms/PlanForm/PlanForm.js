@@ -27,6 +27,7 @@ const PlanForm = (props) => {
     allDefaultPlans,
     allVideos,
     patientId,
+    therapistId,
   } = props
   const [name, setNameField] = useState((dataToEdit && dataToEdit.name) || '')
   const [instructions, setInstructionsField] = useState((dataToEdit && dataToEdit.instructions) || '')
@@ -68,8 +69,9 @@ const PlanForm = (props) => {
         name,
         instructions,
         videos,
-        defaultPlanIDs: defaultPlans || [],
+        defaultPlans: defaultPlans || [],
         patientID: patientId,
+        therapistID: therapistId,
       }
     }
     handleFormSubmit(finalFormData)

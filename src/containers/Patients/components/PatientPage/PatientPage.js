@@ -33,6 +33,7 @@ const PatientPage = (props) => {
     createPlan,
     activateErrorModal,
     loadingEditPlan,
+    therapistId,
   } = props
   console.log('PatientPage')
 
@@ -114,6 +115,7 @@ const PatientPage = (props) => {
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={PlanForm}
                 patientId={patient.id}
+                therapistId={therapistId}
                 dataToEdit={modalMode === 'edit' && planById}
                 allDefaultPlans={allDefaultPlans}
                 allVideos={allVideos}
