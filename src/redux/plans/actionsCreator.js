@@ -33,7 +33,7 @@ export const createPlan = (formData) => async (dispatch) => {
     console.log('status', status)
     dispatch({
       type: ActionTypes.CREATE_PLAN_SUCCESS,
-      // payload: data,
+      payload: data,
     })
   } catch (err) {
     console.log('err: ', err)

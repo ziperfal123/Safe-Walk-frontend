@@ -29,6 +29,7 @@ const PlanForm = (props) => {
     patientId,
     therapistId,
   } = props
+
   const [name, setNameField] = useState((dataToEdit && dataToEdit.name) || '')
   const [instructions, setInstructionsField] = useState((dataToEdit && dataToEdit.instructions) || '')
   const [videos, setVideosField] = useState((dataToEdit && dataToEdit.videos) || [])
