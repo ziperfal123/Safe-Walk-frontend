@@ -81,6 +81,7 @@ const Videos = (props) => {
                 formTitle="Create a new Video"
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={VideosForm}
+                type={'video'}
                 isLoading={loadingCreateVideo}
                 didPostRequestSucceed={didPostRequestSucceed}
                 setDidPostRequestSucceed={setDidPostRequestSucceed}

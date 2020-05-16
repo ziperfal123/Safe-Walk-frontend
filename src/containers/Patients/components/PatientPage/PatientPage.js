@@ -111,6 +111,7 @@ const PatientPage = (props) => {
                 handleFormSubmit={(formData) => handleFormSubmit(formData)}
                 handleOnCancel={handleOnCancelModal}
                 visible={shouldOpenModal || didPostRequestSucceed}
+                type="plan"
                 formTitle={modalMode === 'edit' ? "Edit patient's plan" : "Create patient's plan"}
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={PlanForm}

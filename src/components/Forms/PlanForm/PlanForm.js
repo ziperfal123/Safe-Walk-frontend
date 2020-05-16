@@ -58,11 +58,13 @@ const PlanForm = (props) => {
 
   function handleFinish() {
     let finalFormData
+    console.log('dataToEdit: ', dataToEdit)
+    console.log('videos: ', videos)
     if (dataToEdit) {
       finalFormData = {
         name,
         instructions,
-        videos,
+        videos: [],
         defaultPlanIDs: defaultPlans || [],
       }
     } else {
