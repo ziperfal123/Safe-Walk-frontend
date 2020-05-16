@@ -1,4 +1,4 @@
-import { get, put } from 'utils/fetch'
+import { get, put, post } from 'utils/fetch'
 import { API } from 'utils/consts'
 import * as ActionTypes from './actionTypes'
 
@@ -23,6 +23,23 @@ export const getRehabPlanById = (planId) => async (dispatch) => {
     }
   }
   dispatch({ type: ActionTypes.FETCH_PLAN_BY_ID_SET_LOADING_FALSE })
+}
+
+export const createPlan = (formData) => async (dispatch) => {
+  dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_TRUE })
+  try {
+    const { data, status } = await post(API.rehabPlansEndpoint, formData)
+    console.log('data', data)
+    console.log('status', status)
+    dispatch({
+      type: ActionTypes.CREATE_PLAN_SUCCESS,
+      // payload: data,
+    })
+  } catch (err) {
+    console.log('err: ', err)
+  }
+
+  dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
 }
 
 export const editPlan = (formData, planId) => async (dispatch) => {

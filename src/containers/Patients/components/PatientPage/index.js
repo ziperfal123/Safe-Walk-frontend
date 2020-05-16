@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { getTestsById, cleanTestsById } from 'redux/tests/actionsCreator'
-import { getRehabPlanById, editPlan } from  'redux/plans/actionsCreator'
+import { getRehabPlanById, editPlan, createPlan } from  'redux/plans/actionsCreator'
 import { getAllDefaultPlans } from 'redux/defaultPlans/actionsCreator'
 import { getAllVideos } from "redux/videos/actionsCreator";
 import {activateErrorModal} from "redux/error/actionCreators"
@@ -21,6 +21,7 @@ const mapDispatchToProps = {
   getAllDefaultPlans,
   getAllVideos,
   editPlan,
+  createPlan,
   activateErrorModal
 }
 

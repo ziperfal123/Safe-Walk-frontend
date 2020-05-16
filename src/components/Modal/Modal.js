@@ -18,6 +18,7 @@ const Modal = (props) => {
     dataToEdit = null,
     allDefaultPlans = null,
     allVideos = null,
+    patientId,
     modalWidth = 660,
   } = props
 
@@ -79,6 +80,7 @@ const Modal = (props) => {
                 formTitle={formTitle}
                 formDescription={formDescription}
                 handleFormSubmit={handleFormSubmit}
+                patientId={patientId}
                 dataToEdit={dataToEdit || null}
                 allDefaultPlans={allDefaultPlans || null}
                 allVideos={allVideos || null}

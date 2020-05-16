@@ -26,6 +26,11 @@ const plansReducer = (state = initialState, action) => {
         loadingPlanById: false,
       }
 
+    case ActionTypes.CREATE_PLAN_SUCCESS:
+      return {
+        ...state,
+        planById: { ...action.payload },
+      }
     case ActionTypes.EDIT_PLAN_BY_ID_SUCCESS:
       return {
         ...state,
