@@ -19,7 +19,7 @@ const Form = ({ handleLoginFormSubmit }) => {
 
   function handleLoginClick(e) {
     e.preventDefault()
-    handleLoginFormSubmit()
+    handleLoginFormSubmit(mail, password)
   }
 
   return (

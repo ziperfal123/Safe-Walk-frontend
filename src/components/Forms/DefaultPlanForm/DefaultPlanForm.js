@@ -28,8 +28,6 @@ const DefaultPlanForm = (props) => {
   })
 
   function handleFinish(formData) {
-    console.log('here')
-    console.log('videos.length: ', videos.length)
     if (videos.length === 0) return
     const finalFormData = {
       name: formData.name,
