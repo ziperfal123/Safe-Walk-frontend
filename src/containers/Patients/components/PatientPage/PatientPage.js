@@ -9,7 +9,6 @@ import TestPage from 'containers/TestPage'
 import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
 import PlanForm from 'components/Forms/PlanForm'
-import { post } from 'utils/fetch'
 import { API } from 'utils/consts'
 import PatientDataSection from '../PatientDataSection'
 import TestsSection from '../TestsSection'
@@ -31,12 +30,17 @@ const PatientPage = (props) => {
     allVideos,
     getAllVideos,
     editPlan,
+    createPlan,
+    activateErrorModal,
+    loadingEditPlan,
+    therapistId,
   } = props
   console.log('PatientPage')
 
   const [clickedTestId, setClickedTestId] = useState('')
   const [shouldOpenModal, setShouldOpenModal] = useState(false)
   const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
+  const [modalMode, setModalMode] = useState('')
 
 
   useEffect(() => {
@@ -62,32 +66,32 @@ const PatientPage = (props) => {
 
   async function handleFormSubmit(formData) {
     console.log('HANDLE SUBMIT', formData)
-    const EditPlanResponse = await editPlan(formData, planById.id)
-    // const rehabPlansData = {
-    //   name: formData.name,
-    //   instructions: formData.instructions,
-    // }
-    //
-    // post(API.rehabPlansEndpoint, rehabPlansData)
-
-
-    /*
-    *    const creationResponse = await createVideo(formData)
-    if (creationResponse === API.postRequestSuccess) {
-      setDidPostRequestSucceed(true)
-      setShouldOpenModal(false)
-    } else {
-      activateErrorModal(creationResponse && creationResponse.message)
+    if (modalMode === 'edit') {
+      console.log('planById.id: ', planById.id)
+      const editPlanResponse = await editPlan(formData, planById.id)
+      if (editPlanResponse === API.postRequestSuccess) {
+        setDidPostRequestSucceed(true)
+        setShouldOpenModal(false)
+      } else {
+        activateErrorModal(editPlanResponse && editPlanResponse.message)
+      }
+    } else if (modalMode === 'new') {
+      const createPlanResponse = await createPlan(formData)
+      if (createPlanResponse === API.postRequestSuccess) {
+        setDidPostRequestSucceed(true)
+        setShouldOpenModal(false)
+      } else {
+        activateErrorModal(createPlanResponse && createPlanResponse.message)
+      }
     }
-
-    * */
   }
 
   function handleOnCancelModal() {
     setShouldOpenModal(false)
   }
 
-  function handleEditPlan(toggleOverlay) {
+  function handleOpenModal(mode, toggleOverlay) {
+    setModalMode(mode)
     setShouldOpenModal(true)
     toggleOverlay(true)
   }
@@ -107,21 +111,24 @@ const PatientPage = (props) => {
                 handleFormSubmit={(formData) => handleFormSubmit(formData)}
                 handleOnCancel={handleOnCancelModal}
                 visible={shouldOpenModal || didPostRequestSucceed}
-                formTitle="Edit patient's plan"
+                type="plan"
+                formTitle={modalMode === 'edit' ? "Edit patient's plan" : "Create patient's plan"}
                 formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
                 FormToRender={PlanForm}
-                dataToEdit={planById}
+                patientId={patient.id}
+                therapistId={therapistId}
+                dataToEdit={modalMode === 'edit' && planById}
                 allDefaultPlans={allDefaultPlans}
                 allVideos={allVideos}
-                // isLoading={loadingCreateVideo}
-                // didPostRequestSucceed={didPostRequestSucceed}
-                // setDidPostRequestSucceed={setDidPostRequestSucceed}
+                isLoading={loadingEditPlan}
+                didPostRequestSucceed={didPostRequestSucceed}
+                setDidPostRequestSucceed={setDidPostRequestSucceed}
               />
               <PatientDataSection
                 patient={patient}
                 history={history}
                 planById={planById}
-                handleEditPlan={() => handleEditPlan(toggleOverlay)}
+                handleOpenModal={(mode) => handleOpenModal(mode, toggleOverlay)}
               />
               <hr />
               <TestsSection

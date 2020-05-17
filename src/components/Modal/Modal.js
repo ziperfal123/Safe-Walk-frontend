@@ -15,9 +15,12 @@ const Modal = (props) => {
     isLoading,
     didPostRequestSucceed,
     setDidPostRequestSucceed,
-    dataToEdit,
-    allDefaultPlans,
-    allVideos,
+    dataToEdit = null,
+    allDefaultPlans = null,
+    allVideos = null,
+    patientId,
+    therapistId,
+    type = 'data',
     modalWidth = 660,
   } = props
 
@@ -32,7 +35,7 @@ const Modal = (props) => {
     return (
       <div className="loading-modal">
         <Spin />
-        <h4>creating video...</h4>
+        <h4>{`creating ${type}...`}</h4>
       </div>
     )
   }
@@ -79,6 +82,8 @@ const Modal = (props) => {
                 formTitle={formTitle}
                 formDescription={formDescription}
                 handleFormSubmit={handleFormSubmit}
+                patientId={patientId}
+                therapistId={therapistId}
                 dataToEdit={dataToEdit || null}
                 allDefaultPlans={allDefaultPlans || null}
                 allVideos={allVideos || null}

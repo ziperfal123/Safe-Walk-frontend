@@ -47,7 +47,7 @@ export const createVideo = (formData) => async (dispatch) => {
 export const deleteVideo = (idToDelte) => async (dispatch) => {
   const arrOfVideo = [...store.getState().videosReducer.allVideos]
   try {
-    const { data: resData, status: statusCode } = await del(`${API.videoEndpoint}/${idToDelte}`)
+    const { status: statusCode } = await del(`${API.videoEndpoint}/${idToDelte}`)
     if (statusCode >= 200 && statusCode < 300 && statusCode !== 202) {  // TODO:: CHANGE! should get 400+ when error, not 202
       const newArrOfVideos = arrOfVideo.filter(video => video.id !== idToDelte)
       dispatch({

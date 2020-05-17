@@ -3,7 +3,7 @@ import { Progress } from 'antd'
 import PropTypes from 'prop-types'
 import './patientDataSection.scss'
 
-const PatientDataSection = ({ patient, planById, handleEditPlan }) => {
+const PatientDataSection = ({ patient, planById, handleOpenModal }) => {
   function calculatePercentage() {
     if (planById && {}) { // TODO:: wtf?? fix..
       const totalVideos = planById.videos.length
@@ -35,12 +35,12 @@ const PatientDataSection = ({ patient, planById, handleEditPlan }) => {
           <>
             <h3>Starting date: 10-03-19</h3>
             <Progress strokeColor={checkBarColor()} className="progress-bar" type="circle" percent={calculatePercentage()} width={80} />
-            <button type="button" onClick={handleEditPlan}>Edit Plan</button>
+            <button type="button" onClick={() => handleOpenModal('edit')}>Edit Plan</button>
           </>
         ) : (
           <>
             <h3>No plan at the moment</h3>
-            <button type="button">Create a plan</button>
+            <button type="button" onClick={() => handleOpenModal('new')}>Create a plan</button>
           </>
         )}
       </div>

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import DefaultPlans from "containers/DefaultPlans/DefaultPlans";
-import {getAllDefaultPlans, createDefaultPlan} from "redux/defaultPlans/actionsCreator";
-import {getAllVideos} from "redux/videos/actionsCreator";
+import DefaultPlans from 'containers/DefaultPlans/DefaultPlans'
+import { getAllDefaultPlans, createDefaultPlan, deleteDefaultPlan } from 'redux/defaultPlans/actionsCreator'
+import { getAllVideos } from 'redux/videos/actionsCreator'
 import { activateErrorModal } from 'redux/error/actionCreators'
 
 
@@ -12,6 +12,8 @@ const mapStateToProps = (state) => ({
   loadingCreateDefaultPlan: state.defaultPlansReducer.loadingCreateDefaultPlan,
 })
 
-const mapDispatchToProps = { getAllDefaultPlans, getAllVideos, createDefaultPlan, activateErrorModal }
+const mapDispatchToProps = {
+  getAllDefaultPlans, getAllVideos, createDefaultPlan, deleteDefaultPlan, activateErrorModal,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(DefaultPlans)

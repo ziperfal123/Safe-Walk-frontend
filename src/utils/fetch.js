@@ -24,9 +24,10 @@ export async function post(endPointUrl, data) {
   const configOptions = buildHeader()
   try {
     const res = await axios.post(`${SERVER_URL}/${endPointUrl}`, data, configOptions)
-    console.log('returning', res)
     return res
   } catch (err) {
+    console.log('err from post', err)
+    console.log('err from post', err.message)
     throw new Error(err)
   }
 }
@@ -35,9 +36,10 @@ export async function put(endPointUrl, data) {
   const configOptions = buildHeader()
   try {
     const res = await axios.put(`${SERVER_URL}/${endPointUrl}`, data, configOptions)
+    console.log('res: ', res)
     return res
   } catch (err) {
-    console.log('err: ', err)
+    console.log('err from put: ', err)
     throw new Error(err)
   }
 }
@@ -48,7 +50,7 @@ export async function del(endPointUrl) {
     const res = await axios.delete(`${SERVER_URL}/${endPointUrl}`, configOptions)
     return res
   } catch (err) {
-    console.log('e: ', err)
+    console.log('err from delete: ', err)
     throw new Error(err)
   }
 }

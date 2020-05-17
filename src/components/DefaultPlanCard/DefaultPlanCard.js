@@ -3,22 +3,18 @@ import { Card, message, Popconfirm } from 'antd'
 import './defaultPlanCard.scss'
 
 const DefaultPlanCard = (props) => {
-  const {plan} = props
+  const { plan, handleRemoveClick } = props
 
   function handleRemove() {
-    // handleRemoveClick(video.id)
-  }
-
-  function displayConfirmMessage() {
-    handleRemove()
-    message.success('Deleting video...')
+    handleRemoveClick(plan.id)
+    message.success('Deleting default plan...')
   }
 
   function renderDeleteAction() {
     return [
       <Popconfirm
         title="Are you sure delete this video?"
-        onConfirm={displayConfirmMessage}
+        onConfirm={handleRemove}
         okText="Delete"
         cancelText="Cancel"
       >

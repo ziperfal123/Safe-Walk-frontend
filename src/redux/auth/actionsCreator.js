@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import config from 'config'
 import { AUTH } from 'utils/consts'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import pathsNames from 'router/pathNames'
 import {
   CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
   LOGIN_SUCCESS,
@@ -10,7 +11,6 @@ import {
   SET_LOADING_TO_FALSE,
   LOGOUT,
 } from './actionTypes'
-import pathsNames from "router/pathNames";
 
 
 export const checkUserAuthStatusOnAppLoad = () => {
@@ -40,9 +40,14 @@ export const handleLoginFormSubmit = (mail, password) => async (dispatch) => {
       ) // TODO:: is it safe like this???????
       localStorage.setItem('userName', response.data.name)
       localStorage.setItem('userImage', response.data.picture)
+      localStorage.setItem('therapistId', response.data.id)
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: {name: response.data.name, img: response.data.picture}
+        payload: {
+          name: response.data.name,
+          img: response.data.picture,
+          id: response.data.id,
+        },
       })
     } else alert('something occured... login didnt complete') // TODO:: learn the behavior of the fetch and change it accordingly
   } catch (err) {

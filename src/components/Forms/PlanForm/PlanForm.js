@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, {
+  useEffect, useRef, useState, useForm,
+} from 'react'
 import {
   Form,
   Input,
@@ -18,14 +20,22 @@ const { Option } = Select
 const PlanForm = (props) => {
   console.log('PlanForm')
   const {
-    formTitle, formDescription, dataToEdit, handleFormSubmit, allDefaultPlans, allVideos,
+    formTitle,
+    formDescription,
+    dataToEdit,
+    handleFormSubmit,
+    allDefaultPlans,
+    allVideos,
+    patientId,
+    therapistId,
   } = props
-  console.log('dataToEdit: ', dataToEdit)
-  const [name, setNameField] = useState(dataToEdit.name)
-  const [instructions, setInstructionsField] = useState(dataToEdit.instructions)
-  const [videos, setVideosField] = useState(dataToEdit.videos || [])
-  const [defaultPlans, setDefaultPlansField] = useState(dataToEdit.defaultPlans)
+
+  const [name, setNameField] = useState((dataToEdit && dataToEdit.name) || '')
+  const [instructions, setInstructionsField] = useState((dataToEdit && dataToEdit.instructions) || '')
+  const [videos, setVideosField] = useState((dataToEdit && dataToEdit.videos) || [])
+  const [defaultPlans, setDefaultPlansField] = useState((dataToEdit && dataToEdit.defaultPlans) || [])
   const nameInputRef = useRef(null)
+  const [form] = Form.useForm()
 
   useEffect(() => {
     let normalizedVideosArr = [...videos]
@@ -38,15 +48,34 @@ const PlanForm = (props) => {
 
   useEffect(() => {
     nameInputRef.current.focus()
+    dataToEdit && dataToEdit.name && form.setFieldsValue({ name: dataToEdit.name })
+  }, [])
+
+  useEffect(() => {
+    dataToEdit && setNameField(dataToEdit.name)
   }, [])
 
 
   function handleFinish() {
-    const finalFormData = {
-      name,
-      instructions,
-      videos,
-      defaultPlanIDs: defaultPlans || [],
+    let finalFormData
+    console.log('dataToEdit: ', dataToEdit)
+    console.log('videos: ', videos)
+    if (dataToEdit) {
+      finalFormData = {
+        name,
+        instructions,
+        videos: videos,
+        defaultPlanIDs: defaultPlans || [],
+      }
+    } else {
+      finalFormData = {
+        name,
+        instructions,
+        videos,
+        defaultPlans: defaultPlans || [],
+        patientID: patientId,
+        therapistID: therapistId,
+      }
     }
     handleFormSubmit(finalFormData)
   }
@@ -56,20 +85,6 @@ const PlanForm = (props) => {
       <Option value={defaultPlan.id} key={index}>
         {defaultPlan.name}
       </Option>
-    )
-  }
-
-  function renderVideo(video, index) {
-    const isSelected = videos.includes(video.id)
-    const videoClasses = classNames({
-      'video-box': true,
-      'selected': isSelected,
-    })
-    return (
-      <div className={videoClasses} key={index} onClick={() => handleVideosClick(video.id)}>
-        <label>{video.name}</label>
-        <iframe height={150} width={400} src={video.link} />
-      </div>
     )
   }
 
@@ -87,7 +102,7 @@ const PlanForm = (props) => {
   }
 
   function handleVideosClick(videoId, e) {
-    if (e.target.className !== '' && e.target.className !== 'label-container') return
+    if (e.target.className !== '' && e.target.className !== 'label-container' && e.target.className !== 'name-label') return
 
     let isVideoAlreadyInList = false
     for (let i = 0; i < videos.length; i++) {
@@ -134,21 +149,22 @@ const PlanForm = (props) => {
       'video-box': true,
       selected: isSelected,
     })
+    console.log('videoClasses: ', videoClasses)
     return (
       <div className={videoClasses} key={index} onClick={(e) => handleVideosClick(video.id, e)}>
         <div className="label-container">
-          <label className={'name-label'}>{video.name}</label>
+          <label className="name-label">{video.name}</label>
           { isSelected
           && (
-              <div className="input-number-container">
-                <label>times:</label>
-                <InputNumber
-                    defaultValue={timesToSet}
-                    min={1}
-                    onChange={(e) => handleNumberChange(video.id, e)}
-                    placeholder="Enter number of times"
-                />
-              </div>
+          <div className="input-number-container">
+            <label>times:</label>
+            <InputNumber
+              defaultValue={timesToSet}
+              min={1}
+              onChange={(e) => handleNumberChange(video.id, e)}
+              placeholder="Enter number of times"
+            />
+          </div>
           )}
         </div>
         <iframe height={150} width={400} src={video.link} />
@@ -157,7 +173,7 @@ const PlanForm = (props) => {
   }
 
   return (
-    <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
+    <Form className="form has-tabs" layout="vertical" onFinish={handleFinish} form={form}>
       <Tabs defaultActiveKey="1">
         <TabPane tab={PLAN_FORM.planInfoTab} key="1">
           <div className="tab-content-container">
@@ -170,6 +186,7 @@ const PlanForm = (props) => {
               ]}
               label={PLAN_FORM.nameLabel}
               name="name"
+              initialValue={(dataToEdit && dataToEdit.name) || ''}
             >
               <Input
                 className="form-input"
@@ -192,9 +209,11 @@ const PlanForm = (props) => {
         </TabPane>
         <TabPane tab={PLAN_FORM.videosAndPlansTab} key="2">
           <div className="tab-content-container">
+            { !dataToEdit
+            && (
             <Form.Item label={PLAN_FORM.defaultPlansLabel}>
               <Select
-                defaultValue={dataToEdit && dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]} // TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
+                defaultValue={(dataToEdit && dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]) || []} // TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
                 mode="multiple"
                 style={{ width: '60%' }}
                 placeholder={PLAN_FORM.selectPlansPlaceholder}
@@ -203,6 +222,7 @@ const PlanForm = (props) => {
                 {allDefaultPlans.map(renderOption)}
               </Select>
             </Form.Item>
+            )}
             <Form.Item label={PLAN_FORM.chooseVideosLabel}>
               {allVideos.map(renderVideo)}
             </Form.Item>

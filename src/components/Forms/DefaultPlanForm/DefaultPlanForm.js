@@ -17,7 +17,6 @@ const DefaultPlanForm = (props) => {
     handleFormSubmit,
     allVideos,
   } = props
-
   const nameInputRef = useRef(null)
   const [videos, setVideos] = useState([])
 
@@ -29,6 +28,9 @@ const DefaultPlanForm = (props) => {
   })
 
   function handleFinish(formData) {
+    console.log('here')
+    console.log('videos.length: ', videos.length)
+    if (videos.length === 0) return
     const finalFormData = {
       name: formData.name,
       instructions: formData.instructions,
@@ -109,6 +111,7 @@ const DefaultPlanForm = (props) => {
     )
   }
 
+  const shouldDisplayRequiredInfo = videos.length === 0 ? 'display-required' : ''
 
   return (
     <Form className="form has-tabs" layout="vertical" onFinish={handleFinish}>
@@ -128,13 +131,16 @@ const DefaultPlanForm = (props) => {
               <Input
                 className="form-input"
                 defaultValue={dataToEdit && dataToEdit.name}
-                    // onChange={handleNameChange}
                 ref={nameInputRef}
               />
             </Form.Item>
             <Form.Item
               label={DEFAULT_PLAN_FORM.instructionsLabal}
               name="instructions"
+              rules={[
+                { required: true, message: 'Plan instructions field is required' },
+                { required: true, min: 6, message: 'Name should contain at least 6 characters' },
+              ]}
             >
               <Input className="form-input" defaultValue={dataToEdit && dataToEdit.instructions} onChange={() => console.log('hey')} />
             </Form.Item>
@@ -142,7 +148,12 @@ const DefaultPlanForm = (props) => {
         </TabPane>
         <TabPane tab="videos" key="2">
           <div className="tab-content-container">
-            <Form.Item label="choose videos: (click on the video's name)">
+            <Form.Item
+              className={`videos-item ${shouldDisplayRequiredInfo}`}
+              label={DEFAULT_PLAN_FORM.chooseVideosLabel}
+              name="videos"
+            >
+              { videos.length === 0 && <span className={'required-input-details'}>select at least 1 video</span>}
               {allVideos.map(renderVideo)}
             </Form.Item>
           </div>
