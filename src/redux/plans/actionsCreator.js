@@ -45,13 +45,16 @@ export const createPlan = (formData) => async (dispatch) => {
 
 export const editPlan = (formData, planId) => async (dispatch) => {
   dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_TRUE })
-  console.log('formData + ID: ', formData, planId)
   try {
-    const { data } = await put(`${API.rehabPlansEndpoint}/${planId}`, formData)
-    dispatch({
-      type: ActionTypes.EDIT_PLAN_BY_ID_SUCCESS,
-      payload: data,
-    })
+    const { data, status: statusCode } = await put(`${API.rehabPlansEndpoint}/${planId}`, formData)
+    if (statusCode >= 200 && statusCode < 300) {
+      dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
+      dispatch({
+        type: ActionTypes.EDIT_PLAN_BY_ID_SUCCESS,
+        payload: data,
+      })
+    }
+    return API.postRequestSuccess
   } catch (err) {
     dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
     console.log('err: ', err)

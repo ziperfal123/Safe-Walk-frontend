@@ -64,7 +64,7 @@ const PlanForm = (props) => {
       finalFormData = {
         name,
         instructions,
-        videos: [],
+        videos: videos,
         defaultPlanIDs: defaultPlans || [],
       }
     } else {
@@ -149,6 +149,7 @@ const PlanForm = (props) => {
       'video-box': true,
       selected: isSelected,
     })
+    console.log('videoClasses: ', videoClasses)
     return (
       <div className={videoClasses} key={index} onClick={(e) => handleVideosClick(video.id, e)}>
         <div className="label-container">
