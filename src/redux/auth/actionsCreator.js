@@ -24,11 +24,9 @@ export const checkUserAuthStatusOnAppLoad = () => {
 
 export const handleLoginFormSubmit = (mail, password) => async (dispatch) => {
   dispatch({ type: SET_LOADING_TO_TRUE })
-  const m = 'idan@sds.com12f2'
-  const p = 'bfesgnslfkngd'
   const body = {
-    mail: m,
-    password: p,
+    mail,
+    password,
   }
   try { // TODO:: use the fetch util file!!!! not directly with axios!
     const response = await axios.post(`${config.SERVER_URL}/auth/login`, body)
