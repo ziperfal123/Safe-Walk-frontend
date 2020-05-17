@@ -2,6 +2,9 @@ export const AUTH = {
   isAuthenticated: 'isAuthenticated',
   isNotAuthenticated: 'notAuthenticated',
   isPending: 'isPending',
+
+  authenticatedMessage: 'OK',
+
 }
 
 export const NOT_FOUND = {
@@ -15,6 +18,7 @@ export const API = {
   deleteRequestSuccess: 'deleteSuccess',
   deleteRequestError: 'deleteSuccess',
 
+  authEndpoint: 'auth',
   rehabPlansEndpoint: 'rehabPlan',
   videoEndpoint: 'video',
   defaultPlansEndpoint: 'defaultPlan',
