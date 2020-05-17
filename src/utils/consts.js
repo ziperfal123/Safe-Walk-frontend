@@ -19,9 +19,11 @@ export const API = {
   deleteRequestError: 'deleteSuccess',
 
   authEndpoint: 'auth',
+  patientEndpoint: 'patient',
+  defaultPlansEndpoint: 'defaultPlan',
   rehabPlansEndpoint: 'rehabPlan',
   videoEndpoint: 'video',
-  defaultPlansEndpoint: 'defaultPlan',
+  kitsEndpoint: 'sensorsKit',
 }
 
 export const MODAL = {

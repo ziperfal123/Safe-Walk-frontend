@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './sensorKits.scss'
 import KitsTable from './components/KitsTable'
 
 
 const SensorKits = (props) => {
-  const {} = props
+  const { getAllKits } = props
   console.log('SensorKits')
 
+  useEffect(() => {
+    getAllKits()
+  }, [])
   return (
     <div className="kits-page">
       <KitsTable
