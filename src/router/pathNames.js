@@ -4,6 +4,7 @@ const pathsNames = {
   patients: '/patients/',
   defaultPlans: '/defaultPlans/',
   videos: '/videos/',
+  sensorsKit: '/sensorsKit/',
   notFound: '/notFound/',
 }
 

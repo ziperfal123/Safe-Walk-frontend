@@ -50,6 +50,15 @@ const SideBar = ({ handleLogout, history }) => {
             Exercise videos
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to={pathNames.sensorsKit}
+            className="sidebar__nav-link"
+            activeClassName="selected"
+          >
+            Sensors kits
+          </NavLink>
+        </li>
       </ul>
       <button type="button" className="sidebar__logout-btn" onClick={handleLogoutClick}>Log Out</button>
     </div>

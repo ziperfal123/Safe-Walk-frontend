@@ -12,6 +12,7 @@ import PatientTests from './containers/Tests'
 import Patients from './containers/Patients'
 import DefaultPlans from 'containers/DefaultPlans/'
 import Videos from './containers/Videos'
+import SensorsKits from './containers/SensorsKits'
 
 export const OverlayContext = React.createContext(false)
 
@@ -41,6 +42,7 @@ const App = ({ errorObj, cleanError, history }) => {
             <Route path={pathsNames.patients} component={Patients} />
             <Route path={pathsNames.defaultPlans} component={DefaultPlans} />
             <Route exact path={pathsNames.videos} component={Videos} />
+            <Route exact path={pathsNames.sensorsKit} component={SensorsKits} />
             <Route path="*" render={() => <NotFound isInApp />} />
           </Switch>
           {errorObj.errorOccurred
