@@ -35,6 +35,5 @@ export const createPatient = (formData) => async (dispatch) => {
     dispatch({ type: ActionTypes.CREATE_PATIENT_SET_LOADING_FALSE })
     console.log('err: ', err)
   }
-
   dispatch({ type: ActionTypes.CREATE_PATIENT_SET_LOADING_FALSE })
 }

@@ -68,7 +68,7 @@ const Patients = (props) => {
         {({ toggleOverlay }) => (
           <>
             <Modal
-              modalWidth={630}
+              modalWidth={650}
               handleFormSubmit={(formData) => handleFormSubmit(formData)}
               visible={shouldOpenModal || didPostRequestSucceed}
               type="patient"

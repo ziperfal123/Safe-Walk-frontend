@@ -93,6 +93,11 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
         <Form.Item
           label="patient's age:"
           name="age"
+          rules={
+            [
+              { required: true, message: 'Patient age is required' },
+            ]
+          }
         >
           <InputNumber className="form-input" min={18} defaultValue={18} />
         </Form.Item>
