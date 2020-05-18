@@ -20,9 +20,11 @@ const Patients = (props) => {
     loadingAllPatients,
     loadingAllTestsById,
     allTestsById,
+    activateErrorModal,
+    createPatient,
+    loadingCreatePatient,
     allDefaultPlans,
     getAllDefaultPlans,
-    createPatient,
   } = props
 
   const [selectedPatient, setSelectedPatient] = useState('')
@@ -46,13 +48,14 @@ const Patients = (props) => {
 
   async function handleFormSubmit(formData) {
     console.log('HANDLE SUBMIT', formData)
-    // const createPatientResponse = await createPatient(formData)
-    // if (createPatientResponse === API.postRequestSuccess) {
-    //   setDidPostRequestSucceed(true)
-    //   setShouldOpenModal(false)
-    // } else {
-    //   // activateErrorModal(createPlanResponse && createPlanResponse.message)
-    // }
+    const createPatientResponse = await createPatient(formData)
+    console.log('createPatientResponse: ', createPatientResponse)
+    if (createPatientResponse === API.postRequestSuccess) {
+      setDidPostRequestSucceed(true)
+      setShouldOpenModal(false)
+    } else {
+      activateErrorModal(createPatientResponse && createPatientResponse.message)
+    }
   }
 
   function handleOnCancelModal() {
@@ -66,13 +69,16 @@ const Patients = (props) => {
           <>
             <Modal
               modalWidth={630}
-            handleFormSubmit={(formData) => handleFormSubmit(formData)}
+              handleFormSubmit={(formData) => handleFormSubmit(formData)}
+              visible={shouldOpenModal || didPostRequestSucceed}
               type="patient"
               handleOnCancel={handleOnCancelModal}
-              visible={shouldOpenModal || didPostRequestSucceed}
               formTitle="Create a new patient"
               formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
               FormToRender={PatientForm}
+              isLoading={loadingCreatePatient}
+              didPostRequestSucceed={didPostRequestSucceed}
+              setDidPostRequestSucceed={setDidPostRequestSucceed}
             />
             <button
               type="button"

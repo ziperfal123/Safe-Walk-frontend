@@ -28,7 +28,7 @@ const patientsReducer = (state = initialState, action) => {
     case ActionTypes.CREATE_PATIENT_SUCCESS:
       return {
         ...state,
-        loadingAllPatients: false,
+        allPatients: [action.payload, ...state.allPatients],
       }
 
     default:

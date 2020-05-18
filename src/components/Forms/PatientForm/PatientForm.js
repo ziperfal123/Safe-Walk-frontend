@@ -15,7 +15,7 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
 
   function handleFinish(formData) {
     console.log('formData: ', formData)
-    // handleFormSubmit(formData)
+    handleFormSubmit(formData)
   }
   return (
     <Form className="form" layout="vertical" onFinish={handleFinish}>
@@ -23,14 +23,14 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
         <h1>{formTitle}</h1>
         <p>{formDescription}</p>
         <Form.Item
+          label="patient name:"
+          name="name"
           rules={
                 [
                   { required: true, message: 'Patient name is required' },
                   { required: true, min: 3, message: 'Name should contain at least 3 characters' },
                 ]
               }
-          label="patient name:"
-          name="name"
         >
           <Input className="form-input" ref={nameInputRef} />
         </Form.Item>
@@ -47,29 +47,52 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
           <Input className="form-input" />
         </Form.Item>
         <Form.Item
-          label="patient picture:"
-          name="picture"
+          label="patient password:"
+          name="password"
+          rules={
+              [
+                { required: true, message: 'password is required' },
+                { required: true, min: 6, message: 'password has to be at least 6 characters' },
+              ]
+            }
+        >
+          <Input.Password className="form-input" />
+        </Form.Item>
+        <Form.Item
+          label="patient phone number:"
+          name="phoneNumber"
+          rules={
+            [
+              { required: true, message: 'phone number is required' },
+              { required: true, pattern: '^\\d{10}$', message: 'phone number should contain exactly 10 numbers' },
+            ]
+          }
         >
           <Input className="form-input" />
         </Form.Item>
         <Form.Item
           label="patient picture:"
           name="picture"
+          rules={
+              [
+                { required: true, message: 'Patient picture is required' },
+              ]
+            }
         >
           <Input className="form-input" />
         </Form.Item>
         <Form.Item
-            label="gender:"
-            name="gender"
+          label="gender:"
+          name="gender"
         >
-          <Radio.Group onChange={() => console.log('change')}>
+          <Radio.Group>
             <Radio value="male">Male</Radio>
             <Radio value="female">Female</Radio>
           </Radio.Group>
         </Form.Item>
         <Form.Item
-            label="phone number:"
-            name="phoneNumber"
+          label="patient's age:"
+          name="age"
         >
           <InputNumber className="form-input" min={18} defaultValue={18} />
         </Form.Item>

@@ -4,8 +4,7 @@
   @include page-size;
 
   & button.add-btn {
-    position: relative;
-      z-index: $z-index-medium-bottom-value;
+      position: relative;
       height: 65px;
       width: 65px;
       top: 15px;

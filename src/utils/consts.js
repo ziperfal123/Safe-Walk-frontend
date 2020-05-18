@@ -19,6 +19,7 @@ export const API = {
   deleteRequestError: 'deleteSuccess',
 
   authEndpoint: 'auth',
+  patientEndpoint: 'patient',
   rehabPlansEndpoint: 'rehabPlan',
   videoEndpoint: 'video',
   defaultPlansEndpoint: 'defaultPlan',
