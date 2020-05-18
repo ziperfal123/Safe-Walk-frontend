@@ -80,8 +80,13 @@ const columns = [
     title: 'Sensors kit Id',
     dataIndex: 'sensorsKitID',
     render(_, patientObj) {
+      const rowColor = patientObj.waitForPlan ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
+      const normalizedWaitingStatus = patientObj.waitForPlan ? 'Yes' : 'No'
       return {
-        children: (<span className="waiting-status">{patientObj.sensorsKitID}</span>),
+        props: {
+          style: { background: `${rowColor}` },
+        },
+        children: (<span>{patientObj.sensorsKitID}</span>),
       }
     },
   },

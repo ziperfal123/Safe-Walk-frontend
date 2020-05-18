@@ -28,7 +28,8 @@ export const getRehabPlanById = (planId) => async (dispatch) => {
 export const createPlan = (formData) => async (dispatch) => {
   dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_TRUE })
   try {
-    const { data } = await post(API.rehabPlansEndpoint, formData)
+    const { data, status } = await post(API.rehabPlansEndpoint, formData)
+    console.log('status: ', status)
     dispatch({
       type: ActionTypes.CREATE_PLAN_SUCCESS,
       payload: data,

@@ -5,9 +5,10 @@ import './patients.scss'
 import pathsNames from 'router/pathNames'
 import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
+import PatientForm from 'components/Forms/PatientForm'
+import { API } from 'utils/consts'
 import PatientPage from './components/PatientPage'
 import PatientsTable from './components/PatientsTable'
-import PatientForm from "components/Forms/PatientForm";
 
 const Patients = (props) => {
   console.log('Patients')
@@ -21,9 +22,12 @@ const Patients = (props) => {
     allTestsById,
     allDefaultPlans,
     getAllDefaultPlans,
+    createPatient,
   } = props
 
   const [selectedPatient, setSelectedPatient] = useState('')
+  const [shouldOpenModal, setShouldOpenModal] = useState(false)
+  const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
 
   useEffect(() => {
     getAllPatients()
@@ -35,8 +39,24 @@ const Patients = (props) => {
     history.push(`${pathsNames.patients}${patientObj.id}`)
   }
 
-  function handleBackClick() {
-    console.log('btn')
+  function handleAddPatientClick(toggleOverlay) {
+    setShouldOpenModal(true)
+    toggleOverlay(true)
+  }
+
+  async function handleFormSubmit(formData) {
+    console.log('HANDLE SUBMIT', formData)
+    // const createPatientResponse = await createPatient(formData)
+    // if (createPatientResponse === API.postRequestSuccess) {
+    //   setDidPostRequestSucceed(true)
+    //   setShouldOpenModal(false)
+    // } else {
+    //   // activateErrorModal(createPlanResponse && createPlanResponse.message)
+    // }
+  }
+
+  function handleOnCancelModal() {
+    setShouldOpenModal(false)
   }
 
   function renderPatientTable() {
@@ -45,18 +65,19 @@ const Patients = (props) => {
         {({ toggleOverlay }) => (
           <>
             <Modal
-              modalWidth={700}
-            // handleFormSubmit={(formData) => handleFormSubmit(formData)}
-              handleOnCancel={() => console.log('cancel')}
+              modalWidth={630}
+            handleFormSubmit={(formData) => handleFormSubmit(formData)}
+              type="patient"
+              handleOnCancel={handleOnCancelModal}
+              visible={shouldOpenModal || didPostRequestSucceed}
               formTitle="Create a new patient"
               formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
               FormToRender={PatientForm}
-              visible
             />
             <button
               type="button"
               className="add-btn"
-              onClick={handleBackClick}
+              onClick={() => handleAddPatientClick(toggleOverlay)}
             >
               Add
             </button>
