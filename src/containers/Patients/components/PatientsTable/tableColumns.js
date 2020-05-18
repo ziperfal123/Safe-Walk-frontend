@@ -76,6 +76,16 @@ const columns = [
       }
     },
   },
+  {
+    title: 'Sensors kit Id',
+    dataIndex: 'sensorsKitID',
+    render(_, patientObj) {
+      return {
+        children: (<span className="waiting-status">{patientObj.sensorsKitID}</span>),
+      }
+    },
+  },
+
 ]
 
 export default columns

@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import './patients.scss'
 import pathsNames from 'router/pathNames'
-import PatientsTable from './components/PatientsTable'
+import Modal from 'components/Modal'
+import { OverlayContext } from 'App'
 import PatientPage from './components/PatientPage'
+import PatientsTable from './components/PatientsTable'
+import PatientForm from "components/Forms/PatientForm";
 
 const Patients = (props) => {
   console.log('Patients')
@@ -32,13 +35,39 @@ const Patients = (props) => {
     history.push(`${pathsNames.patients}${patientObj.id}`)
   }
 
+  function handleBackClick() {
+    console.log('btn')
+  }
+
   function renderPatientTable() {
     return (
-      <PatientsTable
-        allPatients={allPatients}
-        handleTableRowClick={handleTableRowClick}
-        loadingAllPatients={loadingAllPatients}
-      />
+      <OverlayContext.Consumer>
+        {({ toggleOverlay }) => (
+          <>
+            <Modal
+              modalWidth={700}
+            // handleFormSubmit={(formData) => handleFormSubmit(formData)}
+              handleOnCancel={() => console.log('cancel')}
+              formTitle="Create a new patient"
+              formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
+              FormToRender={PatientForm}
+              visible
+            />
+            <button
+              type="button"
+              className="add-btn"
+              onClick={handleBackClick}
+            >
+              Add
+            </button>
+            <PatientsTable
+              allPatients={allPatients}
+              handleTableRowClick={handleTableRowClick}
+              loadingAllPatients={loadingAllPatients}
+            />
+          </>
+        )}
+      </OverlayContext.Consumer>
     )
   }
 

@@ -22,6 +22,7 @@ const Modal = (props) => {
     therapistId,
     type = 'data',
     modalWidth = 660,
+    ...rest
   } = props
 
   useEffect(() => {
@@ -66,7 +67,7 @@ const Modal = (props) => {
           afterClose={() => handleModalClose(toggleOverlay)}
           onCancel={() => handleModalClose(toggleOverlay, true)}
           destroyOnClose
-          {...props}
+          {...rest}
         >
           <aside>
             <img src={Logo} alt="logo" />
