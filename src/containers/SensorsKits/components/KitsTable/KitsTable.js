@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table } from 'antd'
-import PropTypes from 'prop-types'
+import columns from './tableColumns'
 import './kitsTable.scss'
 
 const KitsTable = (props) => {
