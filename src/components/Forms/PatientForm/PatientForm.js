@@ -59,14 +59,8 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
           <Input className="form-input" />
         </Form.Item>
         <Form.Item
-          label="patient age:"
-          name="age"
-        >
-          <InputNumber className="form-input" min={18} defaultValue={18} />
-        </Form.Item>
-        <Form.Item
-          label="gender:"
-          name="gender"
+            label="gender:"
+            name="gender"
         >
           <Radio.Group onChange={() => console.log('change')}>
             <Radio value="male">Male</Radio>
@@ -74,16 +68,10 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
           </Radio.Group>
         </Form.Item>
         <Form.Item
-          label="phone number:"
-          name="phoneNumber"
+            label="phone number:"
+            name="phoneNumber"
         >
-          <Input className="form-input" />
-        </Form.Item>
-        <Form.Item
-          label="sensors kit id:"
-          name="sensorsKitID"
-        >
-          <Input className="form-input" />
+          <InputNumber className="form-input" min={18} defaultValue={18} />
         </Form.Item>
       </div>
       <Form.Item className="save-btn-container">
