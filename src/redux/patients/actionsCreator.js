@@ -28,7 +28,6 @@ export const createPatient = (formData) => async (dispatch) => {
         payload: data,
       })
       dispatch({ type: ActionTypes.CREATE_PATIENT_SET_LOADING_FALSE })
-      console.log('returning::', API.postRequestSuccess)
       return API.postRequestSuccess
     }
   } catch (err) {
