@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Spin } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Spin, Select, Button } from 'antd'
 import PropTypes from 'prop-types'
 
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
@@ -19,33 +19,94 @@ const TestPage = (props) => {
     handleBackClick,
   } = props
 
+
+  const [selectValue, setSelectValue] = useState('sensor1')
+  const [sensor1, setSensor1] = useState(null)
+  const [sensor2, setSensor2] = useState(null)
+  const [sensor3, setSensor3] = useState(null)
+  const [sensor4, setSensor4] = useState(null)
+  const [sensor5, setSensor5] = useState(null)
+  const [sensor6, setSensor6] = useState(null)
+  const [sensor7, setSensor7] = useState(null)
+
+
   useEffect(() => {
     getGaitModelByTestId(testId)
     return () => { cleanGaitModel() }
   }, [])
 
-  function renderSensorsContainer(key) {
-    if (key === 'testID' || key === 'id' || key === '_id' || key === '__v') return null
-    const dataSetX = []
-    const dataSetY = []
-    const dataSetZ = []
+  useEffect(() => {
+    if (gaitModel) {
+      console.log('gait modal effect')
+      console.log('gaitModel[selectValue]: ', gaitModel[`${selectValue}`])
+      // Object.keys(gaitModel)[`${selectValue}`]((key) => generateSensorsData(key))
+    }
+  }, gaitModel)
 
-    gaitModel[key].accelerations.forEach((dataElement) => {
-      dataSetX.push({ x: dataElement.timeStamp, y: dataElement.x })
-      dataSetY.push({ x: dataElement.timeStamp, y: dataElement.y })
-      dataSetZ.push({ x: dataElement.timeStamp, y: dataElement.z })
-    })
-
+  function renderSelect() {
     return (
-      <GraphContainer
-        key={key}
-        dataSetX={dataSetX}
-        dataSetY={dataSetY}
-        dataSetZ={dataSetZ}
-        sensor={key}
-        cleanGaitModel={cleanGaitModel}
-      />
+      <Select className="graph-select" defaultValue="sensor 1" onChange={handleSelectChange}>
+        <Select.Option value="sensor 1">Sensor 1- Right Ankle</Select.Option>
+        <Select.Option value="sensor 2">Sensor 2- Left Ankle</Select.Option>
+        <Select.Option value="sensor 3">Sensor 3- Right Knee</Select.Option>
+        <Select.Option value="sensor 4">Sensor 4- Left Knee</Select.Option>
+        <Select.Option value="sensor 5">Sensor 5- Right Right</Select.Option>
+        <Select.Option value="sensor 6">Sensor 6- Left Left</Select.Option>
+        <Select.Option value="sensor 7">Sensor 7- Center of mass</Select.Option>
+      </Select>
     )
+  }
+
+  function handleSelectChange(val) {
+    setSelectValue(val)
+  }
+
+  function generateSensorsData(key) {
+    console.log('key: ', key)
+    if (key === 'testID' || key === 'id' || key === '_id' || key === '__v') return null
+    if (key === 'sensor1') {
+      const accelerationX = []
+      const accelerationY = []
+      const accelerationZ = []
+
+      const displacementsX = []
+      const displacementsY = []
+      const displacementsZ = []
+
+      const velocitiesX = []
+      const velocitiesY = []
+      const velocitiesZ = []
+
+      gaitModel[key].accelerations.forEach((dataElement) => {
+        accelerationX.push({ x: dataElement.timeStamp, y: dataElement.x })
+        accelerationY.push({ x: dataElement.timeStamp, y: dataElement.y })
+        accelerationZ.push({ x: dataElement.timeStamp, y: dataElement.z })
+      })
+      gaitModel[key].accelerations.forEach((dataElement) => {
+        displacementsX.push({ x: dataElement.timeStamp, y: dataElement.x })
+        displacementsY.push({ x: dataElement.timeStamp, y: dataElement.y })
+        displacementsZ.push({ x: dataElement.timeStamp, y: dataElement.z })
+      })
+      gaitModel[key].accelerations.forEach((dataElement) => {
+        velocitiesX.push({ x: dataElement.timeStamp, y: dataElement.x })
+        velocitiesY.push({ x: dataElement.timeStamp, y: dataElement.y })
+        velocitiesZ.push({ x: dataElement.timeStamp, y: dataElement.z })
+      })
+
+      console.log('accelerationX: ', accelerationX)
+      console.log('displacementsX: ', displacementsX)
+      console.log('velocitiesX: ', velocitiesX)
+    }
+    // return (
+    //   <GraphContainer
+    //     key={key}
+    //     dataSetX={dataSetX}
+    //     dataSetY={dataSetY}
+    //     dataSetZ={dataSetZ}
+    //     sensor={key}
+    //     cleanGaitModel={cleanGaitModel}
+    //   />
+    // )
   }
 
   return (
@@ -56,11 +117,13 @@ const TestPage = (props) => {
           <h3>it might take up to one minute..</h3>
         </div>
       ) : (
-        <>
-          <BackButton handleBackClick={handleBackClick} />
+        <div className="graph-page">
+          <BackButton className="back-btn-graph" handleBackClick={handleBackClick} />
           <h1 className="test-title">Gait model data</h1>
-          { Object.keys(gaitModel).map((key) => renderSensorsContainer(key)) }
-        </>
+          {renderSelect()}
+          <Button className="report-btn" type="primary">Open Report</Button>
+          {/* { Object.keys(gaitModel).map((key) => generateSensorsData(key)) } */}
+        </div>
       )}
     </>
   )

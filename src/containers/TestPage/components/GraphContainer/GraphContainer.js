@@ -80,7 +80,7 @@ const GraphContainer = (props) => {
           </Radio>
         </Radio.Group>
       </div>
-      <div style={{ display: 'flex' }}>
+      <div style={{ }}>
         <VictoryChart
           containerComponent={(
             <VictoryZoomContainer
@@ -139,68 +139,6 @@ const GraphContainer = (props) => {
             label="time stamp"
             style={{
               axisLabel: { fontSize: 12, padding: 50 },
-              tickLabels: { fontSize: 12, padding: 5 },
-            }}
-          />
-        </VictoryChart>
-        <VictoryChart
-          containerComponent={(
-            <VictoryZoomContainer
-              // zoomDimension="x"
-              zoomDomain={zoomDomain}
-              onZoomDomainChange={handleZoom}
-            />
-            )}
-          height={340}
-          maxDomain={{ x: 900, y: 10 }}
-          style={{
-            parent: { maxWidth: '50%' },
-            labels: { fontSize: 16 },
-          }}
-          theme={VictoryTheme.material}
-        >
-          {radioValue === 'x' && (
-          <VictoryLine
-            data={dataSetX}
-            style={{
-              data: { stroke: 'green', strokeWidth: 1 },
-              labels: { fontSize: 16 },
-              parent: { border: '1px solid #ccc' },
-            }}
-          />
-          )}
-          { radioValue === 'y' && (
-          <VictoryLine
-            data={dataSetY}
-            style={{
-              data: { stroke: 'purple', strokeWidth: 1 },
-              labels: { fontSize: 16 },
-              parent: { border: '1px solid #ccc' },
-            }}
-          />
-          )}
-          {radioValue === 'z' && (
-          <VictoryLine
-            data={dataSetZ}
-            style={{
-              data: { stroke: 'orange', strokeWidth: 1 },
-              labels: { fontSize: 16 },
-              parent: { border: '1px solid #ccc' },
-            }}
-          />
-          )}
-          <VictoryAxis
-            dependentAxis
-            label="something else"
-            style={{
-              axisLabel: { fontSize: 12, padding: 30 },
-              tickLabels: { fontSize: 12, padding: 5 },
-            }}
-          />
-          <VictoryAxis
-            label="time stamp"
-            style={{
-              axisLabel: { fontSize: 12, padding: 30 },
               tickLabels: { fontSize: 12, padding: 5 },
             }}
           />
