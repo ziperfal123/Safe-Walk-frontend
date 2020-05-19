@@ -76,6 +76,21 @@ const columns = [
       }
     },
   },
+  {
+    title: 'Sensors kit Id',
+    dataIndex: 'sensorsKitID',
+    render(_, patientObj) {
+      const rowColor = patientObj.waitForPlan ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
+      const normalizedWaitingStatus = patientObj.waitForPlan ? 'Yes' : 'No'
+      return {
+        props: {
+          style: { background: `${rowColor}` },
+        },
+        children: (<span>{patientObj.sensorsKitID}</span>),
+      }
+    },
+  },
+
 ]
 
 export default columns

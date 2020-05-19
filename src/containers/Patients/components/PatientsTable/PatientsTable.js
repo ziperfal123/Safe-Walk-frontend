@@ -6,7 +6,7 @@ import columns from './tableColumns'
 
 const PatientsTable = (props) => {
   const { allPatients, handleTableRowClick, loadingAllPatients } = props
-
+  console.log('allPatients: ', allPatients)
   function handleRowClick(patientObj) {
     return {
       onClick: () => handleTableRowClick(patientObj),

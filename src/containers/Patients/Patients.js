@@ -3,8 +3,12 @@ import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import './patients.scss'
 import pathsNames from 'router/pathNames'
-import PatientsTable from './components/PatientsTable'
+import Modal from 'components/Modal'
+import { OverlayContext } from 'App'
+import PatientForm from 'components/Forms/PatientForm'
+import { API } from 'utils/consts'
 import PatientPage from './components/PatientPage'
+import PatientsTable from './components/PatientsTable'
 
 const Patients = (props) => {
   console.log('Patients')
@@ -16,11 +20,16 @@ const Patients = (props) => {
     loadingAllPatients,
     loadingAllTestsById,
     allTestsById,
+    activateErrorModal,
+    createPatient,
+    loadingCreatePatient,
     allDefaultPlans,
     getAllDefaultPlans,
   } = props
 
   const [selectedPatient, setSelectedPatient] = useState('')
+  const [shouldOpenModal, setShouldOpenModal] = useState(false)
+  const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
 
   useEffect(() => {
     getAllPatients()
@@ -32,13 +41,60 @@ const Patients = (props) => {
     history.push(`${pathsNames.patients}${patientObj.id}`)
   }
 
+  function handleAddPatientClick(toggleOverlay) {
+    setShouldOpenModal(true)
+    toggleOverlay(true)
+  }
+
+  async function handleFormSubmit(formData) {
+    console.log('HANDLE SUBMIT', formData)
+    const createPatientResponse = await createPatient(formData)
+    console.log('createPatientResponse: ', createPatientResponse)
+    if (createPatientResponse === API.postRequestSuccess) {
+      setDidPostRequestSucceed(true)
+      setShouldOpenModal(false)
+    } else {
+      activateErrorModal(createPatientResponse && createPatientResponse.message)
+    }
+  }
+
+  function handleOnCancelModal() {
+    setShouldOpenModal(false)
+  }
+
   function renderPatientTable() {
     return (
-      <PatientsTable
-        allPatients={allPatients}
-        handleTableRowClick={handleTableRowClick}
-        loadingAllPatients={loadingAllPatients}
-      />
+      <OverlayContext.Consumer>
+        {({ toggleOverlay }) => (
+          <>
+            <Modal
+              modalWidth={650}
+              handleFormSubmit={(formData) => handleFormSubmit(formData)}
+              visible={shouldOpenModal || didPostRequestSucceed}
+              type="patient"
+              handleOnCancel={handleOnCancelModal}
+              formTitle="Create a new patient"
+              formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
+              FormToRender={PatientForm}
+              isLoading={loadingCreatePatient}
+              didPostRequestSucceed={didPostRequestSucceed}
+              setDidPostRequestSucceed={setDidPostRequestSucceed}
+            />
+            <button
+              type="button"
+              className="add-btn"
+              onClick={() => handleAddPatientClick(toggleOverlay)}
+            >
+              Add
+            </button>
+            <PatientsTable
+              allPatients={allPatients}
+              handleTableRowClick={handleTableRowClick}
+              loadingAllPatients={loadingAllPatients}
+            />
+          </>
+        )}
+      </OverlayContext.Consumer>
     )
   }
 
