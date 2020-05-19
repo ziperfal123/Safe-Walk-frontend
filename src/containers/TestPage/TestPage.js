@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Spin, Select, Button } from 'antd'
+import { cloneDeep } from 'lodash'
 import PropTypes from 'prop-types'
 
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
@@ -20,7 +21,7 @@ const TestPage = (props) => {
   } = props
 
 
-  const [selectValue, setSelectValue] = useState('sensor1')
+  const [selectedOption, setSelectedOption] = useState('sensor1')
   const [sensor1, setSensor1] = useState(null)
   const [sensor2, setSensor2] = useState(null)
   const [sensor3, setSensor3] = useState(null)
@@ -37,8 +38,6 @@ const TestPage = (props) => {
 
   useEffect(() => {
     if (gaitModel) {
-      console.log('gait modal effect')
-      console.log('gaitModel[selectValue]: ', gaitModel[`${selectValue}`])
       Object.keys(gaitModel).map((key) => generateSensorsData(key))
     }
   }, gaitModel)
@@ -46,25 +45,23 @@ const TestPage = (props) => {
   function renderSelect() {
     return (
       <Select className="graph-select" defaultValue="sensor 1" onChange={handleSelectChange}>
-        <Select.Option value="sensor 1">Sensor 1- Right Ankle</Select.Option>
-        <Select.Option value="sensor 2">Sensor 2- Left Ankle</Select.Option>
-        <Select.Option value="sensor 3">Sensor 3- Right Knee</Select.Option>
-        <Select.Option value="sensor 4">Sensor 4- Left Knee</Select.Option>
-        <Select.Option value="sensor 5">Sensor 5- Right Right</Select.Option>
-        <Select.Option value="sensor 6">Sensor 6- Left Left</Select.Option>
-        <Select.Option value="sensor 7">Sensor 7- Center of mass</Select.Option>
+        <Select.Option value="sensor1">Sensor 1- Right Ankle</Select.Option>
+        <Select.Option value="sensor2">Sensor 2- Left Ankle</Select.Option>
+        <Select.Option value="sensor3">Sensor 3- Right Knee</Select.Option>
+        <Select.Option value="sensor4">Sensor 4- Left Knee</Select.Option>
+        <Select.Option value="sensor5">Sensor 5- Right Right</Select.Option>
+        <Select.Option value="sensor6">Sensor 6- Left Left</Select.Option>
+        <Select.Option value="sensor7">Sensor 7- Center of mass</Select.Option>
       </Select>
     )
   }
 
   function handleSelectChange(val) {
-    setSelectValue(val)
+    setSelectedOption(val)
   }
 
   function generateSensorsData(key) {
-    console.log('key: ', key)
     if (key === 'testID' || key === 'id' || key === '_id' || key === '__v') return null
-    console.log('key')
     const accelerationX = []
     const accelerationY = []
     const accelerationZ = []
@@ -93,10 +90,6 @@ const TestPage = (props) => {
       velocitiesZ.push({ x: dataElement.timeStamp, y: dataElement.z })
     })
 
-    console.log('accelerationX: ', accelerationX)
-    console.log('displacementsX: ', displacementsX)
-    console.log('velocitiesX: ', velocitiesX)
-
     const tmpObj = {
       accelerations: {
         x: accelerationX,
@@ -115,45 +108,69 @@ const TestPage = (props) => {
         z: accelerationZ,
       },
     }
-    setSensor1()
-
     switch (key) {
       case 'sensor1': {
         setSensor1(tmpObj)
+        break
       }
       case 'sensor2': {
         setSensor2(tmpObj)
+        break
       }
       case 'sensor3': {
         setSensor3(tmpObj)
+        break
       }
       case 'sensor4': {
         setSensor4(tmpObj)
+        break
       }
       case 'sensor5': {
         setSensor5(tmpObj)
+        break
       }
       case 'sensor6': {
         setSensor6(tmpObj)
+        break
       }
       case 'sensor7': {
         setSensor7(tmpObj)
+        break
       }
       default: {
-        console.log(" why am i inside default?")
+        console.log(' why am i inside default?')
       }
     }
+  }
 
-    // return (
-    //   <GraphContainer
-    //     key={key}
-    //     dataSetX={dataSetX}
-    //     dataSetY={dataSetY}
-    //     dataSetZ={dataSetZ}
-    //     sensor={key}
-    //     cleanGaitModel={cleanGaitModel}
-    //   />
-    // )
+  function getSensor() {
+    console.log('selectedOption: ', selectedOption)
+    switch (selectedOption) {
+      case 'sensor1': {
+        return sensor1
+      }
+      case 'sensor2': {
+        return sensor2
+      }
+      case 'sensor3': {
+        return sensor3
+      }
+      case 'sensor4': {
+        return sensor4
+      }
+      case 'sensor5': {
+        return sensor5
+      }
+      case 'sensor6': {
+        return sensor6
+      }
+      case 'sensor7': {
+        return sensor7
+      }
+      default: {
+        return sensor1
+      }
+    }
   }
 
   return (
@@ -169,7 +186,10 @@ const TestPage = (props) => {
           <h1 className="test-title">Gait model data</h1>
           {renderSelect()}
           <Button className="report-btn" type="primary">Open Report</Button>
-          {/* { Object.keys(gaitModel).map((key) => generateSensorsData(key)) } */}
+          <GraphContainer
+            sensor={getSensor()}
+            cleanGaitModel={cleanGaitModel}
+          />
         </div>
       )}
     </>

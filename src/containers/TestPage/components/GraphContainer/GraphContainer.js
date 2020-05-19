@@ -24,38 +24,10 @@ const GraphContainer = (props) => {
     setRadioValue(e.target.value)
   }
 
-  let label
-  switch (sensor) {
-    case 'sensor1':
-      label = 'Right Ankle: '
-      break
-    case 'sensor2':
-      label = 'Left Ankle: '
-      break
-    case 'sensor3':
-      label = 'Right Knee: '
-      break
-    case 'sensor4':
-      label = 'Left Knee: '
-      break
-    case 'sensor5':
-      label = 'Right right: '
-      break
-    case 'sensor6':
-      label = 'Left left: '
-      break
-    case 'sensor7':
-      label = 'Center of mass: '
-      break
-
-    default:
-      label = 'sensors data: '
-  }
-
   return (
     <div className="graph-container">
       <div className="container-header">
-        <h3 className="sensor-title">{label}</h3>
+        <h3 className="sensor-title">{'k'}</h3>
         <Radio.Group className="radio-container" onChange={handleRadioClick}>
           <Radio
             className="radio--green"
