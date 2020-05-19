@@ -39,7 +39,7 @@ const TestPage = (props) => {
     if (gaitModel) {
       console.log('gait modal effect')
       console.log('gaitModel[selectValue]: ', gaitModel[`${selectValue}`])
-      // Object.keys(gaitModel)[`${selectValue}`]((key) => generateSensorsData(key))
+      Object.keys(gaitModel).map((key) => generateSensorsData(key))
     }
   }, gaitModel)
 
@@ -64,39 +64,86 @@ const TestPage = (props) => {
   function generateSensorsData(key) {
     console.log('key: ', key)
     if (key === 'testID' || key === 'id' || key === '_id' || key === '__v') return null
-    if (key === 'sensor1') {
-      const accelerationX = []
-      const accelerationY = []
-      const accelerationZ = []
+    console.log('key')
+    const accelerationX = []
+    const accelerationY = []
+    const accelerationZ = []
 
-      const displacementsX = []
-      const displacementsY = []
-      const displacementsZ = []
+    const displacementsX = []
+    const displacementsY = []
+    const displacementsZ = []
 
-      const velocitiesX = []
-      const velocitiesY = []
-      const velocitiesZ = []
+    const velocitiesX = []
+    const velocitiesY = []
+    const velocitiesZ = []
 
-      gaitModel[key].accelerations.forEach((dataElement) => {
-        accelerationX.push({ x: dataElement.timeStamp, y: dataElement.x })
-        accelerationY.push({ x: dataElement.timeStamp, y: dataElement.y })
-        accelerationZ.push({ x: dataElement.timeStamp, y: dataElement.z })
-      })
-      gaitModel[key].accelerations.forEach((dataElement) => {
-        displacementsX.push({ x: dataElement.timeStamp, y: dataElement.x })
-        displacementsY.push({ x: dataElement.timeStamp, y: dataElement.y })
-        displacementsZ.push({ x: dataElement.timeStamp, y: dataElement.z })
-      })
-      gaitModel[key].accelerations.forEach((dataElement) => {
-        velocitiesX.push({ x: dataElement.timeStamp, y: dataElement.x })
-        velocitiesY.push({ x: dataElement.timeStamp, y: dataElement.y })
-        velocitiesZ.push({ x: dataElement.timeStamp, y: dataElement.z })
-      })
+    gaitModel[key].accelerations.forEach((dataElement) => {
+      accelerationX.push({ x: dataElement.timeStamp, y: dataElement.x })
+      accelerationY.push({ x: dataElement.timeStamp, y: dataElement.y })
+      accelerationZ.push({ x: dataElement.timeStamp, y: dataElement.z })
+    })
+    gaitModel[key].accelerations.forEach((dataElement) => {
+      displacementsX.push({ x: dataElement.timeStamp, y: dataElement.x })
+      displacementsY.push({ x: dataElement.timeStamp, y: dataElement.y })
+      displacementsZ.push({ x: dataElement.timeStamp, y: dataElement.z })
+    })
+    gaitModel[key].accelerations.forEach((dataElement) => {
+      velocitiesX.push({ x: dataElement.timeStamp, y: dataElement.x })
+      velocitiesY.push({ x: dataElement.timeStamp, y: dataElement.y })
+      velocitiesZ.push({ x: dataElement.timeStamp, y: dataElement.z })
+    })
 
-      console.log('accelerationX: ', accelerationX)
-      console.log('displacementsX: ', displacementsX)
-      console.log('velocitiesX: ', velocitiesX)
+    console.log('accelerationX: ', accelerationX)
+    console.log('displacementsX: ', displacementsX)
+    console.log('velocitiesX: ', velocitiesX)
+
+    const tmpObj = {
+      accelerations: {
+        x: accelerationX,
+        y: accelerationY,
+        z: accelerationZ,
+      },
+      displacements: {
+        x: displacementsX,
+        y: displacementsY,
+        z: displacementsZ,
+
+      },
+      velocities: {
+        x: accelerationX,
+        y: accelerationY,
+        z: accelerationZ,
+      },
     }
+    setSensor1()
+
+    switch (key) {
+      case 'sensor1': {
+        setSensor1(tmpObj)
+      }
+      case 'sensor2': {
+        setSensor2(tmpObj)
+      }
+      case 'sensor3': {
+        setSensor3(tmpObj)
+      }
+      case 'sensor4': {
+        setSensor4(tmpObj)
+      }
+      case 'sensor5': {
+        setSensor5(tmpObj)
+      }
+      case 'sensor6': {
+        setSensor6(tmpObj)
+      }
+      case 'sensor7': {
+        setSensor7(tmpObj)
+      }
+      default: {
+        console.log(" why am i inside default?")
+      }
+    }
+
     // return (
     //   <GraphContainer
     //     key={key}
