@@ -40,7 +40,7 @@ const TestPage = (props) => {
 
   function renderSelect() {
     return (
-      <Select className="graph-select" defaultValue="sensor 1" onChange={handleSelectChange}>
+      <Select className="graph-select" defaultValue="Sensor 1- Right Ankle" onChange={handleSelectChange}>
         <Select.Option value="sensor1">Sensor 1- Right Ankle</Select.Option>
         <Select.Option value="sensor2">Sensor 2- Left Ankle</Select.Option>
         <Select.Option value="sensor3">Sensor 3- Right Knee</Select.Option>
