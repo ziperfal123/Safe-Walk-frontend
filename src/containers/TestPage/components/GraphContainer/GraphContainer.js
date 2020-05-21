@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Radio } from 'antd'
+import React, {useEffect, useState} from 'react'
+import { Radio, Spin } from 'antd'
 import PropTypes from 'prop-types'
 import Chart from 'react-google-charts'
 import {
@@ -9,59 +9,68 @@ import {
 import 'containers/TestPage/testPage.scss'
 
 const GraphContainer = (props) => {
-  const {
-    dataSetX, dataSetY, dataSetZ, sensor,
-  } = props
+  const { sensor } = props
 
-  const [zoomDomain, setZoomDomain] = useState(1)
   const [radioValue, setRadioValue] = useState('x')
 
-  function handleZoom(domain) {
-    setZoomDomain(domain)
-  }
+  useEffect(() => {
+    
+  })
 
   function handleRadioClick(e) {
+    console.log('e: ', e)
     setRadioValue(e.target.value)
   }
 
   function normalizeData() {
     const d = sensor.accelerations.x.map((point) => [point.x, point.y])
-
-    d.unshift(['x', 'dogs'])
-    console.log('d: ', d)
+    d.unshift(['time stamp', 'find a proper name'])
     return d
   }
-  const data = [
-    ['x', 'dogs'],
-    [sensor.accelerations.x[0].x, sensor.accelerations.x[0].y],
-    [sensor.accelerations.x[1].x, sensor.accelerations.x[1].y],
-    [sensor.accelerations.x[2].x, sensor.accelerations.x[2].y],
-    [sensor.accelerations.x[3].x, sensor.accelerations.x[3].y],
-    [sensor.accelerations.x[4].x, sensor.accelerations.x[4].y],
-    [sensor.accelerations.x[5].x, sensor.accelerations.x[5].y],
-  ]
-  console.log('data: ', data)
+
   return (
     <div className="graph-container">
       <div className="container-header">
-        <Chart
-          width="100%"
-          height="575px"
-          chartType="LineChart"
-          loader={<div>Loading Chart</div>}
-          data={normalizeData()}
-          options={{
-            hAxis: {
-              title: 'Time',
-            },
-            vAxis: {
-              title: 'Popularity',
-            },
-          }}
-          rootProps={{ 'data-testid': '1' }}
-        />
-        {' '}
+        <Radio.Group className="radio-container" onChange={handleRadioClick}>
+          <Radio
+            className="radio--green"
+            value="x"
+            checked={radioValue === 'x'}
+          >
+            <span>Show X</span>
+          </Radio>
+          <Radio
+            className="radio--purple"
+            value="y"
+            checked={radioValue === 'y'}
+          >
+            Show Y
+          </Radio>
+          <Radio
+            className="radio--orange"
+            value="z"
+            checked={radioValue === 'z'}
+          >
+            Show Z
+          </Radio>
+        </Radio.Group>
       </div>
+      <Chart
+        width="100%"
+        height="90%"
+        chartType="LineChart"
+        loader={<Spin className="loading-section" />}
+        data={normalizeData()}
+        options={{
+          hAxis: {
+            title: 'Time',
+          },
+          vAxis: {
+            title: 'find the right string here',
+          },
+        }}
+        rootProps={{ 'data-testid': '1' }}
+      />
     </div>
   )
 }
@@ -69,10 +78,7 @@ export default GraphContainer
 
 
 GraphContainer.propTypes = {
-  dataSetX: PropTypes.arrayOf(PropTypes.any).isRequired,
-  dataSetY: PropTypes.arrayOf(PropTypes.any).isRequired,
-  dataSetZ: PropTypes.arrayOf(PropTypes.any).isRequired,
-  sensor: PropTypes.string.isRequired,
+  sensor: PropTypes.objectOf(PropTypes.any).isRequired,
 }
 
 

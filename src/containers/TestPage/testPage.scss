@@ -35,19 +35,24 @@
 
 
   .graph-container {
-    &:first-of-type {
-      margin-top: 45px;
+    box-shadow: 0 0 1px 0;
+    border-radius: 7px;
+    margin: 10px auto 30px;
+    width:90%;
+    height: 70vh;
+
+    .loading-section {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    box-shadow: 0 0 1px 0;
-    background-color: #F5FCFF;
-    border-radius: 7px;
-    margin: 0 auto;
-    margin-bottom: 70px;
-    width:90%;
-
     .container-header {
+      z-index: $z-index-medium-bottom-value;
       position: relative;
+      top: 15px;
       display: flex;
       flex-direction: row;
       .sensor-title {
