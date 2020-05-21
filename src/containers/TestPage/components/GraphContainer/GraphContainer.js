@@ -26,14 +26,14 @@ const GraphContainer = (props) => {
   const [velocitiesData, setVelocitiesData] = useState(null)
 
   useEffect(() => {
-    getNormalizeData()
-  }, [])
+    setNormalizeData()
+  }, [sensor])
 
   function handleRadioClick(e) {
     setRadioValue(e.target.value)
   }
 
-  function getNormalizeData() {
+  function setNormalizeData() {
     const accelerationsObj = {
       x: ['dogs', 'cats'],
       y: ['dogs', 'cats'],
@@ -113,7 +113,6 @@ const GraphContainer = (props) => {
   }
 
   function handleTabClick(activeTabKey) {
-    // setIsEmpty(false)
     setActiveTab(activeTabKey)
   }
 
@@ -133,8 +132,6 @@ const GraphContainer = (props) => {
     console.log(' activeTab: ', activeTab)
     console.log('TAB_KEY.displacements: ', TAB_KEY.displacements)
     if (displacementsData && activeTab === TAB_KEY.displacements) {
-      console.log('inside')
-      console.log('displacementsData', displacementsData)
       if (radioValue === 'x') {
         return displacementsData.x
       }
