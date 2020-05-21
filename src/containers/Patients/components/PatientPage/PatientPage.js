@@ -35,7 +35,6 @@ const PatientPage = (props) => {
     loadingEditPlan,
     therapistId,
   } = props
-  console.log('PatientPage')
 
   const [clickedTestId, setClickedTestId] = useState('')
   const [shouldOpenModal, setShouldOpenModal] = useState(false)
@@ -65,9 +64,7 @@ const PatientPage = (props) => {
   }
 
   async function handleFormSubmit(formData) {
-    console.log('HANDLE SUBMIT', formData)
     if (modalMode === 'edit') {
-      console.log('planById.id: ', planById.id)
       const editPlanResponse = await editPlan(formData, planById.id)
       if (editPlanResponse === API.postRequestSuccess) {
         setDidPostRequestSucceed(true)

@@ -18,7 +18,6 @@ const { TabPane } = Tabs
 const { Option } = Select
 
 const PlanForm = (props) => {
-  console.log('PlanForm')
   const {
     formTitle,
     formDescription,
@@ -58,8 +57,6 @@ const PlanForm = (props) => {
 
   function handleFinish() {
     let finalFormData
-    console.log('dataToEdit: ', dataToEdit)
-    console.log('videos: ', videos)
     if (dataToEdit) {
       finalFormData = {
         name,
@@ -149,7 +146,6 @@ const PlanForm = (props) => {
       'video-box': true,
       selected: isSelected,
     })
-    console.log('videoClasses: ', videoClasses)
     return (
       <div className={videoClasses} key={index} onClick={(e) => handleVideosClick(video.id, e)}>
         <div className="label-container">

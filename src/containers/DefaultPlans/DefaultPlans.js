@@ -22,7 +22,6 @@ const DefaultPlans = (props) => {
     loadingCreateDefaultPlan,
     activateErrorModal,
   } = props
-  console.log('default plans')
 
   const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
   const [shouldOpenModal, setShouldOpenModal] = useState(false)
@@ -47,7 +46,6 @@ const DefaultPlans = (props) => {
 
   async function handleFormSubmit(formData) {
     const creationResponse = await createDefaultPlan(formData)
-    console.log('creationResponse: ', creationResponse)
     if (creationResponse === API.postRequestSuccess) {
       setDidPostRequestSucceed(true)
       setShouldOpenModal(false)

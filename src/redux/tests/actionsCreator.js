@@ -20,7 +20,6 @@ export const getTestsById = (id) => async (dispatch) => {
   dispatch({ type: ActionTypes.FETCH_TESTS_BY_ID_SET_LOADING_TRUE })
   try {
     const response = await get(`test/patient/${id}`)
-    console.log('response: ', response)
     dispatch({
       type: ActionTypes.FETCH_TESTS_BY_ID_SUCCESS,
       payload: response.data.reverse(),

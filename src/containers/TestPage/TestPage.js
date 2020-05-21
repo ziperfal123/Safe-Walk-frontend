@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Spin, Select, Button } from 'antd'
-import { cloneDeep } from 'lodash'
 import PropTypes from 'prop-types'
-
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
-
 import 'containers/TestPage/testPage.scss'
 import BackButton from 'components/BackButton'
 
 
 const TestPage = (props) => {
-  console.log('TestPage')
   const {
     gaitModel,
     loadingGaitModel,
@@ -138,13 +134,12 @@ const TestPage = (props) => {
         break
       }
       default: {
-        console.log(' why am i inside default?')
+        setSensor1(tmpObj)
       }
     }
   }
 
   function getSensor() {
-    console.log('selectedOption: ', selectedOption)
     switch (selectedOption) {
       case 'sensor1': {
         return sensor1
