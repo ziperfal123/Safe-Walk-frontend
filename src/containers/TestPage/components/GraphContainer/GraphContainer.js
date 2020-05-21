@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 import Chart from 'react-google-charts'
 import 'containers/TestPage/testPage.scss'
 
+const { TabPane } = Tabs
+
 const GraphContainer = (props) => {
   const { sensor } = props
 
   const [radioValue, setRadioValue] = useState('x')
+  const [activeTab, setActiveTab] = useState(1)
 
-  useEffect(() => {
-
-  }, [radioValue])
 
   function handleRadioClick(e) {
     setRadioValue(e.target.value)
@@ -56,51 +56,75 @@ const GraphContainer = (props) => {
     }
   }
 
+  function renderTabContent() {
+    return (
+      <>
+        <div className="container-header">
+          <Radio.Group className="radio-container" onChange={handleRadioClick}>
+            <Radio
+              className="radio--green"
+              value="x"
+              checked={radioValue === 'x'}
+            >
+              <span>Show X</span>
+            </Radio>
+            <Radio
+              className="radio--purple"
+              value="y"
+              checked={radioValue === 'y'}
+            >
+              Show Y
+            </Radio>
+            <Radio
+              className="radio--orange"
+              value="z"
+              checked={radioValue === 'z'}
+            >
+              Show Z
+            </Radio>
+          </Radio.Group>
+        </div>
+        <Chart
+          width="100%"
+          height="94%"
+          chartType="LineChart"
+          loader={<Spin className="loading-section" />}
+          data={normalizeData()}
+          options={{
+            hAxis: {
+              title: 'Time',
+            },
+            vAxis: {
+              title: 'find the right string here',
+            },
+            series: {
+              color: getColor(),
+            },
+          }}
+        />
+      </>
+    )
+  }
+
+  function handleTabClick(activeTabKey) {
+    setActiveTab(activeTabKey)
+  }
+
   return (
     <div className="graph-container">
-      <div className="container-header">
-        <Radio.Group className="radio-container" onChange={handleRadioClick}>
-          <Radio
-            className="radio--green"
-            value="x"
-            checked={radioValue === 'x'}
-          >
-            <span>Show X</span>
-          </Radio>
-          <Radio
-            className="radio--purple"
-            value="y"
-            checked={radioValue === 'y'}
-          >
-            Show Y
-          </Radio>
-          <Radio
-            className="radio--orange"
-            value="z"
-            checked={radioValue === 'z'}
-          >
-            Show Z
-          </Radio>
-        </Radio.Group>
-      </div>
-      <Chart
-        width="100%"
-        height="100%"
-        chartType="LineChart"
-        loader={<Spin className="loading-section" />}
-        data={normalizeData()}
-        options={{
-          hAxis: {
-            title: 'Time',
-          },
-          vAxis: {
-            title: 'find the right string here',
-          },
-          series: {
-            color: getColor(),
-          },
-        }}
-      />
+      <Tabs onTabClick={handleTabClick}>
+        <TabPane tab="Accelerations" key="1">
+          {renderTabContent()}
+        </TabPane>
+        <TabPane tab="Displacements" key="2">
+          {renderTabContent()}
+        </TabPane>
+        <TabPane tab="Velocities" key="3">
+          {renderTabContent()}
+        </TabPane>
+
+
+      </Tabs>
     </div>
   )
 }
