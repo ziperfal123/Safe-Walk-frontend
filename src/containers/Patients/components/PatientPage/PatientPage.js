@@ -134,7 +134,6 @@ const PatientPage = (props) => {
                 handleTestClick={handleTestClick}
                 patientName={patient.name}
               />
-              <BackButton handleBackClick={handleBackClick} />
             </>
           )
         )}

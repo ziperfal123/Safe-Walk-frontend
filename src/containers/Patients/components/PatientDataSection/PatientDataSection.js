@@ -5,13 +5,26 @@ import './patientDataSection.scss'
 
 const PatientDataSection = ({ patient, planById, handleOpenModal }) => {
   function calculatePercentage() {
-    if (planById && {}) { // TODO:: wtf?? fix..
-      const totalVideos = planById.videos.length
-      let totalDoneVideos = 0
+    if (planById) {
+      let totalTimes = 0
+      let totalTimesLeft = 0
+
       planById.videos.forEach((video) => {
-        if (video.done) totalDoneVideos += 1
+        totalTimes += video.times
+        totalTimesLeft += video.timesLeft
       })
-      return Math.floor((totalDoneVideos / totalVideos) * 100)
+
+      console.log('totalTimes: ', totalTimes)
+      console.log('totalTimesLeft: ', totalTimesLeft)
+      if (totalTimes === totalTimesLeft) return 0
+      return Math.floor(totalTimesLeft / totalTimes)
+      // const totalVideos = planById.videos.      const totalVideos = planById.videos.length
+      // length
+      // let totalDoneVideos = 0
+      // planById.videos.forEach((video) => {
+      //   if (video.done) totalDoneVideos += 1
+      // })
+      // return Math.floor((totalDoneVideos / totalVideos) * 100)
     }
     return 0
   }
