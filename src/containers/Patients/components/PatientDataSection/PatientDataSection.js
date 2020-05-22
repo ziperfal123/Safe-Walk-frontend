@@ -18,13 +18,6 @@ const PatientDataSection = ({ patient, planById, handleOpenModal }) => {
       console.log('totalTimesLeft: ', totalTimesLeft)
       if (totalTimes === totalTimesLeft) return 0
       return Math.floor(totalTimesLeft / totalTimes)
-      // const totalVideos = planById.videos.      const totalVideos = planById.videos.length
-      // length
-      // let totalDoneVideos = 0
-      // planById.videos.forEach((video) => {
-      //   if (video.done) totalDoneVideos += 1
-      // })
-      // return Math.floor((totalDoneVideos / totalVideos) * 100)
     }
     return 0
   }

@@ -70,17 +70,18 @@ const TestPage = (props) => {
     const velocitiesY = []
     const velocitiesZ = []
 
+    console.log('gaitModel[key]: ', gaitModel[key])
     gaitModel[key].accelerations.forEach((dataElement) => {
       accelerationX.push({ x: dataElement.timeStamp, y: dataElement.x })
       accelerationY.push({ x: dataElement.timeStamp, y: dataElement.y })
       accelerationZ.push({ x: dataElement.timeStamp, y: dataElement.z })
     })
-    gaitModel[key].accelerations.forEach((dataElement) => {
+    gaitModel[key].displacements.forEach((dataElement) => {
       displacementsX.push({ x: dataElement.timeStamp, y: dataElement.x })
       displacementsY.push({ x: dataElement.timeStamp, y: dataElement.y })
       displacementsZ.push({ x: dataElement.timeStamp, y: dataElement.z })
     })
-    gaitModel[key].accelerations.forEach((dataElement) => {
+    gaitModel[key].velocities.forEach((dataElement) => {
       velocitiesX.push({ x: dataElement.timeStamp, y: dataElement.x })
       velocitiesY.push({ x: dataElement.timeStamp, y: dataElement.y })
       velocitiesZ.push({ x: dataElement.timeStamp, y: dataElement.z })
@@ -96,12 +97,11 @@ const TestPage = (props) => {
         x: displacementsX,
         y: displacementsY,
         z: displacementsZ,
-
       },
       velocities: {
-        x: accelerationX,
-        y: accelerationY,
-        z: accelerationZ,
+        x: velocitiesX,
+        y: velocitiesY,
+        z: velocitiesZ,
       },
     }
     switch (key) {
