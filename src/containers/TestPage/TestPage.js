@@ -177,7 +177,6 @@ const TestPage = (props) => {
         </div>
       ) : (
         <div className="graph-page">
-          <BackButton className="back-btn-graph" handleBackClick={handleBackClick} />
           <h1 className="test-title">Gait model data</h1>
           {renderSelect()}
           <Button className="report-btn" type="primary">Open Report</Button>
