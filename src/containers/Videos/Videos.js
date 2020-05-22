@@ -10,7 +10,6 @@ import { OverlayContext } from '../../App'
 import './videos.scss'
 
 const Videos = (props) => {
-  console.log('Videos Page')
   const {
     getAllVideos,
     createVideo,

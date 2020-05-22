@@ -9,7 +9,6 @@ import classNames from 'classnames'
 const { TabPane } = Tabs
 
 const DefaultPlanForm = (props) => {
-  console.log('DefaultPlanForm')
   const {
     formTitle,
     formDescription,
@@ -34,7 +33,6 @@ const DefaultPlanForm = (props) => {
       instructions: formData.instructions,
       videos,
     }
-    console.log('finalFormData: ', finalFormData)
     handleFormSubmit(finalFormData)
   }
 

@@ -4,7 +4,6 @@ import { Table } from 'antd'
 import columns from './tableColumns'
 
 const TestsTable = ({ allTests, allPatients, loadingAllTests, handleTableRowClick }) => {
-  console.log('TestsTable')
 
   function getNormalizedData() {
     const normalizedPatients = allTests.map((test) => {

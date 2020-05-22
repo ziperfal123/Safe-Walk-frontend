@@ -3,7 +3,6 @@ import { Modal as AntModal, Button } from 'antd'
 import './errorModal.scss'
 
 const ErrorModal = (props) => {
-  console.log('ErrorModal')
   const { errorMessage, cleanError } = props
 
   function handleCloseErrorModal() {

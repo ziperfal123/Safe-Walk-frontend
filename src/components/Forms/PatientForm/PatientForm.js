@@ -5,7 +5,6 @@ import {
 import '../form.scss'
 
 const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
-  console.log('PatientForm')
 
   const nameInputRef = useRef(null)
 
@@ -14,7 +13,6 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
   }, [])
 
   function handleFinish(formData) {
-    console.log('formData: ', formData)
     handleFormSubmit(formData)
   }
   return (

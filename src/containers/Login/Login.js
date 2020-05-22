@@ -22,7 +22,6 @@ const HeaderTitleAnimation = () => (
 )
 
 const Login = (props) => {
-  console.log('Login')
   const { isUserAuthenticated, location, handleLoginFormSubmit } = props
   if (isUserAuthenticated === AUTH.isAuthenticated || isUserAuthenticated === AUTH.isPending) {
     const { from } = location.state || { from: { pathname: '/' } }

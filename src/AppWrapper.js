@@ -14,7 +14,6 @@ import { checkUserAuthStatusOnAppLoad } from './redux/auth/actionsCreator'
 
 // eslint-disable-next-line no-shadow,react/prop-types
 function AppWrapper({ loading, checkUserAuthStatusOnAppLoad, isUserAuthenticated }) {
-  console.log('AppWrapper')
   useEffect(() => {
     checkUserAuthStatusOnAppLoad()
   }, [])

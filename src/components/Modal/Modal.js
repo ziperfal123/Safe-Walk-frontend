@@ -5,7 +5,6 @@ import './modal.scss'
 import { OverlayContext } from 'App'
 
 const Modal = (props) => {
-  console.log('Modal')
   const {
     FormToRender,
     handleFormSubmit,

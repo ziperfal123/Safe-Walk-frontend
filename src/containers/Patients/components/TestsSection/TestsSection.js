@@ -8,7 +8,6 @@ import { normalizeDate } from 'utils/date'
 
 const TestsSection = (props) => {
   const { allTestsById, handleTestClick, patientName } = props
-  console.log('testsSection')
 
   function renderTestsList(test) {
     const normalizedDate = normalizeDate(test.date, false)

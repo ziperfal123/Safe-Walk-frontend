@@ -11,7 +11,6 @@ import PatientPage from './components/PatientPage'
 import PatientsTable from './components/PatientsTable'
 
 const Patients = (props) => {
-  console.log('Patients')
   const {
     location,
     history,
@@ -47,9 +46,7 @@ const Patients = (props) => {
   }
 
   async function handleFormSubmit(formData) {
-    console.log('HANDLE SUBMIT', formData)
     const createPatientResponse = await createPatient(formData)
-    console.log('createPatientResponse: ', createPatientResponse)
     if (createPatientResponse === API.postRequestSuccess) {
       setDidPostRequestSucceed(true)
       setShouldOpenModal(false)

@@ -3,7 +3,6 @@ import { Form, Input, Button } from 'antd'
 import '../form.scss'
 
 const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
-  console.log('VideosForm')
 
   const nameInputRef = useRef(null)
 

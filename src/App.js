@@ -17,7 +17,6 @@ export const OverlayContext = React.createContext(false)
 
 // eslint-disable-next-line no-shadow
 const App = ({ errorObj, cleanError, history }) => {
-  console.log('App')
 
   const [isOverlayActive, toggleOverlay] = useState(false)
 
