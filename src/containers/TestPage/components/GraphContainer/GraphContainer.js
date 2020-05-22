@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Radio, Spin, Tabs } from 'antd'
+import {
+  Empty, Radio, Spin, Tabs,
+} from 'antd'
 import { cloneDeep } from 'lodash'
 import PropTypes from 'prop-types'
 import Chart from 'react-google-charts'
@@ -26,11 +28,13 @@ const GraphContainer = (props) => {
   const [velocitiesData, setVelocitiesData] = useState(null)
 
   useEffect(() => {
+    isEmpty && setIsEmpty(false)
     setNormalizeData()
   }, [sensor])
 
   function handleRadioClick(e) {
     setRadioValue(e.target.value)
+    isEmpty && setIsEmpty(false)
   }
 
   function setNormalizeData() {
@@ -113,32 +117,49 @@ const GraphContainer = (props) => {
   }
 
   function handleTabClick(activeTabKey) {
+    isEmpty && setIsEmpty(false)
     setActiveTab(activeTabKey)
   }
 
   function getData() {
     if (accelerationsData && activeTab === TAB_KEY.accelerations) {
       if (radioValue === 'x') {
+        if (accelerationsData.x.length <= 2) {
+          !isEmpty && setIsEmpty(true)
+        }
         return accelerationsData.x
       }
       if (radioValue === 'y') {
+        if (accelerationsData.y.length <= 2) {
+          !isEmpty && setIsEmpty(true)
+        }
         return accelerationsData.y
       }
       if (radioValue === 'z') {
+        if (accelerationsData.z.length <= 2) {
+          !isEmpty && setIsEmpty(true)
+        }
         return accelerationsData.z
       }
     }
-    console.log('displacementsData: ', displacementsData)
-    console.log(' activeTab: ', activeTab)
-    console.log('TAB_KEY.displacements: ', TAB_KEY.displacements)
+
     if (displacementsData && activeTab === TAB_KEY.displacements) {
       if (radioValue === 'x') {
+        if (displacementsData.x.length <= 2) {
+          !isEmpty && setIsEmpty(true)
+        }
         return displacementsData.x
       }
       if (radioValue === 'y') {
+        if (displacementsData.y.length <= 2) {
+          !isEmpty && setIsEmpty(true)
+        }
         return displacementsData.y
       }
       if (radioValue === 'z') {
+        if (displacementsData.z.length <= 2) {
+          !isEmpty && setIsEmpty(true)
+        }
         return displacementsData.z
       }
     }
@@ -161,6 +182,7 @@ const GraphContainer = (props) => {
     return (
       <>
         <div className="container-header">
+          { !isEmpty && (
           <Radio.Group className="radio-container" onChange={handleRadioClick}>
             <Radio
               className="radio--green"
@@ -184,25 +206,32 @@ const GraphContainer = (props) => {
               Show Z
             </Radio>
           </Radio.Group>
+          )}
         </div>
-        <Chart
-          width="100%"
-          height="94%"
-          chartType="LineChart"
-          loader={<Spin className="loading-section" />}
-          data={getData()}
-          options={{
-            hAxis: {
-              title: 'Time',
-            },
-            vAxis: {
-              title: 'find the right string here',
-            },
-            series: {
-              color: getColor(),
-            },
-          }}
-        />
+        { isEmpty ? (
+          <div className="empty-container">
+            <Empty className="empty-data" description={<h3>No data for this graph at the moment</h3>} />
+          </div>
+        ) : (
+          <Chart
+            width="100%"
+            height="94%"
+            chartType="LineChart"
+            loader={<Spin className="loading-section" />}
+            data={getData()}
+            options={{
+              hAxis: {
+                title: 'Time',
+              },
+              vAxis: {
+                title: 'find the right string here',
+              },
+              series: {
+                color: getColor(),
+              },
+            }}
+          />
+        )}
       </>
     )
   }
