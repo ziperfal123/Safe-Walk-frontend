@@ -3,7 +3,6 @@ import { Spin, Select, Button } from 'antd'
 import PropTypes from 'prop-types'
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
 import 'containers/TestPage/testPage.scss'
-import BackButton from 'components/BackButton'
 
 
 const TestPage = (props) => {
@@ -13,7 +12,6 @@ const TestPage = (props) => {
     getGaitModelByTestId,
     testId,
     cleanGaitModel,
-    handleBackClick,
   } = props
 
 

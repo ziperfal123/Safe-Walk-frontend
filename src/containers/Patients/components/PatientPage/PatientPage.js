@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import './patientPage.scss'
 import pathsNames from 'router/pathNames'
-import BackButton from 'components/BackButton'
 import TestPage from 'containers/TestPage'
 import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
@@ -56,11 +55,6 @@ const PatientPage = (props) => {
 
   function handleTestClick(testId) {
     setClickedTestId(testId)
-  }
-
-  function handleBackClick() {
-    history.goBack()
-    setClickedTestId('')
   }
 
   async function handleFormSubmit(formData) {
@@ -144,7 +138,7 @@ const PatientPage = (props) => {
 
   function renderTestPage() {
     return (
-      <TestPage history={history} testId={clickedTestId} handleBackClick={handleBackClick} />
+      <TestPage history={history} testId={clickedTestId} />
     )
   }
 
