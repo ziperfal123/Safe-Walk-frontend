@@ -101,6 +101,7 @@ const TestPage = (props) => {
         y: velocitiesY,
         z: velocitiesZ,
       },
+      report: gaitModel[key].report,
     }
     switch (key) {
       case 'sensor1': {
@@ -166,6 +167,10 @@ const TestPage = (props) => {
     }
   }
 
+  function handleOpenReport() {
+    console.log('gaitModel: ', getSensor().report)
+  }
+
   return (
     <>
       {!gaitModel || loadingGaitModel ? (
@@ -177,7 +182,7 @@ const TestPage = (props) => {
         <div className="graph-page">
           <h1 className="test-title">Gait model data</h1>
           {renderSelect()}
-          <Button className="report-btn" type="primary">Open Report</Button>
+          <Button className="report-btn" type="primary" onClick={handleOpenReport}>Open Report</Button>
           <GraphContainer
             sensor={getSensor()}
             cleanGaitModel={cleanGaitModel}
@@ -193,7 +198,6 @@ export default TestPage
 
 
 TestPage.propTypes = {
-  handleBackClick: PropTypes.func.isRequired,
   gaitModel: PropTypes.objectOf(PropTypes.any).isRequired,
   loadingGaitModel: PropTypes.bool.isRequired,
   getGaitModelByTestId: PropTypes.func.isRequired,
