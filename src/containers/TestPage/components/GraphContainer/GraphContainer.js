@@ -122,21 +122,24 @@ const GraphContainer = (props) => {
   }
 
   function getData() {
+    console.log('activeTab: ', activeTab)
+    console.log('TAB_KEY.velocities: ', TAB_KEY.velocities)
+
     if (accelerationsData && activeTab === TAB_KEY.accelerations) {
       if (radioValue === 'x') {
-        if (accelerationsData.x.length <= 2) {
+        if (accelerationsData.x.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return accelerationsData.x
       }
       if (radioValue === 'y') {
-        if (accelerationsData.y.length <= 2) {
+        if (accelerationsData.y.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return accelerationsData.y
       }
       if (radioValue === 'z') {
-        if (accelerationsData.z.length <= 2) {
+        if (accelerationsData.z.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return accelerationsData.z
@@ -145,19 +148,19 @@ const GraphContainer = (props) => {
 
     if (displacementsData && activeTab === TAB_KEY.displacements) {
       if (radioValue === 'x') {
-        if (displacementsData.x.length <= 2) {
+        if (displacementsData.x.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return displacementsData.x
       }
       if (radioValue === 'y') {
-        if (displacementsData.y.length <= 2) {
+        if (displacementsData.y.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return displacementsData.y
       }
       if (radioValue === 'z') {
-        if (displacementsData.z.length <= 2) {
+        if (displacementsData.z.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return displacementsData.z
@@ -166,16 +169,24 @@ const GraphContainer = (props) => {
 
     if (velocitiesData && activeTab === TAB_KEY.velocities) {
       if (radioValue === 'x') {
+        if (velocitiesData.x.length <= 3) {
+          setIsEmpty(true)
+        }
         return velocitiesData.x
       }
       if (radioValue === 'y') {
+        if (velocitiesData.x.length <= 3) {
+          setIsEmpty(true)
+        }
         return velocitiesData.y
       }
       if (radioValue === 'z') {
+        if (velocitiesData.x.length <= 3) {
+          setIsEmpty(true)
+        }
         return velocitiesData.z
       }
     }
-    return [['dog', 'cat'], [0, 0]]
   }
 
   function renderTabContent() {
@@ -210,7 +221,7 @@ const GraphContainer = (props) => {
         </div>
         { isEmpty ? (
           <div className="empty-container">
-            <Empty className="empty-data" description={<h3>No data for this graph at the moment</h3>} />
+            <Empty className="empty-data" description={<span>No data for this graph at the moment</span>} />
           </div>
         ) : (
           <Chart
