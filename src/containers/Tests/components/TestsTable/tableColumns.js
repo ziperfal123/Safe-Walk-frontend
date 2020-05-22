@@ -10,7 +10,7 @@ const columns = [
     dataIndex: 'name',
     sorter: (a, b) => a.name.localeCompare(b.name),
     render(_, normalizedPatientObj) {
-      const rowColor = normalizedPatientObj.waitingStatus && normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
+      const rowColor = normalizedPatientObj.results && normalizedPatientObj.results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
       return {
         props: {
           style: { background: `${rowColor}` },
@@ -38,7 +38,7 @@ const columns = [
     // sorter: (a, b) => a.getTime() > b.getTime(),
     render: (testDate, normalizedPatientObj) => {
       const normalizedDate = normalizeDate(testDate);
-      const rowColor = normalizedPatientObj.waitingStatus && normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
+      const rowColor = normalizedPatientObj.results && normalizedPatientObj.results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
       return {
         props: {
           style: { background: `${rowColor}` },
@@ -51,8 +51,8 @@ const columns = [
     title: 'Results',
     dataIndex: 'results',
     sorter: (a, b) => a.results.localeCompare(b.results),
-    render: (results, normalizedPatientObj) => {
-      const rowColor = normalizedPatientObj.waitingStatus && normalizedPatientObj.waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
+    render: (results) => {
+      const rowColor = results && results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
       return {
         props: {
           style: { background: `${rowColor}` },
@@ -67,8 +67,8 @@ const columns = [
     title: 'Waiting for plan',
     dataIndex: 'waitingStatus',
     sorter: (a, b) => a.waitingStatus.localeCompare(b.waitingStatus),
-    render: (waitingStatus) => {
-      const rowColor = waitingStatus && waitingStatus.toLowerCase() === 'yes' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
+    render: (waitingStatus, normalizedPatientObj) => {
+      const rowColor = normalizedPatientObj.results && normalizedPatientObj.results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
       return {
         props: {
           style: { background: `${rowColor}` },
