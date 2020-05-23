@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Empty, Radio, Spin, Tabs, Button,
+  Empty, Radio, Spin, Tabs, Button, Switch,
 } from 'antd'
 import PropTypes from 'prop-types'
 import Chart from 'react-google-charts'
@@ -21,12 +21,13 @@ const GraphContainer = (props) => {
   const [accelerationsData, setAccelerationsData] = useState(null)
   const [displacementsData, setDisplacementsData] = useState(null)
   const [velocitiesData, setVelocitiesData] = useState(null)
+  const [shouldDisplayValidData, setShouldDisplayValidData] = useState(true)
 
 
   useEffect(() => {
     isEmpty && setIsEmpty(false)
     setNormalizeData()
-  }, [sensorData])
+  }, [sensorData, shouldDisplayValidData])
 
   function handleRadioClick(e) {
     setRadioValue(e.target.value)
@@ -50,7 +51,7 @@ const GraphContainer = (props) => {
       z: ['dogs', 'patients points'],
     }
 
-    accelerationsObj.x = isSensorBelongsToLeftTigh ? (
+    accelerationsObj.x = isSensorBelongsToLeftTigh && shouldDisplayValidData ? (
       [
         [...accelerationsObj.x, 'valid example'],
         ...sensorData.accelerations.x.map((point, index) => (
@@ -176,18 +177,26 @@ const GraphContainer = (props) => {
     return null
   }
 
-  function handleHideValidResults() {
-    alert("HIDE ME ")
+  function handleHideValidResults(switchMode) {
+    setShouldDisplayValidData(switchMode)
   }
 
   function renderTabContent() {
-    const shouldDisplayBtn = isSensorBelongsToLeftTigh && radioValue === GRAPH.radioValue.x && activeTab === GRAPH.tabKey.accelerations
+    const shouldDisplayBtn = isSensorBelongsToLeftTigh
+        && radioValue === GRAPH.radioValue.x
+        && activeTab === GRAPH.tabKey.accelerations
     return (
       <>
         <div className="container-header">
           { !isEmpty && (
           <>
-            {shouldDisplayBtn && <Button className="hide-btn" onClick={handleHideValidResults}>Hide valid results</Button>}
+            {/* {shouldDisplayBtn && <Button className="hide-btn" onClick={handleHideValidResults}>Hide valid results</Button>} */}
+            {shouldDisplayBtn && (
+            <div className={'hide-btn'}>
+              <label>Display valid data: </label>
+              <Switch className={"switch"} defaultChecked={shouldDisplayValidData} onClick={handleHideValidResults} />
+            </div>
+            )}
             <Radio.Group className="radio-container" onChange={handleRadioClick}>
               <Radio
                 value="x"
