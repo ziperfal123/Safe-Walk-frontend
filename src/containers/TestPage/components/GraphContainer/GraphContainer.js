@@ -190,7 +190,6 @@ const GraphContainer = (props) => {
         <div className="container-header">
           { !isEmpty && (
           <>
-            {/* {shouldDisplayBtn && <Button className="hide-btn" onClick={handleHideValidResults}>Hide valid results</Button>} */}
             {shouldDisplayBtn && (
             <div className={'hide-btn'}>
               <label>Display valid data: </label>
