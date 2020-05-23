@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.fc4137e2.chunk.css",
-    "main.js": "/static/js/main.855f56ec.chunk.js",
-    "main.js.map": "/static/js/main.855f56ec.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.9d6afc0e.js",
-    "runtime-main.js.map": "/static/js/runtime-main.9d6afc0e.js.map",
-    "static/css/2.563af9af.chunk.css": "/static/css/2.563af9af.chunk.css",
-    "static/js/2.786c3e99.chunk.js": "/static/js/2.786c3e99.chunk.js",
-    "static/js/2.786c3e99.chunk.js.map": "/static/js/2.786c3e99.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.b812496d2b45b18ea1c78b033dd711d8.js": "/precache-manifest.b812496d2b45b18ea1c78b033dd711d8.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.563af9af.chunk.css.map": "/static/css/2.563af9af.chunk.css.map",
-    "static/css/main.fc4137e2.chunk.css.map": "/static/css/main.fc4137e2.chunk.css.map",
-    "static/js/2.786c3e99.chunk.js.LICENSE.txt": "/static/js/2.786c3e99.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/static/media/logo.b7dcb8e9.svg"
+    "main.css": "/Safe-Walk-frontend/static/css/main.fc4137e2.chunk.css",
+    "main.js": "/Safe-Walk-frontend/static/js/main.855f56ec.chunk.js",
+    "main.js.map": "/Safe-Walk-frontend/static/js/main.855f56ec.chunk.js.map",
+    "runtime-main.js": "/Safe-Walk-frontend/static/js/runtime-main.4a43d8ad.js",
+    "runtime-main.js.map": "/Safe-Walk-frontend/static/js/runtime-main.4a43d8ad.js.map",
+    "static/css/2.563af9af.chunk.css": "/Safe-Walk-frontend/static/css/2.563af9af.chunk.css",
+    "static/js/2.81f459ef.chunk.js": "/Safe-Walk-frontend/static/js/2.81f459ef.chunk.js",
+    "static/js/2.81f459ef.chunk.js.map": "/Safe-Walk-frontend/static/js/2.81f459ef.chunk.js.map",
+    "index.html": "/Safe-Walk-frontend/index.html",
+    "precache-manifest.f7b0e77c2588265f7a0d6ad383b16a90.js": "/Safe-Walk-frontend/precache-manifest.f7b0e77c2588265f7a0d6ad383b16a90.js",
+    "service-worker.js": "/Safe-Walk-frontend/service-worker.js",
+    "static/css/2.563af9af.chunk.css.map": "/Safe-Walk-frontend/static/css/2.563af9af.chunk.css.map",
+    "static/css/main.fc4137e2.chunk.css.map": "/Safe-Walk-frontend/static/css/main.fc4137e2.chunk.css.map",
+    "static/js/2.81f459ef.chunk.js.LICENSE.txt": "/Safe-Walk-frontend/static/js/2.81f459ef.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/Safe-Walk-frontend/static/media/logo.b7dcb8e9.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.9d6afc0e.js",
+    "static/js/runtime-main.4a43d8ad.js",
     "static/css/2.563af9af.chunk.css",
-    "static/js/2.786c3e99.chunk.js",
+    "static/js/2.81f459ef.chunk.js",
     "static/css/main.fc4137e2.chunk.css",
     "static/js/main.855f56ec.chunk.js"
   ]
