@@ -1,4 +1,5 @@
 {
+  "deploy": "http://ziperfal123.github.io/Safe-Walk-frontend",
   "name": "safewalk-front-2.0",
   "version": "0.1.0",
   "private": true,
@@ -23,6 +24,8 @@
     "victory": "^34.1.3"
   },
   "scripts": {
+    "predeploy": "npm rub build",
+    "deploy": "gh-pages -d build",
     "start": "NODE_PARH=src react-scripts start",
     "build": "NODE_PARH=src react-scripts build",
     "test": "NODE_PARH=src react-scripts test",
@@ -50,6 +53,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "redux-devtools": "^3.5.0"
   }
