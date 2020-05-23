@@ -138,7 +138,7 @@ const DefaultPlanForm = (props) => {
                 { required: true, min: 6, message: 'Name should contain at least 6 characters' },
               ]}
             >
-              <Input className="form-input" defaultValue={dataToEdit && dataToEdit.instructions} onChange={() => console.log('hey')} />
+              <Input className="form-input" defaultValue={dataToEdit && dataToEdit.instructions} />
             </Form.Item>
           </div>
         </TabPane>

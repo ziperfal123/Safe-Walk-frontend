@@ -63,8 +63,6 @@ const GraphContainer = (props) => {
       ...sensorData.accelerations.x.map((point) => [point.x, point.y]),
     ])
 
-    console.log('accelerationsObj.x: ', accelerationsObj.x)
-
     accelerationsObj.y = [
       accelerationsObj.y,
       ...sensorData.accelerations.y.map((point) => [point.x, point.y]),
