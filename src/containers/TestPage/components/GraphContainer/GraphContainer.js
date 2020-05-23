@@ -191,9 +191,9 @@ const GraphContainer = (props) => {
           { !isEmpty && (
           <>
             {shouldDisplayBtn && (
-            <div className={'hide-btn'}>
-              <label>Display valid data: </label>
-              <Switch className={"switch"} defaultChecked={shouldDisplayValidData} onClick={handleHideValidResults} />
+            <div className="hide-btn">
+              <label>{GRAPH.switchLabelText}</label>
+              <Switch className="switch" defaultChecked={shouldDisplayValidData} onClick={handleHideValidResults} />
             </div>
             )}
             <Radio.Group className="radio-container" onChange={handleRadioClick}>
