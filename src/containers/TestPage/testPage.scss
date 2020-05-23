@@ -12,6 +12,17 @@
   }
 }
 
+.report-modal {
+  position: absolute;
+  left: calc(50% - 210px);
+  & .ant-modal-title {
+    font-size: 17px;
+  }
+  & p {
+    font-size: 17px;
+  }
+}
+
 .graph-page {
   .test-title {
     display: inline-block;
@@ -87,20 +98,8 @@
         left: 33%;
         top: 33%;
         width: 35%;
-
-        & > .radio {
-          & > span {
-            font-weight: bold;
-          }
-          &--green {
-            color: green;
-          }
-          &--purple {
-            color: purple;
-          }
-          &--orange {
-            color: #ff8f12;
-          }
+        & span {
+          font-size: 15px;
         }
       }
     }
