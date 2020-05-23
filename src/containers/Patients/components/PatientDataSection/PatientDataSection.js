@@ -21,7 +21,7 @@ const PatientDataSection = ({ patient, planById, handleOpenModal }) => {
   }
 
   function checkBarColor() {
-    return calculatePercentage() < 50 ? 'red' : ''
+    return calculatePercentage() <= 50 ? 'red' : ''
   }
 
   return (
