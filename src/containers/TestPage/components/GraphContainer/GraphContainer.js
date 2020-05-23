@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Empty, Radio, Spin, Tabs,
+  Empty, Radio, Spin, Tabs, Button,
 } from 'antd'
 import PropTypes from 'prop-types'
 import Chart from 'react-google-charts'
@@ -176,31 +176,39 @@ const GraphContainer = (props) => {
     return null
   }
 
+  function handleHideValidResults() {
+    alert("HIDE ME ")
+  }
+
   function renderTabContent() {
+    const shouldDisplayBtn = isSensorBelongsToLeftTigh && radioValue === GRAPH.radioValue.x && activeTab === GRAPH.tabKey.accelerations
     return (
       <>
         <div className="container-header">
           { !isEmpty && (
-          <Radio.Group className="radio-container" onChange={handleRadioClick}>
-            <Radio
-              value="x"
-              checked={radioValue === GRAPH.radioValue.x}
-            >
-              <span>Show X</span>
-            </Radio>
-            <Radio
-              value="y"
-              checked={radioValue === GRAPH.radioValue.y}
-            >
-              Show Y
-            </Radio>
-            <Radio
-              value="z"
-              checked={radioValue === GRAPH.radioValue.z}
-            >
-              Show Z
-            </Radio>
-          </Radio.Group>
+          <>
+            {shouldDisplayBtn && <Button className="hide-btn" onClick={handleHideValidResults}>Hide valid results</Button>}
+            <Radio.Group className="radio-container" onChange={handleRadioClick}>
+              <Radio
+                value="x"
+                checked={radioValue === GRAPH.radioValue.x}
+              >
+                <span>Show X</span>
+              </Radio>
+              <Radio
+                value="y"
+                checked={radioValue === GRAPH.radioValue.y}
+              >
+                Show Y
+              </Radio>
+              <Radio
+                value="z"
+                checked={radioValue === GRAPH.radioValue.z}
+              >
+                Show Z
+              </Radio>
+            </Radio.Group>
+          </>
           )}
         </div>
         { isEmpty ? (
