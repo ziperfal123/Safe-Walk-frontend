@@ -46,6 +46,17 @@
     width:90%;
     height: 70vh;
 
+    & .hide-btn {
+      & .switch {
+        margin-left: 12px;
+      }
+      & label {
+
+      }
+      position: absolute;
+      right: 50px;
+    }
+
     .loading-section {
       width: 100%;
       height: 100%;

@@ -26,6 +26,7 @@ const TestPage = (props) => {
   const [sensor6, setSensor6] = useState(null)
   const [sensor7, setSensor7] = useState(null)
   const [shouldOpenModal, setShouldOpenModal] = useState(false)
+  const [graphDisplayContent, setGraphDisplayContent] = useState({ tab: '1', radio: 'x' })
 
 
   useEffect(() => {
@@ -202,8 +203,10 @@ const TestPage = (props) => {
             <Button className="report-btn" type="primary" onClick={handleOpenReport}>Open Report</Button>
             <GraphContainer
               sensor={getSensor()}
+              isSensorBelongsToLeftTigh={selectedOption === 'sensor1'}
               cleanGaitModel={cleanGaitModel}
             />
+            {/* { && graphRadioVal === x} */}
           </div>
         </>
       )}
