@@ -5,8 +5,6 @@ import {
 import PropTypes from 'prop-types'
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
 import { OverlayContext } from 'App'
-import Modal from 'components/Modal'
-import Report from '../../components/Forms/Report'
 import 'containers/TestPage/testPage.scss'
 
 
@@ -180,40 +178,36 @@ const TestPage = (props) => {
   }
 
   return (
-    <OverlayContext.Consumer>
-      {({ toggleOverlay }) => (
+    <>
+      {!gaitModel || loadingGaitModel ? (
+        <div className="loading-test">
+          <Spin />
+          <h3>it might take up to one minute..</h3>
+        </div>
+      ) : (
         <>
-          {!gaitModel || loadingGaitModel ? (
-            <div className="loading-test">
-              <Spin />
-              <h3>it might take up to one minute..</h3>
-            </div>
-          ) : (
-            <>
-              <AntModal
-                className="report-modal"
-                visible={shouldOpenModal}
-                title="Report Description:"
-                onCancel={handleOnCancelModal}
-                destroyOnClose
-                footer={<Button type="primary" onClick={handleOnCancelModal}>OK</Button>}
-              >
-                <p>{getSensor().report || "No relevant report at the moment"}</p>
-              </AntModal>
-              <div className="graph-page">
-                <h1 className="test-title">Gait model data</h1>
-                {renderSelect()}
-                <Button className="report-btn" type="primary" onClick={() => handleOpenReport(toggleOverlay)}>Open Report</Button>
-                <GraphContainer
-                  sensor={getSensor()}
-                  cleanGaitModel={cleanGaitModel}
-                />
-              </div>
-            </>
-          )}
+          <AntModal
+            className="report-modal"
+            visible={shouldOpenModal}
+            title="Report Description:"
+            onCancel={handleOnCancelModal}
+            destroyOnClose
+            footer={<Button type="primary" onClick={handleOnCancelModal}>OK</Button>}
+          >
+            <p>{getSensor().report || 'No relevant report at the moment'}</p>
+          </AntModal>
+          <div className="graph-page">
+            <h1 className="test-title">Gait model data</h1>
+            {renderSelect()}
+            <Button className="report-btn" type="primary" onClick={handleOpenReport}>Open Report</Button>
+            <GraphContainer
+              sensor={getSensor()}
+              cleanGaitModel={cleanGaitModel}
+            />
+          </div>
         </>
       )}
-    </OverlayContext.Consumer>
+    </>
   )
 }
 
