@@ -122,9 +122,6 @@ const GraphContainer = (props) => {
   }
 
   function getData() {
-    console.log('activeTab: ', activeTab)
-    console.log('TAB_KEY.velocities: ', TAB_KEY.velocities)
-
     if (accelerationsData && activeTab === TAB_KEY.accelerations) {
       if (radioValue === 'x') {
         if (accelerationsData.x.length <= 3) {

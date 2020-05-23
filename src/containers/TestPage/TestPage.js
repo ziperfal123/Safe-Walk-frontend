@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Spin, Select, Button } from 'antd'
+import {
+  Spin, Select, Button, Modal as AntModal,
+} from 'antd'
 import PropTypes from 'prop-types'
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
+import { OverlayContext } from 'App'
+import Modal from 'components/Modal'
+import Report from '../../components/Forms/Report'
 import 'containers/TestPage/testPage.scss'
 
 
@@ -14,7 +19,6 @@ const TestPage = (props) => {
     cleanGaitModel,
   } = props
 
-
   const [selectedOption, setSelectedOption] = useState('sensor1')
   const [sensor1, setSensor1] = useState(null)
   const [sensor2, setSensor2] = useState(null)
@@ -23,6 +27,7 @@ const TestPage = (props) => {
   const [sensor5, setSensor5] = useState(null)
   const [sensor6, setSensor6] = useState(null)
   const [sensor7, setSensor7] = useState(null)
+  const [shouldOpenModal, setShouldOpenModal] = useState(false)
 
 
   useEffect(() => {
@@ -68,7 +73,6 @@ const TestPage = (props) => {
     const velocitiesY = []
     const velocitiesZ = []
 
-    console.log('gaitModel[key]: ', gaitModel[key])
     gaitModel[key].accelerations.forEach((dataElement) => {
       accelerationX.push({ x: dataElement.timeStamp, y: dataElement.x })
       accelerationY.push({ x: dataElement.timeStamp, y: dataElement.y })
@@ -168,28 +172,48 @@ const TestPage = (props) => {
   }
 
   function handleOpenReport() {
-    console.log('gaitModel: ', getSensor().report)
+    setShouldOpenModal(true)
+  }
+
+  function handleOnCancelModal() {
+    setShouldOpenModal(false)
   }
 
   return (
-    <>
-      {!gaitModel || loadingGaitModel ? (
-        <div className="loading-test">
-          <Spin />
-          <h3>it might take up to one minute..</h3>
-        </div>
-      ) : (
-        <div className="graph-page">
-          <h1 className="test-title">Gait model data</h1>
-          {renderSelect()}
-          <Button className="report-btn" type="primary" onClick={handleOpenReport}>Open Report</Button>
-          <GraphContainer
-            sensor={getSensor()}
-            cleanGaitModel={cleanGaitModel}
-          />
-        </div>
+    <OverlayContext.Consumer>
+      {({ toggleOverlay }) => (
+        <>
+          {!gaitModel || loadingGaitModel ? (
+            <div className="loading-test">
+              <Spin />
+              <h3>it might take up to one minute..</h3>
+            </div>
+          ) : (
+            <>
+              <AntModal
+                className="report-modal"
+                visible={shouldOpenModal}
+                title="Report Description:"
+                onCancel={handleOnCancelModal}
+                destroyOnClose
+                footer={<Button type="primary" onClick={handleOnCancelModal}>OK</Button>}
+              >
+                <p>{getSensor().report || "No relevant report at the moment"}</p>
+              </AntModal>
+              <div className="graph-page">
+                <h1 className="test-title">Gait model data</h1>
+                {renderSelect()}
+                <Button className="report-btn" type="primary" onClick={() => handleOpenReport(toggleOverlay)}>Open Report</Button>
+                <GraphContainer
+                  sensor={getSensor()}
+                  cleanGaitModel={cleanGaitModel}
+                />
+              </div>
+            </>
+          )}
+        </>
       )}
-    </>
+    </OverlayContext.Consumer>
   )
 }
 
