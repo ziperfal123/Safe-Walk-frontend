@@ -2,35 +2,31 @@ import React, { useEffect, useState } from 'react'
 import {
   Empty, Radio, Spin, Tabs,
 } from 'antd'
-import { cloneDeep } from 'lodash'
 import PropTypes from 'prop-types'
 import Chart from 'react-google-charts'
+import { GRAPH } from 'utils/consts'
 import 'containers/TestPage/testPage.scss'
 
 const { TabPane } = Tabs
 
-const TAB_KEY = {
-  accelerations: '1',
-  displacements: '2',
-  velocities: '3',
-}
-
-
 const GraphContainer = (props) => {
-  const { sensor } = props
+  const {
+    sensor: sensorData,
+    isSensorBelongsToLeftTigh,
+  } = props
 
-  const [radioValue, setRadioValue] = useState('x')
-  const [activeTab, setActiveTab] = useState('1')
+  const [radioValue, setRadioValue] = useState(GRAPH.radioValue.x)
+  const [activeTab, setActiveTab] = useState(GRAPH.tabKey.accelerations)
   const [isEmpty, setIsEmpty] = useState(false)
-  const [dataToDisplay, setDataToDisplay] = useState(null)
   const [accelerationsData, setAccelerationsData] = useState(null)
   const [displacementsData, setDisplacementsData] = useState(null)
   const [velocitiesData, setVelocitiesData] = useState(null)
 
+
   useEffect(() => {
     isEmpty && setIsEmpty(false)
     setNormalizeData()
-  }, [sensor])
+  }, [sensorData])
 
   function handleRadioClick(e) {
     setRadioValue(e.target.value)
@@ -39,59 +35,68 @@ const GraphContainer = (props) => {
 
   function setNormalizeData() {
     const accelerationsObj = {
-      x: ['dogs', 'cats'],
-      y: ['dogs', 'cats'],
-      z: ['dogs', 'cats'],
+      x: ['dogs', 'patients points'],
+      y: ['dogs', 'patients points'],
+      z: ['dogs', 'patients points'],
     }
     const displacementsObj = {
-      x: ['dogs', 'cats'],
-      y: ['dogs', 'cats'],
-      z: ['dogs', 'cats'],
-
+      x: ['dogs', 'patients points'],
+      y: ['dogs', 'patients points'],
+      z: ['dogs', 'patients points'],
     }
     const velocitiesObj = {
-      x: ['dogs', 'cats'],
-      y: ['dogs', 'cats'],
-      z: ['dogs', 'cats'],
+      x: ['dogs', 'patients points'],
+      y: ['dogs', 'patients points'],
+      z: ['dogs', 'patients points'],
     }
 
-    accelerationsObj.x = [
+    accelerationsObj.x = isSensorBelongsToLeftTigh ? (
+      [
+        [...accelerationsObj.x, 'valid example'],
+        ...sensorData.accelerations.x.map((point, index) => (
+          [point.x, point.y, GRAPH.validLeftTigh[index]]
+        )),
+      ]
+    ) : ([
       accelerationsObj.x,
-      ...sensor.accelerations.x.map((point) => [point.x, point.y]),
-    ]
+      ...sensorData.accelerations.x.map((point) => [point.x, point.y]),
+    ])
+
+    console.log('accelerationsObj.x: ', accelerationsObj.x)
+
     accelerationsObj.y = [
       accelerationsObj.y,
-      ...sensor.accelerations.y.map((point) => [point.x, point.y]),
+      ...sensorData.accelerations.y.map((point) => [point.x, point.y]),
     ]
     accelerationsObj.z = [
       accelerationsObj.z,
-      ...sensor.accelerations.z.map((point) => [point.x, point.y]),
+      ...sensorData.accelerations.z.map((point) => [point.x, point.y]),
     ]
 
     displacementsObj.x = [
       displacementsObj.x,
-      ...sensor.displacements.x.map((point) => [point.x, point.y]),
+      ...sensorData.displacements.x.map((point) => [point.x, point.y]),
     ]
     displacementsObj.y = [
       displacementsObj.y,
-      ...sensor.displacements.y.map((point) => [point.x, point.y]),
+      ...sensorData.displacements.y.map((point) => [point.x, point.y]),
     ]
     displacementsObj.z = [
       displacementsObj.z,
-      ...sensor.displacements.z.map((point) => [point.x, point.y]),
+      ...sensorData.displacements.z.map((point) => [point.x, point.y]),
     ]
 
     velocitiesObj.x = [
       velocitiesObj.x,
-      ...sensor.velocities.x.map((point) => [point.x, point.y]),
+      ...sensorData.velocities.x.map((point) => [point.x, point.y]),
     ]
     velocitiesObj.y = [
       velocitiesObj.y,
-      ...sensor.velocities.y.map((point) => [point.x, point.y]),
+      ...sensorData.velocities.y.map((point) => [point.x, point.y]),
     ]
     velocitiesObj.z = [
       velocitiesObj.z,
-      ...sensor.velocities.z.map((point) => [point.x, point.y]),
+      ...sensorData.velocities.z.map((point) => [point.x, point.y]),
     ]
 
     setAccelerationsData(accelerationsObj)
@@ -100,42 +105,26 @@ const GraphContainer = (props) => {
   }
 
 
-  function getColor() {
-    switch (radioValue) {
-      case 'x':
-        return 'green'
-
-      case 'y':
-        return 'purple'
-
-      case 'z':
-        return '#ff8f12'
-
-      default:
-        return 'green'
-    }
-  }
-
   function handleTabClick(activeTabKey) {
     isEmpty && setIsEmpty(false)
     setActiveTab(activeTabKey)
   }
 
   function getData() {
-    if (accelerationsData && activeTab === TAB_KEY.accelerations) {
-      if (radioValue === 'x') {
+    if (accelerationsData && activeTab === GRAPH.tabKey.accelerations) {
+      if (radioValue === GRAPH.radioValue.x) {
         if (accelerationsData.x.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return accelerationsData.x
       }
-      if (radioValue === 'y') {
+      if (radioValue === GRAPH.radioValue.y) {
         if (accelerationsData.y.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return accelerationsData.y
       }
-      if (radioValue === 'z') {
+      if (radioValue === GRAPH.radioValue.z) {
         if (accelerationsData.z.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
@@ -143,20 +132,20 @@ const GraphContainer = (props) => {
       }
     }
 
-    if (displacementsData && activeTab === TAB_KEY.displacements) {
-      if (radioValue === 'x') {
+    if (displacementsData && activeTab === GRAPH.tabKey.displacements) {
+      if (radioValue === GRAPH.radioValue.x) {
         if (displacementsData.x.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return displacementsData.x
       }
-      if (radioValue === 'y') {
+      if (radioValue === GRAPH.radioValue.y) {
         if (displacementsData.y.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
         return displacementsData.y
       }
-      if (radioValue === 'z') {
+      if (radioValue === GRAPH.radioValue.z) {
         if (displacementsData.z.length <= 3) {
           !isEmpty && setIsEmpty(true)
         }
@@ -164,26 +153,27 @@ const GraphContainer = (props) => {
       }
     }
 
-    if (velocitiesData && activeTab === TAB_KEY.velocities) {
-      if (radioValue === 'x') {
+    if (velocitiesData && activeTab === GRAPH.tabKey.velocities) {
+      if (radioValue === GRAPH.radioValue.x) {
         if (velocitiesData.x.length <= 3) {
           setIsEmpty(true)
         }
         return velocitiesData.x
       }
-      if (radioValue === 'y') {
+      if (radioValue === GRAPH.radioValue.y) {
         if (velocitiesData.x.length <= 3) {
           setIsEmpty(true)
         }
         return velocitiesData.y
       }
-      if (radioValue === 'z') {
+      if (radioValue === GRAPH.radioValue.z) {
         if (velocitiesData.x.length <= 3) {
           setIsEmpty(true)
         }
         return velocitiesData.z
       }
     }
+    return null
   }
 
   function renderTabContent() {
@@ -193,23 +183,20 @@ const GraphContainer = (props) => {
           { !isEmpty && (
           <Radio.Group className="radio-container" onChange={handleRadioClick}>
             <Radio
-              className="radio--green"
               value="x"
-              checked={radioValue === 'x'}
+              checked={radioValue === GRAPH.radioValue.x}
             >
               <span>Show X</span>
             </Radio>
             <Radio
-              className="radio--purple"
               value="y"
-              checked={radioValue === 'y'}
+              checked={radioValue === GRAPH.radioValue.y}
             >
               Show Y
             </Radio>
             <Radio
-              className="radio--orange"
               value="z"
-              checked={radioValue === 'z'}
+              checked={radioValue === GRAPH.radioValue.z}
             >
               Show Z
             </Radio>
@@ -229,13 +216,13 @@ const GraphContainer = (props) => {
             data={getData()}
             options={{
               hAxis: {
-                title: 'Time',
+                title: 'Time stamps',
               },
               vAxis: {
                 title: 'find the right string here',
               },
               series: {
-                color: getColor(),
+                1: { curveType: 'function' },
               },
             }}
           />
@@ -248,13 +235,13 @@ const GraphContainer = (props) => {
   return (
     <div className="graph-container">
       <Tabs onTabClick={handleTabClick}>
-        <TabPane tab="Accelerations" key={TAB_KEY.accelerations}>
+        <TabPane tab="Accelerations" key={GRAPH.tabKey.accelerations}>
           {renderTabContent()}
         </TabPane>
-        <TabPane tab="Displacements" key={TAB_KEY.displacements}>
+        <TabPane tab="Displacements" key={GRAPH.tabKey.displacements}>
           {renderTabContent()}
         </TabPane>
-        <TabPane tab="Velocities" key={TAB_KEY.velocities}>
+        <TabPane tab="Velocities" key={GRAPH.tabKey.velocities}>
           {renderTabContent()}
         </TabPane>
       </Tabs>
