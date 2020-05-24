@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Empty, Radio, Spin, Tabs, Button, Switch,
+  Empty, Radio, Spin, Tabs, Switch,
 } from 'antd'
 import PropTypes from 'prop-types'
 import Chart from 'react-google-charts'
@@ -13,6 +13,7 @@ const GraphContainer = (props) => {
   const {
     sensor: sensorData,
     isSensorBelongsToLeftTigh,
+    isSensorBelongsToRightTigh,
   } = props
 
   const [radioValue, setRadioValue] = useState(GRAPH.radioValue.x)
@@ -36,32 +37,48 @@ const GraphContainer = (props) => {
 
   function setNormalizeData() {
     const accelerationsObj = {
-      x: ['dogs', 'patients points'],
-      y: ['dogs', 'patients points'],
-      z: ['dogs', 'patients points'],
+      x: ['time', 'patients points'],
+      y: ['time', 'patients points'],
+      z: ['time', 'patients points'],
     }
     const displacementsObj = {
-      x: ['dogs', 'patients points'],
-      y: ['dogs', 'patients points'],
-      z: ['dogs', 'patients points'],
+      x: ['time', 'patients points'],
+      y: ['time', 'patients points'],
+      z: ['time', 'patients points'],
     }
     const velocitiesObj = {
-      x: ['dogs', 'patients points'],
-      y: ['dogs', 'patients points'],
-      z: ['dogs', 'patients points'],
+      x: ['time', 'patients points'],
+      y: ['time', 'patients points'],
+      z: ['time', 'patients points'],
     }
 
-    accelerationsObj.x = isSensorBelongsToLeftTigh && shouldDisplayValidData ? (
-      [
-        [...accelerationsObj.x, 'valid example'],
-        ...sensorData.accelerations.x.map((point, index) => (
-          [point.x, point.y, GRAPH.validLeftTigh[index]]
-        )),
-      ]
-    ) : ([
-      accelerationsObj.x,
-      ...sensorData.accelerations.x.map((point) => [point.x, point.y]),
-    ])
+    if (isSensorBelongsToRightTigh) {
+      accelerationsObj.x = shouldDisplayValidData ? (
+        [
+          [...accelerationsObj.x, 'valid example'],
+          ...sensorData.accelerations.x.map((point, index) => (
+            [point.x, point.y, GRAPH.validRightTigh[index]]
+          )),
+        ]
+      ) : ([
+        accelerationsObj.x,
+        ...sensorData.accelerations.x.map((point) => [point.x, point.y]),
+      ])
+    }
+
+    if (isSensorBelongsToLeftTigh) {
+      accelerationsObj.x = isSensorBelongsToLeftTigh && shouldDisplayValidData ? (
+        [
+          [...accelerationsObj.x, 'valid example'],
+          ...sensorData.accelerations.x.map((point, index) => (
+            [point.x, point.y, GRAPH.validLeftTigh[index]]
+          )),
+        ]
+      ) : ([
+        accelerationsObj.x,
+        ...sensorData.accelerations.x.map((point) => [point.x, point.y]),
+      ])
+    }
 
     accelerationsObj.y = [
       accelerationsObj.y,
@@ -180,9 +197,10 @@ const GraphContainer = (props) => {
   }
 
   function renderTabContent() {
-    const shouldDisplayBtn = isSensorBelongsToLeftTigh
+    const shouldDisplayBtn = (isSensorBelongsToLeftTigh || isSensorBelongsToRightTigh)
         && radioValue === GRAPH.radioValue.x
         && activeTab === GRAPH.tabKey.accelerations
+
     return (
       <>
         <div className="container-header">
@@ -262,8 +280,8 @@ const GraphContainer = (props) => {
     </div>
   )
 }
-export default GraphContainer
 
+export default GraphContainer
 
 GraphContainer.propTypes = {
   sensor: PropTypes.objectOf(PropTypes.any).isRequired,
