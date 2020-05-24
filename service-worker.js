@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Safe-Walk-frontend/precache-manifest.f7b0e77c2588265f7a0d6ad383b16a90.js"
+  "/Safe-Walk-frontend/precache-manifest.326c5aecd06a774c9e4102390e85098b.js"
 );
 
 self.addEventListener('message', (event) => {

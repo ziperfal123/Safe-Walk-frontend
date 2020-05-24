@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b5e5a34270e523b0343cfa7416dff38f",
+    "revision": "f0463aa126139344390ec3163d4b765e",
     "url": "/Safe-Walk-frontend/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Safe-Walk-frontend/static/css/2.563af9af.chunk.css"
   },
   {
-    "revision": "a3e64389ad48617c6b81",
+    "revision": "8cfdd5c641135e02c351",
     "url": "/Safe-Walk-frontend/static/css/main.fc4137e2.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Safe-Walk-frontend/static/js/2.81f459ef.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a3e64389ad48617c6b81",
-    "url": "/Safe-Walk-frontend/static/js/main.855f56ec.chunk.js"
+    "revision": "8cfdd5c641135e02c351",
+    "url": "/Safe-Walk-frontend/static/js/main.6efcf9bd.chunk.js"
   },
   {
     "revision": "8e853bbc212cc7ebac08",
