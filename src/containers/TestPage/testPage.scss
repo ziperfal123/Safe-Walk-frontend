@@ -14,11 +14,14 @@
 
 .report-modal {
   position: absolute;
-  left: calc(50% - 210px);
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, 50%);
   & .ant-modal-title {
     font-size: 17px;
   }
   & p {
+    white-space: pre-line;
     font-size: 17px;
   }
 }

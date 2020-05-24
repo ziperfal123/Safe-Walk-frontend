@@ -189,13 +189,14 @@ const TestPage = (props) => {
         <>
           <AntModal
             className="report-modal"
+            width={610}
             visible={shouldOpenModal}
             title="Report Description:"
             onCancel={handleOnCancelModal}
             destroyOnClose
             footer={<Button type="primary" onClick={handleOnCancelModal}>OK</Button>}
           >
-            <p>{getSensor().report || 'No relevant report at the moment'}</p>
+            <p>{`${getSensor().report}` || 'No relevant report at the moment'}</p>
           </AntModal>
           <div className="graph-page">
             <h1 className="test-title">Gait model data</h1>
