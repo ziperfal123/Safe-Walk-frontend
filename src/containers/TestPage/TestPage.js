@@ -203,6 +203,7 @@ const TestPage = (props) => {
             <Button className="report-btn" type="primary" onClick={handleOpenReport}>Open Report</Button>
             <GraphContainer
               sensor={getSensor()}
+              isSensorBelongsToRightTigh={selectedOption === 'sensor1'}
               isSensorBelongsToLeftTigh={selectedOption === 'sensor2'}
               cleanGaitModel={cleanGaitModel}
             />
