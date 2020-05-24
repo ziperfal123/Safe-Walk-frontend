@@ -3,7 +3,14 @@ import PropTypes from 'prop-types'
 import { Table } from 'antd'
 import columns from './tableColumns'
 
-const TestsTable = ({ allTests, allPatients, loadingAllTests, handleTableRowClick }) => {
+const TestsTable = (props) => {
+  const {
+    allTests,
+    allPatients,
+    loadingAllTests,
+    handleTableRowClick,
+  } = props
+
   function getNormalizedData() {
     const normalizedPatients = allTests.map((test) => {
       const patientId = test.patientID
@@ -32,7 +39,6 @@ const TestsTable = ({ allTests, allPatients, loadingAllTests, handleTableRowClic
       onClick: () => handleTableRowClick(testRow),
     }
   }
-
 
   return (
     <div className="table-wrapper">
