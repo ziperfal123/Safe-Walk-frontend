@@ -43,12 +43,12 @@ const TestPage = (props) => {
   function renderSelect() {
     return (
       <Select className="graph-select" defaultValue="Sensor 1- Right Ankle" onChange={handleSelectChange}>
-        <Select.Option value="sensor1">Sensor 1- Right Ankle</Select.Option>
-        <Select.Option value="sensor2">Sensor 2- Left Ankle</Select.Option>
+        <Select.Option value="sensor1">Sensor 1- Right Tigh</Select.Option>
+        <Select.Option value="sensor2">Sensor 2- Left Tigh</Select.Option>
         <Select.Option value="sensor3">Sensor 3- Right Knee</Select.Option>
         <Select.Option value="sensor4">Sensor 4- Left Knee</Select.Option>
-        <Select.Option value="sensor5">Sensor 5- Right Right</Select.Option>
-        <Select.Option value="sensor6">Sensor 6- Left Left</Select.Option>
+        <Select.Option value="sensor5">Sensor 5- Right Ankle</Select.Option>
+        <Select.Option value="sensor6">Sensor 6- Left Ankle</Select.Option>
         <Select.Option value="sensor7">Sensor 7- Center of mass</Select.Option>
       </Select>
     )
