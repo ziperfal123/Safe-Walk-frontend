@@ -36,7 +36,6 @@ const GraphContainer = (props) => {
   }
 
   function setNormalizeData() {
-    console.log('game time')
     const accelerationsObj = {
       x: ['time', 'patients points'],
       y: ['time', 'patients points'],
