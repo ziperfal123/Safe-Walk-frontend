@@ -1,8 +1,6 @@
 import { del, get, post } from 'utils/fetch'
-import { deepClone } from 'lodash'
 import { API } from 'utils/consts'
 import store from 'redux/store'
-import * as ActionsType from 'redux/videos/actionTypes'
 import * as ActionTypes from './actionTypes'
 
 export const getAllDefaultPlans = () => async (dispatch) => {
@@ -45,11 +43,10 @@ export const createDefaultPlan = (formData) => async (dispatch) => {
       })
       return API.postRequestSuccess
     }
-  } catch (err) {
+  } catch (errMessage) {
     dispatch({ type: ActionTypes.CREATE_DEFAULT_PLAN_SET_LOADING_FALSE })
-    console.log('catched error: ', err)
-    console.log('catched error: ', err.message)
-    return err
+    console.log('err: ', errMessage)
+    return errMessage
   }
 }
 
@@ -68,7 +65,8 @@ export const deleteDefaultPlan = (idToDelte) => async (dispatch) => {
       })
       return API.deleteRequestSuccess
     }
-  } catch (err) {
-    console.log('catched error: ', err)
+  } catch (errMessage) {
+    console.log('err: ', errMessage)
+    return errMessage
   }
 }

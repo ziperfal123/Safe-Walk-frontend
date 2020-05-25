@@ -18,8 +18,9 @@ export const getRehabPlanById = (planId) => async (dispatch) => {
           payload: response.data,
         })
       }
-    } catch (err) {
-      console.log('err: ', err)
+    } catch (errMessage) {
+      console.log('err: ', errMessage)
+      return errMessage
     }
   }
   dispatch({ type: ActionTypes.FETCH_PLAN_BY_ID_SET_LOADING_FALSE })
@@ -35,12 +36,11 @@ export const createPlan = (formData) => async (dispatch) => {
     })
     dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
     return API.postRequestSuccess
-  } catch (err) {
+  } catch (errMessage) {
     dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
-    console.log('err: ', err)
+    console.log('err: ', errMessage)
+    return errMessage
   }
-
-  dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
 }
 
 export const editPlan = (formData, planId) => async (dispatch) => {
@@ -55,8 +55,9 @@ export const editPlan = (formData, planId) => async (dispatch) => {
       })
     }
     return API.postRequestSuccess
-  } catch (err) {
+  } catch (errMessage) {
     dispatch({ type: ActionTypes.EDIT_PLAN_BY_ID_SET_LOADING_FALSE })
-    console.log('err: ', err)
+    console.log('err: ', errMessage)
+    return errMessage
   }
 }

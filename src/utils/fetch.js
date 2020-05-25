@@ -16,7 +16,7 @@ export async function get(endPointUrl) {
     return res
   } catch (err) {
     if (err.response) throw new Error(err.response.data)
-    else throw err
+    throw (err.response.data.message)
   }
 }
 
@@ -27,8 +27,8 @@ export async function post(endPointUrl, data) {
     return res
   } catch (err) {
     console.log('err from post', err)
-    console.log('err from post', err.message)
-    throw new Error(err)
+    console.log('err from post', err.response.data.message)
+    throw (err.response.data.message)
   }
 }
 
@@ -38,7 +38,7 @@ export async function put(endPointUrl, data) {
     const res = await axios.put(`${SERVER_URL}/${endPointUrl}`, data, configOptions)
     return res
   } catch (err) {
-    throw new Error(err)
+    throw (err.response.data.message)
   }
 }
 
@@ -49,6 +49,6 @@ export async function del(endPointUrl) {
     return res
   } catch (err) {
     console.log('err from delete: ', err)
-    throw new Error(err)
+    throw (err.response.data.message)
   }
 }
