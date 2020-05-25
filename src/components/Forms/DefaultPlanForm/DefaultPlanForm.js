@@ -37,8 +37,10 @@ const DefaultPlanForm = (props) => {
   }
 
   function handleVideosClick(videoId, e) {
+    console.log('e.target.className: ', e.target.className)
     if (e.target.className !== ''
         && e.target.className !== 'label-container'
+        && e.target.className !== 'label-container default-plan-label'
         && e.target.className !== 'name-label') return
 
     let isVideoAlreadyInList = false
@@ -87,7 +89,7 @@ const DefaultPlanForm = (props) => {
     })
     return (
       <div className={videoClasses} key={index} onClick={(e) => handleVideosClick(video.id, e)}>
-        <div className="label-container">
+        <div className="label-container default-plan-label">
           <label className="name-label">{video.name}</label>
           { isSelected
             && (
