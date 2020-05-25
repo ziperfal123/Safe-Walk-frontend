@@ -55,7 +55,7 @@ const Videos = (props) => {
       setDidPostRequestSucceed(true)
       setShouldOpenModal(false)
     } else {
-      activateErrorModal(creationResponse && creationResponse.message)
+      activateErrorModal(creationResponse)
     }
   }
 

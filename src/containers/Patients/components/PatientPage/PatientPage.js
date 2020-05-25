@@ -64,7 +64,7 @@ const PatientPage = (props) => {
         setDidPostRequestSucceed(true)
         setShouldOpenModal(false)
       } else {
-        activateErrorModal(editPlanResponse && editPlanResponse.message)
+        activateErrorModal(editPlanResponse)
       }
     } else if (modalMode === 'new') {
       const createPlanResponse = await createPlan(formData)
@@ -72,7 +72,8 @@ const PatientPage = (props) => {
         setDidPostRequestSucceed(true)
         setShouldOpenModal(false)
       } else {
-        activateErrorModal(createPlanResponse && createPlanResponse.message)
+        console.log('createPlanResponse: ', createPlanResponse)
+        activateErrorModal(createPlanResponse)
       }
     }
   }
