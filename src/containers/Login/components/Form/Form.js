@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import './form.scss'
 
 const Form = ({ handleLoginFormSubmit }) => {
-  const [mail, setMail] = useState('')
-  const [password, setPassword] = useState('')
+  const [loginMail, setMail] = useState('')
+  const [loginPassword, setPassword] = useState('')
   const firstInputRef = useRef()
 
   useEffect(() => {
@@ -14,12 +14,12 @@ const Form = ({ handleLoginFormSubmit }) => {
   function handleInputChange(event) {
     const { value } = event.target
     const { name } = event.target
-    name === 'mail' ? setMail(value) : setPassword(value)
+    name === 'loginMail' ? setMail(value) : setPassword(value)
   }
 
   function handleLoginClick(e) {
     e.preventDefault()
-    handleLoginFormSubmit(mail, password)
+    handleLoginFormSubmit(loginMail, loginPassword)
   }
 
   return (
@@ -28,14 +28,14 @@ const Form = ({ handleLoginFormSubmit }) => {
         type="text"
         placeholder="user name"
         onChange={handleInputChange}
-        name="mail"
+        name="loginMail"
         ref={firstInputRef}
       />
       <input
         type="password"
         placeholder="password"
         onChange={handleInputChange}
-        name="password"
+        name="loginPassword"
         autoComplete="off"
       />
       <button
