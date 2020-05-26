@@ -72,7 +72,6 @@ const PatientPage = (props) => {
         setDidPostRequestSucceed(true)
         setShouldOpenModal(false)
       } else {
-        console.log('createPlanResponse: ', createPlanResponse)
         activateErrorModal(createPlanResponse)
       }
     }
