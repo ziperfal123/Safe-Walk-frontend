@@ -6,7 +6,7 @@ import pathsNames from 'router/pathNames'
 import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
 import PatientForm from 'components/Forms/PatientForm'
-import {API, PATIENT_FORM} from 'utils/consts'
+import { API, PATIENT_FORM } from 'utils/consts'
 import PatientPage from './components/PatientPage'
 import PatientsTable from './components/PatientsTable'
 

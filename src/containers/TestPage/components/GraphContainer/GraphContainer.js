@@ -237,7 +237,7 @@ const GraphContainer = (props) => {
         </div>
         { isEmpty ? (
           <div className="empty-container">
-            <Empty className="empty-data" description={<span>No data for this graph at the moment</span>} />
+            <Empty className="empty-data" description={<span>{GRAPH.emptyGraphMessage}</span>} />
           </div>
         ) : (
           <Chart
@@ -251,7 +251,7 @@ const GraphContainer = (props) => {
                 title: 'Time stamps',
               },
               vAxis: {
-                title: 'find the right string here',
+                title: 'Time stamps',
               },
               series: {
                 1: { curveType: 'function' },
