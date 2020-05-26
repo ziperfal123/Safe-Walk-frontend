@@ -1,17 +1,20 @@
-import React, {useEffect, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Form, Input, Button } from 'antd'
+import { getVideoId } from 'utils/youtube'
 import '../form.scss'
 
 const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
-
   const nameInputRef = useRef(null)
 
   useEffect(() => {
-    nameInputRef.current.focus();
+    nameInputRef.current.focus()
   }, [])
 
   function handleFinish(formData) {
-    handleFormSubmit(formData)
+    console.log('formData: ', formData)
+    const videoId = getVideoId(formData.link)
+    const normalizedFormData = { ...formData, link: `https://www.youtube.com/embed/?v=${videoId}` }
+    handleFormSubmit(normalizedFormData)
   }
   return (
     <Form className="form" layout="vertical" onFinish={handleFinish}>

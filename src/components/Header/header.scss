@@ -16,8 +16,8 @@
 
   &__route-title {
     position: relative;
-    top: 14px;
-    left: 20px;
+    top: $header-height / 4;
+    left: 25px;
     width: 200px;
     font-size: $headers-font-size;
   }

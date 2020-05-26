@@ -6,7 +6,7 @@ import pathsNames from 'router/pathNames'
 import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
 import PatientForm from 'components/Forms/PatientForm'
-import { API } from 'utils/consts'
+import { API, PATIENT_FORM } from 'utils/consts'
 import PatientPage from './components/PatientPage'
 import PatientsTable from './components/PatientsTable'
 
@@ -70,8 +70,8 @@ const Patients = (props) => {
               visible={shouldOpenModal || didPostRequestSucceed}
               type="patient"
               handleOnCancel={handleOnCancelModal}
-              formTitle="Create a new patient"
-              formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
+              formTitle={PATIENT_FORM.formTitle}
+              formDescription={PATIENT_FORM.formDescription}
               FormToRender={PatientForm}
               isLoading={loadingCreatePatient}
               didPostRequestSucceed={didPostRequestSucceed}

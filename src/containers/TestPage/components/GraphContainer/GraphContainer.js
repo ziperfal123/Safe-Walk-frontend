@@ -243,28 +243,28 @@ const GraphContainer = (props) => {
         </div>
         {isEmpty ? (
           <div className="empty-container">
-            <Empty className="empty-data" description={<span>No data for this graph at the moment</span>} />
+            <Empty className="empty-data" description={<span>{GRAPH.emptyGraphMessage}</span>} />
           </div>
         ) : (
-            <Chart
-              width="100%"
-              height="94%"
-              chartType="LineChart"
-              loader={<Spin className="loading-section" />}
-              data={getData()}
-              options={{
-                hAxis: {
-                  title: 'Time stamps',
-                },
-                vAxis: {
-                  title: title,
-                },
-                series: {
-                  1: { curveType: 'function' },
-                },
-              }}
-            />
-          )}
+          <Chart
+            width="100%"
+            height="94%"
+            chartType="LineChart"
+            loader={<Spin className="loading-section" />}
+            data={getData()}
+            options={{
+              hAxis: {
+                title: 'Time stamps',
+              },
+              vAxis: {
+                title: 'Time stamps',
+              },
+              series: {
+                1: { curveType: 'function' },
+              },
+            }}
+          />
+        )}
       </>
     )
   }

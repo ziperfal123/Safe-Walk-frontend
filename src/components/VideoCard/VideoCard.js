@@ -39,7 +39,7 @@ const VideoCard = (props) => {
       title={video.name}
       actions={renderDeleteAction()}
     >
-      <iframe height={260} src={video.link} />
+      <iframe height={260} src={video.link} allowFullScreen />
     </Card>
   )
 }
