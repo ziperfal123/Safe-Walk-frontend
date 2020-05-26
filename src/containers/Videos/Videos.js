@@ -5,7 +5,7 @@ import AddCard from 'components/AddCard'
 import VideoCard from 'components/VideoCard'
 import Modal from 'components/Modal'
 import VideosForm from 'components/Forms/VideosForm'
-import { API } from 'utils/consts'
+import { API, VIDEOS_FORM } from 'utils/consts'
 import { OverlayContext } from '../../App'
 import './videos.scss'
 
@@ -77,8 +77,8 @@ const Videos = (props) => {
                 handleFormSubmit={(formData) => handleFormSubmit(formData)}
                 handleOnCancel={handleOnCancelModal}
                 visible={shouldOpenModal || didPostRequestSucceed}
-                formTitle="Create a new Video"
-                formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
+                formTitle={VIDEOS_FORM.formTitle}
+                formDescription={VIDEOS_FORM.formDescription}
                 FormToRender={VideosForm}
                 type="video"
                 isLoading={loadingCreateVideo}

@@ -8,7 +8,7 @@ import TestPage from 'containers/TestPage'
 import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
 import PlanForm from 'components/Forms/PlanForm'
-import { API } from 'utils/consts'
+import {API, PLAN_FORM} from 'utils/consts'
 import PatientDataSection from '../PatientDataSection'
 import TestsSection from '../TestsSection'
 
@@ -103,8 +103,8 @@ const PatientPage = (props) => {
                 handleOnCancel={handleOnCancelModal}
                 visible={shouldOpenModal || didPostRequestSucceed}
                 type="plan"
-                formTitle={modalMode === 'edit' ? "Edit patient's plan" : "Create patient's plan"}
-                formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
+                formTitle={modalMode === 'edit' ? PLAN_FORM.formEditTitle : PLAN_FORM.formCreateTitle}
+                formDescription={PLAN_FORM.formDescription}
                 FormToRender={PlanForm}
                 patientId={patient.id}
                 therapistId={therapistId}

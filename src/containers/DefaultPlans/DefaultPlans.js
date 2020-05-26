@@ -5,7 +5,7 @@ import AddCard from 'components/AddCard'
 import Modal from 'components/Modal'
 import DefaultPlansForm from 'components/Forms/DefaultPlanForm'
 import DefaultPlanCard from 'components/DefaultPlanCard'
-import {API} from 'utils/consts'
+import {API, DEFAULT_PLAN_FORM} from 'utils/consts'
 // import AddCard from "components/AddCard";
 import 'containers/DefaultPlans/defaultPlans.scss'
 import {deleteDefaultPlan} from "redux/defaultPlans/actionsCreator";
@@ -79,8 +79,8 @@ const DefaultPlans = (props) => {
                 handleFormSubmit={(formData) => handleFormSubmit(formData)}
                 handleOnCancel={handleOnCancelModal}
                 visible={shouldOpenModal || didPostRequestSucceed}
-                formTitle="Create a new Default Plan"
-                formDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim consequat."
+                formTitle={DEFAULT_PLAN_FORM.formTitle}
+                formDescription={DEFAULT_PLAN_FORM.formDescription}
                 type={'default plan'}
                 FormToRender={DefaultPlansForm}
                 allVideos={allVideos}

@@ -30,8 +30,21 @@ export const MODAL = {
   optionalPlaceholderToIgnore: '<Optional>',
 }
 
+export const PATIENT_FORM = {
+  formTitle: 'Add a new patient',
+  formDescription: 'Add a new patient into your system. Make sure your patient is choosing the password together with you, and that he/she will remember it.',
+
+}
+
+export const VIDEOS_FORM = {
+  formTitle: 'Create a new video',
+  formDescription: 'This is the place for creating new videos. The videos you are creating here will enter to your videos pool, and could be used by you in the future, for creating new plans from your patients.',
+}
+
 
 export const DEFAULT_PLAN_FORM = {
+  formTitle: 'Create a new default plan',
+  formDescription: "Default plan is composed of videos and text instructions. Write detailed instructions about your plans, and make sure that the main goal of the plan is written clearly. Choose videos from the available videos in the second modal's tab.",
   videosTab: 'videos',
   planInfoTab: 'plan information',
 
@@ -44,6 +57,9 @@ export const DEFAULT_PLAN_FORM = {
 
 
 export const PLAN_FORM = {
+  formEditTitle: "Edit patient's plan",
+  formCreateTitle: "Create patient's plan",
+  formDescription: "build a plan for your patient. Write detailed instructions, and compose the plan using the available videos/default plans in the second modal's tab.",
   videosAndPlansTab: 'videos & default plans',
   planInfoTab: 'plan information',
 
