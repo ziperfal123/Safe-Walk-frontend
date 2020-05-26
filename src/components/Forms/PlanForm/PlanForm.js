@@ -163,7 +163,7 @@ const PlanForm = (props) => {
           </div>
           )}
         </div>
-        <iframe height={150} width={400} src={video.link} />
+        <iframe height={150} width={400} src={video.link} allowFullScreen />
       </div>
     )
   }

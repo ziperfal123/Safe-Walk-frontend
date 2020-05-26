@@ -32,14 +32,18 @@ const VideoCard = (props) => {
       </Popconfirm>,
     ]
   }
-  return (
 
+  return (
     <Card
       className="video-card-container"
       title={video.name}
       actions={renderDeleteAction()}
     >
-      <iframe height={260} src={video.link} />
+      <iframe
+        height={260}
+        src={video.link}
+        allowFullScreen
+      />
     </Card>
   )
 }
