@@ -37,25 +37,25 @@ const GraphContainer = (props) => {
 
   function setNormalizeData() {
     const accelerationsObj = {
-      x: ['time', 'patients points'],
-      y: ['time', 'patients points'],
-      z: ['time', 'patients points'],
+      x: ['time', 'patient'],
+      y: ['time', 'patient'],
+      z: ['time', 'patient'],
     }
     const displacementsObj = {
-      x: ['time', 'patients points'],
-      y: ['time', 'patients points'],
-      z: ['time', 'patients points'],
+      x: ['time', 'patient'],
+      y: ['time', 'patient'],
+      z: ['time', 'patient'],
     }
     const velocitiesObj = {
-      x: ['time', 'patients points'],
-      y: ['time', 'patients points'],
-      z: ['time', 'patients points'],
+      x: ['time', 'patient'],
+      y: ['time', 'patient'],
+      z: ['time', 'patient'],
     }
 
     if (isSensorBelongsToRightTigh) {
       accelerationsObj.x = shouldDisplayValidData ? (
         [
-          [...accelerationsObj.x, 'valid example'],
+          [...accelerationsObj.x, 'normal model'],
           ...sensorData.accelerations.x.map((point, index) => (
             [point.x, point.y, GRAPH.validRightTigh[index]]
           )),
@@ -196,69 +196,75 @@ const GraphContainer = (props) => {
     setShouldDisplayValidData(switchMode)
   }
 
-  function renderTabContent() {
+  function renderTabContent(tabName) {
     const shouldDisplayBtn = (isSensorBelongsToLeftTigh || isSensorBelongsToRightTigh)
-        && radioValue === GRAPH.radioValue.x
-        && activeTab === GRAPH.tabKey.accelerations
-
+      && radioValue === GRAPH.radioValue.x
+      && activeTab === GRAPH.tabKey.accelerations
+    let title
+    if (tabName === 'accelerations')
+      title = 'm / s ^ 2'
+    if (tabName === 'velocities')
+      title = 'm / s'
+    if (tabName === 'displacements')
+      title = 'm'
     return (
       <>
         <div className="container-header">
-          { !isEmpty && (
-          <>
-            {shouldDisplayBtn && (
-            <div className="hide-btn">
-              <label>{GRAPH.switchLabelText}</label>
-              <Switch className="switch" defaultChecked={shouldDisplayValidData} onClick={handleHideValidResults} />
-            </div>
-            )}
-            <Radio.Group className="radio-container" onChange={handleRadioClick}>
-              <Radio
-                value="x"
-                checked={radioValue === GRAPH.radioValue.x}
-              >
-                <span>Show X</span>
+          {!isEmpty && (
+            <>
+              {shouldDisplayBtn && (
+                <div className="hide-btn">
+                  <label>{GRAPH.switchLabelText}</label>
+                  <Switch className="switch" defaultChecked={shouldDisplayValidData} onClick={handleHideValidResults} />
+                </div>
+              )}
+              <Radio.Group className="radio-container" onChange={handleRadioClick}>
+                <Radio
+                  value="x"
+                  checked={radioValue === GRAPH.radioValue.x}
+                >
+                  <span>Show X</span>
+                </Radio>
+                <Radio
+                  value="y"
+                  checked={radioValue === GRAPH.radioValue.y}
+                >
+                  Show Y
               </Radio>
-              <Radio
-                value="y"
-                checked={radioValue === GRAPH.radioValue.y}
-              >
-                Show Y
+                <Radio
+                  value="z"
+                  checked={radioValue === GRAPH.radioValue.z}
+                >
+                  Show Z
               </Radio>
-              <Radio
-                value="z"
-                checked={radioValue === GRAPH.radioValue.z}
-              >
-                Show Z
-              </Radio>
-            </Radio.Group>
-          </>
+              </Radio.Group>
+            </>
           )}
         </div>
-        { isEmpty ? (
+        {isEmpty ? (
           <div className="empty-container">
             <Empty className="empty-data" description={<span>No data for this graph at the moment</span>} />
           </div>
         ) : (
-          <Chart
-            width="100%"
-            height="94%"
-            chartType="LineChart"
-            loader={<Spin className="loading-section" />}
-            data={getData()}
-            options={{
-              hAxis: {
-                title: 'Time stamps',
-              },
-              vAxis: {
-                title: 'find the right string here',
-              },
-              series: {
-                1: { curveType: 'function' },
-              },
-            }}
-          />
-        )}
+            <Chart
+              width="100%"
+              height="94%"
+              chartType="LineChart"
+              loader={<Spin className="loading-section" />}
+              data={getData()}
+              options={{
+                hAxis: {
+                  title: 'Time stamps',
+                },
+                vAxis: {
+                  title: title,
+                },
+                series: {
+                  1: { curveType: 'function' },
+                },
+              }}
+            />
+          )}
       </>
     )
   }
@@ -268,13 +274,13 @@ const GraphContainer = (props) => {
     <div className="graph-container">
       <Tabs onTabClick={handleTabClick}>
         <TabPane tab="Accelerations" key={GRAPH.tabKey.accelerations}>
-          {renderTabContent()}
-        </TabPane>
-        <TabPane tab="Displacements" key={GRAPH.tabKey.displacements}>
-          {renderTabContent()}
+          {renderTabContent('accelerations')}
         </TabPane>
         <TabPane tab="Velocities" key={GRAPH.tabKey.velocities}>
-          {renderTabContent()}
+          {renderTabContent('velocities')}
+        </TabPane>
+        <TabPane tab="Displacements" key={GRAPH.tabKey.displacements}>
+          {renderTabContent('displacements')}
         </TabPane>
       </Tabs>
     </div>
