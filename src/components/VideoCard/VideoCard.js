@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {urlToEmbededUrlConvertor} from "utils/youtube";
 import { Card, Popconfirm, message } from 'antd'
 import './videoCard.scss'
 
@@ -33,18 +32,14 @@ const VideoCard = (props) => {
       </Popconfirm>,
     ]
   }
-
   return (
+
     <Card
       className="video-card-container"
       title={video.name}
       actions={renderDeleteAction()}
     >
-      <iframe
-        height={260}
-        src={video.link}
-        allowFullScreen
-      />
+      <iframe height={260} src={video.link} allowFullScreen />
     </Card>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { Form, Input, Button } from 'antd'
-import { urlToEmbededUrlConvertor } from 'utils/youtube'
+import { getVideoId } from 'utils/youtube'
 import '../form.scss'
 
 const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
@@ -12,7 +12,7 @@ const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
 
   function handleFinish(formData) {
     console.log('formData: ', formData)
-    const videoId = urlToEmbededUrlConvertor(formData.link)
+    const videoId = getVideoId(formData.link)
     const normalizedFormData = { ...formData, link: `https://www.youtube.com/embed/?v=${videoId}` }
     handleFormSubmit(normalizedFormData)
   }
