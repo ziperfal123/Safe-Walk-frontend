@@ -11,9 +11,8 @@ const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
   }, [])
 
   function handleFinish(formData) {
-    console.log('formData: ', formData)
     const videoId = getVideoId(formData.link)
-    const normalizedFormData = { ...formData, link: `https://www.youtube.com/embed/?v=${videoId}` }
+    const normalizedFormData = { ...formData, link: `https://www.youtube.com/embed/${videoId}` }
     handleFormSubmit(normalizedFormData)
   }
   return (

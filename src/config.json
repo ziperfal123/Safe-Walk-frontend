@@ -1,4 +1,4 @@
 {
-  "SERVER_URL": "http://ec2-18-212-141-114.compute-1.amazonaws.com:3000/api",
+  "SERVER_URL": "https://safewalk.company/api",
   "LOCAL_STORAGE_TOKEN": "authToken"
 }
