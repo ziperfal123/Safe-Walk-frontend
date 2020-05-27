@@ -257,7 +257,7 @@ const GraphContainer = (props) => {
                 title: 'Time stamps',
               },
               vAxis: {
-                title: 'Time stamps',
+                title: title,
               },
               series: {
                 1: { curveType: 'function' },
