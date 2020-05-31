@@ -23,7 +23,6 @@ const PatientDataSection = ({ patient, planById, handleOpenModal }) => {
     return calculatePercentage() <= 50 ? 'red' : ''
   }
 
-  console.log('patient: ', patient)
   return (
     <div className="patient-data-section">
       <img src={patient.picture} alt="patient" />
