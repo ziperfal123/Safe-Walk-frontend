@@ -16,20 +16,20 @@ const SideBar = ({ handleLogout, history }) => {
       <ul>
         <li>
           <NavLink
+            to={pathNames.patients}
+            className="sidebar__nav-link"
+            activeClassName="selected"
+          >
+            My patients
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to={pathNames.patientsTests}
             className="sidebar__nav-link"
             activeClassName="selected"
           >
             Patient’s tests
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to={pathNames.patients}
-            className="sidebar__nav-link"
-            activeClassName="selected"
-          >
-            Patients
           </NavLink>
         </li>
         <li>
