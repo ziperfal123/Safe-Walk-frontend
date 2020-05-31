@@ -23,6 +23,7 @@ const PatientDataSection = ({ patient, planById, handleOpenModal }) => {
     return calculatePercentage() <= 50 ? 'red' : ''
   }
 
+  console.log('patient: ', patient)
   return (
     <div className="patient-data-section">
       <img src={patient.picture} alt="patient" />
@@ -34,7 +35,7 @@ const PatientDataSection = ({ patient, planById, handleOpenModal }) => {
       </div>
       <div className="plan-details">
         <h2>Rehabilitation details:</h2>
-        {planById ? (
+        {planById && patient.rehabPlanID ? (
           <>
             <h3>Starting date: 10-03-19</h3>
             <Progress strokeColor={checkBarColor()} className="progress-bar" type="circle" percent={calculatePercentage()} width={80} />
