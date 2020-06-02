@@ -34,7 +34,7 @@ const PatientDataSection = ({ patient, planById, handleOpenModal }) => {
       </div>
       <div className="plan-details">
         <h2>Rehabilitation details:</h2>
-        {planById && patient.rehabPlanID ? (
+        {planById ? (
           <>
             <h3>Starting date: 10-03-19</h3>
             <Progress strokeColor={checkBarColor()} className="progress-bar" type="circle" percent={calculatePercentage()} width={80} />

@@ -8,8 +8,6 @@ import {
   Tabs,
   Select,
   InputNumber,
-  Dropdown,
-  Menu,
 } from 'antd'
 import { cloneDeep } from 'lodash'
 import classNames from 'classnames'
@@ -33,6 +31,7 @@ const PlanForm = (props) => {
 
   const [name, setNameField] = useState((dataToEdit && dataToEdit.name) || '')
   const [instructions, setInstructionsField] = useState((dataToEdit && dataToEdit.instructions) || '')
+  const [executionTime, setExecutionTime] = useState(1)
   const [videos, setVideosField] = useState((dataToEdit && dataToEdit.videos) || [])
   const [defaultPlans, setDefaultPlansField] = useState((dataToEdit && dataToEdit.defaultPlans) || [])
   const nameInputRef = useRef(null)
@@ -63,6 +62,7 @@ const PlanForm = (props) => {
       finalFormData = {
         name,
         instructions,
+        executionTime,
         videos,
         defaultPlanIDs: defaultPlans || [],
       }
@@ -70,12 +70,14 @@ const PlanForm = (props) => {
       finalFormData = {
         name,
         instructions,
+        executionTime,
         videos,
         defaultPlans: defaultPlans || [],
         patientID: patientId,
         therapistID: therapistId,
       }
     }
+    console.log('finalFormData: ', finalFormData)
     handleFormSubmit(finalFormData)
   }
 
@@ -94,6 +96,10 @@ const PlanForm = (props) => {
 
   function handleInstructionsChange(field) {
     setInstructionsField(field.target.value)
+  }
+
+  function handleExecutionChange(fieldValue) {
+    setExecutionTime(fieldValue)
   }
 
   function handleDefaultPlansSelectChange(arrOfSelectedOptions) {
@@ -117,7 +123,7 @@ const PlanForm = (props) => {
       const tmpVideoObj = {
         videoID: videoId,
         times: 1,
-        priority: 'low',
+        priority: 'Low',
       }
       updatedVideosArr.push(tmpVideoObj)
     }
@@ -217,13 +223,24 @@ const PlanForm = (props) => {
               />
             </Form.Item>
             <Form.Item
-              label={PLAN_FORM.instructionsLabal}
+              label={PLAN_FORM.instructionsLabel}
               name="instructions"
             >
               <Input
                 className="form-input"
                 defaultValue={(dataToEdit && dataToEdit.instructions !== MODAL.optionalPlaceholderToIgnore && dataToEdit.instructions) || ''}
                 onChange={handleInstructionsChange}
+              />
+            </Form.Item>
+            <Form.Item
+              label={PLAN_FORM.executionLabel}
+              name="execution"
+            >
+              <InputNumber
+                defaultValue={dataToEdit && dataToEdit.executionTime}
+                min={1}
+                value={executionTime}
+                onChange={handleExecutionChange}
               />
             </Form.Item>
           </div>
