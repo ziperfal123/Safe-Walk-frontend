@@ -49,7 +49,7 @@ export const DEFAULT_PLAN_FORM = {
   planInfoTab: 'plan information',
 
   nameLabel: 'plan name:',
-  instructionsLabal: 'instructions:',
+  instructionsLabel: 'instructions:',
   chooseVideosLabel: "choose videos: (click on the video's name):",
 
   selectPlansPlaceholder: 'select default plans...',
@@ -64,7 +64,8 @@ export const PLAN_FORM = {
   planInfoTab: 'plan information',
 
   nameLabel: 'plan name:',
-  instructionsLabal: 'instructions:',
+  instructionsLabel: 'instructions:',
+  executionLabel: 'plan execution time:',
   defaultPlansLabel: 'choose default plan:',
   chooseVideosLabel: "choose videos: (click on the video's name):",
 

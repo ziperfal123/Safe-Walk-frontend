@@ -133,7 +133,7 @@ const DefaultPlanForm = (props) => {
               />
             </Form.Item>
             <Form.Item
-              label={DEFAULT_PLAN_FORM.instructionsLabal}
+              label={DEFAULT_PLAN_FORM.instructionsLabel}
               name="instructions"
               rules={[
                 { required: true, message: 'Plan instructions field is required' },

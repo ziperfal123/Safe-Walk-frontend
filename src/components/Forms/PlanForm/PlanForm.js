@@ -1,5 +1,5 @@
 import React, {
-  useEffect, useRef, useState, useForm,
+  useEffect, useRef, useState,
 } from 'react'
 import {
   Form,
@@ -31,6 +31,7 @@ const PlanForm = (props) => {
 
   const [name, setNameField] = useState((dataToEdit && dataToEdit.name) || '')
   const [instructions, setInstructionsField] = useState((dataToEdit && dataToEdit.instructions) || '')
+  const [executionTime, setExecutionTime] = useState(1)
   const [videos, setVideosField] = useState((dataToEdit && dataToEdit.videos) || [])
   const [defaultPlans, setDefaultPlansField] = useState((dataToEdit && dataToEdit.defaultPlans) || [])
   const nameInputRef = useRef(null)
@@ -61,19 +62,22 @@ const PlanForm = (props) => {
       finalFormData = {
         name,
         instructions,
-        videos: videos,
+        executionTime,
+        videos,
         defaultPlanIDs: defaultPlans || [],
       }
     } else {
       finalFormData = {
         name,
         instructions,
+        executionTime,
         videos,
         defaultPlans: defaultPlans || [],
         patientID: patientId,
         therapistID: therapistId,
       }
     }
+    console.log('finalFormData: ', finalFormData)
     handleFormSubmit(finalFormData)
   }
 
@@ -94,7 +98,11 @@ const PlanForm = (props) => {
     setInstructionsField(field.target.value)
   }
 
-  function handleSelectChange(arrOfSelectedOptions) {
+  function handleExecutionChange(fieldValue) {
+    setExecutionTime(fieldValue)
+  }
+
+  function handleDefaultPlansSelectChange(arrOfSelectedOptions) {
     setDefaultPlansField(arrOfSelectedOptions)
   }
 
@@ -115,6 +123,7 @@ const PlanForm = (props) => {
       const tmpVideoObj = {
         videoID: videoId,
         times: 1,
+        priority: 'Low',
       }
       updatedVideosArr.push(tmpVideoObj)
     }
@@ -126,6 +135,17 @@ const PlanForm = (props) => {
     for (let i = 0; i < updatedVideosArr.length; i++) {
       if (updatedVideosArr[i].videoID === videoId) {
         updatedVideosArr[i].times = inputValue
+        break
+      }
+    }
+    setVideosField(updatedVideosArr)
+  }
+
+  function handlePriorityChange(priorityValue, videoId) {
+    const updatedVideosArr = cloneDeep(videos)
+    for (let i = 0; i < updatedVideosArr.length; i++) {
+      if (updatedVideosArr[i].videoID === videoId) {
+        updatedVideosArr[i].priority = priorityValue
         break
       }
     }
@@ -146,13 +166,14 @@ const PlanForm = (props) => {
       'video-box': true,
       selected: isSelected,
     })
+
     return (
       <div className={videoClasses} key={index} onClick={(e) => handleVideosClick(video.id, e)}>
         <div className="label-container">
           <label className="name-label">{video.name}</label>
           { isSelected
           && (
-          <div className="input-number-container">
+          <div className="videos-inputs-container">
             <label>times:</label>
             <InputNumber
               defaultValue={timesToSet}
@@ -160,6 +181,16 @@ const PlanForm = (props) => {
               onChange={(e) => handleNumberChange(video.id, e)}
               placeholder="Enter number of times"
             />
+            <label>priority:</label>
+            <Select
+              defaultValue="low"
+              style={{ width: 100 }}
+              onChange={(selectValue) => handlePriorityChange(selectValue, video.id)}
+            >
+              <Option value="Low">Low</Option>
+              <Option value="Medium">Medium</Option>
+              <Option value="High">High</Option>
+            </Select>
           </div>
           )}
         </div>
@@ -192,13 +223,24 @@ const PlanForm = (props) => {
               />
             </Form.Item>
             <Form.Item
-              label={PLAN_FORM.instructionsLabal}
+              label={PLAN_FORM.instructionsLabel}
               name="instructions"
             >
               <Input
                 className="form-input"
                 defaultValue={(dataToEdit && dataToEdit.instructions !== MODAL.optionalPlaceholderToIgnore && dataToEdit.instructions) || ''}
                 onChange={handleInstructionsChange}
+              />
+            </Form.Item>
+            <Form.Item
+              label={PLAN_FORM.executionLabel}
+              name="execution"
+            >
+              <InputNumber
+                defaultValue={dataToEdit && dataToEdit.executionTime}
+                min={1}
+                value={executionTime}
+                onChange={handleExecutionChange}
               />
             </Form.Item>
           </div>
@@ -209,11 +251,11 @@ const PlanForm = (props) => {
             && (
             <Form.Item label={PLAN_FORM.defaultPlansLabel}>
               <Select
-                defaultValue={(dataToEdit && dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]) || []} // TODO:: normalize data so it can be shown in Select list. match it with the default plans list and take the relevant name
+                defaultValue={(dataToEdit && dataToEdit.defaultPlans && [...dataToEdit.defaultPlans]) || []}
                 mode="multiple"
                 style={{ width: '60%' }}
                 placeholder={PLAN_FORM.selectPlansPlaceholder}
-                onChange={handleSelectChange}
+                onChange={handleDefaultPlansSelectChange}
               >
                 {allDefaultPlans.map(renderOption)}
               </Select>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Spin, Select, Button, Modal as AntModal,
+  Spin, Select, Button, Modal as AntModal, Divider, List,
 } from 'antd'
 import PropTypes from 'prop-types'
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
@@ -189,14 +189,26 @@ const TestPage = (props) => {
         <>
           <AntModal
             className="report-modal"
-            width={610}
+            width={600}
             visible={shouldOpenModal}
             title="Report Description:"
             onCancel={handleOnCancelModal}
             destroyOnClose
             footer={<Button type="primary" onClick={handleOnCancelModal}>OK</Button>}
           >
-            <p>{`${getSensor().report}` || 'No relevant report at the moment'}</p>
+            <List
+              size="large"
+              header={<h4><mark>The following 4 deviations have been detected:</mark></h4>}
+              dataSource={[
+                'An exception of 6.62 standard deviations was detected (sample #39).',
+                'An exception of 5.62 standard deviations was detected (sample #41).',
+                'An exception of 6.31 standard deviations was detected (sample #52).',
+                'An exception of 6.44 standard deviations was detected (sample #55).',
+                'An exception of 7.02 standard deviations was detected (sample #101).',
+              ]}
+              renderItem={(item) => <List.Item>{item}</List.Item>}
+            />
+            {/* <p>{`${getSensor().report}` || 'No relevant report at the moment'}</p> */}
           </AntModal>
           <div className="graph-page">
             <h1 className="test-title">Gait model data</h1>
