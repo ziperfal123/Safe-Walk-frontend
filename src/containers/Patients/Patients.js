@@ -84,6 +84,7 @@ const Patients = (props) => {
             >
               Add
             </button>
+            {!loadingAllPatients && <h2 className="patients-title">{`Total of ${allPatients.length} patients:`}</h2>}
             <PatientsTable
               allPatients={allPatients}
               handleTableRowClick={handleTableRowClick}

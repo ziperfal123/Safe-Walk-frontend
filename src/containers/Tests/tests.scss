@@ -3,6 +3,10 @@
 .patient-tests-container {
   @include page-size;
 
+  & .tests-title {
+    @include table-title;
+  }
+
   .table-wrapper {
     @include table-wrapper;
 

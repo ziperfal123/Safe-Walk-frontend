@@ -39,8 +39,15 @@ const Tests = (props) => {
 
 
   function renderTestsTable() {
+    let titleContent = ''
+    if (allTests.length === 1) {
+      titleContent = 'Total of 1 test:'
+    } else if (allTests.length > 1) {
+      titleContent = `Total of ${allTests.length} tests:`
+    }
     return (
       <div className="patient-tests-container">
+        {!loadingAllTests && allTests.length > 0 && <h2 className="tests-title">{titleContent}</h2>}
         <TestsTable
           allPatients={allPatients}
           allTests={allTests}

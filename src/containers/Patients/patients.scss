@@ -3,6 +3,10 @@
 .patients-page {
   @include page-size;
 
+  & .patients-title {
+    @include table-title;
+  }
+
   & button.add-btn {
       position: fixed;
       height: 70px;
