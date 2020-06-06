@@ -9,6 +9,8 @@ import PatientForm from 'components/Forms/PatientForm'
 import { API, PATIENT_FORM } from 'utils/consts'
 import PatientPage from './components/PatientPage'
 import PatientsTable from './components/PatientsTable'
+import {cloneDeep} from "lodash";
+import {Input} from "antd";
 
 const Patients = (props) => {
   const {
@@ -27,6 +29,7 @@ const Patients = (props) => {
   } = props
 
   const [selectedPatient, setSelectedPatient] = useState('')
+  const [filteredPatients, setFilteredPatients] = useState([])
   const [shouldOpenModal, setShouldOpenModal] = useState(false)
   const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
 
@@ -34,6 +37,10 @@ const Patients = (props) => {
     getAllPatients()
     if (selectedPatient === '' && location.pathname !== pathsNames.patients) history.push(pathsNames.patients)
   }, [])
+
+  useEffect(() => {
+    setFilteredPatients(allPatients)
+  }, [allPatients])
 
   function handleTableRowClick(patientObj) {
     setSelectedPatient(patientObj)
@@ -59,14 +66,25 @@ const Patients = (props) => {
     setShouldOpenModal(false)
   }
 
+  function handleInputChange(e) {
+    let tmpArr = cloneDeep(allPatients)
+    tmpArr = tmpArr.filter((patient) => {
+      const lowerCaseName = patient.name.toLowerCase()
+      return lowerCaseName.includes(e.target.value)
+    })
+    setFilteredPatients(tmpArr)
+  }
+
+
   function renderPatientTable() {
     let titleContent = ''
-    if (allPatients.length === 1) {
+    if (filteredPatients.length === 1) {
       titleContent = 'Total of 1 patient:'
-    } else if (allPatients.length > 1) {
-      titleContent = `Total of ${allPatients.length} patients:`
+    } else if (filteredPatients.length === 0) {
+      titleContent = 'No patients found'
+    } else {
+      titleContent = `Total of ${filteredPatients.length} patients:`
     }
-
     return (
       <OverlayContext.Consumer>
         {({ toggleOverlay }) => (
@@ -91,9 +109,13 @@ const Patients = (props) => {
             >
               Add
             </button>
+            <div className="search-wrapper">
+              <label>Filter:</label>
+              <Input onChange={handleInputChange} />
+            </div>
             {!loadingAllPatients && allPatients.length > 0 && <h3 className="patients-title">{titleContent}</h3>}
             <PatientsTable
-              allPatients={allPatients}
+              allPatients={filteredPatients}
               handleTableRowClick={handleTableRowClick}
               loadingAllPatients={loadingAllPatients}
             />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Table } from 'antd'
 import columns from './tableColumns'
@@ -37,6 +37,5 @@ export default TestsTable
 
 TestsTable.propTypes = {
   allTests: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  allPatients: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   loadingAllTests: PropTypes.bool.isRequired,
 }
