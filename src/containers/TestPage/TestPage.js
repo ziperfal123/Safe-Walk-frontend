@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Spin, Select, Button, Modal as AntModal, Divider, List,
+  Spin, Select, Button, Modal as AntModal, List,
 } from 'antd'
 import PropTypes from 'prop-types'
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
-import { OverlayContext } from 'App'
 import 'containers/TestPage/testPage.scss'
 
 
