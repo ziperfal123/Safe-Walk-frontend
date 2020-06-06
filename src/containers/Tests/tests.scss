@@ -7,6 +7,20 @@
     @include table-title;
   }
 
+  & .search-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 40px;
+    margin: auto;
+    width: calc(95vw - #{$sidebar-width});
+
+    & input {
+      max-width: 35%;
+      margin-left: 15px;
+    }
+  }
+
   .table-wrapper {
     @include table-wrapper;
 

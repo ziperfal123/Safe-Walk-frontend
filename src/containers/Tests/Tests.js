@@ -5,6 +5,8 @@ import TestsTable from './components/TestsTable/TestsTable'
 import './tests.scss'
 import { Route, Switch } from 'react-router-dom'
 import TestPage from 'containers/TestPage'
+import { Input } from 'antd'
+import { cloneDeep } from 'lodash'
 
 const Tests = (props) => {
   const {
@@ -18,6 +20,8 @@ const Tests = (props) => {
   } = props
 
   const [selectedTestId, setSelectedTestId] = useState('')
+  const [normalizedTests, setNormalizedTests] = useState([])
+  const [filteredTests, setFilteredTests] = useState([])
 
   useEffect(() => {
     if (location.pathname !== pathsNames.patientsTests) {
@@ -26,6 +30,35 @@ const Tests = (props) => {
     getAllPatients()
     getAllTests()
   }, [])
+
+  useEffect(() => {
+    const tests = getNormalizedData()
+    setNormalizedTests(tests)
+    setFilteredTests(tests)
+  }, [allTests])
+
+  function getNormalizedData() {
+    const normalizedPatients = allTests.map((test) => {
+      const patientId = test.patientID
+      const obj = {}
+      allPatients.forEach((patient) => {
+        if (patientId === patient.id) {
+          obj.key = Math.random()
+          obj.patientImage = patient.picture
+          obj.name = patient.name || 'name is not valid'
+          obj.waitingStatus = patient.waitForPlan ? 'Yes' : 'No'
+          obj.testId = test.id
+        }
+      })
+      return {
+        ...obj,
+        results: test.abnormality ? 'abnormality' : 'normal',
+        testDate: test.date || 'date is not valid',
+      }
+    })
+
+    return normalizedPatients
+  }
 
   function handleTableRowClick(testObj) {
     setSelectedTestId(testObj.testId)
@@ -37,20 +70,34 @@ const Tests = (props) => {
     setSelectedTestId('')
   }
 
+  function handleInputChange(e) {
+    let tmpArr = cloneDeep(normalizedTests)
+    tmpArr = tmpArr.filter((test) => {
+      const lowerCaseName = test.name.toLowerCase()
+      return lowerCaseName.includes(e.target.value)
+    })
+    setFilteredTests(tmpArr)
+  }
 
   function renderTestsTable() {
     let titleContent = ''
-    if (allTests.length === 1) {
+    if (filteredTests.length === 1) {
       titleContent = 'Total of 1 test:'
-    } else if (allTests.length > 1) {
-      titleContent = `Total of ${allTests.length} tests:`
+    } else if (filteredTests.length === 0) {
+      titleContent = 'No tests found'
+    } else {
+      titleContent = `Total of ${filteredTests.length} tests:`
     }
+
     return (
       <div className="patient-tests-container">
-        {!loadingAllTests && allTests.length > 0 && <h2 className="tests-title">{titleContent}</h2>}
+        <div className="search-wrapper">
+          <label>Filter:</label>
+          <Input onChange={handleInputChange} />
+        </div>
+        {!loadingAllTests && <h3 className="tests-title">{titleContent}</h3>}
         <TestsTable
-          allPatients={allPatients}
-          allTests={allTests}
+          allTests={filteredTests}
           loadingAllTests={loadingAllTests}
           handleTableRowClick={handleTableRowClick}
         />
@@ -67,7 +114,6 @@ const Tests = (props) => {
       </div>
     )
   }
-
 
   return (
     <>
