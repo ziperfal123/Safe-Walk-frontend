@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router-dom'
 import './patients.scss'
@@ -32,6 +32,7 @@ const Patients = (props) => {
   const [filteredPatients, setFilteredPatients] = useState([])
   const [shouldOpenModal, setShouldOpenModal] = useState(false)
   const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
+  const inputRef = useRef(null)
 
   useEffect(() => {
     getAllPatients()
@@ -40,6 +41,7 @@ const Patients = (props) => {
 
   useEffect(() => {
     setFilteredPatients(allPatients)
+    if (inputRef) inputRef.current.state.value = ''
   }, [allPatients])
 
   function handleTableRowClick(patientObj) {
@@ -111,7 +113,7 @@ const Patients = (props) => {
             </button>
             <div className="search-wrapper">
               <label>Filter:</label>
-              <Input onChange={handleInputChange} />
+              <Input onChange={handleInputChange} ref={inputRef}/>
             </div>
             {!loadingAllPatients && allPatients.length > 0 && <h3 className="patients-title">{titleContent}</h3>}
             <PatientsTable

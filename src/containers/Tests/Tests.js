@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import PropTypes from 'prop-types'
 import pathsNames from '../../router/pathNames'
 import TestsTable from './components/TestsTable/TestsTable'
@@ -22,6 +22,7 @@ const Tests = (props) => {
   const [selectedTestId, setSelectedTestId] = useState('')
   const [normalizedTests, setNormalizedTests] = useState([])
   const [filteredTests, setFilteredTests] = useState([])
+  const inputRef = useRef(null)
 
   useEffect(() => {
     if (location.pathname !== pathsNames.patientsTests) {
@@ -35,6 +36,7 @@ const Tests = (props) => {
     const tests = getNormalizedData()
     setNormalizedTests(tests)
     setFilteredTests(tests)
+    if (inputRef) inputRef.current.state.value = ''
   }, [allTests])
 
   function getNormalizedData() {
@@ -93,7 +95,7 @@ const Tests = (props) => {
       <div className="patient-tests-container">
         <div className="search-wrapper">
           <label>Filter:</label>
-          <Input onChange={handleInputChange} />
+          <Input onChange={handleInputChange} ref={inputRef}/>
         </div>
         {!loadingAllTests && <h3 className="tests-title">{titleContent}</h3>}
         <TestsTable
