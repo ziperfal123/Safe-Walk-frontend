@@ -3,8 +3,8 @@ import {
   Button, Form, Input, Tabs, InputNumber,
 } from 'antd'
 import { cloneDeep } from 'lodash'
-import { DEFAULT_PLAN_FORM } from 'utils/consts'
 import classNames from 'classnames'
+import { DEFAULT_PLAN_FORM } from 'utils/consts'
 
 const { TabPane } = Tabs
 
@@ -22,9 +22,6 @@ const DefaultPlanForm = (props) => {
   useEffect(() => {
     nameInputRef.current.focus()
   }, [])
-
-  useEffect(() => {
-  })
 
   function handleFinish(formData) {
     if (videos.length === 0) return

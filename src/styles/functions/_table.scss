@@ -1,8 +1,8 @@
 @mixin table-title {
-  width: calc(95vw - #{$sidebar-width});
   position: relative;
   top: 30px;
   margin: auto;
+  width: calc(95vw - #{$sidebar-width});
 }
 
 @mixin table-wrapper {
