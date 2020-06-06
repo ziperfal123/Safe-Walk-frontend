@@ -201,12 +201,9 @@ const GraphContainer = (props) => {
       && radioValue === GRAPH.radioValue.x
       && activeTab === GRAPH.tabKey.accelerations
     let title
-    if (tabName === 'accelerations')
-      title = 'm / s ^ 2'
-    if (tabName === 'velocities')
-      title = 'm / s'
-    if (tabName === 'displacements')
-      title = 'm'
+    if (tabName === 'accelerations') title = 'm / s ^ 2'
+    if (tabName === 'velocities') title = 'm / s'
+    if (tabName === 'displacements') title = 'm'
     return (
       <>
         <div className="container-header">
@@ -230,13 +227,13 @@ const GraphContainer = (props) => {
                   checked={radioValue === GRAPH.radioValue.y}
                 >
                   Show Y
-              </Radio>
+                </Radio>
                 <Radio
                   value="z"
                   checked={radioValue === GRAPH.radioValue.z}
                 >
                   Show Z
-              </Radio>
+                </Radio>
               </Radio.Group>
             </>
           )}
@@ -257,7 +254,7 @@ const GraphContainer = (props) => {
                 title: 'Time stamps',
               },
               vAxis: {
-                title: title,
+                title,
               },
               series: {
                 1: { curveType: 'function' },

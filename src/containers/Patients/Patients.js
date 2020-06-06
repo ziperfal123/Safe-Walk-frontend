@@ -60,6 +60,13 @@ const Patients = (props) => {
   }
 
   function renderPatientTable() {
+    let titleContent = ''
+    if (allPatients.length === 1) {
+      titleContent = 'Total of 1 patient:'
+    } else if (allPatients.length > 1) {
+      titleContent = `Total of ${allPatients.length} patients:`
+    }
+
     return (
       <OverlayContext.Consumer>
         {({ toggleOverlay }) => (
@@ -84,7 +91,7 @@ const Patients = (props) => {
             >
               Add
             </button>
-            {!loadingAllPatients && <h2 className="patients-title">{`Total of ${allPatients.length} patients:`}</h2>}
+            {!loadingAllPatients && allPatients.length > 0 && <h3 className="patients-title">{titleContent}</h3>}
             <PatientsTable
               allPatients={allPatients}
               handleTableRowClick={handleTableRowClick}

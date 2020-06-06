@@ -47,7 +47,7 @@ const Tests = (props) => {
     }
     return (
       <div className="patient-tests-container">
-        {!loadingAllTests && allTests.length > 0 && <h2 className="tests-title">{titleContent}</h2>}
+        {!loadingAllTests && allTests.length > 0 && <h3 className="tests-title">{titleContent}</h3>}
         <TestsTable
           allPatients={allPatients}
           allTests={allTests}
