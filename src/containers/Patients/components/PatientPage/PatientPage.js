@@ -60,8 +60,6 @@ const PatientPage = (props) => {
   async function handleFormSubmit(formData) {
     if (modalMode === 'edit') {
       const editPlanResponse = await editPlan(formData, planById.id)
-      console.log('editPlanResponse: ', editPlanResponse)
-      console.log('API.postRequestSuccess: ', API.postRequestSuccess)
       if (editPlanResponse === API.postRequestSuccess) {
         setDidPostRequestSucceed(true)
         setShouldOpenModal(false)
