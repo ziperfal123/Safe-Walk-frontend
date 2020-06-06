@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Table } from 'antd'
+import { Input, Table } from 'antd'
+import { cloneDeep } from 'lodash'
 import columns from './tableColumns'
 
 const TestsTable = (props) => {
@@ -10,6 +11,15 @@ const TestsTable = (props) => {
     loadingAllTests,
     handleTableRowClick,
   } = props
+
+  const [normalizedTests, setNormalizedTests] = useState([])
+  const [filteredTests, setFilteredTests] = useState([])
+
+  useEffect(() => {
+    const tests = getNormalizedData()
+    setNormalizedTests(tests)
+    setFilteredTests(tests)
+  }, [allTests])
 
   function getNormalizedData() {
     const normalizedPatients = allTests.map((test) => {
@@ -40,17 +50,32 @@ const TestsTable = (props) => {
     }
   }
 
+  function handleInputChange(e) {
+    let tmpArr = cloneDeep(normalizedTests)
+    tmpArr = tmpArr.filter((test) => {
+      const lowerCaseName = test.name.toLowerCase()
+      return lowerCaseName.includes(e.target.value)
+    })
+    setFilteredTests(tmpArr)
+  }
+
   return (
-    <div className="table-wrapper">
-      <Table
-        className="table"
-        columns={columns}
-        dataSource={getNormalizedData()}
-        pagination={false}
-        loading={loadingAllTests}
-        onRow={handleRowClick}
-      />
-    </div>
+    <>
+      <div className="search-wrapper">
+        <label>Filter:</label>
+        <Input onChange={handleInputChange} />
+      </div>
+      <div className="table-wrapper">
+        <Table
+          className="table"
+          columns={columns}
+          dataSource={filteredTests}
+          pagination={false}
+          loading={loadingAllTests}
+          onRow={handleRowClick}
+        />
+      </div>
+    </>
   )
 }
 
