@@ -42,6 +42,7 @@ const PlanForm = (props) => {
     normalizedVideosArr = normalizedVideosArr.map((video) => ({
       videoID: video.videoID,
       times: video.times,
+      priority: video.priority,
     }))
     setVideosField(normalizedVideosArr)
   }, [])
@@ -156,10 +157,12 @@ const PlanForm = (props) => {
   function renderVideo(video, index) {
     let isSelected = false
     let timesToSet = 1
+    let priority = 'Low'
     for (let i = 0; i < videos.length; i++) {
       if (videos[i].videoID === video.id) {
         isSelected = true
         timesToSet = videos[i].times
+        priority = videos[i].priority
       }
     }
     const videoClasses = classNames({
@@ -181,9 +184,9 @@ const PlanForm = (props) => {
               onChange={(e) => handleNumberChange(video.id, e)}
               placeholder="Enter number of times"
             />
-            <label>priority:</label>
+            <label className={'priority-label'}>priority:</label>
             <Select
-              defaultValue="low"
+              defaultValue={priority}
               style={{ width: 100 }}
               onChange={(selectValue) => handlePriorityChange(selectValue, video.id)}
             >

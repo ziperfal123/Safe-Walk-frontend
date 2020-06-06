@@ -35,9 +35,9 @@ const App = ({ errorObj, cleanError, history }) => {
           <Header />
           <SideBar history={history} />
           <Switch>
-            <Route exact path="/" component={PatientTests} />
-            <Route path={pathsNames.patientsTests} component={PatientTests} />
+            <Route exact path="/" component={Patients} />
             <Route path={pathsNames.patients} component={Patients} />
+            <Route path={pathsNames.patientsTests} component={PatientTests} />
             <Route path={pathsNames.defaultPlans} component={DefaultPlans} />
             <Route exact path={pathsNames.videos} component={Videos} />
             <Route path="*" render={() => <NotFound isInApp />} />

@@ -14,9 +14,13 @@
 
 .report-modal {
   position: absolute;
-  left: calc(50% - 260px);
+  left: calc(50% - 240px);
   & .ant-modal-title {
     font-size: 17px;
+  }
+  & .ant-modal-body{
+    max-height: 450px;
+    overflow: auto;
   }
   & p {
     white-space: pre-line;
