@@ -178,6 +178,12 @@ const TestPage = (props) => {
     setShouldOpenModal(false)
   }
 
+  function generateReportData() {
+    const normalziedReport = [...getSensor().report]
+    normalziedReport.shift()
+    return normalziedReport
+  }
+
   return (
     <>
       {!gaitModel || loadingGaitModel ? (
@@ -198,17 +204,10 @@ const TestPage = (props) => {
           >
             <List
               size="large"
-              header={<h4><mark>The following 4 deviations have been detected:</mark></h4>}
-              dataSource={[
-                'An exception of 6.62 standard deviations was detected (sample #39).',
-                'An exception of 5.62 standard deviations was detected (sample #41).',
-                'An exception of 6.31 standard deviations was detected (sample #52).',
-                'An exception of 6.44 standard deviations was detected (sample #55).',
-                'An exception of 7.02 standard deviations was detected (sample #101).',
-              ]}
+              header={<h4><mark>{getSensor().report[0]}</mark></h4>}
+              dataSource={generateReportData()}
               renderItem={(item) => <List.Item>{item}</List.Item>}
             />
-            {/* <p>{`${getSensor().report}` || 'No relevant report at the moment'}</p> */}
           </AntModal>
           <div className="graph-page">
             <h1 className="test-title">Gait model data</h1>
@@ -220,7 +219,6 @@ const TestPage = (props) => {
               isSensorBelongsToLeftTigh={selectedOption === 'sensor2'}
               cleanGaitModel={cleanGaitModel}
             />
-            {/* { && graphRadioVal === x} */}
           </div>
         </>
       )}
