@@ -1,9 +1,16 @@
+@mixin table-title {
+  width: calc(95vw - #{$sidebar-width});
+  position: relative;
+  top: 30px;
+  margin: auto;
+}
+
 @mixin table-wrapper {
   width: calc(95vw - #{$sidebar-width});
   position: relative;
   padding-top: 40px;
   padding-bottom: 30px;
-  top: 30px;
+  top: 50px;
   margin: auto auto 60px;
   border: 1px $patients-tests-table-border-color solid;
 }
