@@ -137,7 +137,7 @@ const DefaultPlanForm = (props) => {
               name="instructions"
               rules={[
                 { required: true, message: 'Plan instructions field is required' },
-                { required: true, min: 6, message: 'Name should contain at least 6 characters' },
+                { required: true, min: 6, message: 'Plan instructions should contain at least 6 characters' },
               ]}
             >
               <Input className="form-input" defaultValue={dataToEdit && dataToEdit.instructions} />
