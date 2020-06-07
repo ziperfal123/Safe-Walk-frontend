@@ -41,7 +41,9 @@ const Patients = (props) => {
 
   useEffect(() => {
     setFilteredPatients(allPatients)
-    if (inputRef) inputRef.current.state.value = ''
+    if (inputRef && inputRef.current && inputRef.current.state) {
+      inputRef.current.state.value = ''
+    }
   }, [allPatients])
 
   function handleTableRowClick(patientObj) {
