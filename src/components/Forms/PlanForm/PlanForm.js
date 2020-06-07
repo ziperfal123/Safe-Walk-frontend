@@ -13,6 +13,7 @@ import { cloneDeep } from 'lodash'
 import classNames from 'classnames'
 import '../form.scss'
 import { MODAL, PLAN_FORM } from 'utils/consts'
+import {calculateDiffBetweenDates} from "utils/date";
 
 const { TabPane } = Tabs
 const { Option } = Select
@@ -36,6 +37,7 @@ const PlanForm = (props) => {
   const [defaultPlans, setDefaultPlansField] = useState((dataToEdit && dataToEdit.defaultPlans) || [])
   const nameInputRef = useRef(null)
   const [form] = Form.useForm()
+  const inputNumberRef = useRef(null)
 
   useEffect(() => {
     let normalizedVideosArr = [...videos]
@@ -54,6 +56,9 @@ const PlanForm = (props) => {
 
   useEffect(() => {
     dataToEdit && setNameField(dataToEdit.name)
+    if (inputNumberRef && inputNumberRef.current) {
+      console.log(inputNumberRef.current)
+    }
   }, [])
 
 
@@ -235,17 +240,14 @@ const PlanForm = (props) => {
                 onChange={handleInstructionsChange}
               />
             </Form.Item>
-            <Form.Item
-              label={PLAN_FORM.executionLabel}
-              name="execution"
-            >
+            <div className={"execution-input-wrapper"}>
+              <label>{PLAN_FORM.executionLabel}</label>
               <InputNumber
-                defaultValue={dataToEdit && dataToEdit.executionTime}
+                defaultValue={dataToEdit && dataToEdit.executionTime && calculateDiffBetweenDates(dataToEdit.executionTime)}
                 min={1}
-                value={executionTime}
                 onChange={handleExecutionChange}
               />
-            </Form.Item>
+            </div>
           </div>
         </TabPane>
         <TabPane tab={PLAN_FORM.videosAndPlansTab} key="2">

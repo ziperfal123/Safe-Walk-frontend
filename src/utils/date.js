@@ -16,3 +16,11 @@ export const normalizeDate = (dateToNormalize, shouldDisplayWithTime = true) => 
   if (!isNaN(day) && !isNaN(month) && !isNaN(year) && !isNaN(hours) && !isNaN(minutes)) return shouldDisplayWithTime ? `${day}-${month}-${year}, ${hours}:${minutes}` : `${day}-${month}-${year}`
   return 'date is not valid'
 }
+
+export const calculateDiffBetweenDates = (d1) => {
+  const currentDate = new Date()
+  let date1 = new Date(d1)
+  let diffInTime = date1.getTime() - currentDate.getTime()
+  diffInTime = diffInTime / (1000 * 3600 * 24)
+  return Math.floor(diffInTime)
+}

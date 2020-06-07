@@ -21,6 +21,17 @@
     margin-top: 10px;
   }
 
+  .execution-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    & label {
+      margin-bottom: 10px;
+    }
+    & .ant-input-number {
+      max-width: 65px;
+    }
+  }
+
   &.has-tabs {
     margin-bottom: 5px;
     & .videos-item {
