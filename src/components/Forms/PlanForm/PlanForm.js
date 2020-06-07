@@ -243,7 +243,7 @@ const PlanForm = (props) => {
             <div className={"execution-input-wrapper"}>
               <label>{PLAN_FORM.executionLabel}</label>
               <InputNumber
-                defaultValue={dataToEdit && dataToEdit.executionTime && calculateDiffBetweenDates(dataToEdit.executionTime)}
+                defaultValue={(dataToEdit && dataToEdit.executionTime && calculateDiffBetweenDates(dataToEdit.executionTime)) || 1}
                 min={1}
                 onChange={handleExecutionChange}
               />
