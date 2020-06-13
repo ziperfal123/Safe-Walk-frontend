@@ -24,8 +24,6 @@ const Patients = (props) => {
     activateErrorModal,
     createPatient,
     loadingCreatePatient,
-    allDefaultPlans,
-    getAllDefaultPlans,
   } = props
 
   const [selectedPatient, setSelectedPatient] = useState('')

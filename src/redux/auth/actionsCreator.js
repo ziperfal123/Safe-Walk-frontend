@@ -6,7 +6,8 @@ import { post } from 'utils/fetch'
 import * as ActionsTypes from './actionTypes'
 
 
-export const checkUserAuthStatusOnAppLoad = () => {
+export const checkUserAuthStatusOnAppLoad = (history) => {
+
   const localToken = localStorage.getItem(config.LOCAL_STORAGE_TOKEN)
   const isTokenExists = !!localToken
   let isTokenExpired
@@ -15,6 +16,7 @@ export const checkUserAuthStatusOnAppLoad = () => {
     isTokenExpired = new Date().getTime() > tokenExperationDate.getTime()
     if (isTokenExpired) {
       localStorage.clear()
+      history.push(pathsNames.login)
       alert(AUTH.tokenExperationAlert)
     }
   }
