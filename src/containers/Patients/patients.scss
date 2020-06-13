@@ -1,49 +1,62 @@
 @import "main";
 
+/*******************************
+          Patients
+*******************************/
 .patients-page {
   @include page-size;
-
-  & .patients-title {
-    @include table-title;
-  }
-
-  & .search-wrapper {
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: 40px;
-    margin: auto;
-    width: calc(95vw - #{$sidebar-width});
-
-    & input {
-      max-width: 35%;
-      margin-left: 15px;
-    }
-  }
-
-  & button.add-btn {
-      position: fixed;
-      height: 70px;
-      width: 70px;
-      bottom: 50px;
-      right: 40px;
-      z-index: $z-index-medium-bottom-value;
-      background-color: $sidebar-background-color;
-      color: $list-hover-color;
-      border-radius: 100px;
-      outline: none;
-      cursor: pointer;
-      font-size: 18px;
-      overflow: hidden;
-
-      &:hover {
-        animation-name: btnRotateAnimation;
-        animation-duration: .3s;
-        animation-timing-function: ease-out;
-        box-shadow: 0 0 9px 2px grey;
-      }
-    }
 }
+
+/*--------------
+      Title
+---------------*/
+.patients-page .patients-title {
+  @include table-title;
+}
+
+/*--------------
+     Search
+---------------*/
+.patients-page .search-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 40px;
+  margin: auto;
+  width: calc(95vw - #{$sidebar-width});
+}
+
+/* Input */
+.patients-page .search-wrapper input {
+  max-width: 35%;
+  margin-left: 15px;
+}
+
+/* Button */
+.patients-page button.add-btn {
+  position: fixed;
+  height: 70px;
+  width: 70px;
+  bottom: 50px;
+  right: 40px;
+  z-index: $z-index-medium-bottom-value;
+  background-color: $sidebar-background-color;
+  color: $list-hover-color;
+  border-radius: 100px;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+.patients-page button.add-btn:hover {
+  animation-name: btnRotateAnimation;
+  animation-duration: .3s;
+  animation-timing-function: ease-out;
+  box-shadow: 0 0 9px 2px grey;
+}
+
+
 
 @keyframes btnRotateAnimation {
   0% {
