@@ -18,6 +18,7 @@ const Videos = (props) => {
     loadingCreateVideo,
     activateErrorModal,
     deleteVideo,
+    setLoadingToTrue,
   } = props
 
   const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
@@ -25,6 +26,7 @@ const Videos = (props) => {
 
   useEffect(() => {
     getAllVideos()
+    return () => setLoadingToTrue()
   }, [])
 
   function handleAddVideoClick(toggleOverlay) {

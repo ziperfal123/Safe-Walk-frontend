@@ -6,9 +6,7 @@ import Modal from 'components/Modal'
 import DefaultPlansForm from 'components/Forms/DefaultPlanForm'
 import DefaultPlanCard from 'components/DefaultPlanCard'
 import {API, DEFAULT_PLAN_FORM} from 'utils/consts'
-// import AddCard from "components/AddCard";
 import 'containers/DefaultPlans/defaultPlans.scss'
-import {deleteDefaultPlan} from "redux/defaultPlans/actionsCreator";
 
 const DefaultPlans = (props) => {
   const {
@@ -21,6 +19,7 @@ const DefaultPlans = (props) => {
     deleteDefaultPlan,
     loadingCreateDefaultPlan,
     activateErrorModal,
+    setLoadingToTrue,
   } = props
 
   const [didPostRequestSucceed, setDidPostRequestSucceed] = useState(false)
@@ -29,6 +28,7 @@ const DefaultPlans = (props) => {
   useEffect(() => {
     getAllDefaultPlans()
     getAllVideos()
+    return () => setLoadingToTrue()
   }, [])
 
   function handleAddDefaultPlanClick(toggleOverlay) {

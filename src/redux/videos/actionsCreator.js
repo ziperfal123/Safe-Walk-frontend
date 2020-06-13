@@ -3,7 +3,6 @@ import { API } from 'utils/consts'
 import store from '../store'
 import * as ActionsType from './actionTypes'
 
-
 export const getAllVideos = () => async (dispatch) => {
   dispatch({ type: ActionsType.FETCH_ALL_VIDEOS_SET_LOADING_TRUE })
   try {
@@ -62,4 +61,10 @@ export const deleteVideo = (idToDelte) => async (dispatch) => {
     console.log('err: ', errMessage)
     return errMessage
   }
+}
+
+export const setLoadingToTrue = () => (dispatch) => {
+  dispatch({
+    type: ActionsType.FETCH_ALL_VIDEOS_SET_LOADING_TRUE,
+  })
 }
