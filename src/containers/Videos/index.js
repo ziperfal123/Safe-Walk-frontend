@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
-import { getAllVideos, createVideo, deleteVideo } from 'redux/videos/actionsCreator'
+import {
+  getAllVideos, createVideo, deleteVideo, setLoadingToTrue,
+} from 'redux/videos/actionsCreator'
+import { activateErrorModal } from 'redux/error/actionCreators'
 import Videos from './Videos'
-import {activateErrorModal} from "redux/error/actionCreators";
 
 
 const mapStateToProps = (state) => ({
@@ -10,6 +12,8 @@ const mapStateToProps = (state) => ({
   loadingCreateVideo: state.videosReducer.loadingCreateVideo,
 })
 
-const mapDispatchToProps = { getAllVideos, createVideo, activateErrorModal, deleteVideo }
+const mapDispatchToProps = {
+  getAllVideos, createVideo, activateErrorModal, deleteVideo, setLoadingToTrue,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Videos)

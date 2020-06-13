@@ -7,10 +7,10 @@ import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
 import PatientForm from 'components/Forms/PatientForm'
 import { API, PATIENT_FORM } from 'utils/consts'
+import { cloneDeep } from 'lodash'
+import { Input } from 'antd'
 import PatientPage from './components/PatientPage'
 import PatientsTable from './components/PatientsTable'
-import {cloneDeep} from "lodash";
-import {Input} from "antd";
 
 const Patients = (props) => {
   const {
@@ -113,7 +113,7 @@ const Patients = (props) => {
             </button>
             <div className="search-wrapper">
               <label>Filter:</label>
-              <Input onChange={handleInputChange} ref={inputRef}/>
+              <Input onChange={handleInputChange} ref={inputRef} />
             </div>
             {!loadingAllPatients && allPatients.length > 0 && <h3 className="patients-title">{titleContent}</h3>}
             <PatientsTable

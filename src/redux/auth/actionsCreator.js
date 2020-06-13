@@ -14,15 +14,16 @@ export const checkUserAuthStatusOnAppLoad = (history) => {
   if (isTokenExists) {
     const tokenExperationDate = new Date(localStorage.getItem('tokenExperationDate'))
     isTokenExpired = new Date().getTime() > tokenExperationDate.getTime()
-    if (isTokenExpired) {
-      localStorage.clear()
-      history.push(pathsNames.login)
-      alert(AUTH.tokenExperationAlert)
-    }
+    // if (isTokenExpired) {
+    //   localStorage.clear()
+    //   history.push(pathsNames.login)
+    //   alert(AUTH.tokenExperationAlert)
+    // }
   }
   return {
     type: ActionsTypes.CHECK_USER_AUTH_STATUS_ON_APP_LOAD,
-    payload: isTokenExists && !isTokenExpired ? AUTH.isAuthenticated : AUTH.isNotAuthenticated,
+    // payload: isTokenExists && !isTokenExpired ? AUTH.isAuthenticated : AUTH.isNotAuthenticated,
+    payload: isTokenExists ? AUTH.isAuthenticated : AUTH.isNotAuthenticated,
   }
 }
 
