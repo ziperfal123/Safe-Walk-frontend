@@ -53,7 +53,6 @@ export const createDefaultPlan = (formData) => async (dispatch) => {
 
 export const deleteDefaultPlan = (idToDelte) => async (dispatch) => {
   const arrOfDefaultPlans = [...store.getState().defaultPlansReducer.allDefaultPlans]
-
   try {
     const { status: statusCode } = await del(`${API.defaultPlansEndpoint}/${idToDelte}`)
     // TODO:: CHANGE! should get 400+ when error, not 202
@@ -69,4 +68,10 @@ export const deleteDefaultPlan = (idToDelte) => async (dispatch) => {
     console.log('err: ', errMessage)
     return errMessage
   }
+}
+
+export const setLoadingToTrue = () => (dispatch) => {
+  dispatch({
+    type: ActionTypes.FETCH_ALL_DEFAULT_PLANS_SET_LOADING_TRUE,
+  })
 }
