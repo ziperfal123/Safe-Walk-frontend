@@ -5,6 +5,9 @@ export const AUTH = {
 
   authenticatedMessage: 'OK',
 
+  tokenExperationAlert: 'Token has been expired.',
+  wrongLoginAlert: 'error has occured when trying to log in.. Please check form details',
+
 }
 
 export const NOT_FOUND = {
