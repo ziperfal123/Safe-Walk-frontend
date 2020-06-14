@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Spin, Card } from 'antd'
+import { Spin } from 'antd'
 import AddCard from 'components/AddCard'
 import VideoCard from 'components/VideoCard'
 import Modal from 'components/Modal'

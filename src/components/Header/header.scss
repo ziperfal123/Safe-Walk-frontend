@@ -1,5 +1,8 @@
 @import "../../main";
 
+/*******************************
+          Header
+*******************************/
 .header-container {
   width: calc(100vw - #{$sidebar-width});
   height: $header-height;
@@ -13,20 +16,26 @@
   z-index: $z-index-medium-bottom-value;
   background-color: $header-background-color;
   box-shadow: 0 0.2px 4px grey;
+}
 
-  &__route-title {
-    position: relative;
-    top: $header-height / 4;
-    left: 25px;
-    width: 200px;
-    font-size: $headers-font-size;
-  }
+/*--------------
+      Title
+---------------*/
+.header-container__route-title {
+  position: relative;
+  top: $header-height / 4;
+  left: 25px;
+  width: 200px;
+  font-size: $headers-font-size;
+}
 
-  &__avatar {
-    width: 200px;
-    font-size: $headers-font-size;
-    position: relative;
-    top: 15px;
-    left: 90px;
-  }
+/*--------------
+     Avatar
+---------------*/
+.header-container__avatar {
+  width: 200px;
+  font-size: $headers-font-size;
+  position: relative;
+  top: 15px;
+  left: 90px;
 }

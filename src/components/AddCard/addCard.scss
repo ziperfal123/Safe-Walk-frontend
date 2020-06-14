@@ -1,5 +1,8 @@
 @import "main";
 
+/*******************************
+          Add Card
+*******************************/
 .add-card-container {
   display: flex;
   min-height: 350px;
@@ -8,18 +11,25 @@
   justify-content: space-evenly;
   border: 2px solid #7a7a7a;
   border-radius: 2px;
-  //margin: 0 10px;
-  //margin-bottom: 35px;
   cursor: pointer;
   transition: .15s;
-  &:hover {
-    background-color: $sidebar-background-color;
-    & h2, & i {
-      color: $list-hover-color;
-    }
-  }
+}
 
-  & .plus-btn {
-    width: 100px;
-  }
+.add-card-container:hover {
+  background-color: $sidebar-background-color;
+}
+
+/*--------------
+   Title, icon
+---------------*/
+.add-card-container:hover h2,
+.add-card-container:hover i {
+  color: $list-hover-color;
+}
+
+/*--------------
+     Button
+---------------*/
+.add-card-container .plus-btn {
+  width: 100px;
 }

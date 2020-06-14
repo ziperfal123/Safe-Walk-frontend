@@ -12,9 +12,9 @@ import {
 
 const initialState = {
   allTests: [],
-  loadingAllTests: false,
+  loadingAllTests: true,
   allTestsById: [],
-  loadingAllTestsById: false,
+  loadingAllTestsById: true,
 };
 
 const testsReducer = (state = initialState, action) => {
