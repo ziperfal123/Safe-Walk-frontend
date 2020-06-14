@@ -1,61 +1,73 @@
 @import 'main.scss';
 
+/*******************************
+          Modal
+*******************************/
 .modal-container {
   position: absolute;
   left: calc(50% - 300px);
-  & aside {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 25%;
-    background-color: $sidebar-background-color;
-    & img {
-      width: 120px;
-    }
-  }
+}
 
-  & .form-wrapper {
-    position: relative;
-    height: 510px;
-    top: 10px;
-    left: 27%;
-    width: 73%;
+/*--------------
+      Aside
+---------------*/
+.modal-container aside {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 25%;
+  background-color: $sidebar-background-color;
+}
 
-    & .form {
-      width: 98%;
-    }
+/* image */
+.modal-container aside img {
+  width: 120px;
+}
 
-    & .save-btn-container {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      //top: 10px;
-      float: right;
-      & button {
-      }
-    }
+/*--------------
+      Form
+---------------*/
+.modal-container .form-wrapper {
+  position: relative;
+  height: 510px;
+  top: 10px;
+  left: 27%;
+  width: 73%;
+}
 
-    & .ant-result.ant-result-success {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+.modal-container .form-wrapper .form {
+  width: 98%;
+}
 
-    & .loading-modal {
-      height: 90%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+/* Save Button */
+.modal-container .form-wrapper .save-btn-container{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  float: right;
+}
 
-      & h4 {
-        margin-top: 10px;
-      }
-    }
-  }
+/* Success Message */
+.modal-container .form-wrapper .ant-result.ant-result-success {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Loading */
+.modal-container .form-wrapper .loading-modal {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container .form-wrapper .loading-modal h4 {
+    margin-top: 10px;
 }
