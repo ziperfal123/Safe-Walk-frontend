@@ -1,5 +1,8 @@
 @import "../../main";
 
+/*******************************
+            Sidebar
+*******************************/
 .sidebar {
   height: 100vh;
   width: $sidebar-width;
@@ -8,63 +11,73 @@
   flex-direction: column;
   align-items: center;
   background-color: $sidebar-background-color;
+}
 
-  .sidebar__logo {
-    width: 120px;
-    margin-top: 30px;
-  }
+/*--------------
+      Logo
+---------------*/
+.sidebar .sidebar__logo {
+  width: 120px;
+  margin-top: 30px;
+}
 
-  ul {
-    height: 300px;
-    width: 100%;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    list-style: none;
+/*--------------
+     List
+---------------*/
+.sidebar ul {
+  height: 300px;
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  list-style: none;
+}
 
-    li {
-      height: 50px;
-      text-align: center;
-      cursor: pointer;
-      &:hover {
-        transition: .5s;
-        background-color: $list-background-color-hover;
-        & a {
-          color: $sidebar-background-color;
-        }
-      }
+/* Item */
+.sidebar ul li {
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    transition: .5s;
+    background-color: $list-background-color-hover;
+    & a {
+      color: $sidebar-background-color;
     }
+  }
+}
 
-    .sidebar__nav-link {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      text-decoration: none;
-      font-size: 1.4em;
-      font-family: $list-font;
+.sidebar ul .sidebar__nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  font-size: 1.4em;
+  font-family: $list-font;
+  color: $list-hover-color;
+  &.selected {
+    box-shadow: inset 3px 0 $list-hover-color;
+    background-color: $selected-list-background-color;
+    &:hover {
       color: $list-hover-color;
-      &.selected {
-        box-shadow: inset 3px 0 $list-hover-color;
-        background-color: $selected-list-background-color;
-        &:hover {
-          color: $list-hover-color;
-        }
-      }
     }
   }
+}
 
-  &__logout-btn {
-    position: absolute;
-    bottom: 8%;
-    cursor: pointer;
-    font-size: 1.5em;
-    letter-spacing: 2px;
-    color: $logout-btn;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
+/*-----------------
+   Logout button
+------------------*/
+.sidebar__logout-btn {
+  position: absolute;
+  bottom: 8%;
+  cursor: pointer;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  color: $logout-btn;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }

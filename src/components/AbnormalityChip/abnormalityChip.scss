@@ -1,14 +1,21 @@
 @import "../../main";
 
+/*******************************
+            Chip
+*******************************/
 .chip {
   padding: 4px 13px;
   border-radius: 15px;
   text-transform: uppercase;
   color: $white-color;
-  &--green {
-    background-color: $normal-result-background-color;
-  }
-  &--red {
-    background-color: $abnormality-result-background-color;
-  }
+}
+
+/* Green */
+.chip--green {
+  background-color: $normal-result-background-color;
+}
+
+/* Red */
+.chip--red {
+  background-color: $abnormality-result-background-color;
 }

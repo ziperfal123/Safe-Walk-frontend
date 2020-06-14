@@ -1,103 +1,146 @@
 @import 'main';
 
-.form {
-  & .tab-content-container {
-    width: 100%;
-    height: 385px;
-    overflow-y: auto;
-    & h1,
-    & p {
-      width: 95%;
-    }
-    & p {
-      margin-left: 4px;
-      font-size: 15px;
-    }
-    & .form-input {
-      max-width: 95%;
-    }
+/*******************************
+            Form
+*******************************/
+
+/************************
+      Without tabs
+************************/
+.form:not(.has-tabs) {
+  margin-top: 10px;
+}
+
+/************************
+        With tabs
+************************/
+.form.has-tabs {
+  margin-bottom: 5px;
+}
+
+/*--------------
+    Form item
+---------------*/
+.form.has-tabs .videos-item .display-required .ant-form-item-control-input {
+  border: 1px solid red;
+  padding: 5px;
+}
+/*-----------------------
+  Customized form item
+------------------------*/
+.form.has-tabs .videos-item .display-required .required-input-details {
+  color: #ff4d4f;
+  position: relative;
+  left: 5px;
+}
+
+/*--------------
+   Video box
+---------------*/
+.form.has-tabs .video-box {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(86% - 1px);
+  margin-top: 30px;
+  margin-left: 20px;
+  &:first-of-type {
+    margin-top: 5px;
   }
-  &:not(.has-tabs) {
-    margin-top: 10px;
+}
+
+.form.has-tabs .video-box * {
+  cursor: pointer;
+}
+
+.form.has-tabs .video-box.selected {
+    box-shadow: 0 0 5px #ffbc49;
+}
+
+/*-----------------------------------
+  Selected video box- label container
+------------------------------------*/
+.form.has-tabs .video-box.selected .label-container {
+  background-color: #ffbc49;
+  & label.name-label {
+    padding-left: 6px;
   }
-
-  .execution-input-wrapper {
-    display: flex;
-    flex-direction: column;
-    & label {
-      margin-bottom: 10px;
-    }
-    & .ant-input-number {
-      max-width: 65px;
-    }
+  & iframe {
+    border: 5px solid #ffbc49
   }
+}
 
-  &.has-tabs {
-    margin-bottom: 5px;
-    & .videos-item {
-      &.display-required {
-        & .ant-form-item-control-input {
-          border: 1px solid red;
-          padding: 5px;
-        }
-        & label.ant-form-item-required{
-        }
+/*-----------------------------------
+     Video box- label container
+------------------------------------*/
+.form.has-tabs .video-box .label-container {
+  width: 398px;
+}
 
-        & .required-input-details {
-          color: #ff4d4f;
-          position: relative;
-          left: 5px;
-        }
-      }
-    }
+.form.has-tabs .video-box .label-container.default-plan-label {
+  width: 375px;
+}
 
-    & .video-box {
-      &:first-of-type {
-        margin-top: 5px;
-      }
-      & * {
-        cursor: pointer;
-      }
-      display: flex;
-      flex-direction: column;
-      max-width: calc(86% - 1px);
-      margin-top: 30px;
-      margin-left: 20px;
-      & .label-container {
-        width: 398px;
-        &.default-plan-label {
-          width: 375px;
-        }
-        & label.name-label {
-          margin-right: 25px;
-        }
-        & .videos-inputs-container {
-          display: inline-block;
-          & label:not(.name-label) {
-            color: #b22a2f;
-            margin-right: 5px;
-          }
-          & .ant-input-number {
-            width: 60px !important;
-          }
-          & .priority-label {
-            margin-left: 20px;
-          }
-        }
-      }
+.form.has-tabs .video-box .label-container label.name-label {
+  margin-right: 25px;
+}
 
-      &.selected {
-        box-shadow: 0 0 5px #ffbc49;
-        & .label-container {
-          background-color: #ffbc49;
-          & label.name-label {
-            padding-left: 6px;
-          }
-          & iframe {
-            border: 5px solid #ffbc49
-          }
-        }
-      }
-    }
-  }
+.form.has-tabs .video-box .label-container .videos-inputs-container {
+  display: inline-block;
+}
+
+.form.has-tabs .video-box .label-container .videos-inputs-container label:not(.name-label) {
+  color: #b22a2f;
+  margin-right: 5px;
+}
+
+.form.has-tabs .video-box .label-container .videos-inputs-container .ant-input-number {
+  width: 60px !important;
+}
+
+.form.has-tabs .video-box .label-container .videos-inputs-container .priority-label {
+  margin-left: 20px;
+}
+
+/*----------------
+  Tab container
+-----------------*/
+.form .tab-content-container  {
+  width: 100%;
+  height: 385px;
+  overflow-y: auto;
+}
+
+/* Title */
+.form .tab-content-container h1  {
+  width: 95%;
+}
+
+/* Text */
+.form .tab-content-container p {
+  width: 95%;
+  margin-left: 4px;
+  font-size: 15px;
+}
+
+
+.form .tab-content-container.form-input {
+  max-width: 95%;
+}
+
+/*----------------------------
+    execution-input-wrapper
+----------------------------*/
+.form .execution-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label */
+.form .execution-input-wrapper label {
+  margin-bottom: 10px;
+}
+
+/* Input wrapper */
+.form .execution-input-wrapper .ant-input-number {
+  max-width: 65px;
 }
