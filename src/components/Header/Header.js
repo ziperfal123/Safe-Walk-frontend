@@ -12,7 +12,6 @@ import { SERVER_SOCKET_URL } from '../../config'
 const Header = ({ location, userName, userImage }) => {
   useEffect(() => {
     const socket = socketIOClient(SERVER_SOCKET_URL)
-    console.log('socket: ', socket)
     socket.on('NEW_THERAPIST_NOTIFICATION', (data) => {
       console.log('data: ', data)
     })
@@ -39,7 +38,9 @@ const Header = ({ location, userName, userImage }) => {
   }
 
   const menu = (
-    <Menu onClick={() => {}}>
+    <Menu className="dropdown-menu notification-menu" onClick={() => {}}>
+      <h5>Notifications</h5>
+      <hr />
       <Menu.Item key="1">
         1st menu item
       </Menu.Item>
@@ -55,9 +56,10 @@ const Header = ({ location, userName, userImage }) => {
     <div className="header-container">
       <h1 className="header-container__route-title">{displayRouteName()}</h1>
       <div className="avatar-container">
-        <Dropdown overlay={menu} placement="bottomCenter">
-          <Button>
+        <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
+          <Button className={"flash"}>
             <NotificationOutlined />
+            <div className={"num-of-notifications"}>2</div>
           </Button>
         </Dropdown>
         <Avatar userName={userName} userImage={userImage} />

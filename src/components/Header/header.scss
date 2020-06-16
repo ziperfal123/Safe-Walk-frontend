@@ -29,16 +29,78 @@
   font-size: $headers-font-size;
 }
 
+/*-----------------
+  Avatar Container
+-------------------*/
 .header-container .avatar-container button {
   margin-right: 30px;
 }
-/*--------------
-     Avatar
----------------*/
+
+.header-container .avatar-container button.flash {
+  animation: blinker .8s linear infinite;
+}
+
+.header-container .avatar-container button.flash .num-of-notifications {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -11px;
+  right: -10px;
+  min-width: 24px;
+  height: 22px;
+  background-color: red;
+  color: whitesmoke;
+  border-radius: 50%;
+}
+
+/* Notification menu */
+.dropdown-menu.notification-menu {
+  padding-bottom: 0;
+}
+.dropdown-menu.notification-menu h5 {
+  margin: 2px 0 5px 15px;
+}
+
+.dropdown-menu.notification-menu hr {
+  margin-top: 2px;
+  border: 0.1px solid grey;
+}
+
+
+.dropdown-menu.notification-menu li {
+  min-width: 250px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 55px;
+  &:first-of-type {
+    margin-top: 2px;
+  }
+  &:not(:last-of-type) {
+    border-bottom: 1px solid black;
+  }
+}
+
+/* Avatar */
 .header-container__avatar {
   width: 200px;
   font-size: $headers-font-size;
   position: relative;
   top: 15px;
   left: 90px;
+}
+
+
+@keyframes blinker {
+  0% {
+    box-shadow: 0 0 14px grey;
+  }
+  50% {
+    box-shadow: 0 0 4px grey;
+  }
+  100% {
+    box-shadow: 0 0 14px grey;
+  }
 }
