@@ -6,6 +6,7 @@ import testsReducer from './tests/reducer'
 import plansReducer from './plans/reducer'
 import defaultPlansReducer from "./defaultPlans/reducer"
 import videosReducer from './videos/reducer'
+import notificationsReducer from './notifications/reducer'
 import errorReducer from './error/reducer'
 
 const reducers = combineReducers({
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   plansReducer,
   defaultPlansReducer,
   videosReducer,
+  notificationsReducer,
 })
 
 export default reducers

@@ -9,7 +9,15 @@ import Avatar from './components/Avatar'
 import './header.scss'
 import { SERVER_SOCKET_URL } from '../../config'
 
-const Header = ({ location, userName, userImage }) => {
+const Header = (props) => {
+  const {
+    location, userName, userImage, getAllNotifications,
+  } = props
+
+  useEffect(() => {
+    getAllNotifications()
+  }, [])
+
   useEffect(() => {
     const socket = socketIOClient(SERVER_SOCKET_URL)
     socket.on('NEW_THERAPIST_NOTIFICATION', (data) => {
@@ -54,12 +62,12 @@ const Header = ({ location, userName, userImage }) => {
   )
   return (
     <div className="header-container">
-      <h1 className="header-container__route-title">{displayRouteName()}</h1>
+      <h1 className="route-title">{displayRouteName()}</h1>
       <div className="avatar-container">
         <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
-          <Button className={"flash"}>
+          <Button className="flash">
             <NotificationOutlined />
-            <div className={"num-of-notifications"}>2</div>
+            <div className="num-of-notifications">2</div>
           </Button>
         </Dropdown>
         <Avatar userName={userName} userImage={userImage} />
