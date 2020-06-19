@@ -10,6 +10,11 @@
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
+
 .app-container {
   overflow-x: hidden;
   height: 100vh
