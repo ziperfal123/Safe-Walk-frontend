@@ -8,6 +8,7 @@ export const getAllNotifications = () => async (dispatch) => {
     const { data } = await get(`${API.notificationsEndpoint}`)
     const normalizedData = data.map((notification) => {
       const d = new Date(notification.timeStamp)
+      console.log('d: ', d)
       return {
         ...notification,
         localTime: normalizeDate(d),

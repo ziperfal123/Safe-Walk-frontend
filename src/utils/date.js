@@ -8,9 +8,10 @@ export const normalizeDate = (dateToNormalize, shouldDisplayWithTime = true) => 
   let month = (normalizedDate.getMonth() + 1).toString()
   month = addZeroPrefixIfNeeded(month)
   const year = normalizedDate.getFullYear().toString()
-  let hours = normalizedDate.getUTCHours().toString()
+  let hours = normalizedDate.getHours().toString()
+  console.log('hours!!!!: ', hours)
   hours = addZeroPrefixIfNeeded(hours)
-  let minutes = normalizedDate.getUTCMinutes().toString()
+  let minutes = normalizedDate.getMinutes().toString()
   minutes = addZeroPrefixIfNeeded(minutes)
 
   if (!isNaN(day) && !isNaN(month) && !isNaN(year) && !isNaN(hours) && !isNaN(minutes)) return shouldDisplayWithTime ? `${day}-${month}-${year}, ${hours}:${minutes}` : `${day}-${month}-${year}`
