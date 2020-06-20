@@ -8,14 +8,18 @@ import { NotificationOutlined } from '@ant-design/icons'
 import classNames from 'classnames'
 import socketIOClient from 'socket.io-client'
 import pathsNames from 'router/pathNames'
-import { pushNotificationFromSocketToNotificationPool } from 'redux/notifications/actionCreators'
 import Avatar from './components/Avatar'
 import { SERVER_SOCKET_URL } from '../../config'
 import './header.scss'
 
 const Header = (props) => {
   const {
-    location, userName, userImage, getAllNotifications, notifications,
+    location,
+    userName,
+    userImage,
+    getAllNotifications,
+    notifications,
+    pushNotificationFromSocketToNotificationPool,
   } = props
 
   const [numOfPushedNotifications, setNumOfPushedNotificaitons] = useState(0)

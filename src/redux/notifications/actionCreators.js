@@ -24,8 +24,12 @@ export const getAllNotifications = () => async (dispatch) => {
 }
 
 export const pushNotificationFromSocketToNotificationPool = (data) => (dispatch) => {
+  const d = new Date(data.timeStamp)
   dispatch({
     type: ActionTypes.PUSH_NEW_NOTIFICATION_TO_POOL,
-    payload: data,
+    payload: {
+      ...data,
+      localTime: normalizeDate(d),
+    }
   })
 }
