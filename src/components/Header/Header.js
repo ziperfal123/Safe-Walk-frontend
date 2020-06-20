@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import { Button, Dropdown, Menu } from 'antd'
+import {
+  Button, Dropdown, Menu, notification,
+} from 'antd'
 import { NotificationOutlined } from '@ant-design/icons'
 import classNames from 'classnames'
 import socketIOClient from 'socket.io-client'
 import pathsNames from 'router/pathNames'
+import { pushNotificationFromSocketToNotificationPool } from 'redux/notifications/actionCreators'
 import Avatar from './components/Avatar'
-import './header.scss'
 import { SERVER_SOCKET_URL } from '../../config'
+import './header.scss'
 
 const Header = (props) => {
   const {
     location, userName, userImage, getAllNotifications, notifications,
   } = props
 
-  const [numOfPushedNotifications, setNumOfPushedNotificaitons] = useState(1)
+  const [numOfPushedNotifications, setNumOfPushedNotificaitons] = useState(0)
   const [isNotificationsMenuOpen, setIsNotificationsMenuOpen] = useState(false)
-  const [notificationsWasOpened, setNotificationsWasOpened] = useState(false)
 
   useEffect(() => {
     getAllNotifications()
@@ -27,9 +29,16 @@ const Header = (props) => {
     const socket = socketIOClient(SERVER_SOCKET_URL)
     socket.on('NEW_THERAPIST_NOTIFICATION', (data) => {
       console.log('data: ', data)
-      setNumOfPushedNotificaitons((prevNum) => prevNum++)
+      setNumOfPushedNotificaitons(numOfPushedNotifications + 1)
+      pushNotificationFromSocketToNotificationPool(data)
+      openNotificationWithIcon(data.description)
     })
   }, [])
+
+  useEffect(() => {
+    isNotificationsMenuOpen && setNumOfPushedNotificaitons(0)
+  }, [isNotificationsMenuOpen])
+
   const displayRouteName = () => {
     let normalizedTitle
     switch (location.pathname) {
@@ -59,37 +68,46 @@ const Header = (props) => {
     >
       <h5>Notifications</h5>
       <hr />
-      {notifications.map((notification) => (
-        <Menu.Item key={notification.timeStamp}>
+      {notifications.map((notif) => (
+        <Menu.Item key={notif.timeStamp} className="menu-item">
           <img
             className="patient-image"
-            src={notification.patientPicture}
+            src={notif.patientPicture}
             alt="patient"
           />
-          <span className="description">{notification.description}</span>
+          <div className="text-wrapper">
+            <span className="description">{notif.description}</span>
+            <span className="time">{notif.localTime}</span>
+          </div>
         </Menu.Item>
       ))}
     </Menu>
   )
 
-  const handleMenuButtonClick = () => {
+  const handleDropdownVisibleChange = () => {
     setIsNotificationsMenuOpen(!isNotificationsMenuOpen)
-    if (!notificationsWasOpened) {
-      setNotificationsWasOpened(true)
-    }
   }
 
+  const openNotificationWithIcon = (notificationDescription) => {
+    notification.info({
+      message: 'Patient\'s plan notification',
+      description: notificationDescription || 'patient has updated plan process',
+      placement: 'bottomRight',
+    })
+  }
+
+
   const menuButtonClassNames = classNames('dropdown-btn', {
-    flash: numOfPushedNotifications > 0 && !notificationsWasOpened,
+    flash: numOfPushedNotifications > 0,
   })
   return (
     <div className="header-container">
       <h1 className="route-title">{displayRouteName()}</h1>
       <div className="avatar-container">
-        <Dropdown overlay={generateMenu()} trigger={['click']} placement="bottomLeft">
-          <Button className={menuButtonClassNames} onClick={handleMenuButtonClick}>
+        <Dropdown overlay={generateMenu()} trigger={['click']} placement="bottomLeft" onVisibleChange={handleDropdownVisibleChange}>
+          <Button className={menuButtonClassNames}>
             <NotificationOutlined />
-            {numOfPushedNotifications > 0 && !isNotificationsMenuOpen && !notificationsWasOpened
+            {numOfPushedNotifications > 0 && !isNotificationsMenuOpen
             && <span className="num-of-notifications">{numOfPushedNotifications}</span>}
           </Button>
         </Dropdown>

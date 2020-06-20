@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getAllNotifications } from 'redux/notifications/actionCreators'
+import { getAllNotifications, pushNotificationFromSocketToNotificationPool } from 'redux/notifications/actionCreators'
 import Header from './Header'
 
 const mapStateToProps = (state) => ({
@@ -7,6 +7,6 @@ const mapStateToProps = (state) => ({
   userImage: state.authReducer.userImage,
   notifications: state.notificationsReducer.notifications,
 })
-const mapDispatchToProps = { getAllNotifications }
+const mapDispatchToProps = { getAllNotifications, pushNotificationFromSocketToNotificationPool }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

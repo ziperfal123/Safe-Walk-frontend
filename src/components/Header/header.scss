@@ -83,6 +83,7 @@
 }
 
 
+/** Notification menu item **/
 .dropdown-menu.notification-menu li {
   min-width: 250px;
   display: flex;
@@ -90,23 +91,45 @@
   align-items: center;
   height: 55px;
   &:first-of-type {
-    margin-top: 2px;
+    margin-top: 5px;
   }
   &:not(:last-of-type) {
     border-bottom: 1px solid black;
   }
 }
 
-.dropdown-menu.notification-menu .patient-image {
+.dropdown-menu.notification-menu .menu-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/*** image ***/
+.dropdown-menu.notification-menu .menu-item img.patient-image {
   width: 30px;
   height: 30px;
   border-radius: 50%;
 }
-.dropdown-menu.notification-menu .description {
+
+/*** text ***/
+.dropdown-menu.notification-menu  .menu-item .text-wrapper {
   margin-left: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-  /* Avatar */
+.dropdown-menu.notification-menu  .menu-item .description {
+  font-weight: bold;
+  letter-spacing: 0.1px;
+}
+
+.dropdown-menu.notification-menu  .menu-item .text-wrapper .time {
+  color: grey;
+  font-size: 13px;
+}
+
+
+/* Avatar */
 .header-container__avatar {
   width: 200px;
   font-size: $headers-font-size;
