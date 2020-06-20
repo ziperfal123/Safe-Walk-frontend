@@ -36,7 +36,7 @@
   margin-right: 30px;
 }
 
-.header-container .avatar-container button.dropdown-btn.flash {
+.header-container .avatar-container button.dropdown-btn:not(.ant-dropdown-open).flash {
   animation: blinker .8s linear infinite;
 }
 
