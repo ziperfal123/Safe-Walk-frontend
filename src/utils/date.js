@@ -9,7 +9,6 @@ export const normalizeDate = (dateToNormalize, shouldDisplayWithTime = true) => 
   month = addZeroPrefixIfNeeded(month)
   const year = normalizedDate.getFullYear().toString()
   let hours = normalizedDate.getHours().toString()
-  console.log('hours!!!!: ', hours)
   hours = addZeroPrefixIfNeeded(hours)
   let minutes = normalizedDate.getMinutes().toString()
   minutes = addZeroPrefixIfNeeded(minutes)

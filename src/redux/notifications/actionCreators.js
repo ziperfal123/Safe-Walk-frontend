@@ -2,13 +2,13 @@ import { get } from 'utils/fetch'
 import { API } from 'utils/consts'
 import * as ActionTypes from './actionTypes'
 import {normalizeDate} from "utils/date";
+
 // eslint-disable-next-line import/prefer-default-export
 export const getAllNotifications = () => async (dispatch) => {
   try {
     const { data } = await get(`${API.notificationsEndpoint}`)
     const normalizedData = data.map((notification) => {
       const d = new Date(notification.timeStamp)
-      console.log('d: ', d)
       return {
         ...notification,
         localTime: normalizeDate(d),

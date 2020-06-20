@@ -83,7 +83,6 @@ const PlanForm = (props) => {
         therapistID: therapistId,
       }
     }
-    console.log('finalFormData: ', finalFormData)
     handleFormSubmit(finalFormData)
   }
 

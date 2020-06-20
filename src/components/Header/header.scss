@@ -99,15 +99,32 @@
 }
 
 .dropdown-menu.notification-menu .menu-item {
+  min-height: 62px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  cursor: default;
+  pointer-events: none;
 }
 
+.dropdown-menu.notification-menu .menu-item:nth-child(odd) {
+  background-color: #eff6fc;
+}
+.dropdown-menu.notification-menu .menu-item:nth-child(even) {
+  background-color: whitesmoke;
+}
+
+
 /*** image ***/
+.dropdown-menu.notification-menu .menu-item .image-wrapper {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
 .dropdown-menu.notification-menu .menu-item img.patient-image {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
@@ -120,6 +137,7 @@
 
 .dropdown-menu.notification-menu  .menu-item .description {
   font-weight: bold;
+  font-size: 15px;
   letter-spacing: 0.1px;
 }
 
