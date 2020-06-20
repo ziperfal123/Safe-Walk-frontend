@@ -1,7 +1,7 @@
 import { get } from 'utils/fetch'
 import { API } from 'utils/consts'
+import { normalizeDate } from 'utils/date'
 import * as ActionTypes from './actionTypes'
-import {normalizeDate} from "utils/date";
 
 // eslint-disable-next-line import/prefer-default-export
 export const getAllNotifications = () => async (dispatch) => {
@@ -30,6 +30,6 @@ export const pushNotificationFromSocketToNotificationPool = (data) => (dispatch)
     payload: {
       ...data,
       localTime: normalizeDate(d),
-    }
+    },
   })
 }

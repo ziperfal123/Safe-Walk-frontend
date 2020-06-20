@@ -32,7 +32,10 @@ const Header = (props) => {
   useEffect(() => {
     const socket = socketIOClient(SERVER_SOCKET_URL)
     socket.on('NEW_THERAPIST_NOTIFICATION', (data) => {
-      setNumOfPushedNotificaitons(numOfPushedNotifications + 1)
+      setNumOfPushedNotificaitons((prev) => {
+        console.log('prev: ', prev)
+        return prev + 1
+      })
       pushNotificationFromSocketToNotificationPool(data)
       openNotificationWithIcon(data.description)
     })
@@ -63,34 +66,31 @@ const Header = (props) => {
     return normalizedTitle
   }
 
-  const generateMenu = () => {
-    console.log('generateMenu')
-    return (
-      <Menu
-        className="dropdown-menu notification-menu"
-        onClick={() => {
-        }}
-      >
-        <h5>Notifications</h5>
-        <hr />
-        {notifications.map((notif) => (
-          <Menu.Item key={notif.timeStamp} className="menu-item">
-            <span className="image-wrapper">
-              <img
-                className="patient-image"
-                src={notif.patientPicture}
-                alt="patient"
-              />
-            </span>
-            <div className="text-wrapper">
-              <span className="description">{notif.description}</span>
-              <span className="time">{notif.localTime}</span>
-            </div>
-          </Menu.Item>
-        ))}
-      </Menu>
-    )
-  }
+  const generateMenu = () => (
+    <Menu
+      className="dropdown-menu notification-menu"
+      onClick={() => {
+      }}
+    >
+      <h5>Notifications</h5>
+      <hr />
+      {notifications.map((notif) => (
+        <Menu.Item key={notif.timeStamp} className="menu-item">
+          <span className="image-wrapper">
+            <img
+              className="patient-image"
+              src={notif.patientPicture}
+              alt="patient"
+            />
+          </span>
+          <div className="text-wrapper">
+            <span className="description">{notif.description}</span>
+            <span className="time">{notif.localTime}</span>
+          </div>
+        </Menu.Item>
+      ))}
+    </Menu>
+  )
 
   const handleDropdownVisibleChange = () => {
     setIsNotificationsMenuOpen(!isNotificationsMenuOpen)
