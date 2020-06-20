@@ -32,11 +32,11 @@
 /*-----------------
   Avatar Container
 -------------------*/
-.header-container .avatar-container button {
+.header-container .avatar-container button.dropdown-btn  {
   margin-right: 30px;
 }
 
-.header-container .avatar-container button.flash {
+.header-container .avatar-container button.dropdown-btn.flash {
   animation: blinker .8s linear infinite;
 }
 
@@ -57,7 +57,21 @@
 
 /* Notification menu */
 .dropdown-menu.notification-menu {
+  position: relative;
+  top: 6px;
+  right: 12px;
   padding-bottom: 0;
+  &:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -16px;
+    width: 20px;
+    height: 16px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background-color: white;
+  }
+
 }
 .dropdown-menu.notification-menu h5 {
   margin: 2px 0 5px 15px;
@@ -83,7 +97,16 @@
   }
 }
 
-/* Avatar */
+.dropdown-menu.notification-menu .patient-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.dropdown-menu.notification-menu .description {
+  margin-left: 10px;
+}
+
+  /* Avatar */
 .header-container__avatar {
   width: 200px;
   font-size: $headers-font-size;

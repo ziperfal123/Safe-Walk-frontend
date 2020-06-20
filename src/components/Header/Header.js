@@ -11,7 +11,7 @@ import { SERVER_SOCKET_URL } from '../../config'
 
 const Header = (props) => {
   const {
-    location, userName, userImage, getAllNotifications,
+    location, userName, userImage, getAllNotifications, notifications,
   } = props
 
   useEffect(() => {
@@ -45,27 +45,34 @@ const Header = (props) => {
     return normalizedTitle
   }
 
-  const menu = (
-    <Menu className="dropdown-menu notification-menu" onClick={() => {}}>
-      <h5>Notifications</h5>
-      <hr />
-      <Menu.Item key="1">
-        1st menu item
-      </Menu.Item>
-      <Menu.Item key="2">
-        2nd menu item
-      </Menu.Item>
-      <Menu.Item key="3">
-        3rd item
-      </Menu.Item>
-    </Menu>
-  )
+  let generateMenu;
+  generateMenu = () => {
+    console.log('notifications: ', notifications)
+    return (
+        <Menu className="dropdown-menu notification-menu" onClick={() => {
+        }}>
+          <h5>Notifications</h5>
+          <hr/>
+          {notifications.map((notification) => (
+              <Menu.Item key={notification.timeStamp}>
+                <img
+                    className="patient-image"
+                    src={notification.patientPicture}
+                    alt="patient"
+                />
+                <span className="description">{notification.description}</span>
+              </Menu.Item>
+          ))}
+        </Menu>
+    )
+  };
+
   return (
     <div className="header-container">
       <h1 className="route-title">{displayRouteName()}</h1>
       <div className="avatar-container">
-        <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
-          <Button className="flash">
+        <Dropdown overlay={generateMenu()} trigger={['click']} placement="bottomLeft">
+          <Button className="dropdown-btn flash">
             <NotificationOutlined />
             <div className="num-of-notifications">2</div>
           </Button>
