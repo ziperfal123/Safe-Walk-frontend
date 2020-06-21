@@ -5,6 +5,7 @@ import {
   Button, Dropdown, Menu, notification,
 } from 'antd'
 import { NotificationOutlined } from '@ant-design/icons'
+import { cloneDeep } from 'lodash'
 import classNames from 'classnames'
 import socketIOClient from 'socket.io-client'
 import pathsNames from 'router/pathNames'
@@ -64,15 +65,26 @@ const Header = (props) => {
   }
 
   const generateMenu = () => {
-    const portionArr = notifications.splice(notifications.length - 5)
+    let portionArr = cloneDeep(notifications)
+    portionArr = portionArr.splice(notifications.length - 5)
+
+    const menuClassNames = classNames({
+      'dropdown-menu': portionArr.length > 0,
+      'notification-menu': portionArr.length > 0,
+    })
     return (
       <Menu
-        className="dropdown-menu notification-menu"
+        className={menuClassNames}
         onClick={() => {
         }}
       >
-        <h5>Notifications</h5>
-        <hr />
+        {portionArr.length > 0
+            && (
+            <>
+              <h5>Notifications</h5>
+              <hr />
+            </>
+            )}
 
         {portionArr.map((notif) => (
           <Menu.Item key={notif.timeStamp} className="menu-item">
@@ -89,6 +101,7 @@ const Header = (props) => {
             </div>
           </Menu.Item>
         ))}
+        <Menu.Divider />
       </Menu>
     )
   }
@@ -113,7 +126,13 @@ const Header = (props) => {
     <div className="header-container">
       <h1 className="route-title">{displayRouteName()}</h1>
       <div className="avatar-container">
-        <Dropdown overlay={generateMenu()} trigger={['click']} placement="bottomLeft" onVisibleChange={handleDropdownVisibleChange}>
+        <Dropdown
+          disabled={notifications.length === 0}
+          overlay={generateMenu()}
+          trigger={['click']}
+          placement="bottomLeft"
+          onVisibleChange={handleDropdownVisibleChange}
+        >
           <Button className={menuButtonClassNames}>
             <NotificationOutlined />
             {numOfPushedNotifications > 0 && !isNotificationsMenuOpen

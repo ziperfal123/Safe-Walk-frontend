@@ -35,6 +35,12 @@
 .header-container .avatar-container button.dropdown-btn  {
   margin-right: 30px;
 }
+.header-container .avatar-container button.dropdown-btn[disabled]:hover:after {
+  content: "no notifications";
+  position: absolute;
+  top: 32px;
+  left: -58%;
+}
 
 .header-container .avatar-container button.dropdown-btn:not(.ant-dropdown-open).flash {
   animation: blinker .8s linear infinite;
@@ -71,8 +77,8 @@
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     background-color: white;
   }
-
 }
+
 .dropdown-menu.notification-menu h5 {
   margin: 2px 0 5px 15px;
 }
@@ -82,6 +88,10 @@
   border: 0.1px solid grey;
 }
 
+.dropdown-menu.notification-menu li.ant-dropdown-menu-item-divider {
+  height: 2px !important;
+  background-color: whitesmoke;
+}
 
 /** Notification menu item **/
 .dropdown-menu.notification-menu li {
