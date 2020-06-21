@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import {
-  Button, Dropdown, Menu, notification,
-} from 'antd'
-import { NotificationOutlined } from '@ant-design/icons'
+import { notification } from 'antd'
 import { cloneDeep } from 'lodash'
 import classNames from 'classnames'
 import socketIOClient from 'socket.io-client'
 import pathsNames from 'router/pathNames'
+import HeaderDropdown from 'components/Header/components/HeaderDropdown'
 import Avatar from './components/Avatar'
 import { SERVER_SOCKET_URL } from '../../config'
 import './header.scss'
@@ -64,52 +62,6 @@ const Header = (props) => {
     return normalizedTitle
   }
 
-  const generateMenu = () => {
-    let portionArr = cloneDeep(notifications)
-    portionArr = portionArr.splice(notifications.length - 5)
-
-    const menuClassNames = classNames({
-      'dropdown-menu': portionArr.length > 0,
-      'notification-menu': portionArr.length > 0,
-    })
-    return (
-      <Menu
-        className={menuClassNames}
-        onClick={() => {
-        }}
-      >
-        {portionArr.length > 0
-            && (
-            <>
-              <h5>Notifications</h5>
-              <hr />
-            </>
-            )}
-
-        {portionArr.map((notif) => (
-          <Menu.Item key={notif.timeStamp} className="menu-item">
-            <span className="image-wrapper">
-              <img
-                className="patient-image"
-                src={notif.patientPicture}
-                alt="patient"
-              />
-            </span>
-            <div className="text-wrapper">
-              <span className="description">{notif.description}</span>
-              <span className="time">{notif.localTime}</span>
-            </div>
-          </Menu.Item>
-        ))}
-        <Menu.Divider />
-      </Menu>
-    )
-  }
-
-  const handleDropdownVisibleChange = () => {
-    setIsNotificationsMenuOpen(!isNotificationsMenuOpen)
-  }
-
   const openNotificationWithIcon = (notificationDescription) => {
     notification.info({
       message: 'Patient\'s plan notification',
@@ -118,27 +70,20 @@ const Header = (props) => {
     })
   }
 
+  const handleDropdownVisibleChange = (toggleFlag) => {
+    setIsNotificationsMenuOpen(toggleFlag)
+  }
 
-  const menuButtonClassNames = classNames('dropdown-btn', {
-    flash: numOfPushedNotifications > 0,
-  })
   return (
     <div className="header-container">
       <h1 className="route-title">{displayRouteName()}</h1>
       <div className="avatar-container">
-        <Dropdown
-          disabled={notifications.length === 0}
-          overlay={generateMenu()}
-          trigger={['click']}
-          placement="bottomLeft"
-          onVisibleChange={handleDropdownVisibleChange}
-        >
-          <Button className={menuButtonClassNames}>
-            <NotificationOutlined />
-            {numOfPushedNotifications > 0 && !isNotificationsMenuOpen
-            && <span className="num-of-notifications">{numOfPushedNotifications}</span>}
-          </Button>
-        </Dropdown>
+        <HeaderDropdown
+          notifications={notifications}
+          numOfPushedNotifications={numOfPushedNotifications}
+          isNotificationsMenuOpen={isNotificationsMenuOpen}
+          handleDropdownVisibleChangeCB={handleDropdownVisibleChange}
+        />
         <Avatar userName={userName} userImage={userImage} />
       </div>
     </div>
