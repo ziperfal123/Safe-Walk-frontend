@@ -26,6 +26,7 @@ export const API = {
   rehabPlansEndpoint: 'rehabPlan',
   videoEndpoint: 'video',
   defaultPlansEndpoint: 'defaultPlan',
+  notificationsEndpoint: 'notification?since=14',
 }
 
 export const MODAL = {

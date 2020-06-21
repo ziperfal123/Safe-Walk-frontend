@@ -21,7 +21,7 @@
 /*--------------
       Title
 ---------------*/
-.header-container__route-title {
+.header-container .route-title {
   position: relative;
   top: $header-height / 4;
   left: 25px;
@@ -29,13 +29,152 @@
   font-size: $headers-font-size;
 }
 
-/*--------------
-     Avatar
----------------*/
+/*-----------------
+  Avatar Container
+-------------------*/
+.header-container .avatar-container button.dropdown-btn  {
+  margin-right: 30px;
+}
+.header-container .avatar-container button.dropdown-btn[disabled]:hover:after {
+  content: "no notifications";
+  position: absolute;
+  top: 32px;
+  left: -58%;
+}
+
+.header-container .avatar-container button.dropdown-btn:not(.ant-dropdown-open).flash {
+  animation: blinker .8s linear infinite;
+}
+
+.header-container .avatar-container button.flash .num-of-notifications {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -11px;
+  right: -10px;
+  min-width: 24px;
+  height: 22px;
+  background-color: red;
+  color: whitesmoke;
+  border-radius: 50%;
+}
+
+/* Notification menu */
+.dropdown-menu.notification-menu {
+  position: relative;
+  top: 6px;
+  right: 12px;
+  padding-bottom: 0;
+  &:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -16px;
+    width: 20px;
+    height: 16px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background-color: white;
+  }
+}
+
+.dropdown-menu.notification-menu h5 {
+  margin: 2px 0 5px 15px;
+}
+
+.dropdown-menu.notification-menu hr {
+  margin-top: 2px;
+  border: 0.1px solid grey;
+}
+
+.dropdown-menu.notification-menu li.ant-dropdown-menu-item-divider {
+  height: 2px !important;
+  background-color: whitesmoke;
+}
+
+/** Notification menu item **/
+.dropdown-menu.notification-menu li {
+  min-width: 250px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 55px;
+  &:first-of-type {
+    margin-top: 5px;
+  }
+  &:not(:last-of-type) {
+    border-bottom: 1px solid black;
+  }
+}
+
+.dropdown-menu.notification-menu .menu-item {
+  min-height: 62px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  cursor: default;
+  pointer-events: none;
+}
+
+.dropdown-menu.notification-menu .menu-item:nth-child(odd) {
+  background-color: #eff6fc;
+}
+.dropdown-menu.notification-menu .menu-item:nth-child(even) {
+  background-color: whitesmoke;
+}
+
+
+/*** image ***/
+.dropdown-menu.notification-menu .menu-item .image-wrapper {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-menu.notification-menu .menu-item img.patient-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/*** text ***/
+.dropdown-menu.notification-menu  .menu-item .text-wrapper {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-menu.notification-menu  .menu-item .description {
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 0.1px;
+}
+
+.dropdown-menu.notification-menu  .menu-item .text-wrapper .time {
+  color: grey;
+  font-size: 13px;
+}
+
+
+/* Avatar */
 .header-container__avatar {
   width: 200px;
   font-size: $headers-font-size;
   position: relative;
   top: 15px;
   left: 90px;
+}
+
+
+@keyframes blinker {
+  0% {
+    box-shadow: 0 0 14px grey;
+  }
+  50% {
+    box-shadow: 0 0 4px grey;
+  }
+  100% {
+    box-shadow: 0 0 14px grey;
+  }
 }

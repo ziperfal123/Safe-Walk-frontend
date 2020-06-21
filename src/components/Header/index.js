@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
+import { getAllNotifications, pushNotificationFromSocketToNotificationPool } from 'redux/notifications/actionCreators'
 import Header from './Header'
 
-import { handleLoginFormSubmit } from 'redux/auth/actionsCreator'
-import authReducer from "redux/auth/authReducer";
 const mapStateToProps = (state) => ({
   userName: state.authReducer.userName,
   userImage: state.authReducer.userImage,
+  notifications: state.notificationsReducer.notifications,
 })
-const mapDispatchToProps = {}
+const mapDispatchToProps = { getAllNotifications, pushNotificationFromSocketToNotificationPool }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

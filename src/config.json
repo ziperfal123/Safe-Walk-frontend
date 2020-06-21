@@ -1,4 +1,5 @@
 {
   "SERVER_URL": "https://safewalk.company/api",
+  "SERVER_SOCKET_URL": "https://safewalk.company",
   "LOCAL_STORAGE_TOKEN": "authToken"
 }

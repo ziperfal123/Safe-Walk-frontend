@@ -1,11 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
+import { notification } from 'antd'
+import { cloneDeep } from 'lodash'
+import classNames from 'classnames'
+import socketIOClient from 'socket.io-client'
 import pathsNames from 'router/pathNames'
+import HeaderDropdown from 'components/Header/components/HeaderDropdown'
 import Avatar from './components/Avatar'
+import { SERVER_SOCKET_URL } from '../../config'
 import './header.scss'
 
-const Header = ({ location, userName, userImage }) => {
+const Header = (props) => {
+  const {
+    location,
+    userName,
+    userImage,
+    getAllNotifications,
+    notifications,
+    pushNotificationFromSocketToNotificationPool,
+  } = props
+
+  const [numOfPushedNotifications, setNumOfPushedNotificaitons] = useState(0)
+  const [isNotificationsMenuOpen, setIsNotificationsMenuOpen] = useState(false)
+
+  useEffect(() => {
+    getAllNotifications()
+  }, [])
+
+  useEffect(() => {
+    const socket = socketIOClient(SERVER_SOCKET_URL)
+    socket.on('NEW_THERAPIST_NOTIFICATION', (data) => {
+      setNumOfPushedNotificaitons((prevState) => prevState + 1)
+      pushNotificationFromSocketToNotificationPool(data)
+      openNotificationWithIcon(data.description)
+    })
+  }, [])
+
+  useEffect(() => {
+    isNotificationsMenuOpen && setNumOfPushedNotificaitons(0)
+  }, [isNotificationsMenuOpen])
+
   const displayRouteName = () => {
     let normalizedTitle
     switch (location.pathname) {
@@ -27,10 +62,30 @@ const Header = ({ location, userName, userImage }) => {
     return normalizedTitle
   }
 
+  const openNotificationWithIcon = (notificationDescription) => {
+    notification.info({
+      message: 'Patient\'s plan notification',
+      description: notificationDescription || 'patient has updated plan process',
+      placement: 'bottomRight',
+    })
+  }
+
+  const handleDropdownVisibleChange = (toggleFlag) => {
+    setIsNotificationsMenuOpen(toggleFlag)
+  }
+
   return (
     <div className="header-container">
-      <h1 className="header-container__route-title">{displayRouteName()}</h1>
-      <Avatar userName={userName} userImage={userImage} />
+      <h1 className="route-title">{displayRouteName()}</h1>
+      <div className="avatar-container">
+        <HeaderDropdown
+          notifications={notifications}
+          numOfPushedNotifications={numOfPushedNotifications}
+          isNotificationsMenuOpen={isNotificationsMenuOpen}
+          handleDropdownVisibleChangeCB={handleDropdownVisibleChange}
+        />
+        <Avatar userName={userName} userImage={userImage} />
+      </div>
     </div>
   )
 }
