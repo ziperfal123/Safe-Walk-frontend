@@ -9,10 +9,9 @@ const notificationsReducer = (state = initialState, action) => {
     case ActionTypes.FETCH_ALL_NOTIFICATIONS_SUCCESS:
       return {
         ...state,
-        notifications: action.payload,
+        notifications: action.payload.reverse(),
       }
     case ActionTypes.PUSH_NEW_NOTIFICATION_TO_POOL:
-      console.log('action.payload: ', action.payload)
       return {
         ...state,
         notifications: [...state.notifications, action.payload],
