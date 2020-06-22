@@ -14,7 +14,7 @@ export const getAllNotifications = () => async (dispatch) => {
         localTime: normalizeDate(d),
       }
     })
-
+    console.log('normalizedData: ', normalizedData)
     dispatch({
       type: ActionTypes.FETCH_ALL_NOTIFICATIONS_SUCCESS,
       payload: normalizedData,

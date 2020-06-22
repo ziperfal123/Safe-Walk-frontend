@@ -10,11 +10,12 @@ const HeaderDropdown = (props) => {
     isNotificationsMenuOpen,
     handleDropdownVisibleChangeCB,
   } = props
-  console.log('HeaderDrop')
 
   const generateMenu = () => {
     let portionArr = cloneDeep(notifications)
-    portionArr = portionArr.splice(notifications.length - 5)
+    if (portionArr.length > 5) {
+      portionArr = portionArr.splice(notifications.length - 5)
+    }
 
     const menuClassNames = classNames({
       'dropdown-menu': portionArr.length > 0,
@@ -57,7 +58,6 @@ const HeaderDropdown = (props) => {
   const handleDropdownVisibleChange = () => {
     handleDropdownVisibleChangeCB(!isNotificationsMenuOpen)
   }
-
 
   const menuButtonClassNames = classNames('dropdown-btn', {
     flash: numOfPushedNotifications > 0,
