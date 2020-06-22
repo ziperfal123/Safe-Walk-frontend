@@ -14,7 +14,7 @@ const notificationsReducer = (state = initialState, action) => {
     case ActionTypes.PUSH_NEW_NOTIFICATION_TO_POOL:
       return {
         ...state,
-        notifications: [...state.notifications, action.payload],
+        notifications: [action.payload, ...state.notifications],
       }
 
     default:
