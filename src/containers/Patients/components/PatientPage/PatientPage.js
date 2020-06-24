@@ -17,7 +17,7 @@ const PatientPage = (props) => {
   const {
     patient,
     planById,
-    getTestsById,
+    getTestsByPatientId,
     getRehabPlanById,
     history,
     allTestsById,
@@ -42,7 +42,7 @@ const PatientPage = (props) => {
 
 
   useEffect(() => {
-    getTestsById(patient.id)
+    getTestsByPatientId(patient.id)
     getRehabPlanById(patient.rehabPlanID)
     getAllDefaultPlans()
     getAllVideos()
@@ -163,7 +163,7 @@ export default PatientPage
 
 
 PatientPage.propTypes = {
-  getTestsById: PropTypes.func.isRequired,
+  getTestsByPatientId: PropTypes.func.isRequired,
   getRehabPlanById: PropTypes.func.isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   allTestsById: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
