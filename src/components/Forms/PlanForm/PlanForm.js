@@ -13,7 +13,7 @@ import { cloneDeep } from 'lodash'
 import classNames from 'classnames'
 import '../form.scss'
 import { MODAL, PLAN_FORM } from 'utils/consts'
-import {calculateDiffBetweenDates} from "utils/date";
+import { calculateDiffBetweenDates } from 'utils/date'
 
 const { TabPane } = Tabs
 const { Option } = Select
@@ -188,7 +188,7 @@ const PlanForm = (props) => {
               onChange={(e) => handleNumberChange(video.id, e)}
               placeholder="Enter number of times"
             />
-            <label className={'priority-label'}>priority:</label>
+            <label className="priority-label">priority:</label>
             <Select
               defaultValue={priority}
               style={{ width: 100 }}
@@ -239,7 +239,7 @@ const PlanForm = (props) => {
                 onChange={handleInstructionsChange}
               />
             </Form.Item>
-            <div className={"execution-input-wrapper"}>
+            <div className="execution-input-wrapper">
               <label>{PLAN_FORM.executionLabel}</label>
               <InputNumber
                 defaultValue={(dataToEdit && dataToEdit.executionTime && calculateDiffBetweenDates(dataToEdit.executionTime)) || 1}

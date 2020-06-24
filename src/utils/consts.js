@@ -32,6 +32,7 @@ export const API = {
 export const MODAL = {
   defaultErrorDescription: 'unfortunately, something went wrong.. try again',
   optionalPlaceholderToIgnore: '<Optional>',
+  sensorReportTitle: 'Report Description',
 }
 
 export const PATIENT_FORM = {
