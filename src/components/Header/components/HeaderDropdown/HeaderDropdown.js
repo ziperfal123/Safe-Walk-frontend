@@ -14,16 +14,16 @@ const HeaderDropdown = (props) => {
   const generateMenu = () => {
     let portionArr = cloneDeep(notifications)
     if (portionArr.length > 5) {
-      portionArr = portionArr.splice(notifications.length - 5)
+      portionArr = portionArr.splice(0, 5)
     }
 
-    const menuClassNames = classNames({
+    const menuClassName = classNames({
       'dropdown-menu': portionArr.length > 0,
       'notification-menu': portionArr.length > 0,
     })
     return (
       <Menu
-        className={menuClassNames}
+        className={menuClassName}
         onClick={() => {
         }}
       >
@@ -70,7 +70,7 @@ const HeaderDropdown = (props) => {
       trigger={['click']}
       placement="bottomLeft"
       onVisibleChange={handleDropdownVisibleChange}
-      getPopupContainer={(elem) => elem.parentNode }
+      getPopupContainer={(elem) => elem.parentNode}
     >
       <Button className={menuButtonClassNames}>
         <NotificationOutlined />
