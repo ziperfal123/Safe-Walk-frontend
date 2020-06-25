@@ -36,6 +36,16 @@ const Header = (props) => {
   }, [])
 
   useEffect(() => {
+    const pushedNotifications = parseInt(localStorage.getItem('numOfPushedNotifications'))
+    setNumOfPushedNotifications(pushedNotifications)
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('numOfPushedNotifications', numOfPushedNotifications)
+  }, [numOfPushedNotifications])
+
+
+  useEffect(() => {
     isNotificationsMenuOpen && setNumOfPushedNotifications(0)
   }, [isNotificationsMenuOpen])
 

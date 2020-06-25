@@ -6,7 +6,8 @@ import classNames from 'classnames'
 
 const HeaderDropdown = (props) => {
   const {
-    notifications, numOfPushedNotifications,
+    notifications,
+    numOfPushedNotifications,
     isNotificationsMenuOpen,
     handleDropdownVisibleChangeCB,
   } = props
