@@ -61,7 +61,7 @@ const HeaderDropdown = (props) => {
   }
 
   const menuButtonClassNames = classNames('dropdown-btn', {
-    flash: numOfPushedNotifications > 0,
+    flash: notifications.length > 0 && numOfPushedNotifications > 0 && !isNotificationsMenuOpen,
   })
 
   return (
@@ -75,7 +75,7 @@ const HeaderDropdown = (props) => {
     >
       <Button className={menuButtonClassNames}>
         <NotificationOutlined />
-        {numOfPushedNotifications > 0 && !isNotificationsMenuOpen
+        {notifications.length > 0 && numOfPushedNotifications > 0 && !isNotificationsMenuOpen
           && <span className="num-of-notifications">{numOfPushedNotifications}</span>}
       </Button>
     </Dropdown>
