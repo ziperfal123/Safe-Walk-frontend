@@ -37,7 +37,7 @@ const Header = (props) => {
 
   useEffect(() => {
     const pushedNotifications = parseInt(localStorage.getItem('numOfPushedNotifications'))
-    setNumOfPushedNotifications(pushedNotifications)
+    pushedNotifications && setNumOfPushedNotifications(pushedNotifications)
   }, [])
 
   useEffect(() => {
