@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { notification } from 'antd'
-import { cloneDeep } from 'lodash'
-import classNames from 'classnames'
 import socketIOClient from 'socket.io-client'
 import pathsNames from 'router/pathNames'
 import HeaderDropdown from 'components/Header/components/HeaderDropdown'
@@ -21,7 +19,7 @@ const Header = (props) => {
     pushNotificationFromSocketToNotificationPool,
   } = props
 
-  const [numOfPushedNotifications, setNumOfPushedNotificaitons] = useState(0)
+  const [numOfPushedNotifications, setNumOfPushedNotifications] = useState(0)
   const [isNotificationsMenuOpen, setIsNotificationsMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -31,14 +29,24 @@ const Header = (props) => {
   useEffect(() => {
     const socket = socketIOClient(SERVER_SOCKET_URL)
     socket.on('NEW_THERAPIST_NOTIFICATION', (data) => {
-      setNumOfPushedNotificaitons((prevState) => prevState + 1)
+      setNumOfPushedNotifications((prevState) => prevState + 1)
       pushNotificationFromSocketToNotificationPool(data)
       openNotificationWithIcon(data.description)
     })
   }, [])
 
   useEffect(() => {
-    isNotificationsMenuOpen && setNumOfPushedNotificaitons(0)
+    const pushedNotifications = parseInt(localStorage.getItem('numOfPushedNotifications'))
+    setNumOfPushedNotifications(pushedNotifications)
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('numOfPushedNotifications', numOfPushedNotifications)
+  }, [numOfPushedNotifications])
+
+
+  useEffect(() => {
+    isNotificationsMenuOpen && setNumOfPushedNotifications(0)
   }, [isNotificationsMenuOpen])
 
   const displayRouteName = () => {
