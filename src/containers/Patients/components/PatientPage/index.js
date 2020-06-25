@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getTestsById, cleanTestsById } from 'redux/tests/actionsCreator'
+import { getTestsByPatientId, cleanTestsById } from 'redux/tests/actionsCreator'
 import { getRehabPlanById, editPlan, createPlan } from  'redux/plans/actionsCreator'
 import { getAllDefaultPlans } from 'redux/defaultPlans/actionsCreator'
 import { getAllVideos } from "redux/videos/actionsCreator";
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  getTestsById,
+  getTestsByPatientId,
   cleanTestsById,
   getRehabPlanById,
   getAllDefaultPlans,

@@ -23,6 +23,7 @@ export const API = {
 
   authEndpoint: 'auth',
   patientEndpoint: 'patient',
+  testEndpoint: 'test',
   rehabPlansEndpoint: 'rehabPlan',
   videoEndpoint: 'video',
   defaultPlansEndpoint: 'defaultPlan',
@@ -32,6 +33,8 @@ export const API = {
 export const MODAL = {
   defaultErrorDescription: 'unfortunately, something went wrong.. try again',
   optionalPlaceholderToIgnore: '<Optional>',
+  sensorReportTitle: 'Report Description',
+  sensorOverviewTitle: 'Overview Description',
 }
 
 export const PATIENT_FORM = {

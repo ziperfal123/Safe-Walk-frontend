@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types'
 import GraphContainer from 'containers/TestPage/components/GraphContainer'
 import 'containers/TestPage/testPage.scss'
+import { MODAL } from 'utils/consts'
 
 
 const TestPage = (props) => {
@@ -14,6 +15,8 @@ const TestPage = (props) => {
     getGaitModelByTestId,
     testId,
     cleanGaitModel,
+    getTestById,
+    testById,
   } = props
 
   const [selectedOption, setSelectedOption] = useState('sensor1')
@@ -24,12 +27,13 @@ const TestPage = (props) => {
   const [sensor5, setSensor5] = useState(null)
   const [sensor6, setSensor6] = useState(null)
   const [sensor7, setSensor7] = useState(null)
-  const [shouldOpenModal, setShouldOpenModal] = useState(false)
-  const [graphDisplayContent, setGraphDisplayContent] = useState({ tab: '1', radio: 'x' })
+  const [shouldOpenReportModal, setShouldOpenReportModal] = useState(false)
+  const [shouldOpenOverviewModal, setShouldOpenOverviewModal] = useState(false)
 
 
   useEffect(() => {
     getGaitModelByTestId(testId)
+    getTestById(testId)
     return () => { cleanGaitModel() }
   }, [])
 
@@ -38,6 +42,10 @@ const TestPage = (props) => {
       Object.keys(gaitModel).map((key) => generateSensorsData(key))
     }
   }, gaitModel)
+
+  function handleSelectChange(val) {
+    setSelectedOption(val)
+  }
 
   function renderSelect() {
     return (
@@ -53,9 +61,6 @@ const TestPage = (props) => {
     )
   }
 
-  function handleSelectChange(val) {
-    setSelectedOption(val)
-  }
 
   function generateSensorsData(key) {
     if (key === 'testID' || key === 'id' || key === '_id' || key === '__v') return null
@@ -169,12 +174,47 @@ const TestPage = (props) => {
     }
   }
 
-  function handleOpenReport() {
-    setShouldOpenModal(true)
+  function getSensorName() {
+    switch (selectedOption) {
+      case 'sensor1': {
+        return 'Sensor 1'
+      }
+      case 'sensor2': {
+        return 'Sensor 2'
+      }
+      case 'sensor3': {
+        return 'Sensor 3'
+      }
+      case 'sensor4': {
+        return 'Sensor 4'
+      }
+      case 'sensor5': {
+        return 'Sensor 5'
+      }
+      case 'sensor6': {
+        return 'Sensor 6'
+      }
+      case 'sensor7': {
+        return 'Sensor 7'
+      }
+      default: {
+        return 'Sensor 1'
+      }
+    }
   }
 
-  function handleOnCancelModal() {
-    setShouldOpenModal(false)
+  function handleOpenReport() {
+    setShouldOpenReportModal(true)
+  }
+  function handleOpenOverview() {
+    setShouldOpenOverviewModal(true)
+  }
+
+  function handleOnCancelReportModal() {
+    setShouldOpenReportModal(false)
+  }
+  function handleOnCancelOverviewModal() {
+    setShouldOpenOverviewModal(false)
   }
 
   function generateReportData() {
@@ -182,6 +222,43 @@ const TestPage = (props) => {
     normalziedReport.shift()
     return normalziedReport
   }
+
+  const generateOverviewData = () => testById.overview
+
+  const renderReportModal = () => (
+    <AntModal
+      className="report-modal"
+      width={600}
+      visible={shouldOpenReportModal}
+      title={MODAL.sensorReportTitle}
+      onCancel={handleOnCancelReportModal}
+      destroyOnClose
+      footer={<Button type="primary" onClick={handleOnCancelReportModal}>OK</Button>}
+    >
+      <List
+        size="large"
+        header={<h4><mark>{getSensor().report[0]}</mark></h4>}
+        dataSource={generateReportData()}
+        renderItem={(item) => <List.Item>{item}</List.Item>}
+      />
+    </AntModal>
+  )
+
+  const renderOverviewModal = () => (
+    <AntModal
+      className="overview-modal"
+      width={600}
+      visible={shouldOpenOverviewModal}
+      title={MODAL.sensorOverviewTitle}
+      onCancel={handleOnCancelOverviewModal}
+      destroyOnClose
+      footer={<Button type="primary" onClick={handleOnCancelOverviewModal}>OK</Button>}
+    >
+      <div>
+        {generateOverviewData()}
+      </div>
+    </AntModal>
+  )
 
   return (
     <>
@@ -192,26 +269,18 @@ const TestPage = (props) => {
         </div>
       ) : (
         <>
-          <AntModal
-            className="report-modal"
-            width={600}
-            visible={shouldOpenModal}
-            title="Report Description:"
-            onCancel={handleOnCancelModal}
-            destroyOnClose
-            footer={<Button type="primary" onClick={handleOnCancelModal}>OK</Button>}
-          >
-            <List
-              size="large"
-              header={<h4><mark>{getSensor().report[0]}</mark></h4>}
-              dataSource={generateReportData()}
-              renderItem={(item) => <List.Item>{item}</List.Item>}
-            />
-          </AntModal>
+          {renderReportModal()}
+          {renderOverviewModal()}
+
           <div className="graph-page">
             <h1 className="test-title">Gait model data</h1>
             {renderSelect()}
-            <Button className="report-btn" type="primary" onClick={handleOpenReport}>Open Report</Button>
+            <Button className="report-btn" type="primary" onClick={handleOpenReport}>
+              {`${getSensorName()} Report`}
+            </Button>
+            <Button className="overview-btn" type="secondary" onClick={handleOpenOverview}>
+              Test Overview
+            </Button>
             <GraphContainer
               sensor={getSensor()}
               isSensorBelongsToRightTigh={selectedOption === 'sensor1'}

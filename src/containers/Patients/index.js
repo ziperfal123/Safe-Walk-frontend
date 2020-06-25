@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { getAllPatients, createPatient } from 'redux/patients/actionsCreator'
-import { getTestsById, cleanTestsById } from 'redux/tests/actionsCreator'
+import { getTestsByPatientId, cleanTestsById } from 'redux/tests/actionsCreator'
 import { activateErrorModal } from 'redux/error/actionCreators'
 
 import Patients from './Patients'
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  getAllPatients, getTestsById, cleanTestsById, createPatient, activateErrorModal,
+  getAllPatients, getTestsByPatientId, cleanTestsById, createPatient, activateErrorModal,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Patients)

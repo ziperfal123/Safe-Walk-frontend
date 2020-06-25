@@ -70,6 +70,7 @@ const HeaderDropdown = (props) => {
       trigger={['click']}
       placement="bottomLeft"
       onVisibleChange={handleDropdownVisibleChange}
+      getPopupContainer={(elem) => elem.parentNode }
     >
       <Button className={menuButtonClassNames}>
         <NotificationOutlined />
