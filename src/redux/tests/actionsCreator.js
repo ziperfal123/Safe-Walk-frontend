@@ -20,7 +20,6 @@ export const getAllTests = () => async (dispatch) => {
 export const getTestById = (id) => async (dispatch) => {
   try {
     const response = await get(`${API.testEndpoint}/${id}`)
-    console.log('response: ', response)
     dispatch({
       type: ActionTypes.FETCH_TEST_BY_ID_SUCCESS,
       payload: response.data,
