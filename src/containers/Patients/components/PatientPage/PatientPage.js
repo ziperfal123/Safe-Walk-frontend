@@ -170,6 +170,10 @@ PatientPage.propTypes = {
   cleanTestsById: PropTypes.func.isRequired,
   loadingAllTestsById: PropTypes.bool.isRequired,
   loadingPlanById: PropTypes.bool.isRequired,
-  planById: PropTypes.objectOf(PropTypes.any).isRequired,
+  planById: PropTypes.objectOf(PropTypes.any),
   patient: PropTypes.objectOf(PropTypes.any).isRequired,
+}
+
+PatientPage.defaultProps = {
+  planById: null,
 }

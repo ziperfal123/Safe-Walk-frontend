@@ -299,9 +299,13 @@ export default TestPage
 
 
 TestPage.propTypes = {
-  gaitModel: PropTypes.objectOf(PropTypes.any).isRequired,
+  gaitModel: PropTypes.objectOf(PropTypes.any),
   loadingGaitModel: PropTypes.bool.isRequired,
   getGaitModelByTestId: PropTypes.func.isRequired,
   testId: PropTypes.string.isRequired,
   cleanGaitModel: PropTypes.func.isRequired,
+}
+
+TestPage.defaultProps = {
+  gaitModel: null,
 }
