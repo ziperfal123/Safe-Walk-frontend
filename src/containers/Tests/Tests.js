@@ -7,7 +7,7 @@ import { Route, Switch } from 'react-router-dom'
 import TestPage from 'containers/TestPage'
 import { Input } from 'antd'
 import { cloneDeep } from 'lodash'
-import {TABLE_PAGES} from "utils/consts";
+import { TABLE_PAGES } from 'utils/consts'
 
 const Tests = (props) => {
   const {
@@ -34,15 +34,13 @@ const Tests = (props) => {
   }, [])
 
   useEffect(() => {
-    if (!allTests || !allPatients) {
-      return []
-    }
-
-    const tests = getNormalizedData()
-    setNormalizedTests(tests)
-    setFilteredTests(tests)
-    if (inputRef && inputRef.current && inputRef.current.state) {
-      inputRef.current.state.value = ''
+    if (allTests && allPatients) {
+      const tests = getNormalizedData()
+      setNormalizedTests(tests)
+      setFilteredTests(tests)
+      if (inputRef && inputRef.current && inputRef.current.state) {
+        inputRef.current.state.value = ''
+      }
     }
   }, [allTests, allPatients])
 
@@ -105,11 +103,11 @@ const Tests = (props) => {
           <Input onChange={handleInputChange} ref={inputRef} />
         </div>
         {!loadingAllTests && <h3 className="tests-title">{titleContent}</h3>}
-        {<TestsTable
+        <TestsTable
           allTests={filteredTests}
           loadingAllTests={loadingAllTests}
           handleTableRowClick={handleTableRowClick}
-        />}
+        />
       </div>
     )
   }
