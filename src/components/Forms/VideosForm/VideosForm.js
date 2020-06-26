@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { Form, Input, Button } from 'antd'
 import { getVideoId } from 'utils/youtube'
 import '../form.scss'
+import {FORM} from "utils/consts";
 
 const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
   const nameInputRef = useRef(null)
@@ -24,7 +25,7 @@ const VideosForm = ({ handleFormSubmit, formTitle, formDescription }) => {
           rules={
           [
             { required: true, message: 'Video name is required' },
-            { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+            { required: true, min: 3, message: FORM.nameWarning },
           ]
         }
           label="video name:"

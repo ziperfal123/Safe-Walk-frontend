@@ -59,6 +59,12 @@ export const MODAL = {
   sensorOverviewTitle: 'Overview Description',
 }
 
+export const FORM = {
+  nameWarning: 'Name should contain at least 3 characters',
+  passwordWarning: 'password has to be at least 6 characters',
+  phoneNumberWarning: 'phone number should contain exactly 10 numbers',
+  emailWarning: 'Please enter a valid email address',
+}
 
 export const PATIENT_FORM = {
   formTitle: 'Add a new patient',

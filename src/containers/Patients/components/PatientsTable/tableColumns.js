@@ -1,4 +1,5 @@
 import React from 'react'
+import AvatarImage from "components/AvatarImage";
 
 const MARKED_ROW_BACKGROUND_COLOR = 'hsl(0, 98%, 84%)'
 
@@ -15,14 +16,7 @@ const columns = [
         },
         children: (
           <div>
-            {patientObj.picture
-                        && (
-                        <img
-                          className="patient-image"
-                          src={patientObj.picture}
-                          alt="patient"
-                        />
-                        )}
+            <AvatarImage url={`${patientObj.picture}`} className="patient-image" />
                         &nbsp; &nbsp;
             {` ${patientObj.name}`}
           </div>

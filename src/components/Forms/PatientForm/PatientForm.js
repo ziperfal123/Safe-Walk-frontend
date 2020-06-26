@@ -3,6 +3,7 @@ import {
   Form, Input, Button, InputNumber, Radio,
 } from 'antd'
 import '../form.scss'
+import {FORM} from "utils/consts";
 
 const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
 
@@ -26,7 +27,7 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
           rules={
                 [
                   { required: true, message: 'Patient name is required' },
-                  { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+                  { required: true, min: 3, message: FORM.nameWarning },
                 ]
               }
         >
@@ -36,7 +37,7 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
           rules={
                 [
                   { required: true, message: 'email is required' },
-                  { required: true, type: 'email', message: 'Please enter a valid email address' },
+                  { required: true, type: 'email', message: FORM.emailWarning },
                 ]
               }
           label="patient email:"
@@ -50,7 +51,7 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
           rules={
               [
                 { required: true, message: 'password is required' },
-                { required: true, min: 6, message: 'password has to be at least 6 characters' },
+                { required: true, min: 6, message: FORM.passwordWarning },
               ]
             }
         >
@@ -62,7 +63,7 @@ const PatientForm = ({ handleFormSubmit, formTitle, formDescription }) => {
           rules={
             [
               { required: true, message: 'phone number is required' },
-              { required: true, pattern: '^\\d{10}$', message: 'phone number should contain exactly 10 numbers' },
+              { required: true, pattern: '^\\d{10}$', message: FORM.phoneNumberWarning},
             ]
           }
         >

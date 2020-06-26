@@ -1,8 +1,9 @@
-import React from 'react';
-import AbnormalityChip from 'components/AbnormalityChip';
-import { normalizeDate } from 'utils/date';
+import React from 'react'
+import AbnormalityChip from 'components/AbnormalityChip'
+import { normalizeDate } from 'utils/date'
+import AvatarImage from 'components/AvatarImage'
 
-const MARKED_ROW_BACKGROUND_COLOR = 'hsl(0, 98%, 84%)';
+const MARKED_ROW_BACKGROUND_COLOR = 'hsl(0, 98%, 84%)'
 
 const columns = [
   {
@@ -10,26 +11,19 @@ const columns = [
     dataIndex: 'name',
     sorter: (a, b) => a.name.localeCompare(b.name),
     render(_, normalizedPatientObj) {
-      const rowColor = normalizedPatientObj.results && normalizedPatientObj.results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
+      const rowColor = normalizedPatientObj.results && normalizedPatientObj.results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
       return {
         props: {
           style: { background: `${rowColor}` },
         },
         children: (
-          <div>
-            {normalizedPatientObj.patientImage
-            && (
-            <img
-              className="patient-image"
-              src={normalizedPatientObj.patientImage}
-              alt="patient"
-            />
-            )}
-            &nbsp; &nbsp;
+          <div key={normalizedPatientObj.key}>
+            <AvatarImage url={`${normalizedPatientObj.patientImage}`} className="patient-image" />
+              &nbsp; &nbsp;
             {` ${normalizedPatientObj.name}`}
           </div>
         ),
-      };
+      }
     },
   },
   {
@@ -37,14 +31,14 @@ const columns = [
     dataIndex: 'testDate',
     // sorter: (a, b) => a.getTime() > b.getTime(),
     render: (testDate, normalizedPatientObj) => {
-      const normalizedDate = normalizeDate(testDate);
-      const rowColor = normalizedPatientObj.results && normalizedPatientObj.results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
+      const normalizedDate = normalizeDate(testDate)
+      const rowColor = normalizedPatientObj.results && normalizedPatientObj.results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
       return {
         props: {
           style: { background: `${rowColor}` },
         },
         children: (<span>{normalizedDate}</span>),
-      };
+      }
     },
   },
   {
@@ -52,7 +46,7 @@ const columns = [
     dataIndex: 'results',
     sorter: (a, b) => a.results.localeCompare(b.results),
     render: (results) => {
-      const rowColor = results && results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
+      const rowColor = results && results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
       return {
         props: {
           style: { background: `${rowColor}` },
@@ -60,7 +54,7 @@ const columns = [
         children: (
           <AbnormalityChip results={results} />
         ),
-      };
+      }
     },
   },
   {
@@ -68,15 +62,15 @@ const columns = [
     dataIndex: 'waitingStatus',
     sorter: (a, b) => a.waitingStatus.localeCompare(b.waitingStatus),
     render: (waitingStatus, normalizedPatientObj) => {
-      const rowColor = normalizedPatientObj.results && normalizedPatientObj.results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : '';
+      const rowColor = normalizedPatientObj.results && normalizedPatientObj.results.toLowerCase() === 'abnormality' ? `${MARKED_ROW_BACKGROUND_COLOR}` : ''
       return {
         props: {
           style: { background: `${rowColor}` },
         },
         children: (<span className="waiting-status">{waitingStatus}</span>),
-      };
+      }
     },
   },
-];
+]
 
-export default columns;
+export default columns

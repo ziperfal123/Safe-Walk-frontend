@@ -34,13 +34,17 @@ const Tests = (props) => {
   }, [])
 
   useEffect(() => {
+    if (!allTests || !allPatients) {
+      return []
+    }
+
     const tests = getNormalizedData()
     setNormalizedTests(tests)
     setFilteredTests(tests)
     if (inputRef && inputRef.current && inputRef.current.state) {
       inputRef.current.state.value = ''
     }
-  }, [allTests])
+  }, [allTests, allPatients])
 
   function getNormalizedData() {
     const normalizedPatients = allTests.map((test) => {
@@ -101,11 +105,11 @@ const Tests = (props) => {
           <Input onChange={handleInputChange} ref={inputRef} />
         </div>
         {!loadingAllTests && <h3 className="tests-title">{titleContent}</h3>}
-        <TestsTable
+        {<TestsTable
           allTests={filteredTests}
           loadingAllTests={loadingAllTests}
           handleTableRowClick={handleTableRowClick}
-        />
+        />}
       </div>
     )
   }
