@@ -12,7 +12,7 @@ import {
 import { cloneDeep } from 'lodash'
 import classNames from 'classnames'
 import '../form.scss'
-import { MODAL, PLAN_FORM } from 'utils/consts'
+import {FORM, MODAL, PLAN_FORM} from 'utils/consts'
 import { calculateDiffBetweenDates } from 'utils/date'
 
 const { TabPane } = Tabs
@@ -37,7 +37,6 @@ const PlanForm = (props) => {
   const [defaultPlans, setDefaultPlansField] = useState((dataToEdit && dataToEdit.defaultPlans) || [])
   const nameInputRef = useRef(null)
   const [form] = Form.useForm()
-  const inputNumberRef = useRef(null)
 
   useEffect(() => {
     let normalizedVideosArr = [...videos]
@@ -56,9 +55,6 @@ const PlanForm = (props) => {
 
   useEffect(() => {
     dataToEdit && setNameField(dataToEdit.name)
-    if (inputNumberRef && inputNumberRef.current) {
-      console.log(inputNumberRef.current)
-    }
   }, [])
 
 
@@ -216,7 +212,7 @@ const PlanForm = (props) => {
             <Form.Item
               rules={[
                 { required: true, message: 'Plan name is required' },
-                { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+                { required: true, min: 3, message: FORM.nameWarning },
               ]}
               label={PLAN_FORM.nameLabel}
               name="name"

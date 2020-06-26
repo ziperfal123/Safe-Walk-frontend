@@ -30,55 +30,9 @@ export const API = {
   notificationsEndpoint: 'notification?since=14',
 }
 
-export const MODAL = {
-  defaultErrorDescription: 'unfortunately, something went wrong.. try again',
-  optionalPlaceholderToIgnore: '<Optional>',
-  sensorReportTitle: 'Report Description',
-  sensorOverviewTitle: 'Overview Description',
+export const TABLE_PAGES = {
+  filterTitle: 'Filter:',
 }
-
-export const PATIENT_FORM = {
-  formTitle: 'Add a new patient',
-  formDescription: 'Add a new patient into your system. Make sure your patient is choosing the password together with you, and that he/she will remember it.',
-
-}
-
-export const VIDEOS_FORM = {
-  formTitle: 'Create a new video',
-  formDescription: 'This is the place for creating new videos. The videos you are creating here will enter to your videos pool, and could be used by you in the future, for creating new plans from your patients.',
-}
-
-
-export const DEFAULT_PLAN_FORM = {
-  formTitle: 'Create a new default plan',
-  formDescription: "Default plan is composed of videos and text instructions. Write detailed instructions about your plans, and make sure that the main goal of the plan is written clearly. Choose videos from the available videos in the second modal's tab.",
-  videosTab: 'videos',
-  planInfoTab: 'plan information',
-
-  nameLabel: 'plan name:',
-  instructionsLabel: 'instructions:',
-  chooseVideosLabel: "choose videos: (click on the video's name):",
-
-  selectPlansPlaceholder: 'select default plans...',
-}
-
-
-export const PLAN_FORM = {
-  formEditTitle: "Edit patient's plan",
-  formCreateTitle: "Create patient's plan",
-  formDescription: "build a plan for your patient. Write detailed instructions, and compose the plan using the available videos/default plans in the second modal's tab.",
-  videosAndPlansTab: 'videos & default plans',
-  planInfoTab: 'plan information',
-
-  nameLabel: 'plan name:',
-  instructionsLabel: 'instructions:',
-  executionLabel: 'plan execution time:',
-  defaultPlansLabel: 'choose default plan:',
-  chooseVideosLabel: "choose videos: (click on the video's name):",
-
-  selectPlansPlaceholder: 'select default plans...',
-}
-
 export const GRAPH = {
   tabKey: {
     accelerations: '1',
@@ -96,4 +50,58 @@ export const GRAPH = {
   validRightTigh: [-2.69, -2.689, -2.643, -2.581, -2.512, -2.451, -2.414, -2.411, -2.468, -2.549, -2.583, -2.488, -2.207, -1.743, -1.04, -0.052, 1.184, 2.534, 3.713, 4.34, 4.08, 2.963, 1.388, -0.08, -1.029, -1.353, -0.832, 0.796, 3.788, 6.815, 7.798, 6.311, 3.612, 1.337, -0.411, -1.602, -2.076, -1.861, -1.384, -0.916, -0.547, -0.259, -0.006, 0.284, 0.626, 0.841, 0.726, 0.271, -0.398, -0.97, -1.283, -1.221, -0.988, -0.74, -0.633, -0.596, -0.633, -0.694, -0.803, -0.928, -1.054, -1.19, -1.318, -1.438, -1.505, -1.537, -1.535, -1.54, -1.536, -1.496, -1.385, -1.212, -1.012, -0.822, -0.688, -0.591, -0.499, -0.397, -0.289, -0.194, -0.102, -0.023, 0.071, 0.185, 0.369, 0.627, 0.96, 1.301, 1.51, 1.68, 1.826, 2.099, 2.3, 2.376, 2.268, 2.038, 1.727, 1.301, 0.758, 0.142, -0.495, -1.022, -1.363, -1.358, -0.897, 0.042, 1.263, 2.429, 3.234, 3.493, 3.234, 2.639, 1.983, 1.395, 0.877, 0.391, -0.083, -0.51, -0.877, -1.142, -1.324, -1.448, -1.589, -1.786, -2.047, -2.319, -2.547, -2.703, -2.787, -2.808, -2.785, -2.724, -2.661, -2.61, -2.584, -2.579, -2.572, -2.507, -2.304, -1.895, -1.231, -0.367, 0.613, 1.599, 2.464, 3.027, 3.163, 2.816, 2.057, 1.065, 0.229, 0.156, 0.942, 2.44, 4.141, 5.536, 6.029, 6.738, 5.607],
   switchLabelText: 'Display normal model:',
   emptyGraphMessage: 'No data for this graph at the moment',
+}
+
+export const MODAL = {
+  defaultErrorDescription: 'unfortunately, something went wrong.. try again',
+  optionalPlaceholderToIgnore: '<Optional>',
+  sensorReportTitle: 'Report Description',
+  sensorOverviewTitle: 'Overview Description',
+}
+
+export const FORM = {
+  nameWarning: 'Name should contain at least 3 characters',
+  passwordWarning: 'password has to be at least 6 characters',
+  phoneNumberWarning: 'phone number should contain exactly 10 numbers',
+  emailWarning: 'Please enter a valid email address',
+}
+
+export const PATIENT_FORM = {
+  formTitle: 'Add a new patient',
+  formDescription: 'Add a new patient into your system. Make sure your patient is choosing the password together with you, and that he/she will remember it.',
+
+}
+
+export const VIDEOS_FORM = {
+  formTitle: 'Create a new video',
+  formDescription: 'This is the place for creating new videos. The videos you are creating here will enter to your videos pool, and could be used by you in the future, for creating new plans from your patients.',
+}
+
+export const DEFAULT_PLAN_FORM = {
+  formTitle: 'Create a new default plan',
+  formDescription: "Default plan is composed of videos and text instructions. Write detailed instructions about your plans, and make sure that the main goal of the plan is written clearly. Choose videos from the available videos in the second modal's tab.",
+  videosTab: 'videos',
+  planInfoTab: 'plan information',
+
+  nameLabel: 'plan name:',
+  instructionsLabel: 'instructions:',
+  chooseVideosLabel: "choose videos: (click on the video's name):",
+
+  selectPlansPlaceholder: 'select default plans...',
+}
+
+export const PLAN_FORM = {
+  formEditTitle: "Edit patient's plan",
+  formCreateTitle: "Create patient's plan",
+  formDescription: "build a plan for your patient. Write detailed instructions, and compose the plan using the available videos/default plans in the second modal's tab.",
+  videosAndPlansTab: 'videos & default plans',
+  planInfoTab: 'plan information',
+
+  nameLabel: 'plan name:',
+  instructionsLabel: 'instructions:',
+  executionLabel: 'plan execution time:',
+  defaultPlansLabel: 'choose default plan:',
+  chooseVideosLabel: "choose videos: (click on the video's name):",
+
+  selectPlansPlaceholder: 'select default plans...',
 }

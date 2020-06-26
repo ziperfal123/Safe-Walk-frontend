@@ -17,19 +17,18 @@ const TestsTable = (props) => {
     }
   }
 
-  return (
-    <>
-      <div className="table-wrapper">
-        <Table
-          className="table"
-          columns={columns}
-          dataSource={allTests}
-          pagination={false}
-          loading={loadingAllTests}
-          onRow={handleRowClick}
-        />
-      </div>
-    </>
+
+  return allTests && (
+    <div className="table-wrapper">
+      <Table
+        className="table"
+        columns={columns}
+        dataSource={allTests}
+        pagination={false}
+        loading={loadingAllTests}
+        onRow={handleRowClick}
+      />
+    </div>
   )
 }
 

@@ -80,6 +80,16 @@
   width: 375px;
 }
 
+.form.has-tabs .video-box .label-container.default-plan-label .input-number-container {
+  display: inline-block;
+}
+
+.form.has-tabs .video-box .label-container.default-plan-label .input-number-container label{
+  color: #b22a2f;
+  margin-right: 10px;
+}
+
+
 .form.has-tabs .video-box .label-container label.name-label {
   margin-right: 25px;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Table } from 'antd'
 import PropTypes from 'prop-types'
 import './patientsTable.scss'
@@ -14,17 +14,17 @@ const PatientsTable = (props) => {
   }
 
 
-  return (
-      <div className="patients-table-wrapper">
-        <Table
-          className="table"
-          columns={columns}
-          dataSource={allPatients}
-          pagination={false}
-          onRow={handleRowClick}
-          loading={loadingAllPatients}
-        />
-      </div>
+  return allPatients && (
+  <div className="patients-table-wrapper">
+    <Table
+      className="table"
+      columns={columns}
+      dataSource={allPatients}
+      pagination={false}
+      onRow={handleRowClick}
+      loading={loadingAllPatients}
+    />
+  </div>
   )
 }
 

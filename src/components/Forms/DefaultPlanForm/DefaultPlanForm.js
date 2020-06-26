@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { cloneDeep } from 'lodash'
 import classNames from 'classnames'
-import { DEFAULT_PLAN_FORM } from 'utils/consts'
+import {DEFAULT_PLAN_FORM, FORM} from 'utils/consts'
 
 const { TabPane } = Tabs
 
@@ -34,10 +34,10 @@ const DefaultPlanForm = (props) => {
   }
 
   function handleVideosClick(videoId, e) {
-    console.log('e.target.className: ', e.target.className)
     if (e.target.className !== ''
         && e.target.className !== 'label-container'
         && e.target.className !== 'label-container default-plan-label'
+        && e.target.className !== 'input-number-container'
         && e.target.className !== 'name-label') return
 
     let isVideoAlreadyInList = false
@@ -118,7 +118,7 @@ const DefaultPlanForm = (props) => {
             <Form.Item
               rules={[
                 { required: true, message: 'Plan name is required' },
-                { required: true, min: 3, message: 'Name should contain at least 3 characters' },
+                { required: true, min: 3, message: FORM.nameWarning },
               ]}
               label={DEFAULT_PLAN_FORM.nameLabel}
               name="name"

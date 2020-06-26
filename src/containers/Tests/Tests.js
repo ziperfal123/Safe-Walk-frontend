@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+import { Route, Switch } from 'react-router-dom'
+import { Input } from 'antd'
+import { cloneDeep } from 'lodash'
+import TestPage from 'containers/TestPage'
+import { TABLE_PAGES } from 'utils/consts'
 import pathsNames from '../../router/pathNames'
 import TestsTable from './components/TestsTable/TestsTable'
 import './tests.scss'
-import { Route, Switch } from 'react-router-dom'
-import TestPage from 'containers/TestPage'
-import { Input } from 'antd'
-import { cloneDeep } from 'lodash'
 
 const Tests = (props) => {
   const {
@@ -33,13 +34,15 @@ const Tests = (props) => {
   }, [])
 
   useEffect(() => {
-    const tests = getNormalizedData()
-    setNormalizedTests(tests)
-    setFilteredTests(tests)
-    if (inputRef && inputRef.current && inputRef.current.state) {
-      inputRef.current.state.value = ''
+    if (allTests && allPatients) {
+      const tests = getNormalizedData()
+      setNormalizedTests(tests)
+      setFilteredTests(tests)
+      if (inputRef && inputRef.current && inputRef.current.state) {
+        inputRef.current.state.value = ''
+      }
     }
-  }, [allTests])
+  }, [allTests, allPatients])
 
   function getNormalizedData() {
     const normalizedPatients = allTests.map((test) => {
@@ -96,7 +99,7 @@ const Tests = (props) => {
     return (
       <div className="patient-tests-container">
         <div className="search-wrapper">
-          <label>Filter:</label>
+          <label>{TABLE_PAGES.filterTitle}</label>
           <Input onChange={handleInputChange} ref={inputRef} />
         </div>
         {!loadingAllTests && <h3 className="tests-title">{titleContent}</h3>}
