@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+import { Route, Switch } from 'react-router-dom'
+import { Input } from 'antd'
+import { cloneDeep } from 'lodash'
+import TestPage from 'containers/TestPage'
+import { TABLE_PAGES } from 'utils/consts'
 import pathsNames from '../../router/pathNames'
 import TestsTable from './components/TestsTable/TestsTable'
 import './tests.scss'
-import { Route, Switch } from 'react-router-dom'
-import TestPage from 'containers/TestPage'
-import { Input } from 'antd'
-import { cloneDeep } from 'lodash'
-import { TABLE_PAGES } from 'utils/consts'
 
 const Tests = (props) => {
   const {
