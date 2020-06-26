@@ -6,7 +6,7 @@ import pathsNames from 'router/pathNames'
 import Modal from 'components/Modal'
 import { OverlayContext } from 'App'
 import PatientForm from 'components/Forms/PatientForm'
-import { API, PATIENT_FORM } from 'utils/consts'
+import {API, PATIENT_FORM, TABLE_PAGES} from 'utils/consts'
 import { cloneDeep } from 'lodash'
 import { Input } from 'antd'
 import PatientPage from './components/PatientPage'
@@ -112,7 +112,7 @@ const Patients = (props) => {
               Add
             </button>
             <div className="search-wrapper">
-              <label>Filter:</label>
+              <label>{TABLE_PAGES.filterTitle}</label>
               <Input onChange={handleInputChange} ref={inputRef} />
             </div>
             {!loadingAllPatients && allPatients.length > 0 && <h3 className="patients-title">{titleContent}</h3>}

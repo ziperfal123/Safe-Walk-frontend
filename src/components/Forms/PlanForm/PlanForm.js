@@ -37,7 +37,6 @@ const PlanForm = (props) => {
   const [defaultPlans, setDefaultPlansField] = useState((dataToEdit && dataToEdit.defaultPlans) || [])
   const nameInputRef = useRef(null)
   const [form] = Form.useForm()
-  const inputNumberRef = useRef(null)
 
   useEffect(() => {
     let normalizedVideosArr = [...videos]
@@ -56,9 +55,6 @@ const PlanForm = (props) => {
 
   useEffect(() => {
     dataToEdit && setNameField(dataToEdit.name)
-    if (inputNumberRef && inputNumberRef.current) {
-      console.log(inputNumberRef.current)
-    }
   }, [])
 
 

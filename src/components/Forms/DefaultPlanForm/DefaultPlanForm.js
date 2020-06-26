@@ -34,10 +34,10 @@ const DefaultPlanForm = (props) => {
   }
 
   function handleVideosClick(videoId, e) {
-    console.log('e.target.className: ', e.target.className)
     if (e.target.className !== ''
         && e.target.className !== 'label-container'
         && e.target.className !== 'label-container default-plan-label'
+        && e.target.className !== 'input-number-container'
         && e.target.className !== 'name-label') return
 
     let isVideoAlreadyInList = false

@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom'
 import TestPage from 'containers/TestPage'
 import { Input } from 'antd'
 import { cloneDeep } from 'lodash'
+import {TABLE_PAGES} from "utils/consts";
 
 const Tests = (props) => {
   const {
@@ -96,7 +97,7 @@ const Tests = (props) => {
     return (
       <div className="patient-tests-container">
         <div className="search-wrapper">
-          <label>Filter:</label>
+          <label>{TABLE_PAGES.filterTitle}</label>
           <Input onChange={handleInputChange} ref={inputRef} />
         </div>
         {!loadingAllTests && <h3 className="tests-title">{titleContent}</h3>}
