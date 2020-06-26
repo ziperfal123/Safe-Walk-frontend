@@ -109,10 +109,11 @@
 }
 
 .dropdown-menu.notification-menu .menu-item {
-  min-height: 62px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  padding: 0 10px;
+  min-height: 62px;
   cursor: default;
   pointer-events: none;
 }

@@ -3,6 +3,7 @@ import { NotificationOutlined } from '@ant-design/icons'
 import { Button, Dropdown, Menu } from 'antd'
 import { cloneDeep } from 'lodash'
 import classNames from 'classnames'
+import AvatarImage from 'components/AvatarImage'
 
 const HeaderDropdown = (props) => {
   const {
@@ -36,18 +37,12 @@ const HeaderDropdown = (props) => {
           </>
           )}
 
-        {portionArr.map((notif) => (
-          <Menu.Item key={notif.timeStamp} className="menu-item">
-            <span className="image-wrapper">
-              <img
-                className="patient-image"
-                src={notif.patientPicture}
-                alt="patient"
-              />
-            </span>
+        {portionArr.map((notification) => (
+          <Menu.Item key={notification.timeStamp} className="menu-item">
+            <AvatarImage className="patient-image" url={notification.patientPicture} />
             <div className="text-wrapper">
-              <span className="description">{notif.description}</span>
-              <span className="time">{notif.localTime}</span>
+              <span className="description">{notification.description}</span>
+              <span className="time">{notification.localTime}</span>
             </div>
           </Menu.Item>
         ))}
