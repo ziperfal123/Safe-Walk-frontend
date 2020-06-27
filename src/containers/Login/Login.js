@@ -30,7 +30,7 @@ const Login = (props) => {
   return (
     <div className="login-page">
       { HeaderTitleAnimation() }
-      <div className="login-page__form-wrapper">
+      <div className="form-wrapper">
         <Form
           handleLoginFormSubmit={handleLoginFormSubmit}
         />
