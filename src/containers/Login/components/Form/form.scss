@@ -1,33 +1,43 @@
 @import "main";
 
+/************************
+      Login Form
+************************/
 .login-form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   height: 100%;
+}
 
-  & input, & button {
-    height: 40px;
-    width: 350px;
-    border-radius: 15px;
-  }
+.login-form input,
+.login-form button {
+  height: 40px;
+  width: 350px;
+  border-radius: 15px;
+}
 
-  & input {
-    padding-left: 15px;
-    font-size: 16px;
-    &:focus {
-      outline: none;
-    }
-  }
-
-  & button {
-    letter-spacing: 1.7px;
-    font-size: 17px;
-    color: $login-btn-font-color;
-    background-color: $login-btn-background-color;
-    border: none;
-    cursor: pointer;
+/*--------------
+     inputs
+---------------*/
+.login-form input {
+  padding-left: 15px;
+  font-size: 16px;
+  &:focus {
     outline: none;
   }
+}
+
+/*--------------
+   submit btn
+---------------*/
+.login-form button {
+  letter-spacing: 1.7px;
+  font-size: 17px;
+  color: $login-btn-font-color;
+  background-color: $login-btn-background-color;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
