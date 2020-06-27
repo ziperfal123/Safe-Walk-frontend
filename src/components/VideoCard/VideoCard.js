@@ -47,5 +47,9 @@ export default VideoCard
 
 VideoCard.propTypes = ({
   handleRemoveClick: PropTypes.func.isRequired,
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
 })
+
+VideoCard.defaultProps = {
+  link: '',
+}

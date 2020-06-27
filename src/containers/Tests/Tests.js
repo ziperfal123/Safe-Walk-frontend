@@ -41,6 +41,9 @@ const Tests = (props) => {
       if (inputRef && inputRef.current && inputRef.current.state) {
         inputRef.current.state.value = ''
       }
+    } else {
+      setNormalizedTests([])
+      setFilteredTests([])
     }
   }, [allTests, allPatients])
 
