@@ -1,5 +1,8 @@
 @import "../../main";
 
+/************************
+        Login
+************************/
 .login-page {
   width: 100vw;
   height: 100vh;
@@ -8,81 +11,87 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  #header {
-    position: relative;
-    bottom: 40px;
-    color: whitesmoke;
-    font-size: $login-header-font-size;
-    font-family: $login-header-font-family;
-    animation: fill-animation 0.7s ease forwards 1.9s;
+/*--------------
+    Header
+---------------*/
+.login-page #header {
+  position: relative;
+  bottom: 40px;
+  color: whitesmoke;
+  font-size: $login-header-font-size;
+  font-family: $login-header-font-family;
+  animation: fill-animation 0.7s ease forwards 1.9s;
 
-    & path:nth-child(1) {
-      stroke-dasharray: 450px;
-      stroke-dashoffset: 450px;
-      animation: line-animation 1s ease forwards;
-    }
-
-    & path:nth-child(2) {
-      stroke-dasharray: 620px;
-      stroke-dashoffset: 620px;
-      animation: line-animation 1s ease forwards 0.2s;
-    }
-
-    & path:nth-child(3) {
-      stroke-dasharray: 330px;
-      stroke-dashoffset: 330px;
-      animation: line-animation 0.7s ease forwards 0.4s;
-    }
-
-    & path:nth-child(4) {
-      stroke-dasharray: 500px;
-      stroke-dashoffset: 500px;
-      animation: line-animation 0.7s ease forwards 0.6s;
-    }
-
-    & path:nth-child(5) {
-      stroke-dasharray: 780px;
-      stroke-dashoffset: 780px;
-      animation: line-animation 0.7s ease forwards 0.8s;
-    }
-
-    & path:nth-child(6) {
-      stroke-dasharray: 620px;
-      stroke-dashoffset: 620px;
-      animation: line-animation 0.7s ease forwards 1s;
-    }
-
-    & path:nth-child(7) {
-      stroke-dasharray: 220px;
-      stroke-dashoffset: 220px;
-      animation: line-animation 0.7s ease forwards 1.2s;
-    }
-
-    & path:nth-child(8) {
-      stroke-dasharray: 450px;
-      stroke-dashoffset: 450px;
-      animation: line-animation 0.7s ease forwards 1.4s;
-    }
-
-    @keyframes line-animation {
-      to {
-        stroke-dashoffset: 0;
-      }
-    }
-
-    @keyframes fill-animation {
-      from {
-        fill: transparent;
-      }
-      to {
-        fill: white;
-      }
-    }
+  & path:nth-child(1) {
+    stroke-dasharray: 450px;
+    stroke-dashoffset: 450px;
+    animation: line-animation 1s ease forwards;
   }
 
-  &__form-wrapper {
-    height: 25%;
+  & path:nth-child(2) {
+    stroke-dasharray: 620px;
+    stroke-dashoffset: 620px;
+    animation: line-animation 1s ease forwards 0.2s;
+  }
+
+  & path:nth-child(3) {
+    stroke-dasharray: 330px;
+    stroke-dashoffset: 330px;
+    animation: line-animation 0.7s ease forwards 0.4s;
+  }
+
+  & path:nth-child(4) {
+    stroke-dasharray: 500px;
+    stroke-dashoffset: 500px;
+    animation: line-animation 0.7s ease forwards 0.6s;
+  }
+
+  & path:nth-child(5) {
+    stroke-dasharray: 780px;
+    stroke-dashoffset: 780px;
+    animation: line-animation 0.7s ease forwards 0.8s;
+  }
+
+  & path:nth-child(6) {
+    stroke-dasharray: 620px;
+    stroke-dashoffset: 620px;
+    animation: line-animation 0.7s ease forwards 1s;
+  }
+
+  & path:nth-child(7) {
+    stroke-dasharray: 220px;
+    stroke-dashoffset: 220px;
+    animation: line-animation 0.7s ease forwards 1.2s;
+  }
+
+  & path:nth-child(8) {
+    stroke-dasharray: 450px;
+    stroke-dashoffset: 450px;
+    animation: line-animation 0.7s ease forwards 1.4s;
+  }
+}
+
+/*--------------
+      Form
+---------------*/
+.login-page .form-wrapper {
+  height: 25%;
+}
+
+@keyframes line-animation {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fill-animation {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: white;
   }
 }
 

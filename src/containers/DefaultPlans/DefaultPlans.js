@@ -5,7 +5,7 @@ import AddCard from 'components/AddCard'
 import Modal from 'components/Modal'
 import DefaultPlansForm from 'components/Forms/DefaultPlanForm'
 import DefaultPlanCard from 'components/DefaultPlanCard'
-import {API, DEFAULT_PLAN_FORM} from 'utils/consts'
+import { API, DEFAULT_PLAN_FORM } from 'utils/consts'
 import 'containers/DefaultPlans/defaultPlans.scss'
 
 const DefaultPlans = (props) => {
@@ -81,7 +81,7 @@ const DefaultPlans = (props) => {
                 visible={shouldOpenModal || didPostRequestSucceed}
                 formTitle={DEFAULT_PLAN_FORM.formTitle}
                 formDescription={DEFAULT_PLAN_FORM.formDescription}
-                type={'default plan'}
+                type="default plan"
                 FormToRender={DefaultPlansForm}
                 allVideos={allVideos}
                 isLoading={loadingCreateDefaultPlan}

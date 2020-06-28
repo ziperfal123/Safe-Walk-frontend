@@ -63,6 +63,8 @@
 
 /* Notification menu */
 .dropdown-menu.notification-menu {
+  transform-style: preserve-3d;
+  z-index: $z-index-top-value;
   position: relative;
   top: 6px;
   right: 12px;

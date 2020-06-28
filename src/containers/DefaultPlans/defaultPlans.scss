@@ -1,17 +1,27 @@
 @import "main";
 
+/************************
+    Default plans
+************************/
 .default-plans-page {
   @include page-size;
+}
+/*--------------
+    loading
+---------------*/
 
-  & .loading-default-plans {
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.default-plans-page .loading-default-plans {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  & .default-plans-container {
+/*--------------------------
+   Default plans container
+---------------------------*/
+.default-plans-page .default-plans-container {
     position: relative;
     top: 60px;
     margin: auto auto 30px;
@@ -20,9 +30,8 @@
     grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
     grid-gap: 30px;
     width: 70%;
-  }
+}
 
-  h1 {
-    font-size: $headers-font-size;
-  }
+.default-plans-page h1 {
+  font-size: $headers-font-size;
 }
