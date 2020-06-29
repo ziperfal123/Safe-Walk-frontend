@@ -37,7 +37,7 @@ const HeaderDropdown = (props) => {
           </>
           )}
 
-        {portionArr.map((notification) => (
+        {portionArr.map((notification, index) => index < 5 && (
           <Menu.Item key={notification.timeStamp} className="menu-item">
             <AvatarImage className="patient-image" url={notification.patientPicture} />
             <div className="text-wrapper">
